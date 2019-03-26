@@ -1,0 +1,22 @@
+1. IHH:
+   Herfindahl-Hirschman (dados do BCB - trimestral)
+
+2. Spread:
+   Spread médio das operações de crédito com recursos livres - Total (série 20786 do SGS)
+
+3. Inflação:
+   Índice nacional de preços ao consumidor-amplo, IPCA (série 433 do SGS)
+
+4. Compulsório:
+   Recolhimentos obrigatórios de instituições financeiras - Recursos à vista em espécie (não remunerados) (série 1849 do SGS)
+
+5. Selic:
+   Taxa de juros - Selic acumulada no mês anualizada base 252 (Série 4189 do SGS)
+
+6. Inadimplência:
+   Inadimplência da carteira de crédito - Total (série 21082 do SGS);
+   Operações de crédito do sistema financeiro - recursos livres - inadimplência (SERCODIGO BM12_CRLIN12 no IpeaData) (achei mais correto)
+
+7. Atividade Econômica (Produção Industrial):
+   Produção da indústria geral (quantum). Variação percentual em relação ao mesmo período do ano anterior. (SERCODIGO PAN12_QIIGG12 no IpeaData)
+

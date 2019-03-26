@@ -3,6 +3,7 @@ library(data.table)
 library(lubridate)
 library(rbcb)
 library(ipeadatar)
+library(plyr)
 
 setwd("~/mono/dados/")
 
@@ -27,27 +28,8 @@ ihh <- fread("ihh.csv") %>%
   mutate(date = as.Date(date)) %>%
   arrange(date) %>%
   select(date, ativos) %>%
-  rename(IHH = ativos)
+  dplyr::rename(IHH = ativos)
 
-# ----------------------------------------------
-# Juntar tudo num data.frame
-
-concat <- function(series) {
-  merged <- merge(series[[1]], series[[2]])
-
-  for (i in 3:length(series)) {
-    merged <- merge(merged, series[[i]])
-  }
-  return(merged)
-}
-
-df <- right_join(ihh, concat(series), by = "date") %>%
-      filter(date <= as.Date("2017-12-01")) %>% 
-      as_tibble %>%
-      fill(ihh)
-
-
-# -----------------------------------------------
 
 # -----------------------------------------------
 # Dados do IPEADATA
@@ -58,14 +40,27 @@ inad_alt <- ipeadata("BM12_CRLIN12") %>%
             filter(date >= as.Date(min(df$date)),
                  date <= as.Date(max(df$date))) %>% 
             select(value) %>% 
-            rename(InadimplenciaIPEADATA = value)
+            dplyr::rename(InadimplenciaIPEADATA = value)
 
 prod_ind <- ipeadata("PAN12_QIIGG12") %>% 
             filter(date >= as.Date(min(df$date)),
                    date <= as.Date(max(df$date))) %>%
             select(value) %>% 
-            rename(ProducaoIndustrialIPEADATA = value)
+            dplyr::rename(ProducaoIndustrialIPEADATA = value)
                      
+
+# -----------------------------------------------
+# Agregar dados
+
+# ----------------------------------------------
+# Juntar tudo num data.frame
+
+series_df <- plyr::join_all(series)
+
+df <- right_join(ihh, series_df, by = "date") %>%
+      filter(date <= as.Date("2017-12-01")) %>% 
+      as_tibble %>%
+      fill(IHH) %>% bind_cols(inad_alt, prod_ind)
 
 write.csv(cbind(df, inad_alt, prod_ind),
           file = "series_economicas.csv",
