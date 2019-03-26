@@ -1,34 +1,33 @@
 library(tidyverse)
 library(data.table)
 library(lubridate)
-library(ecoseries)
 library(rbcb)
+library(ipeadatar)
 
-setwd("~/mono/dados")
-
+setwd("~/mono/dados/")
 
 # -----------------------------------------------
 # Coletar dados do rbcb
 
-data_inicial = "2011-01-01"
+data_inicial <- "2011-01-01"
 
-series = get_series(c(
+series <- get_series(c(
   Spread = 20786,
   Selic = 4189,
-  `Inflação` = 433,
-  `Compulsório` = 1849,
-  `Inadimplência` = 21082,
-  `Produção Industrial` = 21859), data_inicial, as = "tibble")
+  Inflacao = 433,
+  Compulsorio = 1849,
+  Inadimplencia = 21082,
+  ProducaoIndustrial = 21859), data_inicial, as = "tibble")
 
 # -----------------------------------------------
-# Ler dados Herfindahl-Hirschmann
+# Ler dados de Herfindahl-Hirschmann
 
 ihh <- fread("ihh.csv") %>%
   as_tibble %>%
   mutate(date = as.Date(date)) %>%
   arrange(date) %>%
   select(date, ativos) %>%
-  rename(ihh = ativos)
+  rename(IHH = ativos)
 
 # ----------------------------------------------
 # Juntar tudo num data.frame
@@ -43,8 +42,31 @@ concat <- function(series) {
 }
 
 df <- right_join(ihh, concat(series), by = "date") %>%
-      filter(date <= as.Date("2017-12-01")) %>%
+      filter(date <= as.Date("2017-12-01")) %>% 
       as_tibble %>%
       fill(ihh)
 
-write.csv(df, file = "series_economicas.csv")
+
+# -----------------------------------------------
+
+# -----------------------------------------------
+# Dados do IPEADATA
+
+intervalo <- c(as.Date(min(df$date)), as.Date(max(df$date)))
+
+inad_alt <- ipeadata("BM12_CRLIN12") %>%
+            filter(date >= as.Date(min(df$date)),
+                 date <= as.Date(max(df$date))) %>% 
+            select(value) %>% 
+            rename(InadimplenciaIPEADATA = value)
+
+prod_ind <- ipeadata("PAN12_QIIGG12") %>% 
+            filter(date >= as.Date(min(df$date)),
+                   date <= as.Date(max(df$date))) %>%
+            select(value) %>% 
+            rename(ProducaoIndustrialIPEADATA = value)
+                     
+
+write.csv(cbind(df, inad_alt, prod_ind),
+          file = "series_economicas.csv",
+          row.names = F)

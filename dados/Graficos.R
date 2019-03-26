@@ -1,62 +1,43 @@
-library(rbcb)
+library(tidyverse)
+library(data.table)
+library(lubridate)
 library(ggplot2)
+library(ggthemes)
+library(cowplot)
 
 setwd("~/mono/dados")
 
 # -----------------------------------------------
-# Coletar s√©ries
-
-data_inicial = "2011-01-01"
-
-series = get_series(c(
-  Spread = 20786,
-  Selic = 4189,
-  Inflacao = 433,
-  Compulsorio = 1849,
-  Inadimplencia = 21082), data_inicial, as = "tibble")
-
+df <- fread("series.csv")[, -1] %>% as_tibble %>% 
+  mutate(date = ymd(date))
 
 # -----------------------------------------------
-# Criando uma fun√ß√£o para plotar todos de uma vez
-par(mfrow = c(2, 3))
 
-plot_all <- function(SERIES) {
-  for (i in 1:length(SERIES)) {
+date_limit <- c(min(df$date), max(df$date))
 
-    serie = SERIES[[i]]
+plt <- ggplot(df) + labs(x = NULL, y = NULL) +
+       scale_x_date(limits = date_limit,
+                    date_labels = "%Y",
+                    date_breaks = "1 year")
 
-        plot(serie,
-        type = "l",
-        main = names(SERIES)[i],
-        xlab = "", ylab = "")
+plt + geom_line(aes(date, Spread)) +
+      ggtitle("Spread",
+              "Spread mÈdio das operaÁıes de crÈdito com recursos livres - Total") +
+      ggsave("Spread.png")
 
-  }
-}
+plt + geom_line(aes(date, ihh)) +
+      ggtitle("Õndice de Herfindahl-Hirschmann")
 
-plot_all(series)
+plt + geom_line(aes(date, Inflacao)) +
+      ggtitle("InflaÁ„o",
+              "Õndice nacional de preÁos ao consumidor-amplo (IPCA)")
 
+plt + geom_line(aes(date, Selic)) +
+      ggtitle("Selic",
+              "Taxa de juros - Selic acumulada no mÍs anualizada base 252")
 
+plt + geom_line(aes(date, Inadimplencia)) +
+      ggtitle("InadimplÍncia",
+              "InadimplÍncia da carteira de crÈdito - Total")
 
-# ----------------------------------------------
-# Criando uma fun√ß√£o para salvar cada um por vez
-
-plot_and_save <- function(SERIES) {
-  for (i in 1:length(SERIES)) {
-
-    serie = SERIES[[i]]
-
-    ggplot(serie, aes(serie[[1]], serie[[2]])) +
-    geom_line() +
-    labs(x = NULL, y = NULL,
-         title = names(SERIES)[i]) +
-    theme_bw()
-
-    ggsave(paste0(names(SERIES)[i], ".png"),
-           device = "png",
-           path = getwd(),
-           dpi = 300)
-
-    }
-}
-
-plot_and_save(series)
+plt + 
