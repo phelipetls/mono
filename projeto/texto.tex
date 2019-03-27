@@ -1,11 +1,109 @@
-\documentclass{abntex2}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+% ----
+% Criação do documento com a classe abntex2
+% ---- 
+\documentclass[a4paper, 12pt, openany, oneside, brazil]{abntex2}
+
+% ---
+% Pacotes fundamentais
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Seleção de códigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificação do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}		        % Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos/figuras.
+\usepackage{subcaption}			% Inclusão de subfiguras.
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{amsmath}			% Pacote matemático
+\usepackage[brazil]{babel}
+
+
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	                 % Citações padrão ABNT
+
+
+% ----
+% Configurações dos pacotes
+% ----
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
 \autor{Phelipe Teles da Silva}
-\titulo{Análise Quantitativa da Relação entra Spread e Concentração Bancária}
+\titulo{Análise Quantitativa da Relação entre Spread e Concentração Bancária}
 \data{2019}
+\instituicao{Universidade Federal Rural do Rio de Janeiro}
 \local{Seropédica, Rio de Janeiro}
+\orientador[Orientadora:]{Debóra Pimentel}
+%\preambulo{}
+%\tipotrabalho{}
+
+\frenchspacing
 
 \begin{document}
+% ---
+% Capa e Folha de Rosto
+% ---
 \imprimircapa
+\imprimirfolhaderosto
+
+% ---
+% Insere o sumario automático
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+\textual
+
+\chapter{Revisão de Literatura}
+\section{Revisão da literatura teórica}
+	
+	Nesta seção pretendo explorar três modelos que se consagraram na literatura sobre a relação entre spread bancário e concentração bancária: o modelo do banco como uma firma maximizadora de lucros de Klein (1971), o modelo do banco como intermediador financeiro de \citeonline{hoesaunders} e, finalmente, o modelo pós-keynesiano da preferência pela liquidez. O intuito é explicitar quais variáveis são relevantes para explicar o spread bancário e por quê, de um ponto de vista macro e microeconômico.
+	
+\subsection{O Banco como firma}
+	
+	Neste modelo, o banco é visto como uma firma que produz serviços voltados para intermediar a oferta e demanda de crédito, receber depósitos (D) e fazer empréstimos (L), a uma taxa de juros determinada em um mercado monopolístico ou semi-monopolístico, ou seja, em que tem poder de fixar a taxa de juros acima do custo marginal de produção, e é precisamente nesse sentido que o spread bancário é aqui entendido, como o poder de mercado deste banco. \cite{oreiro}
+	
+	O autor considera que o banco seja neutro ao risco, buscando maximizar tão somente o valor esperado do lucro, sem considerar sua variância, deparando-se com uma curva de demanda por empréstimos decrescente, $L(r_L)$, e uma curva de oferta de depósitos crescente, $D(r_D)$, e uma função custo do tipo $C(D, L)$, em que$ r_L$ denota a taxa de juros cobrada ao emprestar, e $r_D$ a paga ao depositante. A função custo, considerando as funções inversas, é assim considerada: \begin{equation}\pi(D, L) = r_L(L)L + rM - r_D(D)D - C(D, L)\end{equation} em que $r$ representa a taxa de juros do mercado interbancário, e M, o que o banco tem disponível para aplicar neste mercado, a saber, tudo o que recebe de depósito e não empresta nem vai para o compulsório (uma taxa $\alpha$), $M = (1 - \alpha)D - L$.
+	
+	E assim, manipulando a equação, obtemos o que representa o resultado da intermediação financeira subtraído de seus custos: \begin{equation}\pi(L, D) = (r_L(L) - r)L + (r(1 - \alpha) - r_D(D))D - C(D, L)\end{equation}
+
+O próximo passo é obter a margem ótima de intermediação, isto é, a que maximiza a função lucro. Para isso, tira-se as derivadas parciais desta função em relação a L e D para se chegar às condições de primeira ordem, e, depois de algumas manipulações algébricas, chega-se às equações fundamentais do modelo:
+
+\begin{equation}
+\frac{1}{\epsilon^{*}_L} = \frac{r^{*}_L - (r - C^{'}_L)}{r^{*}_L}
+\end{equation}
+
+\begin{equation}
+\frac{1}{\epsilon^{*}_D} = \frac{r(1-\alpha)-C^{'}_D - r^{*}_D}{r^{*}_D}
+\end{equation}
+
+O lado direito da equação é a versão para firma bancária do índice de Lerner\footnote{ Definido como a razão $(P - C_{mg}) / P$, em que $P$ é preço e $C_{mg}$ é o custo marginal, serve para medir o poder de mercado de um agente, sua capacidade de fixar o preço acima do custo marginal. É uma função do inverso da função de elasticidade. \cite{maudos}}, sendo, por definição, em cada um dos casos, igual ao inverso da elasticidade-juros da demanda por empréstimos ($\epsilon^{*}_L$) e oferta de depósitos ($\epsilon^{*}_D$).
+
+Segue-se imediatamente destas equações que o spread bancário será tão maior quanto menos sensíveis forem as elasticidades da demanda por empréstimo e da oferta de depósito em relação à taxa de juros. Outra implicação interessante e não tão óbvia é de que, se a taxa de juros $r$ do mercado interbancário aumentar, as taxas de intermediação também irão. \cite{freixas}.
+
+\bibliography{bibliografia}
+
 \end{document}
