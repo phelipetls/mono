@@ -1,6 +1,6 @@
 % ----
 % Criação do documento com a classe abntex2
-% ---- 
+% ----
 \documentclass[a4paper, 12pt, openany, oneside, brazil]{abntex2}
 
 % ---
@@ -79,30 +79,60 @@
 
 \chapter{Revisão de Literatura}
 \section{Revisão da literatura teórica}
-	
-	Nesta seção pretendo explorar três modelos que se consagraram na literatura sobre a relação entre spread bancário e concentração bancária: o modelo do banco como uma firma maximizadora de lucros de Klein (1971), o modelo do banco como intermediador financeiro de \citeonline{hoesaunders} e, finalmente, o modelo pós-keynesiano da preferência pela liquidez. O intuito é explicitar quais variáveis são relevantes para explicar o spread bancário e por quê, de um ponto de vista macro e microeconômico.
-	
+
+	Nesta seção pretendo explorar três modelos que se consagraram na literatura sobre a relação entre spread bancário e concentração bancária: o modelo do banco como uma firma maximizadora de lucros de \citeonline{klein}, o modelo do banco como intermediador financeiro de \citeonline{hoesaunders} e, finalmente, o modelo pós-keynesiano da preferência pela liquidez. O intuito é explicitar quais variáveis são relevantes para explicar o spread bancário e por quê, de um ponto de vista macro e microeconômico.
+
 \subsection{O Banco como firma}
-	
+
 	Neste modelo, o banco é visto como uma firma que produz serviços voltados para intermediar a oferta e demanda de crédito, receber depósitos (D) e fazer empréstimos (L), a uma taxa de juros determinada em um mercado monopolístico ou semi-monopolístico, ou seja, em que tem poder de fixar a taxa de juros acima do custo marginal de produção, e é precisamente nesse sentido que o spread bancário é aqui entendido, como o poder de mercado deste banco. \cite{oreiro}
-	
+
 	O autor considera que o banco seja neutro ao risco, buscando maximizar tão somente o valor esperado do lucro, sem considerar sua variância, deparando-se com uma curva de demanda por empréstimos decrescente, $L(r_L)$, e uma curva de oferta de depósitos crescente, $D(r_D)$, e uma função custo do tipo $C(D, L)$, em que$ r_L$ denota a taxa de juros cobrada ao emprestar, e $r_D$ a paga ao depositante. A função custo, considerando as funções inversas, é assim considerada: \begin{equation}\pi(D, L) = r_L(L)L + rM - r_D(D)D - C(D, L)\end{equation} em que $r$ representa a taxa de juros do mercado interbancário, e M, o que o banco tem disponível para aplicar neste mercado, a saber, tudo o que recebe de depósito e não empresta nem vai para o compulsório (uma taxa $\alpha$), $M = (1 - \alpha)D - L$.
-	
+
 	E assim, manipulando a equação, obtemos o que representa o resultado da intermediação financeira subtraído de seus custos: \begin{equation}\pi(L, D) = (r_L(L) - r)L + (r(1 - \alpha) - r_D(D))D - C(D, L)\end{equation}
 
-O próximo passo é obter a margem ótima de intermediação, isto é, a que maximiza a função lucro. Para isso, tira-se as derivadas parciais desta função em relação a L e D para se chegar às condições de primeira ordem, e, depois de algumas manipulações algébricas, chega-se às equações fundamentais do modelo:
+	O próximo passo é obter a margem ótima de intermediação, isto é, a que maximiza a função lucro. Para isso, tira-se as derivadas parciais desta função em relação a L e D para se chegar às condições de primeira ordem, e, depois de algumas manipulações algébricas, chega-se às equações fundamentais do modelo:
 
-\begin{equation}
-\frac{1}{\epsilon^{*}_L} = \frac{r^{*}_L - (r - C^{'}_L)}{r^{*}_L}
-\end{equation}
+	\begin{equation}
+	\frac{1}{\epsilon^{*}_L} = \frac{r^{*}_L - (r - C^{'}_L)}{r^{*}_L}
+	\end{equation}
 
-\begin{equation}
-\frac{1}{\epsilon^{*}_D} = \frac{r(1-\alpha)-C^{'}_D - r^{*}_D}{r^{*}_D}
-\end{equation}
+	\begin{equation}
+	\frac{1}{\epsilon^{*}_D} = \frac{r(1-\alpha)-C^{'}_D - r^{*}_D}{r^{*}_D}
+	\end{equation}
 
-O lado direito da equação é a versão para firma bancária do índice de Lerner\footnote{ Definido como a razão $(P - C_{mg}) / P$, em que $P$ é preço e $C_{mg}$ é o custo marginal, serve para medir o poder de mercado de um agente, sua capacidade de fixar o preço acima do custo marginal. É uma função do inverso da função de elasticidade. \cite{maudos}}, sendo, por definição, em cada um dos casos, igual ao inverso da elasticidade-juros da demanda por empréstimos ($\epsilon^{*}_L$) e oferta de depósitos ($\epsilon^{*}_D$).
+	O lado direito da equação é a versão para firma bancária do índice de Lerner\footnote{ Definido como a razão $(P - C_{mg}) / P$, em que $P$ é preço e $C_{mg}$ é o custo marginal, serve para medir o poder de mercado de um agente, sua capacidade de fixar o preço acima do custo marginal. É uma função do inverso da função de elasticidade. \cite{maudos}}, sendo, por definição, em cada um dos casos, igual ao inverso da elasticidade-juros da demanda por empréstimos ($\epsilon^{*}_L$) e oferta de depósitos ($\epsilon^{*}_D$).
 
-Segue-se imediatamente destas equações que o spread bancário será tão maior quanto menos sensíveis forem as elasticidades da demanda por empréstimo e da oferta de depósito em relação à taxa de juros. Outra implicação interessante e não tão óbvia é de que, se a taxa de juros $r$ do mercado interbancário aumentar, as taxas de intermediação também irão. \cite{freixas}.
+	Segue-se imediatamente destas equações que o spread bancário será tão maior quanto menos sensíveis forem as elasticidades da demanda por empréstimo e da oferta de depósito em relação à taxa de juros. Outra implicação interessante e não tão óbvia é de que, se a taxa de juros $r$ do mercado interbancário aumentar, as taxas de intermediação também irão. \cite{freixas}.
+
+\subsection{O banco como intermediador financeiro}
+
+	Neste modelo, primeiro apresentado em \citeonline{hoesaunders}, o banco é considerado como um agente que atua como intermediador entre demandantes e ofertantes de fundos. É um dos mais influentes modelos na literatura, tendo sido extendido por vários outros autores \cite{maudos}, mas aqui consideraremos mais detidamente as implicações da contribuição de \citeonline{maudos}.
+
+	Este modelo difere radicalmente do de \citeonline{klein} quando consideramos o mercado em que ele atua, não mais harmônico e equilibrado, mas sujeito a incertezas. Neste cenário, ele não mais é considerado neutro ao risco, mas avesso a ele. São duas as incertezas: o risco da inadimplência e o risco da taxa de juros, que tem a ver com o possível descoordenação entre demanda por empréstimos e ofertas de depósitos, caso em que o banco terá que recorrer ao mercado interbancário. No caso de demanda excessiva de empréstimos, o banco terá que pedir emprestado e estará sujeito ao risco da taxa de juros aumentar nesse ínterim. No caso de oferta excessiva de depósitos, terá que aplicar o excesso, no que estará sujeito ao risco da taxa cair.
+
+	Por esta razão, os bancos procuram minimizar esse risco fixando taxas de juros para os depósitos ($r_D$) e para os empréstimos ($r_L$) com a adição de uma pequena margem relativa à taxa de juros do mercado interbancário. Esta margem é o spread ($s$):
+
+	$$r_D = r - a \\
+	r_L = r + b \\
+	s = r_L - r_D = a + b$$
+
+	Para uma derivação das equações do modelo, até a equação do spread ótimo, ver \citeonline{maudos}. Para propósitos da revisão, iremos omiti-la, considerando somente suas implicações no que concerne aos determinantes do spread. São eles:
+
+	\begin{enumerate}
+		\item Poder de mercado dos bancos, o que se relaciona com as elasticidades-juros da demanda por empréstimo e da oferta de depósitos, como em \citeonline{klein}.
+		\item Custos administrativos médios\footnote{Não consta no modelo original de \citeonline{hoesaunders}}.
+		\item Aversão ao risco: quanto mais avessos, maior o spread.
+		\item Volatilidade da taxa de juros do mercado interbancário: quanto mais instável a taxa de juros, maior o risco, e portanto maior o spread.
+		\item Inadimplência: quanto maior o risco de inadimplência, mais o bancos terão que se proteger via spread.
+		\item Covariância entre risco da taxa de juros e de inadimplência: captura a influência da instabilidade macroeconômica na insolvência das famílias. \cite{oreiro}
+		\item Tamanho médio das operações de crédito e de depósito: uma operação de tamanho maior que o médio significa maior perda potencial, da qual se protege com um spread maior.
+	\end{enumerate}
+
+	Digno destacar como este modelo introduz a influência da estabilidade macroeconômica sobre o nível do spread, pela variável volatilidade da taxa de juros. Por fim, como explica \citeonline{maudos}, cabe esclarecer que este modelo teórico só ajuda a compreender o que se entende por spread "puro", porque há muitas outras variáveis que podem influir em sua formação, que são ou peculiares das instituições ou regualações de cada país, ou difíceis de serem mensuradas.
+
+\section{Revisão da literatura empírica}
+\subsection{Nacional}
+
 
 \bibliography{bibliografia}
 
