@@ -1,3 +1,10 @@
 *.gz
 .Rhistory
-/referencias/*.pdf
+*.pdf
+*.aux
+*.toc
+*.bbl
+*.blg
+*.brt
+*.synctex(busy
+*.log
