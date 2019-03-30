@@ -13,7 +13,7 @@ raw <- read_csv("spreads_paises.csv") %>%
 latin_america <- read_csv("countries.csv") %>%
   clean_names() %>%
   filter(sub_region_name == "Latin America and the Caribbean") %>%
-  select(official_name_en) %>% deframe
+  pull(official_name_en)
 
 spreads <- raw %>% gather("year", "spread", x1960:x2017) %>%
   na.omit() %>% 
