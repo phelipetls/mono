@@ -14,7 +14,7 @@
    Taxa de juros - Selic acumulada no mês anualizada base 252 (Série 4189 do SGS)
 
 6. Inadimplência:
-   Inadimplência da carteira de crédito - Total (série 21082 do SGS);
+   Inadimplência da carteira de crédito - Total (série 21085 do SGS);
    Operações de crédito do sistema financeiro - recursos livres - inadimplência (SERCODIGO BM12_CRLIN12 no IpeaData) (achei mais correto)
 
 7. Atividade Econômica (Produção Industrial):
