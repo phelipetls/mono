@@ -9,3 +9,6 @@
 *.synctex(busy
 *.log
 *.brf
+*.fls
+*.fdb_latexmk
+

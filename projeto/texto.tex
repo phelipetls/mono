@@ -77,6 +77,7 @@
 
 \textual
 
+
 \chapter{Revisão de Literatura}
 \section{Revisão da literatura teórica}
 
@@ -129,16 +130,48 @@
 		\item Tamanho médio das operações de crédito e de depósito: uma operação de tamanho maior que o médio significa maior perda potencial, da qual se protege com um spread maior.
 	\end{enumerate}
 
-	Digno destacar como este modelo introduz a influência da estabilidade macroeconômica sobre o nível do spread, pela variável volatilidade da taxa de juros. Por fim, como explica \citeonline[p.~2265]{maudos}, cabe esclarecer que este modelo teórico só ajuda a compreender o que se entende por spread "puro", porque há muitas outras variáveis que podem influir em sua formação, que são ou peculiares das instituições ou regualações de cada país, ou difíceis de serem mensuradas, tais como pagamento implícito de juros, custo de oportunidade das reservas compulsórias, qualidade da administração etc.
+    Esse modelo teórico é a base sob a qual se sustenta a abordagem empírica
+    dos mesmos autores: a estimação do spread em dois estágios. Primeiro,
+    estima-se o spread "puro", usando as variáveis não incluídas no modelo
+    teórico como controle, variáveis microeconômicas, características dos
+    bancos, para então regredi-lo contra as variáveis do modelo teórico
+    \citeonline{maudos}.
 
 \section{Revisão da literatura empírica}
-\subsection{Internacional}
-	Nesta seção comentarei sobre três trabalhos que julguei pertinentes para a discussão. Dois deles, porque detém a análise à América Latina, o que pode acrescentar bastante ao entendimento do que ocorre no caso brasileiro. E um outro porque traz para discussão o resultado contra-intuitivo de que nem sempre a relação entre concentração e spread é inversa, podendo também ser direta, sugerindo o caso de ganhos de eficiência no processo de concentração.
 
+    A estabilidade macroecônomica e as políticas governamentais que se seguiram
+    ao Plano Real possibilitaram uma queda significativa do spread bancário,
+    porém a um nível ainda bastante alto para os padrões internacionais.
+    Somando-se a isso a reestruturação bancária observada no período,
+    \citeonline{afanasieff02} observam que além da variação temporal do spread,
+    houve também grande variação através dos bancos. É nesse sentido em que se
+    justifica o uso pelos autores de um modelo de dados em painel, com o
+    objetivo de decompor os principais determinantes do spread em variáveis
+    micro e macroeconômicas.
 
+    Para isso, os autores aplicam a metodologia de dois passos de
+    \citeonline{hoesaunders}, usando dados mensais de 142 bancos brasileiros
+    para o período de fevereiro de 1997 a novembro de 2000, formando um painel
+    com 5578 observações. Para a estimação do spread puro, usam um vetor de
+    características bancárias como controle, em que se encontram variáveis como
+    o número de agências, custos operacionais, liquidez, alavancagem etc., um
+    vetor relativo ao tempo e o intercepto. Este spread puro é então regredido
+    contra as variáveis macroeconômicas, como a taxa de inflação, a taxa do
+    compulsório, a taxa SELIC, o crescimento do PIB, uma proxy para prêmio de
+    risco e a taxação financeira.
+  
+    No primeiro estágio, poucas variáveis se mostraram significativas (a taxa
+    de depósitos sem juros sobre o total de ativos, os custos operacionais e
+    uma dummy para banco estrangeiro, todas com os sinais esperados), o que
+    sugere que fatores microeconômicos contribuem pouco para a explicação do
+    spread neste período. Já no segundo estágio, a maior parte das variáveis se
+    mostraram significativas, com exceção do compulsório, e com os sinais
+    esperados, tirando a taxa de inflação. Os autores, por fim, concluem que
+    este é um resultado coerente com a estabilização macroeconômica da época,
+    considerando ainda importante apontar a disparidade no mercado bancário, o
+    que torna possível bancos atuarem cobrando taxas muito maiores que seus
+    rivais.
 
-
-\subsection{Nacional}
 
 
 \bibliography{bibliografia}

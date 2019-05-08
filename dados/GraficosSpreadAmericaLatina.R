@@ -18,7 +18,7 @@ latin_america <- read_csv("countries.csv") %>%
 spreads <- raw %>% gather("year", "spread", x1960:x2017) %>%
   na.omit() %>% 
   select(country_name, year, spread) %>%
-  mutate(year = str_replace(year, "x", "")) %>%
+  mutate(year = str_remove(year, "x")) %>%
   filter(year >= 2015) %>% 
   filter(country_name %in% latin_america)
 

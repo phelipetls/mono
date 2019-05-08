@@ -31,12 +31,12 @@ ihh <- read_csv2("ihh.csv") %>%
 # -----------------------------------------------
 # Dados do IPEADATA
 
-inad_ipea <- ipeadata("BM12_CRLIN12") %>% 
-  select(date, value) %>% 
+inad_ipea <- ipeadata("BM12_CRLIN12") %>%
+  select(date, value) %>%
   dplyr::rename(Inadimplencia_IPEADATA = value)
 
 prodind_ipea <- ipeadata("PAN12_QIIGG12") %>%
-  select(date, value) %>% 
+  select(date, value) %>%
   dplyr::rename(ProducaoIndustrial_IPEADATA = value)
 
 # ----------------------------------------------
@@ -46,8 +46,8 @@ series_df <- plyr::join_all(series)
 
 df <- right_join(ihh, series_df, by = "date") %>%
   filter(date <= as.Date("2017-12-01")) %>%
-  fill(IHH) %>% 
-  left_join(inad_ipea) %>% 
+  fill(IHH) %>%
+  left_join(inad_ipea) %>%
   left_join(prodind_ipea)
 
 write.csv(df,

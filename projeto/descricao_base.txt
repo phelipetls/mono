@@ -20,3 +20,4 @@
 7. Atividade Econômica (Produção Industrial):
    Produção da indústria geral (quantum). Variação percentual em relação ao mesmo período do ano anterior. (SERCODIGO PAN12_QIIGG12 no IpeaData)
 
+
