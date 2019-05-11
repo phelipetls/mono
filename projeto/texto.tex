@@ -23,28 +23,28 @@
 % ---
 % Pacotes de citações
 % ---
-\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+% \usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
 \usepackage[alf]{abntex2cite}	                 % Citações padrão ABNT
 
 
-% ----
-% Configurações dos pacotes
-% ----
-% Configurações do pacote backref
-% Usado sem a opção hyperpageref de backref
-\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
-% Texto padrão antes do número das páginas
-\renewcommand{\backref}{}
-% Define os textos da citação
-\renewcommand*{\backrefalt}[4]{
-	\ifcase #1 %
-		Nenhuma citação no texto.%
-	\or
-		Citado na página #2.%
-	\else
-		Citado #1 vezes nas páginas #2.%
-	\fi}%
-% ---
+% % ----
+% % Configurações dos pacotes
+% % ----
+% % Configurações do pacote backref
+% % Usado sem a opção hyperpageref de backref
+% \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% % Texto padrão antes do número das páginas
+% \renewcommand{\backref}{}
+% % Define os textos da citação
+% \renewcommand*{\backrefalt}[4]{
+% 	\ifcase #1 %
+% 		Nenhuma citação no texto.%
+% 	\or
+% 		Citado na página #2.%
+% 	\else
+% 		Citado #1 vezes nas páginas #2.%
+% 	\fi}%
+% % ---
 
 
 % ---
@@ -206,9 +206,9 @@ de seus custos, mas não ao ponto de perderem muitos clientes para a concorrênc
     ao Plano Real possibilitaram uma queda significativa do spread bancário,
     porém a um nível ainda bastante alto para os padrões internacionais.
     Somando-se a isso a reestruturação bancária observada no período,
-    \citeonline{afanasieff02} observam que além da variação temporal do spread,
-    houve também grande variação através dos bancos. É nesse sentido em que se
-    justifica o uso pelos autores de um modelo de dados em painel, com o
+    \citeonline{afanasieff02} notam que além da grande variação temporal do
+    spread, há também uma grande variação interbancária. É nesse sentido em que
+    se justifica o emprego pelos autores de técnicas de dados em painel, com o
     objetivo de decompor os principais determinantes do spread em variáveis
     micro e macroeconômicas.
 
@@ -216,26 +216,71 @@ de seus custos, mas não ao ponto de perderem muitos clientes para a concorrênc
     \citeonline{hoesaunders}, usando dados mensais de 142 bancos brasileiros
     para o período de fevereiro de 1997 a novembro de 2000, formando um painel
     com 5578 observações. Para a estimação do spread puro, usam um vetor de
-    características bancárias como controle, em que se encontram variáveis como
-    o número de agências, custos operacionais, liquidez, alavancagem etc., um
-    vetor relativo ao tempo e o intercepto. Este spread puro é então regredido
-    contra as variáveis macroeconômicas, como a taxa de inflação, a taxa do
-    compulsório, a taxa SELIC, o crescimento do PIB, uma proxy para prêmio de
-    risco e a taxação financeira.
-  
-    No primeiro estágio, poucas variáveis se mostraram significativas (a taxa
-    de depósitos sem juros sobre o total de ativos, os custos operacionais e
-    uma dummy para banco estrangeiro, todas com os sinais esperados), o que
-    sugere que fatores microeconômicos contribuem pouco para a explicação do
-    spread neste período. Já no segundo estágio, a maior parte das variáveis se
-    mostraram significativas, com exceção do compulsório, e com os sinais
-    esperados, tirando a taxa de inflação. Os autores, por fim, concluem que
-    este é um resultado coerente com a estabilização macroeconômica da época,
-    considerando ainda importante apontar a disparidade no mercado bancário, o
-    que torna possível bancos atuarem cobrando taxas muito maiores que seus
-    rivais.
+    características bancárias como controle \footnote{Dentre elas, número de
+        agências, custos operacionais, a taxa de depósitos à vista e a prazo em
+        relação ao ativo total, sendo duas variáveis distintas, a liquidez,
+        pagamento de juros implícitos, alavancagem, uma variável dummy para banco
+        estrangeiro, a receita de serviços sobre a receita operacional total e o
+    patrimônio líquido}, um vetor relativo ao tempo e o intercepto. Este spread
+    puro é então regredido contra as variáveis macroeconômicas: a taxa de
+    inflação, o compulsório, a taxa SELIC, o crescimento do PIB, a taxação
+    financeira e uma proxy para prêmio de risco.
 
+    No primeiro estágio, poucas variáveis se mostraram significativas (afetam
+    positivamente o spread o custo operacional, a taxa de depósitos à vista em
+    relação ao ativo total e a taxa de receita de serviços em relação à receita
+    operacional, ao passo que bancos estrangeiros são associados com um spread
+    menor), o que sugere que fatores microeconômicos contribuem pouco para a
+    explicação do spread neste período. Pelos resultados, há uma relação direta
+    entre spread e taxa básica de juros, risco, taxação financeira e crescimento
+    do PIB, e contrária no caso da inflação, sendo todas significativas. O
+    efeito estimado do compulsório não foi significativo. Os autores, por fim,
+    concluem que este é um resultado coerente com a estabilização macroeconômica
+    da época, mais consideram importante apontar a ineficiência e desigualdade
+    no mercado bancário, que tornam possível que bancos atuem cobrando taxas
+    muito maiores que seus rivais.
 
+    Seguindo linha metodológica parecida, \citeonline{bignotto06} também se
+    utilizam do modelo teórico de \citeonline{hoesaunders} para analisar a
+    influência dos custos de intermediação e dos fatores de risco de crédito e
+    de juros sobre o spread. Para a estimação, fez-se uso de dados de 87 bancos
+    brasileiros ao longo do 1º trimestre de 2001 até o 1º trimestre de 2004,
+    formando uma base de dados em painel desbalanceado com 1131 observações.
+    
+    O custo administrativo, uma proxy para o risco de crédito e de juros, o
+    market-share, o risco de liquidez, a taxa de receitas de serviços sobre o
+    ativo total e a da despesa tributária sobre o ativo total, o compulsório, a
+    SELIC, a inflação e o ativo total de cada banco corrigido pela inflação, uma
+    medida de seu tamanho, foram usadas como variáveis explicativas no modelo,
+    que também inclui variáveis não-observáveis de aversão ao risco como
+    controle, que exigem tratamentos econométricos específicos para tal. 
+    
+    O modelo que os autores julgam mais eficiente revela uma relação direta
+    entre o spread e os custos administrativos, o risco de crédito e de juros, o
+    compulsório, a SELIC, e o ativo total, todos com o sinal esperado. Algumas
+    variáveis de controle apresentaram coeficientes inesperados, como a da
+    liquidez, da receita de serviços e do market share. Já a variável relativa à
+    carga tributária não se mostrou significativa.
+
+    Complementando os importantes estudos feitos pelo Banco Central do Brasil à
+    época, que consistiam na decomposição contábil do spread,
+    \citeonline{nakane02} buscaram investigar a sensibilidade do spread a
+    variações nas variáveis que o compõem, o que é feito pela abordagem
+    econométrica. Para isso, os autores utilizaram o seguinte modelo:
+
+    $$\ln spread = \beta_0Tend + \beta_1\ln selic_t + \beta_2\ln adm_t +
+    \beta_3\ln risk_t + \beta_4\ln imp_t + \beta_4\ln comp_t$$
+
+    Em que $selic$ é a taxa básica de juros, $adm$ é a razão das despesas
+    adminsitrativas sobre o volume de crédito, $risk$ é uma proxy para risco
+    associado à atividade de crédito, $imp$ uma medida da incidência de tributos
+    indiretos sobre o spread, $comp$ a taxa de compulsório sobre depósitos à
+    vista exigida pelo Bacen e $Tend$ é uma medida determinista incluída com o
+    intuito de controlar para variáveis que não foram incluídas na equação, como
+    a taxa de inflação, o nível de atividade econômica etc.
+
+    Para a estimação, foram usados dados mensais do período de agosto de 1994 a
+    setembro de 2001 em um modelo de vetores autorregressivos. 
 
 \bibliography{bibliografia}
 
