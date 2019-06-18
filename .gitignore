@@ -1,6 +1,6 @@
 *.gz
 .Rhistory
-*.pdf
+referencias/*.pdf
 *.aux
 *.toc
 *.bbl
