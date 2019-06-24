@@ -16,6 +16,12 @@
 \usepackage{microtype} 			% para melhorias de justificação
 \usepackage{amsmath}			% Pacote matemático
 \usepackage[brazil]{babel}
+\usepackage{fancyhdr}
+
+\fancyhead{}
+\rhead{\thepage}
+\cfoot{}
+
 
 % ---
 
@@ -25,27 +31,7 @@
 % \usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
 \usepackage[alf]{abntex2cite}	                 % Citações padrão ABNT
 
-
-% % ----
-% % Configurações dos pacotes
-% % ----
-% % Configurações do pacote backref
-% % Usado sem a opção hyperpageref de backref
-% \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
-% % Texto padrão antes do número das páginas
-% \renewcommand{\backref}{}
-% % Define os textos da citação
-% \renewcommand*{\backrefalt}[4]{
-% 	\ifcase #1 %
-% 		Nenhuma citação no texto.%
-% 	\or
-% 		Citado na página #2.%
-% 	\else
-% 		Citado #1 vezes nas páginas #2.%
-% 	\fi}%
-% % ---
-
-
+\pretextual
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
@@ -67,21 +53,24 @@
 % ---
 % Capa e Folha de Rosto
 % ---
-\imprimircapa
-\imprimirfolhaderosto
+% \imprimircapa
+% \imprimirfolhaderosto
 
 % ---
 % Insere o sumario automático
 % ---
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
-\cleardoublepage
+\clearpage
 
 \textual
 
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
 \section{Introdução}
 
-    O spread bancário tem sido de particular interesse para pesquisadores no Brasil, devido à peculiaridade de ser um dos maiores do mundo, o que pode ser visualizado na Figura \ref{spreadal}. Nela, podemos ver os maiores spreads bancários da América Latina, saltando à vista a liderança do Brasil por uma larga margem.
+    O spread bancário tem sido de particular interesse para pesquisadores no Brasil, devido à peculiaridade de ser um dos maiores do mundo, o que pode ser visualizado na Figura \ref{spreadal}. Nela, podemos ver os maiores spreads bancários da América Latina, no que se destaca a liderança do Brasil por uma larga margem.
 
 \begin{figure}[h]
   \centering
@@ -221,25 +210,53 @@
 
     Os resultados mostram que um choque exógeno no nível e volatilidade da taxa de juros tem um efeito positivo e persistente sobre o spread, como esperado. Um choque na proxy para o nível de atividade econômica mostrou ter um impacto positivo, o que os autores interpretaram como um possível efeito do poder de mercado dos bancos prevalecendo sobre o efeito inadimplência. O efeito de um choque na inflação se mostrou insignificante estatisticamente. Eles concluem dizendo que um ambiente macroeconômico estável é uma condição indispensável para reduzir o spread.
 
+\section{Metodologia}
+
+    Para a estimação do modelo, será usado um modelo de vetores autorregressivos (VAR), a fim de capturar as interdependências entre o spread ex-ante e as variáveis explicativas selecionadas, que por sua vez serão visualizadas pela função impulso-resposta. A forma funcional do modelo, o número de defasagens a serem incluídas etc., será delineada com o decorrer da pesquisa.
+
+    Segue abaixo uma relação das variáveis e de suas fontes.
+
+    \begin{table}[h]
+    \centering
+    \IBGEtab{\caption{Variáveis e suas fontes}}{
+        \begin{tabular}{|l|c|}
+            \hline
+            Variável                       & Fonte \\
+            \hline
+            Spread                         & Série 20786 do SGS \\
+            Selic                          & Série 4189 do SGS \\
+            Inadimplência                  & Série 21085 do SGS \\
+            Inflação                       & Série ``PAN12\_IGPDIG12'' do IPEADATA \\
+            Atividade Econômica            & Série ``PAN12\_QIIGG12'' do IPEADATA \\
+            Compulsório                    & Série 1849 do SGS \\
+            Índice de Herfindahl-Hirschman & Anexo estatístico do Relatório de Estabilidade Financeira de 2018 do BCB \\
+            \hline
+        \end{tabular}
+    }{}
+    \end{table}
+
+\clearpage
+
 \section{Cronograma}
+
 \begin{table}[h]
-  \centering
-  \begin{tabular}{|l||c|c|c|c|c|}
-    \hline
-    \multicolumn{6}{|c|}{2019}         \\
-    \hline
-    \hline
-    Objetivo                                     & Julho  &  Agosto  &  Setembro  &  Outubro  &  Novembro \\
-    \hline
-    Coleta de dados                              & X    &         &        &         &        \\
-    Visualização e análise descritiva dos dados  & X    &         &        &         &        \\
-    Revisão literária                            & X    &  X      &  X     &         &        \\
-    Descrição da metodologia                     &      &  X      &  X     &         &        \\
-    Estimação do modelo                          &      &  X      &  X     &  X      &        \\
-    Interpretação dos Resultados                 &      &         &  X     &  X      &  X     \\
-    \hline
-  \end{tabular}
-  \caption{Cronograma do projeto}
+    \centering
+    \IBGEtab{\caption{Cronograma do projeto}}{
+        \begin{tabular}{|l|c|c|c|c|c|}
+            \hline
+            \multicolumn{6}{|c|}{2019}         \\
+            \hline
+            Objetivo                                     & Julho  &  Agosto  &  Setembro  &  Outubro  &  Novembro \\
+            \hline
+            Coleta de dados                              & X    &         &        &         &        \\
+            Visualização e análise descritiva dos dados  & X    &         &        &         &        \\
+            Revisão literária                            & X    &  X      &  X     &         &        \\
+            Descrição da metodologia                     &      &  X      &  X     &         &        \\
+            Estimação do modelo                          &      &  X      &  X     &  X      &        \\
+            Interpretação dos Resultados                 &      &         &  X     &  X      &  X     \\
+            \hline
+    \end{tabular}}
+    {}
 \end{table}
 
 \bibliography{/home/phelipe/Documentos/mono/bibliografia}

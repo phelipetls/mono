@@ -17,13 +17,11 @@
 \usepackage{microtype} 			% para melhorias de justificação
 \usepackage{amsmath}			% Pacote matemático
 \usepackage[brazil]{babel}
+\usepackage{fancyhdr}
 
-\autor{Phelipe Teles da Silva}
-\titulo{Análise Quantitativa da Relação entre Spread e Concentração Bancária}
-\data{2019}
-\instituicao{Universidade Federal Rural do Rio de Janeiro}
-\local{Seropédica, Rio de Janeiro}
-\orientador[Orientadora:]{Débora Pimentel}
+\fancyhead{}
+\rhead{\thepage}
+\cfoot{}
 
 % ---
 % Pacotes de citações
@@ -34,6 +32,11 @@
 \graphicspath{{../projeto/graficos/}}
 
 \begin{document}
+
+\textual
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
 
 \section{Descrição das variáveis}
 
