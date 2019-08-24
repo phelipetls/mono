@@ -13,12 +13,12 @@ setwd("~/Documentos/mono/dados")
 data_inicial <- "2011-01-01"
 
 series <- get_series(c(
-  Spread = 20786,
-  Selic = 4189,
-  Inflacao = 433,
-  Compulsorio = 1849,
-  Inadimplencia = 21085,
-  ProducaoIndustrial = 21859
+  spread = 20786,
+  selic = 4189,
+  inflacao = 433,
+  compuls = 1849,
+  inad = 21085,
+  pib_mensal = 4380
 ), data_inicial, as = "tibble")
 
 # -----------------------------------------------
@@ -27,22 +27,19 @@ series <- get_series(c(
 ihh <- read_csv2("ihh.csv") %>%
   arrange(date) %>%
   select(date, credito) %>%
-  dplyr::rename(IHH = credito)
+  dplyr::rename(ihh = credito)
 
 # -----------------------------------------------
 # Dados do IPEADATA
 
-inad_ipea <- ipeadata("BM12_CRLIN12") %>%
-  select(date, value) %>%
-  dplyr::rename(Inadimplencia_IPEADATA = value)
-
-prodind_ipea <- ipeadata("PAN12_QIIGG12") %>%
-  select(date, value) %>%
-  dplyr::rename(ProducaoIndustrial_IPEADATA = value)
-
 igp <- ipeadata("PAN12_IGPDIG12") %>%
   select(date, value) %>%
-  dplyr::rename(IGP = value)
+  dplyr::rename(igp_di = value)
+
+inad_ipea <- ipeadata("BM12_CRLIN12") %>%
+  select(date, value) %>%
+  dplyr::rename(inad_ipea = value)
+
 
 # ----------------------------------------------
 # Juntar tudo num data.frame
@@ -51,12 +48,11 @@ series_df <- plyr::join_all(series)
 
 df <- right_join(ihh, series_df, by = "date") %>%
   filter(date <= as.Date("2017-12-01")) %>%
-  fill(IHH) %>%
+  fill(ihh) %>%
   left_join(inad_ipea) %>%
-  left_join(prodind_ipea) %>%
   left_join(igp)
 
-# write.csv(df,
-#   file = "series_economicas.csv",
-#   row.names = F
-# )
+write.csv(df,
+  file = "series_economicas.csv",
+  row.names = F
+)
