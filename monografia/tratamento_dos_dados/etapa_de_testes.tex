@@ -1,0 +1,168 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Processo de testes econométricos},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Processo de testes econométricos}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{}
+    \preauthor{}\postauthor{}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+\maketitle
+
+\begin{center}\LARGE{Testes de raiz unitária}\end{center}
+
+\includegraphics{etapa_de_testes_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\newpage
+
+\begin{center}\LARGE{Séries diagnosticadas como estacionárias em cada teste}\end{center}
+
+\includegraphics{etapa_de_testes_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\newpage
+
+\begin{center}\LARGE{Testes de co-integração para várias combinações das variáveis}\end{center}\begin{center}\large{Philips-Ouliaris}\end{center}
+
+\[ spread = \beta_0 + \beta_1selic + \beta_2inad + \beta_3pib\_mensal + \beta_4prod\_ind + \beta_5igp\_di \]
+
+\begin{verbatim}
+# A tibble: 2 x 3
+  V1       V2         resultado
+  <chr>    <chr>      <chr>    
+1 ihh      pib_mensal 0.01     
+2 prod_ind igp_di     0.01     
+\end{verbatim}
+
+\begin{verbatim}
+# A tibble: 5 x 4
+  V1    V2         V3         resultado
+  <chr> <chr>      <chr>      <chr>    
+1 ihh   spread     pib_mensal 0.01     
+2 ihh   selic      pib_mensal 0.01     
+3 ihh   inad       pib_mensal 0.01     
+4 ihh   pib_mensal prod_ind   0.01     
+5 ihh   pib_mensal igp_di     0.01     
+\end{verbatim}
+
+\begin{verbatim}
+# A tibble: 10 x 5
+   V1    V2         V3         V4         resultado
+   <chr> <chr>      <chr>      <chr>      <chr>    
+ 1 ihh   spread     selic      pib_mensal 0.01     
+ 2 ihh   spread     inad       pib_mensal 0.01     
+ 3 ihh   spread     pib_mensal prod_ind   0.01     
+ 4 ihh   spread     pib_mensal igp_di     0.01     
+ 5 ihh   selic      inad       pib_mensal 0.01     
+ 6 ihh   selic      pib_mensal prod_ind   0.01     
+ 7 ihh   selic      pib_mensal igp_di     0.01     
+ 8 ihh   inad       pib_mensal prod_ind   0.01     
+ 9 ihh   inad       pib_mensal igp_di     0.01     
+10 ihh   pib_mensal prod_ind   igp_di     0.01     
+\end{verbatim}
+
+\begin{verbatim}
+# A tibble: 11 x 6
+   V1     V2     V3         V4         V5         resultado         
+   <chr>  <chr>  <chr>      <chr>      <chr>      <chr>             
+ 1 ihh    spread selic      inad       pib_mensal 0.0101548982701054
+ 2 ihh    spread selic      pib_mensal prod_ind   0.01              
+ 3 ihh    spread selic      pib_mensal igp_di     0.01              
+ 4 ihh    spread inad       pib_mensal prod_ind   0.01              
+ 5 ihh    spread inad       pib_mensal igp_di     0.01              
+ 6 ihh    spread pib_mensal prod_ind   igp_di     0.01              
+ 7 ihh    selic  inad       pib_mensal prod_ind   0.01              
+ 8 ihh    selic  inad       pib_mensal igp_di     0.01              
+ 9 ihh    selic  pib_mensal prod_ind   igp_di     0.01              
+10 ihh    inad   pib_mensal prod_ind   igp_di     0.01              
+11 spread selic  inad       pib_mensal prod_ind   0.038977069480577 
+\end{verbatim}
+
+\begin{verbatim}
+# A tibble: 5 x 7
+  V1    V2     V3    V4         V5         V6       resultado         
+  <chr> <chr>  <chr> <chr>      <chr>      <chr>    <chr>             
+1 ihh   spread selic inad       pib_mensal prod_ind 0.0293105809705589
+2 ihh   spread selic inad       pib_mensal igp_di   0.01              
+3 ihh   spread selic pib_mensal prod_ind   igp_di   0.01              
+4 ihh   spread inad  pib_mensal prod_ind   igp_di   0.01              
+5 ihh   selic  inad  pib_mensal prod_ind   igp_di   0.01              
+\end{verbatim}
+
+
+\end{document}

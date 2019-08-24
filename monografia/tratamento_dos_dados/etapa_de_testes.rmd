@@ -1,0 +1,146 @@
+---
+title: "Processo de testes econométricos"
+output: pdf_document
+---
+
+\begin{center}\LARGE{Testes de raiz unitária}\end{center}
+
+```{r, include = F, echo = FALSE}
+
+knitr::opts_chunk$set(comment = NA, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(tseries)
+
+series <- read_csv("~/Documentos/mono/dados/series_economicas.csv") %>%
+  select(-inflacao, -compuls)
+
+```
+
+```{r, echo = F}
+
+# definir funções para retornar o p-valor do teste
+adf <- function(x) { adf.test(x) %>% unlist %>% `[`(4) }
+pp <- function(x) { pp.test(x) %>% unlist %>% `[`(4) }
+kpss <- function(x) { kpss.test(x) %>% unlist %>% `[`(3) }
+
+library(ggrepel)
+library(scales)
+theme_set(theme_minimal())
+
+unit_root_tests <- series %>%
+  summarise_at(vars(-date),
+               list(adf = adf,
+                    pp = pp,
+                    kpss = kpss)) %>%
+  gather(value = "pvalor") %>%
+  extract(key, into = c("variavel", "teste"),
+          regex = "([a-z_]+)_(.+$)") %>%
+  mutate(diagnostico = case_when(
+            teste != "kpss" ~ ifelse(pvalor < .05, "estacionário", "não-estacionário"),
+            teste == "kpss" ~ ifelse(pvalor > .05, "estacionário", "não-estacionário")),
+         pvalor = as.numeric(pvalor))
+
+unit_root_tests %>%
+  ggplot(aes(teste, variavel, fill = diagnostico)) +
+  geom_tile() +
+  geom_text(aes(label = pvalor %>% round(2))) +
+  labs(x = NULL, y = NULL,
+       title = "Resultados dos testes de raiz unitária para cada variável",
+       caption = "Hipótese nula de raiz unitária, exceto para KPSS") +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(values = c("azure3", "lightgrey")) +
+  scale_x_discrete(labels = c("Augmented\nDickey-Fuller",
+                              "KPSS",
+                              "Phillips-Perron"))
+
+```
+
+\newpage
+\begin{center}\LARGE{Séries diagnosticadas como estacionárias em cada teste}\end{center}
+```{r, echo = F}
+
+series_unit_root <- series %>%
+  gather(key = "variavel", value = "value", -date) %>%
+  right_join(unit_root_tests, by = c(variavel = "variavel"))
+
+plotar_series_estacionarias <- function(x) {
+  series_unit_root %>%
+    filter(diagnostico == "estacionário", teste == x) %>% 
+    ggplot(aes(date, value)) +
+    geom_smooth(method = "lm", se = FALSE) +
+    geom_line(size = .5) +
+    theme(legend.position = "none") +
+    labs(x = NULL, y = NULL) +
+    facet_wrap(teste~variavel, scales = "free",
+               nrow = 3, ncol = 7)
+}
+
+library(gridExtra)
+grid.arrange(plotar_series_estacionarias("adf"),
+             plotar_series_estacionarias("pp"),
+             plotar_series_estacionarias("kpss"))
+
+
+```
+
+\newpage
+\begin{center}\LARGE{Testes de co-integração para várias combinações das variáveis}\end{center}
+\begin{center}\large{Philips-Ouliaris}\end{center}
+
+$$ spread = \beta_0 + \beta_1selic + \beta_2inad + \beta_3pib\_mensal + \beta_4prod\_ind + \beta_5igp\_di $$
+
+```{r, echo = F}
+
+teste_cointegracao <- function(dataframe, n) {
+  # lista com cada combinação das n variaveis
+  combinacoes_lista <- combn(names(series)[-1], n, simplify = F)
+  # dataframe das combinações
+  combinacoes_df <- combn(names(series)[-1], n, simplify = T) %>% t %>% as_tibble
+  # todas as combinações como um dataframe
+  dataframes <- map(combinacoes_lista, ~subset(series, select = .x))
+  # teste de cointegração (Phillips-Ouliaris)
+  cointegration_test = function(x) po.test(x) %>% unlist %>% `[`(3)
+  # iterar sobre os dataframes das combinações e aplicar o teste
+  combinacoes_df["resultado"] <- sapply(dataframes, cointegration_test)
+  return(combinacoes_df)
+}
+
+teste_cointegracao(series, 2) %>% filter(resultado < .05)
+teste_cointegracao(series, 3) %>% filter(resultado < .05)
+teste_cointegracao(series, 4) %>% filter(resultado < .05)
+teste_cointegracao(series, 5) %>% filter(resultado < .05)
+teste_cointegracao(series, 6) %>% filter(resultado < .05)
+
+```
+
+\begin{center}\LARGE{Testes de co-integração para várias combinações das variáveis}\end{center}
+\begin{center}\large{Engle-Granger}\end{center}
+
+$$ spread = \beta_0 + \beta_1selic + \beta_2inad + \beta_3pib\_mensal + \beta_4prod\_ind + \beta_5igp\_di $$
+
+\begin{center}Testes foram feitos em combinações das variáveis ditas não-estacionárias pelo teste KPSS, isto é, o Índice Geral de Preços e a Produção Industrial\end{center}
+
+```{r, echo = F}
+
+teste_cointegracao <- function(dataframe, n) {
+  # lista com cada combinação das n variaveis
+  combinacoes_lista <- combn(names(series)[-1], n, simplify = F)
+  # dataframe das combinações
+  combinacoes_df <- combn(names(series)[-1], n, simplify = T) %>% t %>% as_tibble
+  # todas as combinações como um dataframe
+  dataframes <- map(combinacoes_lista, ~subset(series, select = .x))
+  # teste de cointegração (Phillips-Ouliaris)
+  cointegration_test = function(x) po.test(x) %>% unlist %>% `[`(3)
+  # iterar sobre os dataframes das combinações e aplicar o teste
+  combinacoes_df["resultado"] <- sapply(dataframes, cointegration_test)
+  return(combinacoes_df)
+}
+
+teste_cointegracao(series %>% select(-igp_di, prod_ind), 2) %>% filter(resultado < .05)
+teste_cointegracao(series %>% select(-igp_di, prod_ind), 3) %>% filter(resultado < .05)
+teste_cointegracao(series %>% select(-igp_di, prod_ind), 4) %>% filter(resultado < .05)
+teste_cointegracao(series %>% select(-igp_di, prod_ind), 5) %>% filter(resultado < .05)
+teste_cointegracao(series %>% select(-igp_di, prod_ind), 6) %>% filter(resultado < .05)
+
+```
