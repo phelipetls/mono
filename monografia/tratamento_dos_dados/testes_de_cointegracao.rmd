@@ -1,0 +1,92 @@
+---
+title: "Testes de cointegração"
+output: pdf_document
+---
+
+```{r, include = F, echo = FALSE}
+
+knitr::opts_chunk$set(comment = NA, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(tseries)
+
+series <- read_csv("~/Documentos/mono/dados/series_economicas.csv")
+```
+
+\begin{center}\LARGE{Testes de co-integração para várias combinações das variáveis}\end{center}
+\begin{center}\large{Philips-Ouliaris}\end{center}
+
+
+Quando o teste é feito somente com as variáveis diagnosticadas como não estacionárias (isto é, retira-se igp e pib_mensal, a inflação e a atividade econômica), não se rejeita a hipótese nula de não-integração:
+
+
+$$ \text{spread} = \beta_0 + \beta_1\text{selic} + \beta_2\text{inad} + \beta_3\text{pib\_mensal\*} + \beta_4\text{igp\_di\*} + \beta_5\text{ihh} $$
+
+
+```{r, echo = F}
+
+teste_cointegracao <- function(dataframe, n) {
+  # lista com cada combinação das n variaveis
+  combinacoes_lista <- combn(names(dataframe)[-1], n, simplify = F)
+  # dataframe das combinações
+  combinacoes_df <- combn(names(dataframe)[-1], n, simplify = T) %>%
+    t() %>%
+    as_tibble()
+  # todas as combinações como um dataframe
+  dataframes <- map(combinacoes_lista, ~ subset(dataframe, select = .x))
+  # teste de cointegração (Phillips-Ouliaris)
+  cointegration_test <- function(x) po.test(x) %>%
+      unlist() %>%
+      `[`(3)
+  # iterar sobre os dataframes das combinações e aplicar o teste
+  combinacoes_df["resultado"] <- sapply(dataframes, cointegration_test)
+  return(combinacoes_df)
+}
+
+teste_cointegracao(series %>% select(-igp_di, -pib_mensal), 2)
+teste_cointegracao(series %>% select(-igp_di, -pib_mensal), 3)
+teste_cointegracao(series %>% select(-igp_di, -pib_mensal), 4)
+
+```
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+Porém, ao incluir as variáveis estacionárias, há evidência de que as cinco co-integram:
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+```{r, echo = F}
+teste_cointegracao(series, 6)
+```
+
+Pelo que eu entendi, o teste assume que todas as variáveis são I(1). Logo, esse resultado não é válido. 
+
+\newpage
+\begin{center}\LARGE{Testes de co-integração para várias combinações das variáveis}\end{center}
+\begin{center}\large{Engle-Granger}\end{center}
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+Pode-se chegar à mesma conclusão no teste de Engle-Granger. Mas aqui o teste requer que se especifique qual é a variável dependente e as variáveis indenpendentes:
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+```{r, echo = F}
+
+library(aTSA)
+
+coint.test(series %>% select(spread) %>% as.matrix,
+           series %>% select(-spread, -date, -igp_di, -pib_mensal) %>% as.matrix)
+
+```
