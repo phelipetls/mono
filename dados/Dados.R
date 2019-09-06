@@ -15,9 +15,6 @@ data_inicial <- "2011-01-01"
 series <- get_series(c(
   spread = 20786,
   selic = 4189,
-  inflacao = 433,
-  compuls = 1849,
-  inad = 21085,
   pib_mensal = 4380
 ), data_inicial, as = "tibble")
 

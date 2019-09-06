@@ -1,0 +1,38 @@
+Variáveis a serem incluídas no modelo:
+
+1. IHH:
+   Herfindahl-Hirschman (dados do BCB - trimestral)
+
+2. Spread:
+   Spread médio das operações de crédito com recursos livres - Total (série 20786 do SGS)
+
+3. Inflação:
+   Índice Geral de Preços (série PAN12_IGPDIG12 do IPEADATA)
+
+4. Selic:
+   Taxa de juros - Selic acumulada no mês anualizada base 252 (Série 4189 do SGS)
+
+5. Inadimplência:
+   Operações de crédito do sistema financeiro - recursos livres - inadimplência
+   (SERCODIGO BM12_CRLIN12 no IpeaData)
+
+6. PIB mensal:
+   Série 4380 do SGS.
+
+-------- Variáveis desconsideradas
+
+1. Inadimplência: 
+   Inadimplência da carteira de crédito - Total (série 21085 do SGS);
+
+2. Inflação:
+   Índice nacional de preços ao consumidor-amplo, IPCA (série 433 do SGS)
+
+3. Atividade Econômica (Produção Industrial):
+   Produção da indústria geral (quantum).
+   Variação percentual em relação ao mesmo período do ano anterior.
+   (SERCODIGO PAN12_QIIGG12 no IpeaData)
+
+4. Compulsório:
+   Recolhimentos obrigatórios de instituições financeiras - Recursos à vista em espécie.
+   (não remunerados) (série 1849 do SGS)
+
