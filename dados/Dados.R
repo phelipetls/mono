@@ -19,14 +19,6 @@ series <- get_series(c(
 ), data_inicial, as = "tibble")
 
 # -----------------------------------------------
-# Ler dados de Herfindahl-Hirschmann
-
-ihh <- read_csv2("ihh.csv") %>%
-  arrange(date) %>%
-  select(date, credito) %>%
-  dplyr::rename(ihh = credito)
-
-# -----------------------------------------------
 # Dados do IPEADATA
 
 igp <- ipeadata("PAN12_IGPDIG12") %>%
@@ -37,15 +29,10 @@ inad_ipea <- ipeadata("BM12_CRLIN12") %>%
   select(date, value) %>%
   dplyr::rename(inad_ipea = value)
 
-
 # ----------------------------------------------
 # Juntar tudo num data.frame
 
-series_df <- plyr::join_all(series)
-
-df <- right_join(ihh, series_df, by = "date") %>%
-  filter(date <= as.Date("2017-12-01")) %>%
-  fill(ihh) %>%
+df <- plyr::join_all(series) %>%
   left_join(inad_ipea) %>%
   left_join(igp)
 
