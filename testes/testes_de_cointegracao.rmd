@@ -1,0 +1,80 @@
+---
+title: "Testes de cointegração"
+output: pdf_document
+---
+
+```{r, include = F, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(tseries)
+
+series <- read_csv("~/Documentos/mono/dados/series_economicas.csv")
+
+series <- series %>% mutate_if(~all((.x > 0) & !lubridate::is.Date(.x)), log)
+
+```
+
+\begin{center}\LARGE{Testes de co-integração para várias combinações das variáveis}\end{center}
+\begin{center}\large{Philips-Ouliaris}\end{center}
+
+Sem a variável de concentração agora:
+
+$$ \text{spread} = \beta_0 + \beta_1\text{selic} + \beta_2\text{inad} + \beta_3\text{pib\_mensal\*} + \beta_4\text{igp\_di\*} $$
+
+
+Após serem retiradas as variáveis estacionárias, o pib_mensal e o igp_di, os testes sugerem que nenhuma das séries diagnosticadas como não-estacionárias co-integram entre si.
+
+```{r, echo = F, warning = F}
+
+teste_cointegracao <- function(dataframe, n) {
+  # lista com cada combinação das n variaveis
+  combinacoes_lista <- combn(names(dataframe), n, simplify = F)
+  # dataframe das combinações
+  combinacoes_df <- combn(names(dataframe), n, simplify = T) %>%
+    t() %>%
+    as_tibble()
+  # todas as combinações como um dataframe
+  dataframes <- map(combinacoes_lista, ~ subset(dataframe, select = .x))
+  # teste de cointegração (Phillips-Ouliaris)
+  cointegration_test <- function(x) po.test(x) %>% unlist() %>% `[`(3)
+  # iterar sobre os dataframes das combinações e aplicar o teste
+  combinacoes_df["resultado"] <- sapply(dataframes, cointegration_test)
+  return(combinacoes_df)
+}
+
+series_nao_estacionarias <- series %>% select(-date, -igp_di, -pib_mensal)
+map(2:length(names(series_nao_estacionarias)),
+    ~teste_cointegracao(series_nao_estacionarias %>% mutate_all(log), .x))
+
+```
+
+\newpage
+\begin{center}\large{Teste de Engle-Granger}\end{center}
+
+$\vspace{0.5cm}$
+
+Pode-se chegar à mesma conclusão no teste de Engle-Granger. Mas aqui o teste requer que se especifique qual é a variável dependente e as variáveis indenpendentes:
+
+$\vspace{0.5cm}$
+
+```{r, echo = F}
+
+library(aTSA)
+
+coint.test(series %>% select(spread) %>% as.matrix,
+           series %>% select(-spread, -date, -igp_di, -pib_mensal) %>% as.matrix,
+           nlag = 1)
+
+```
+
+$\vspace{2cm}$
+
+\begin{center}\large{Teste de Johansen}\end{center}
+
+```{r, echo = F, include = T}
+
+library(urca)
+ca.jo(series %>% select(-date))
+
+```

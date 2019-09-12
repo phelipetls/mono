@@ -1,0 +1,146 @@
+---
+title: "Testes de raiz unitária"
+output: pdf_document
+---
+
+```{r, include = F, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, warning = FALSE, message = FALSE)
+```
+
+```{r, echo = F}
+
+library(tidyverse)
+theme_set(theme_minimal())
+
+# se não for negativo ou data, transforma em log
+series <- read_csv("~/Documentos/mono/dados/series_economicas.csv") %>%
+  mutate_if(~all((.x > 0) & !lubridate::is.Date(.x)), log)
+
+```
+
+\begin{center} \LARGE{Gráficos de todas as séries} \end{center}
+
+Cada série conta com `r dim(series)[1]` observações, de periodicidade mensal.
+
+```{r, echo = F, include = T, plot_de_todas_as_series}
+
+series %>%
+  gather(key = "variavel", value = "valor", -date) %>%
+  ggplot(aes(date, valor, color = variavel)) +
+  geom_line() +
+  facet_wrap(.~variavel, scales = "free") +
+  theme(legend.position = "none") +
+  scale_y_continuous(labels = scales::comma)
+
+```
+
+\newpage
+
+```{r, echo = F, include = T, teste_raiz_unitaria}
+
+library(tseries)
+library(scales)
+
+# funções para retornar o p-valor do teste
+adf <- function(x) tseries::adf.test(x) %>% unlist() %>% `[`(4)
+pp <- function(x) tseries::pp.test(x) %>% unlist() %>% `[`(4)
+kpss <- function(x) tseries::kpss.test(x) %>% unlist() %>% `[`(3)
+
+# data frame com os p-valores para cada teste e variável
+unit_root_tests <- series %>%
+  summarise_all(list(adf = adf, pp = pp, kpss = kpss)) %>%
+  gather(value = "pvalor") %>%
+  extract(key, into = c("variavel", "teste"), regex = "([a-z_]+)_(.+$)") %>%
+  mutate(
+    diagnostico = case_when(
+      teste != "kpss" ~ ifelse(pvalor < .05, "estacionário", "não-estacionário"),
+      teste == "kpss" ~ ifelse(pvalor > .05, "estacionário", "não-estacionário")
+    ), pvalor = as.numeric(pvalor))
+
+# plot das séries estacionárias
+unit_root_tests %>%
+  ggplot(aes(teste, variavel, fill = diagnostico)) +
+  geom_tile() +
+  geom_text(aes(label = pvalor %>% round(2))) +
+  labs(
+    x = NULL, y = NULL,
+    title = "Resultados dos testes de raiz unitária para cada variável",
+    caption = "Hipótese nula de raiz unitária, exceto para KPSS"
+  ) +
+  theme(legend.position = "bottom") +
+  scale_x_discrete(labels = c("Augmented\nDickey-Fuller",
+                              "KPSS", "Phillips-Perron"))
+
+```
+
+\newpage
+\begin{center}
+  \LARGE{Séries diagnosticadas como estacionárias em cada teste}
+\end{center}
+
+```{r, echo = F, testes_mais_completos_de_raiz_unitaria}
+
+series_unit_root <- series %>%
+  gather(key = "variavel", value = "value", -date) %>%
+  right_join(unit_root_tests, by = c(variavel = "variavel"))%>%
+  na.omit()
+
+plotar_series_estacionarias <- function(x) {
+  series_unit_root %>%
+    filter(diagnostico == "estacionário", teste == x) %>%
+    ggplot(aes(date, value)) +
+    geom_smooth(method = "lm", se = FALSE) +
+    geom_line(size = .5) +
+    theme(legend.position = "none") +
+    labs(x = NULL, y = NULL) +
+    facet_wrap(teste ~ variavel,
+      scales = "free",
+      nrow = 3, ncol = 7
+    )
+}
+
+library(gridExtra)
+grid.arrange(
+  plotar_series_estacionarias("adf"),
+  plotar_series_estacionarias("pp"),
+  plotar_series_estacionarias("kpss")
+)
+
+```
+
+\newpage
+
+\begin{center}
+  \LARGE{Testes de Augmented Dickey-Fuller para diversos cenários}
+\end{center}
+
+O que chama atenção: o pib mensal parece ser estacionário com drift e tendência e o igp é dado como estacionário em quase todos os cenários. Parecem ser os resultados mais confiáveis. O kpss não conheço mas parece que tem pouco poder de teste.
+
+\large{Sem drift e sem tendência linear}
+
+```{r, echo = F}
+
+sapply(series %>% select(-date),
+       function(x) aTSA::adf.test(x, output = F)[1])
+
+```
+
+\newpage
+\large{Com drift e sem tendência linear}
+
+```{r, echo = F}
+
+sapply(series %>% select(-date),
+       function(x) aTSA::adf.test(x, output = F)[2])
+
+```
+
+\newpage
+\large{Com drift e com tendência linear}
+
+```{r, echo = F}
+
+sapply(series %>% select(-date),
+       function(x) aTSA::adf.test(x, output = F)[3])
+
+```
