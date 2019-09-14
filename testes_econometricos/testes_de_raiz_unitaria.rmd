@@ -1,0 +1,98 @@
+---
+title: "Testes de raiz unitária"
+output: pdf_document
+---
+
+```{r, include = F, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, warning = FALSE, message = FALSE)
+```
+
+```{r, echo = F}
+library(tidyverse)
+theme_set(theme_minimal())
+
+series <- read_csv("~/Documentos/mono/dados/series_economicas_log.csv")
+```
+
+
+
+\begin{center} \large{Gráficos de todas as séries} \end{center}
+
+Cada série conta com `r dim(series)[1]` observações, de periodicidade mensal.
+
+```{r, echo = F, include = T, plot_de_todas_as_series}
+
+series %>%
+  gather(key = "variavel", value = "valor", -date) %>%
+  ggplot(aes(date, valor, color = variavel)) +
+  geom_line() +
+  facet_wrap(.~variavel, scales = "free") +
+  theme(legend.position = "none") +
+  scale_y_continuous(labels = scales::comma)
+
+```
+
+
+
+
+\begin{center} \large{Séries diagnosticadas como estacionárias em cada teste} \end{center}
+
+```{r, echo = F, include = T, teste_raiz_unitaria}
+library(tseries)
+library(scales)
+
+# funções para retornar o p-valor do teste
+adf <- function(x) tseries::adf.test(x) %>% unlist() %>% `[`(4)
+pp <- function(x) tseries::pp.test(x) %>% unlist() %>% `[`(4)
+kpss <- function(x) tseries::kpss.test(x) %>% unlist() %>% `[`(3)
+
+# tratando os resultados dos testes
+testes_raiz_unitaria <- series %>% select(-date) %>%
+  summarise_all(list(adf = adf, pp = pp, kpss = kpss)) %>%
+  gather(value = "pvalor") %>%
+  extract(key, into = c("variavel", "teste"), regex = "([a-z_]+)_(.+$)") %>%
+  mutate(
+    diagnostico = case_when(
+      teste != "kpss" ~ ifelse(pvalor < .05, "estacionário", "não-estacionário"),
+      teste == "kpss" ~ ifelse(pvalor > .05, "estacionário", "não-estacionário")
+    ), pvalor = as.numeric(pvalor))
+
+# tabela de resultados
+testes_raiz_unitaria %>%
+  filter(diagnostico == "estacionário") %>%
+  knitr::kable(digits = 2, align = "l")
+
+```
+
+
+
+
+```{r, echo = F, include = T, adf_lags_AIC}
+
+library(urca)
+
+estatistica_teste <- function(VARIAVEL, TIPO, CRITERIO) {
+    series %>% pull(VARIAVEL) %>%
+      ur.df(type = TIPO, selectlags = CRITERIO) %>%
+      summary %>% `@`("teststat") %>% `[`(1)
+  }
+
+valor_critico <- function(VARIAVEL, TIPO, CRITERIO) {
+    series %>% pull(VARIAVEL) %>%
+      ur.df(type = TIPO, selectlags = CRITERIO) %>%
+      summary %>% `@`("cval") %>% `[`(1, "5pct")
+  }
+
+combinacoes <- expand.grid(series %>% select(-date) %>% names,
+                           "AIC", c("none", "drift", "trend"), stringsAsFactors = F) %>%
+               rename("variavel" = Var1, "criterio" = Var2, "tipo" = Var3)
+
+combinacoes %>%
+  rowwise %>%
+  mutate(estatistica_teste = estatistica_teste(variavel, tipo, criterio),
+         valor_critico = valor_critico(variavel, tipo, criterio),
+         diagnostico = ifelse(estatistica_teste < valor_critico, "estacionário", "não-estacionário")) %>%
+  filter(diagnostico == "estacionário") %>%
+  knitr::kable(digits = 2, align = "l")
+
+```

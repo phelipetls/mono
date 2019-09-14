@@ -1,0 +1,57 @@
+---
+title: "Testes de cointegração"
+output: pdf_document
+---
+
+```{r, include = F, echo = FALSE}
+
+knitr::opts_chunk$set(comment = NA, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(tseries)
+
+series <- read_csv("~/Documentos/mono/dados/series_economicas_log.csv")
+
+```
+
+# Testes de co-integração para várias combinações das variáveis
+
+# Philips-Ouliaris
+
+$$ \text{spread} = \beta_0 + \beta_1\text{selic} + \beta_2\text{inad} + \beta_3\text{pib\_mensal} + \beta_4\text{igp\_di} + \beta_5\text{ihh} $$
+
+```{r, echo = F, include = T}
+nao_estacionarias <- names(series %>% select(-date, -igp_di, -pib_mensal))
+
+nao_estacionarias[nao_estacionarias != "spread"] %>% combn(2)
+
+expand.grid(nao_estacionarias, nao_estacionarias, stringsAsFactors = F) %>%
+  rename("serie1" = Var1, "serie2" = Var2) %>%
+  rowwise %>% filter(serie1 != serie2) %>%
+  mutate(series = select(series, serie1, serie2) %>% list,
+         po_test = suppressWarnings(po.test(series)) %>% unlist %>% `[`(3)) %>%
+  select(-series) %>%
+  knitr::kable()
+
+```
+
+# Teste de Engle-Granger
+
+```{r, echo = F}
+
+library(aTSA)
+
+coint.test(series %>% select(spread) %>% as.matrix,
+           series %>% select(-spread, -date, -igp_di, -pib_mensal) %>% as.matrix,
+           nlag = 1)
+
+```
+
+# Teste de Johansen
+
+```{r, echo = F, include = T}
+
+library(urca)
+ca.jo(series %>% select(-date))
+
+```
