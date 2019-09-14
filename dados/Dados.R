@@ -19,13 +19,21 @@ series <- get_series(c(
 ), data_inicial, as = "tibble")
 
 # -----------------------------------------------
+# Concentração bancária (IHH)
+
+IHH <- read_csv2("ihh.csv") %>%
+  arrange(date) %>%
+  select(date, credito) %>%
+  dplyr::rename(ihh = credito)
+
+# -----------------------------------------------
 # Dados do IPEADATA
 
 igp <- ipeadata("PAN12_IGPDIG12") %>%
   select(date, value) %>%
   dplyr::rename(igp_di = value)
 
-inad_ipea <- ipeadata("BM12_CRLIN12") %>%
+inad <- ipeadata("BM12_CRLIN12") %>%
   select(date, value) %>%
   dplyr::rename(inad_ipea = value)
 
@@ -33,10 +41,14 @@ inad_ipea <- ipeadata("BM12_CRLIN12") %>%
 # Juntar tudo num data.frame
 
 df <- plyr::join_all(series) %>%
-  left_join(inad_ipea) %>%
-  left_join(igp)
+  left_join(inad) %>% left_join(igp) %>%
+  left_join(IHH) %>% fill(ihh) %>%
+  filter(date <= max(IHH$date))
 
-write.csv(df,
-  file = "series_economicas.csv",
-  row.names = F
-)
+# ----------------------------------------------
+# Salvar em um csv
+
+write.csv(df, file = "series_economicas.csv", row.names = F)
+
+write.csv(df %>% mutate_at(vars(-date, -ihh, -igp_di), log),
+          file = "series_economicas_log.csv", row.names = F)
