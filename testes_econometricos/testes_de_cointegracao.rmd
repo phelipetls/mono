@@ -12,46 +12,45 @@ library(tseries)
 
 series <- read_csv("~/Documentos/mono/dados/series_economicas_log.csv")
 
+series_estacionarias <-
+  read_csv("~/Documentos/mono/testes_econometricos/resultados_teste_raiz_unitaria.csv") %>%
+  filter(diagnostico == "estacionário") %>% pull(variavel) %>% unique
+
 ```
 
 # Testes de co-integração para várias combinações das variáveis
 
-# Philips-Ouliaris
-
 $$ \text{spread} = \beta_0 + \beta_1\text{selic} + \beta_2\text{inad} + \beta_3\text{pib\_mensal} + \beta_4\text{igp\_di} + \beta_5\text{ihh} $$
 
-```{r, echo = F, include = T}
-nao_estacionarias <- names(series %>% select(-date, -igp_di, -pib_mensal))
-
-nao_estacionarias[nao_estacionarias != "spread"] %>% combn(2)
-
-expand.grid(nao_estacionarias, nao_estacionarias, stringsAsFactors = F) %>%
-  rename("serie1" = Var1, "serie2" = Var2) %>%
-  rowwise %>% filter(serie1 != serie2) %>%
-  mutate(series = select(series, serie1, serie2) %>% list,
-         po_test = suppressWarnings(po.test(series)) %>% unlist %>% `[`(3)) %>%
-  select(-series) %>%
-  knitr::kable()
+```{r, echo = T, include = T}
+# po.test do tseries
+# ca.po do urca
+# referência: https://www.r-bloggers.com/phillips-ouliaris-test-for-cointegration/
 
 ```
 
-# Teste de Engle-Granger
+```{r, echo = F, include = T}
 
-```{r, echo = F}
+library(egcm)
 
-library(aTSA)
+ca.po.teststat <- function(SERIES) {
+  SERIES %>% urca::ca.po(type = "Pz") %>% `@`("teststat")
+}
 
-coint.test(series %>% select(spread) %>% as.matrix,
-           series %>% select(-spread, -date, -igp_di, -pib_mensal) %>% as.matrix,
-           nlag = 1)
+ca.po.cval <- function(SERIES) {
+  SERIES %>% urca::ca.po(type = "Pz") %>% `@`("cval") %>% `[`(2)
+}
+
+series_combinadas <-
+  series %>% select(-date, -series_estacionarias) %>%
+  names %>%
+  combn(2) %>%
+  t %>% as.data.frame %>%
+  rowwise %>%
+  mutate(df = subset(series, select = c(V1, V2)) %>% list) %>%
+  ungroup
 
 ```
 
 # Teste de Johansen
 
-```{r, echo = F, include = T}
-
-library(urca)
-ca.jo(series %>% select(-date))
-
-```
