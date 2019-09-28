@@ -1,0 +1,50 @@
+---
+title: "Estimação VAR"
+output: pdf_document
+---
+
+```{r, echo = F, include = T}
+
+suppressMessages(library(tidyverse))
+
+series <- read.csv("../dados/series_economicas_log.csv")
+
+series %>% head %>% knitr::kable()
+
+series <-
+  series %>%
+  mutate_at(vars(spread, selic, inad), function(x) x - lag(x)) %>%
+  na.omit()
+
+series_sem_ihh <-
+  read.csv("../dados/series_economicas_log_sem_ihh.csv") %>%
+  select(-date)
+
+series_sem_ihh <-
+  series_sem_ihh %>%
+  mutate_at(vars(spread, selic, inad), function(x) x - lag(x)) %>%
+  na.omit()
+
+```
+
+```{r, echo = F, include = T}
+
+suppressMessages(library(vars))
+
+series_sem_ihh %>% head
+
+VARselect(series_sem_ihh, lag.max = 5, type = "both")
+
+VAR(y = series_sem_ihh %>% dplyr::select(spread, selic, inad),
+    exogen = series_sem_ihh %>% dplyr::select(igp, pib_mensal),
+    p = 1, type = "both") -> var_model
+
+var_model %>% summary(equation = "spread")
+
+# irf(var_model,
+#     response = "spread",
+#     impulse = "inad",
+#     ortho = F,
+#     n.ahead = 12) %>% plot
+
+```

@@ -1,0 +1,5 @@
+variavel,tipo,criterio,estatistica_teste,valor_critico,diagnostico
+igp,none,AIC,-3.1615664107040478,-1.95,estacionário
+igp,drift,AIC,-4.50231588248884,-2.89,estacionário
+pib_mensal,trend,AIC,-4.2309268927564325,-3.45,estacionário
+igp,trend,AIC,-4.488657167710665,-3.45,estacionário

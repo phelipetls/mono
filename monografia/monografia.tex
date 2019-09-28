@@ -88,37 +88,105 @@
     
     Em um cenário de incerteza macroeconômica, é interessante que se investigue os determinantes macroeconômicos do spread bancário, a fim de, com um melhor entendimento do caso brasileiro, contribuir para a efetividade das políticas de redução do spread, o que se apresenta ainda mais importante na atual situação de estagnação econômica, já que um spread mais baixo poderia ajudar na retomada, ao facilitar o acesso ao crédito dos agentes econômicos e, portanto, a realização de investimentos \cite[p.~8]{manhica12} além de, de modo geral, significar um sistema financeiro mais desenvolvido, com mais eficiência na intermediação financeira.
 
+\section{Visualização e análise descritiva das variáveis}
 
-\section{Problema}
+    Este capítulo pretende apresentar as relações teóricas entre a variável dependente e as variáveis independentes incluídas no modelo, assim como a evolução histórica das séries, abrangendo o período de março de 2011 a dezembro de 2018.
 
-    Quais os principais determinantes macroeconômicos do spread bancário brasileiro?
+    Primeiro, o spread bancário. Trata-se, mais especificamente, da série 20786 do Sistema Gerenciador de Séries Temporais (SGS) do Banco Central do Brasil, intitulada "Spread médio das operações de crédito com recursos livres - Total", sendo a diferença, em pontos percentuais, entre a taxa média de empréstimo e de captação no mês. Por total, entende-se que ela aglutina operações de pessoas físicas e jurídicas, e por recursos livres, que exclui operações envolvendo taxas regulamentadas, lastreadas em recursos governamentais e afins.
 
-\section{Hipótese}
+    Na literatura, é o que se conhece por spread \textit{ex-ante}, porque é calculado antes do resultado, com base nas taxas estabelecidas pelos bancos, decisão em grande parte influenciada por suas expectativas. Por isso, esta taxa é mais volátil e mais sensível a mudanças macroeconômicas e risco percebido \cite[p.~226]{leal07}. Em contraste, o spread \textit{ex-post} é calculado com base na receita e despesa efetiva advinda da atividade de intermediação financeira \cite[p.~2]{almeida15}. 
     
-    Seguindo a linha de \citeonline{afanasieff02}, em que se chega à conclusão de que as variáveis macroeconômicas são mais importantes que as microeconômicas para explicar a variação do spread ex-ante, foi feita a seleção das consideradas principais, com base na literatura. A seguir, uma descrição do que se pode esperar na estimação de suas relações com o spread.
+    Na Fig. 1, salta à vista o aumento do spread a partir de 2014, após uma queda que se iniciou por volta de 2012 e que corresponde às políticas do primeiro governo de Dilma Rousseff com o intuito de reduzir o spread via aumento do portfólio de crédito dos bancos públicos, forçando uma queda pela competição das taxas de juros de empréstimos \cite[p.~1]{almeida15}. Porém, com a deterioração das condições macroeconômicas a partir de 2014, observamos a escalada do spread, seguido de um declínio iniciado em 2017 que veio com, entre outras coisas, a queda persistente da taxa SELIC a partir de então.
 
-    Espera-se um sinal positivo da taxa básica de juros (SELIC), por representar um custo de oportunidade para a operação de crédito; da inadimplência, pelo efeito risco de crédito; da inflação, porque dela os bancos se protegem via spread; do compulsório, por fazer parte dos custos de intermediação e, por fim, da concentração bancária devido ao efeito poder de mercado. Já o sinal esperado para a variável de atividade econômica é incerto, já que, por um lado, pode ser positivo devido à maior demanda por empréstimos, ou negativo se o aumento da escala da operação levar à maior eficiência.
+\begin{figure}[h]
+  \centering
+    \caption{Spread médio das operações de crédito com recursos livres - Total}
+      \includegraphics[width = \textwidth, scale=0.75]{Spread.pdf}
+      \legend{Fonte: série 20786 do SGS. Elaboração própria}
+      \label{spread}
+\end{figure}
+    
+Este movimento da taxa SELIC pode ser visto na Fig. 2. A contraposição das duas séries sugere de imediato que elas são positivamente correlacionadas. De fato, é isso o que naturalmente se argumenta, porque uma taxa básica de juros mais elevada implica maior custo de oportunidade para a atividade de crédito, uma vez que aumenta a rentabilidade dos títulos públicos, tornando mais atrativa uma aplicação que já tem a vantagem de ser mais líquida e menos arriscada \cite[p.~372]{oliveira2007}. Por esta razão, é esperado um coeficiente positivo para a taxa básica de juros, pelo efeito custo de oportunidade. Na literatura empírica, não há divergências para essa estimativa, tendo a maior parte dos estudos encontrado a relação esperada \cite[p.~233-234]{leal07}.
 
-\section{Objetivos}
-\subsection{Objetivo Geral}
+\begin{figure}[h]
+  \centering
+    \caption{Taxa de juros - Selic acumulada no mês anualizada}
+      \includegraphics[width = \textwidth, scale=0.75]{Selic.pdf}
+      \legend{Fonte: série 4189 do SGS. Elaboração própria}
+      \label{selic}
+\end{figure}
+    
+    Um padrão parecido pode ser observado na série da Inadimplência, na Fig. 3. A inadimplência passou a cair consideravelmente em 2012 para depois aumentar a partir de 2014 e 2015, com o advento da crise econômica. Não é surpreendente que haja uma correlação entre a Selic e a inadimplência, visto que um aumento da taxa básica de juros eleva o custo de captação, que é então repassado para o juros final, prejudicando a capacidade de pagamento \cite[p.~390]{oliveira2007}. A inclusão desta variável, portanto, serve para capturar o efeito do risco de crédito sobre o spread, \textit{ceteris paribus}.
 
-    Estimação de um modelo VAR para os determinantes macroeconômicos do spread bancário brasileiro, para o período de 2011 a 2017.
+\begin{figure}[t]
+  \centering
+    \caption{Inadimplência da carteira de crédito - Total}
+      \includegraphics[width = \textwidth, scale=0.75]{Inadimplencia.pdf}
+      \legend{Fonte: série 21085 do SGS. Elaboração própria}
+      \label{inad}
+\end{figure}
+    
+    A série de inflação escolhida foi o Índice Geral de Preços (IGP-DI), por ter apresentado resultados mais consistentes que o IPCA \cite[p.~66]{rocha09} e por ser mais abrangente \cite[p.~21]{afanasieff02}. A inclusão dessa variável se faz prudente porque sua variação pode influenciar a taxa básica de juros e a política de juros dos bancos, portanto o spread \cite[p.~14]{bignotto06}. O que se espera obter na estimação é um coeficiente positivo, indicando uma relação direta entre a inflação e o spread, devido ao fato de que em um ambiente econômico não sujeito à instabilidade dos preços os bancos não precisariam se proteger dela via spread. Se por um lado o efeito teórico esperado é claro, o que sairá na estimação é incerto, porque na literatura varia desde insignificante, como em \citeonline{oreiro}, a um sinal inesperado e significante, como em \citeonline{bignotto06} e \citeonline{afanasieff02}\footnote{Como possível causa, os autores indicam a apropriação de receita de senhoriagem com o spread \cite[p.~25]{afanasieff02}}.
+    
+\begin{figure}[h]
+  \centering
+    \caption{Índice Geral de Preços (IGP-DI)}
+      \includegraphics[width = \textwidth, scale=0.75]{IGP.pdf}
+      \legend{Fonte: IPEA. Elaboração própria}
+      \label{ipca}
+\end{figure}
+    
+A série usada para capturar o efeito da atividade econômica sobre o spread é a Produção da indústria geral, calculada pelo IBGE como a variação percentual em relação ao mesmo período do ano anterior. Segundo \citeonline{oreiro}, o efeito desta variável sobre o spread é incerto, pois duas forças opostas entram em jogo: mais atividade econômica pode resultar em menor spread por reduzir o custo da concessão de crédito via aumento da escala de operação, mas também em maior spread porque mais pessoas demandarão crédito, o que pode elevar as taxas de empréstimo, o que por sua vez depende do poder de mercado dos bancos \citeonline[p.~626]{oreiro}. \citeonline{oreiro} encontram esta última relação na estimação, argumentando ter prevalecido o efeito poder de mercado. Os resultados não tem sido consistentes através dos estudos \cite[p.~236]{leal07}, mas de qualquer forma é considerada adequada sua inclusão como controle, evitando viés de variável omitida.
+    
+\begin{figure}[h]
+  \centering
+  \caption{Produção da indústria geral}
+      \includegraphics[width = \textwidth, scale=0.75]{PIB_Mensal.pdf}
+      \legend{Fonte: IBGE. Elaboração própria}
+      \label{prodind}
+\end{figure}
+    
+    Para a variável de concentração bancária, foi escolhido o índice de Herfindahl-Hirschmann, calculado pelo Banco Central do Brasil e divulgado no Anexo Estatístico do Relatório de Estabilidade Financeira, de abril de 2018. Os dados são trimestrais, por isso a necessidade de extrapolar os valores para os meses adjacentes. Como se sabe, este é um indicador do nível de concentração econômica em um mercado, obtido ao somar o quadrado das participações de cada instituição financeira no mercado considerado, que no nosso caso é o mercado de crédito. O BCB considera um IHH entre 0 e 1000 indicativo de baixa concentração, acima de 1000 e menor que 1800, de moderada concentração e acima de 1800 de alta concentração.
 
-\subsection{Objetivos Específicos}
+\begin{figure}[h]
+  \centering
+  \caption{Índice de Herfindahl-Hirschmann - IHH}
+      \includegraphics[width = \textwidth, scale=0.75]{IHH.pdf}
+      \legend{Fonte: BCB. Elaboração própria}
+      \label{ihh}
+\end{figure}
+    
+    Fica nítida a tendência de ascensão da concentração bancária, só refreada no final de 2015, voltando a crescer em seguida para depois permanecer estagnada, em um nível próximo do que é considerado uma concentração alta.
 
-\begin{itemize}
-    \item Revisão da literatura teórica e empírica
-    \item Visualização e análise descritiva das variáveis
-    \item Descrição da metodologia
-    \item Apresentação e interpretação dos resultados do modelo
-\end{itemize}
+    No entanto, é preciso cautela na análise da concentração bancária como determinante do spread, já que a literatura sobre o assunto está longe de ser conclusiva \cite[p.~11]{reb2017}. De fato, como explicita \citeonline{reb2017}, há alta concentração bancária mesmo em países com um sistema financeiro considerado desenvolvido, isso porque esta indústria exige ganhos de escala e altos investimentos, o que está ligado à eficiência da intermediação financeira, que ajuda a reduzir o spread. Portanto, é possível que se encontre até mesmo uma relação inversa entre concentração e spread. 
 
+    O relatório explica então que a variável relevante é a concorrência, que cresceu no período de 2000 a 2017 segundo o relatório \cite[p.~11]{reb2017}, ilustrando que maior concentração não implica necessariamente em menor concorrência.
 
-\section{Justificativa}
+    Dito isto, a inclusão desta variável é justificada pelo interessante aspecto teórico que ela representa. Apesar da dificuldade de predizer o sinal estimado, ainda é razoável que se espere um sinal positivo.
 
-   Este projeto pretende atualizar para o período recente a discussão sobre os determinantes macroeconômicos do spread bancário brasileiro, que se faz pertinente em um cenário de incerteza econômica e em que uma política de redução do spread se faz essencial rumo à desejada retomada econômica.
+    Por fim, a \autoref{tab1} sumariza o que foi aqui discutido, listando cada variável e seus sinais esperados, além de algumas estatísticas descritivas.
 
-   Mesmo com a vantagem da baixa histórica da Selic, e com o prognóstico de que abaixe ainda mais, a queda do spread veio aquém do esperado. Apesar de políticas microeconômicas serem de fato importantes, há razões na literatura para se acreditar que as políticas macroeconômicas sejam mais ainda, por isso faz-se interessante investigar quais indicadores macroeconômicos mais influenciam o spread, de forma a ser melhor delineado o teor dessas políticas.
+    \begin{table}[h]
+        \IBGEtab{\caption{Tabela de estatísticas descritivas}\label{tab1}}
+        {
+            \begin{tabular}
+                {@{\extracolsep{5pt}}lccccc}
+                \midrule
+                \midrule
+                Variável              & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Desvio Padrão} & \multicolumn{1}{c}{Mín.} & \multicolumn{1}{c}{Máx.} & \multicolumn{1}{c}{Sinal esperado} \\
+                \midrule
+                Spread                & 29,33                     & 6,51                              & 20,89                    & 42,34                    &  \\
+                Selic                 & 10,96                     & 2,37                              & 7,00                     & 14,15                    & + \\
+                Inadimplência         & 5,09                      & 0,47                              & 4,31                     & 5,94                     & + \\
+                IGP-DI                & 5,74                      & 7,33                              & $-$13,93                 & 23,26                    & + \\
+                Atividade Econômica   & $-$2,28                   & 4,86                              & $-$13,39                 & 9,70                     & +/- \\
+                IHH                   & 1.566,30                  & 133,69                            & 1.357                    & 1.751                    & + \\
+                \midrule
+            \end{tabular}
+        }
+        {\fonte{Elaboração própria.}\nota{Em sinal esperado, ``+'' indica um coeficiente positivo, ``-'', um negativo.}}
+    \end{table}
+
 
 \section{Revisão de Literatura}
 \subsection{Revisão da literatura teórica}
@@ -210,54 +278,9 @@
 
     Os resultados mostram que um choque exógeno no nível e volatilidade da taxa de juros tem um efeito positivo e persistente sobre o spread, como esperado. Um choque na proxy para o nível de atividade econômica mostrou ter um impacto positivo, o que os autores interpretaram como um possível efeito do poder de mercado dos bancos prevalecendo sobre o efeito inadimplência. O efeito de um choque na inflação se mostrou insignificante estatisticamente. Eles concluem dizendo que um ambiente macroeconômico estável é uma condição indispensável para reduzir o spread.
 
-\section{Metodologia}
+\section{Testes econométricos}
 
-    Para a estimação do modelo, será usado um modelo de vetores autorregressivos (VAR), a fim de capturar as interdependências entre o spread ex-ante e as variáveis explicativas selecionadas, que por sua vez serão visualizadas pela função impulso-resposta. A forma funcional do modelo, o número de defasagens a serem incluídas etc., será delineada com o decorrer da pesquisa.
-
-    Segue abaixo uma relação das variáveis e de suas fontes.
-
-    \begin{table}[h]
-    \centering
-    \IBGEtab{\caption{Variáveis e suas fontes}}{
-        \begin{tabular}{|l|c|}
-            \hline
-            Variável                       & Fonte \\
-            \hline
-            Spread                         & Série 20786 do SGS \\
-            Selic                          & Série 4189 do SGS \\
-            Inadimplência                  & Série 21085 do SGS \\
-            Inflação                       & Série ``PAN12\_IGPDIG12'' do IPEADATA \\
-            Atividade Econômica            & Série ``PAN12\_QIIGG12'' do IPEADATA \\
-            Compulsório                    & Série 1849 do SGS \\
-            Índice de Herfindahl-Hirschman & Anexo estatístico do Relatório de Estabilidade Financeira de 2018 do BCB \\
-            \hline
-        \end{tabular}
-    }{}
-    \end{table}
-
-\clearpage
-
-\section{Cronograma}
-
-\begin{table}[h]
-    \centering
-    \IBGEtab{\caption{Cronograma do projeto}}{
-        \begin{tabular}{|l|c|c|c|c|c|}
-            \hline
-            \multicolumn{6}{|c|}{2019}         \\
-            \hline
-            Objetivo                                     & Julho  &  Agosto  &  Setembro  &  Outubro  &  Novembro \\
-            \hline
-            Coleta de dados                              & X    &         &        &         &        \\
-            Visualização e análise descritiva dos dados  & X    &         &        &         &        \\
-            Revisão literária                            & X    &  X      &  X     &         &        \\
-            Descrição da metodologia                     &      &  X      &  X     &         &        \\
-            Estimação do modelo                          &      &  X      &  X     &  X      &        \\
-            Interpretação dos Resultados                 &      &         &  X     &  X      &  X     \\
-            \hline
-    \end{tabular}}
-    {}
-\end{table}
+    Se tratando de análises de séries temporais, é preciso antes de tudo que se faça os testes de estacionariedade para cada série. Dentre as opções, foi escolhido o teste Augmented Dickey-Fuller, 
 
 \bibliography{/home/phelipe/Documentos/mono/bibliografia}
 
