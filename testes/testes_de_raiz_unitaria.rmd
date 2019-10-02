@@ -11,11 +11,12 @@ knitr::opts_chunk$set(comment = NA, warning = FALSE, message = FALSE)
 
 suppressPackageStartupMessages(library(tidyverse))
 
-series <- read_csv("~/Documentos/mono/dados/series_economicas_log.csv")
+series <-
+  read_csv("~/Documentos/mono/dados/series_economicas_log.csv") %>%
+  select(-date)
 
-time_series <- series %>% select(-date) %>%
-  ts(start = c(2011, 1), frequency = 12)
-
+time_series <-
+  series %>% ts(start = c(2011, 1), frequency = 12)
 ```
 
 # Gráficos de todas as séries
@@ -30,48 +31,30 @@ time_series %>% plot.ts()
 
 # Séries diagnosticadas como estacionárias em cada teste (Augmented Dickey-Fuller)
 
-Foi usado o teste ADF com o número de lags, usado para o tratamento de possível autocorrelação serial, computado pelo critério de seleção de Akaike (com o BIC os resultados não parecem mudar significativamente).
+Foi usado o teste ADF com o número de lags computado pelo critério de seleção de Akaike (com o BIC os resultados não parecem mudar significativamente).
 
-```{r, echo = F, include = T, adf_lags_AIC}
+O número de lags é usado para o tratamento de possível autocorrelação serial.
+
+```{r, echo = F, include = T}
 
 library(urca)
+library(purrr)
 
-#----------------------------------------------------------
-# funções para extrair estatistica de teste e valor critico
-# do objeto criado pela função ur.df do pacote urca
-estatistica_teste <- function(DF, VARIAVEL, TIPO, CRITERIO) {
-    DF %>% pull(VARIAVEL) %>%
-      ur.df(type = TIPO, selectlags = CRITERIO) %>%
-      summary %>% slot("teststat") %>% `[`(1)
-  }
+adf_test  <- function(x) ur.df(x, type = tipo, selectlags = "AIC")
+cval      <- function(x) x %>% slot("cval") %>% .[1, ] %>% t %>% as.data.frame %>% select("5pct")
+teststat  <- function(x) x %>% slot("teststat") %>% as.data.frame %>% select(starts_with("tau"))
 
-valor_critico <- function(DF, VARIAVEL, TIPO, CRITERIO) {
-    DF %>% pull(VARIAVEL) %>%
-      ur.df(type = TIPO, selectlags = CRITERIO) %>%
-      summary %>% slot("cval") %>% `[`(1, "5pct")
-  }
+augmented_dickey_fuller <- function(series, type, info_criteria) {
+  series %>% map(ur.df, type = type, selectlags = info_criteria) %>% map_dfr(teststat) -> tstats
+  series %>% map(ur.df, type = type, selectlags = info_criteria) %>% map_dfr(cval) -> cval
+  cbind(tstats, cval)
+}
 
-#----------------------------------------------------------
-# manipulando os dados para obter um data.frame
-# com os p-valores dos testes
-
-series_sem_data <- series %>% select(-date) %>% names
-
-resultados <-
-  expand.grid(series_sem_data, c("none", "drift", "trend"), "AIC", stringsAsFactors = F) %>%
-  rename("variavel" = Var1, "tipo" = Var2, "criterio" = Var3) %>%
-  rowwise %>%
-  mutate(
-         estatistica_teste = estatistica_teste(series, variavel, tipo, criterio),
-         valor_critico = valor_critico(series, variavel, tipo, criterio),
-         diagnostico = ifelse(estatistica_teste < valor_critico,
-                              "estacionário", "não-estacionário")
-         ) %>%
-  filter(diagnostico == "estacionário")
-
-resultados %>%
-  knitr::kable(digits = 2, align = "l")
-
-resultados %>% write_csv("resultados_teste_raiz_unitaria.csv")
+cbind(
+  variável = series %>% names(),
+  augmented_dickey_fuller(series, type = "none", info_criteria = "AIC"),
+  augmented_dickey_fuller(series, type = "drift", info_criteria = "AIC"),
+  augmented_dickey_fuller(series, type = "trend", info_criteria = "AIC")
+) %>% knitr::kable(format = "latex", digits = 2)
 
 ```
