@@ -270,7 +270,7 @@ A série usada para capturar o efeito da atividade econômica sobre o spread é 
 
     Em seguida, os autores decompuseram o spread do período com base nessa estimação. O resultado indica que todas as variáveis são bem relevantes na composição do spread no período, em especial a variável de risco, relevância esta que foi aumentando com o passar dos anos e que é análoga à considerável participação da inadimplência na decomposição contábil do spread. Os custos administrativos e a Selic vêm em seguida em importância, ambas com tendências sutilmente declinantes. E, por fim, a importância relativa dos impostos indiretos é a menos sobressalente, mas aumentou com os anos. 
 
-    Um artigo que segue um caminho semelhante em termos de modelagem é o de \citeonline{oreiro}, já que para a estimação dos determinantes também se utilizou um modelo VAR. Este estudo, porém, se distingue por dar foco aos efeitos das variáveis macroeconômicas sobre o spread para o período de janeiro de 1995 a dezembro de 2003. 
+    Um artigo que segue um caminho semelhante em termos de modelagem é o de \citeonline{oreiro}, já que para a estimação dos determinantes também se utilizou um modelo VAR. Este estudo, porém, se distingue por dar foco aos efeitos das variáveis macroeconômicas sobre o spread, cobrindo o período de janeiro de 1995 a dezembro de 2003. 
     
     São usados como regressores séries de frequência mensal como o nível da taxa básica de juros (SELIC) e sua volatilidade (como proxy para o risco de juros), o nível de atividade econômica, o recolhimento compulsório sobre depósitos à vista e a inflação.
 
@@ -278,10 +278,43 @@ A série usada para capturar o efeito da atividade econômica sobre o spread é 
 
     Os resultados mostram que um choque exógeno no nível e volatilidade da taxa de juros tem um efeito positivo e persistente sobre o spread, como esperado. Um choque na proxy para o nível de atividade econômica mostrou ter um impacto positivo, o que os autores interpretaram como um possível efeito do poder de mercado dos bancos prevalecendo sobre o efeito inadimplência. O efeito de um choque na inflação se mostrou insignificante estatisticamente. Eles concluem dizendo que um ambiente macroeconômico estável é uma condição indispensável para reduzir o spread.
 
-\section{Testes econométricos}
+\section{Referencial Metodológico}
 
-    Se tratando de análises de séries temporais, é preciso antes de tudo que se faça os testes de estacionariedade para cada série. Dentre as opções, foi escolhido o teste Augmented Dickey-Fuller, 
+    Neste capítulo serão brevemente apresentadas as metodologias utilizadas para a modelagem e tratamento de séries temporais.
 
+    Todo estudo do tipo requer primeiro que conheçamos a ordem de integração das séries, isto é, se é estacionária (caso em que é integrada de ordem 0) ou, caso contrário, quantas $d$ vezes é preciso diferenciá-la para que se torne estacionária (caso em que será integrada de ordem $d$), o que é mais formalmente feito com um teste de raiz unitária.
+
+    Uma vez que se saiba quais são as séries não-estacionárias, é prudente investigar se alguma combinação linear delas é estacionária, ou seja, se há co-integração.
+
+    Os resultados destes dois testes influenciam enormemente na decisão de como modelar o relacionamento entre as séries. 
+
+
+\subsection{Testes de raiz unitária}
+
+    Se uma série 
+    
+
+\begin{table}[ht]
+    \IBGEtab{\caption{Testes de raiz unitária}\label{raiz_unitaria}}
+    {
+        \begin{tabular}{lccccccccc}
+            \midrule
+            \multicolumn{1}{c}{Variável} & \multicolumn{2}{c}{Sem drift e sem tendência} & \multicolumn{2}{c}{Com drift} & \multicolumn{2}{c}{Com tendência} \\
+                                & \tau_1 & 5\%       & \tau_2 & 5\%   & \tau_3 & 5\%     \\
+            \midrule
+            spread              & 0.37   & -1.95     & -0.76  & -2.89 & -1.39  & -3.45   \\
+            selic               & -0.93  & -1.95     & -1.12  & -2.89 & -0.80  & -3.45   \\
+            pib\_mensal         & 2.15   & -1.95     & -1.43  & -2.89 & -4.23  & -3.45   \\
+            inad                & 0.23   & -1.95     & -1.45  & -2.89 & -1.12  & -3.45   \\
+            igp                 & -3.16  & -1.95     & -4.50  & -2.89 & -4.49  & -3.45   \\
+            ihh                 & 2.56   & -1.95     & -0.93  & -2.89 & -2.25  & -3.45   \\
+            \midrule
+        \end{tabular}
+    } 
+    {\fonte{Elaboração própria.}}
+\end{table}
+
+\newpage
 \bibliography{/home/phelipe/Documentos/mono/bibliografia}
 
 \end{document}
