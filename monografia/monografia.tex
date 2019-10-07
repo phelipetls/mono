@@ -6,7 +6,7 @@
 % ---
 % Pacotes fundamentais
 % ---
-\usepackage{times}			% Usa a fonte Latin Modern
+\usepackage{times}			    % Usa a fonte Latin Modern
 \usepackage[T1]{fontenc}		% Seleção de códigos de fonte.
 \usepackage[utf8]{inputenc}		% Codificação do documento (conversão automática dos acentos)
 \usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
@@ -22,7 +22,6 @@
 \rhead{\thepage}
 \cfoot{}
 
-
 % ---
 
 % ---
@@ -36,7 +35,7 @@
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
 \autor{Phelipe Teles da Silva}
-\titulo{Determinantes macroeconômicos do spread bancário brasileiro (2011-2018)}
+\titulo{Determinantes macroeconômicos do spread bancário brasileiro (2011-2017)}
 \data{2019}
 \instituicao{Universidade Federal Rural do Rio de Janeiro}
 \local{Seropédica, Rio de Janeiro}
@@ -49,16 +48,18 @@
 \frenchspacing
 % \setlength\afterchapskip{\lineskip}
 
+\numberwithin{equation}{section}
 \begin{document}
 % ---
 % Capa e Folha de Rosto
 % ---
-% \imprimircapa
-% \imprimirfolhaderosto
+\imprimircapa
+\imprimirfolhaderosto
 
 % ---
 % Insere o sumario automático
 % ---
+
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
 \clearpage
@@ -172,7 +173,6 @@ A série usada para capturar o efeito da atividade econômica sobre o spread é 
             \begin{tabular}
                 {@{\extracolsep{5pt}}lccccc}
                 \midrule
-                \midrule
                 Variável              & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Desvio Padrão} & \multicolumn{1}{c}{Mín.} & \multicolumn{1}{c}{Máx.} & \multicolumn{1}{c}{Sinal esperado} \\
                 \midrule
                 Spread                & 29,33                     & 6,51                              & 20,89                    & 42,34                    &  \\
@@ -203,13 +203,10 @@ A série usada para capturar o efeito da atividade econômica sobre o spread é 
 
     O próximo passo é obter a margem ótima de intermediação, isto é, a que maximiza a função lucro. Para isso, tira-se as derivadas parciais desta função em relação a L e D para se chegar às condições de primeira ordem, e, depois de algumas manipulações algébricas, chega-se às equações fundamentais do modelo:
 
-	\begin{equation}
-	\frac{1}{\epsilon^{*}_L} = \frac{r^{*}_L - (r - C^{'}_L)}{r^{*}_L}
-	\end{equation}
-
-	\begin{equation}
-	\frac{1}{\epsilon^{*}_D} = \frac{r(1-\alpha)-C^{'}_D - r^{*}_D}{r^{*}_D}
-	\end{equation}
+    \begin{gather}
+        \frac{1}{\epsilon^{*}_L} = \frac{r^{*}_L - (r - C^{'}_L)}{r^{*}_L} \\
+        \frac{1}{\epsilon^{*}_D} = \frac{r(1-\alpha)-C^{'}_D - r^{*}_D}{r^{*}_D}
+    \end{gather}
 
     O lado direito da equação é a versão para firma bancária do índice de Lerner\footnote{ Definido como a razão $(P - C_{mg}) / P$, em que $P$ é preço e $C_{mg}$ é o custo marginal, é uma medida do poder de mercado de um agente maximizador de lucros, sendo idêntico à recíproca da elasticidade. \cite{maudos}}, sendo, por definição, em cada um dos casos, igual ao inverso da elasticidade-juros da demanda por empréstimos ($\epsilon^{*}_L$) e oferta de depósitos ($\epsilon^{*}_D$). A interpretação desse resultado é que, para maximizar seus lucros, os bancos procuram fixar a taxa de juros num nível acima de seus custos, mas não ao ponto de perderem muitos clientes para a concorrência (o que acontece mais facilmente em mercados com demanda elástica etc.).
 
@@ -223,11 +220,11 @@ A série usada para capturar o efeito da atividade econômica sobre o spread é 
 
     Por esta razão, os bancos procuram minimizar esse risco fixando taxas de juros para os depósitos ($r_D$) e para os empréstimos ($r_L$) com a adição de uma pequena margem relativa à taxa de juros do mercado interbancário. Esta margem é o spread ($s$):
 
-	\begin{gather}
-		r_D = r - a \\
-		r_L = r + b \\
-		s = r_L - r_D = a + b
-	\end{gather}
+	\begin{align}
+        r_D &= r - a \\
+        r_L &= r + b \\
+        s &= r_L - r_D = a + b
+	\end{align}
 
     Para uma derivação das equações do modelo, até a equação do spread ótimo, ver \citeonline[p.~2262]{maudos} ou \citeonline[p.~584]{hoesaunders}. Para propósitos da revisão, iremos omiti-la, considerando somente suas implicações no que concerne aos determinantes do spread. São eles:
 
@@ -289,32 +286,62 @@ A série usada para capturar o efeito da atividade econômica sobre o spread é 
     Os resultados destes dois testes influenciam enormemente na decisão de como modelar o relacionamento entre as séries. 
 
 
-\subsection{Testes de raiz unitária}
+\subsection{Teste de raiz unitária}
 
-    Se uma série 
+    Na análise de séries temporais, é comum nos certificarmos de que elas sigam um processo estocástico cujas variáveis aleatórias tenham média constante, variância constante e finita e função de autocovariância que dependa somente da defasagem no tempo e não do tempo em si \cite[p.~734]{gujarati}, isto é, que seja estacionário no sentido amplo. Mais formalmente, um processo aleatório formado por variáveis aleatórias discretas $Y_t$ será estacionário se:
+
+    \begin{align*}
+        \mathbb{E}[Y_t] &= \mu \\
+        \mathbb{Var}[Y_t] &= \mathbb{E}[(Y_t - \mu)^2] = \sigma^2 \\
+        \gamma_k &= \mathbb{E}[(Y_t - \mu)(Y_{t+k} - \mu)]
+    \end{align*}
+
+    Dado um processo estocástico autorregressivo de ordem 1:
     
+    \begin{equation}\label{processo_estocastico} Y_t = \alpha + \beta t + \rho Y_{t-1} + u_t \end{equation}
+       
+        Onde $ u_t \stackrel{iid}{\sim} \text{N}(0,\text{ }\sigma^2) $. Sabe-se que ele será estacionário se $ \lvert \rho \rvert < 1 $, e não-estacionário se $ \lvert \rho \rvert = 1 $, o que é conhecido como passeio aleatório. Quando $ \delta \neq 0 $ teremos um processo estocástico com drift, e quando $ \beta \neq 0 $, um processo estocástico com tendência determinística \cite[p.~40]{gustavo}.
 
-\begin{table}[ht]
-    \IBGEtab{\caption{Testes de raiz unitária}\label{raiz_unitaria}}
-    {
-        \begin{tabular}{lccccccccc}
-            \midrule
-            \multicolumn{1}{c}{Variável} & \multicolumn{2}{c}{Sem drift e sem tendência} & \multicolumn{2}{c}{Com drift} & \multicolumn{2}{c}{Com tendência} \\
-                                & \tau_1 & 5\%       & \tau_2 & 5\%   & \tau_3 & 5\%     \\
-            \midrule
-            spread              & 0.37   & -1.95     & -0.76  & -2.89 & -1.39  & -3.45   \\
-            selic               & -0.93  & -1.95     & -1.12  & -2.89 & -0.80  & -3.45   \\
-            pib\_mensal         & 2.15   & -1.95     & -1.43  & -2.89 & -4.23  & -3.45   \\
-            inad                & 0.23   & -1.95     & -1.45  & -2.89 & -1.12  & -3.45   \\
-            igp                 & -3.16  & -1.95     & -4.50  & -2.89 & -4.49  & -3.45   \\
-            ihh                 & 2.56   & -1.95     & -0.93  & -2.89 & -2.25  & -3.45   \\
-            \midrule
-        \end{tabular}
-    } 
-    {\fonte{Elaboração própria.}}
-\end{table}
+    O objetivo do teste de raiz unitária é inferir o valor de $ \rho $ com base nas realizações particulares do processo estocástico. Um dos mais famosos, o Augmented Dickey-Fuller, o faz ao modificar \eqref{processo_estocastico} como segue:
+
+    \begin{align}
+        \label{adf}
+        Y_t - Y_{t-1} &= \alpha + \beta t + \rho Y_{t-1} - Y_{t-1} + \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} + u_t \nonumber \\
+        \Delta Y_t &= \alpha + \beta t + \gamma Y_{t-1} + \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} + u_t
+    \end{align}
+
+    Onde $ \gamma = (\rho - 1) $. Para logo depois estimar esta equação por Mínimos Quadrados Ordinários (MQO).
+   
+    O valor estimado de $ \gamma $ serve então para testar a hipótese de raiz unitária $ \gamma = 0 $, que equivale a $ \rho = 1 $, contra a hipótese alternativa unilateral $ \gamma < 0 $, que equivale a $ \rho < 1 $. Calcula-se então o valor t estimado, isto é, $ \hat{\gamma} / \text{EP}(\hat{\gamma}) $, com o porém de que sob a hipótese nula $ \gamma = 0 $, essa estatística não segue mais a distribuição t, mas a distribuição $ \tau $, que dependerá dos coeficientes da equação \eqref{processo_estocastico}. Isso se dá em razão do teste t ser enviesado no caso de um passeio aleatório \cite[p.~748-749]{gujarati}. O termo adicional $ \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} $ em \eqref{adf} serve para generalizar o teste para processos autorregressivos de ordem $ p $ \cite[p.~40]{gustavo}, de forma a preservar a condição de ruído branco em $ u_t $, um dos pressupostos do teste \cite[p.~25]{coint1}.
+
+    Uma série é dita integrada de ordem 0 se for diagnosticada como estacionária, $ Y_t \sim I(0) $, e integrada de ordem $ d $ quando é necessário diferenciá-la $ d $ vezes para torná-la estacionária, $ Y_t \sim I(d) $ \cite[p.~740]{gujarati}.
+
+   \subsection{Teste de Co-integração}
+
+
+
+
+    % \begin{table}[ht]
+    %     \IBGEtab{\caption{Testes de raiz unitária}\label{raiz_unitaria}}
+    %     {
+    %         \begin{tabular}{lccccccccc}
+    %             \midrule
+    %             \multicolumn{1}{c}{Variável} & \multicolumn{2}{c}{Sem drift e sem tendência} & \multicolumn{2}{c}{Com drift} & \multicolumn{2}{c}{Com tendência} \\
+    %                                 & \tau_1 & 5\%       & \tau_2 & 5\%   & \tau_3 & 5\%     \\
+    %             \midrule
+    %             spread              & 0.37   & -1.95     & -0.76  & -2.89 & -1.39  & -3.45   \\
+    %             selic               & -0.93  & -1.95     & -1.12  & -2.89 & -0.80  & -3.45   \\
+    %             pib\_mensal         & 2.15   & -1.95     & -1.43  & -2.89 & -4.23  & -3.45   \\
+    %             inad                & 0.23   & -1.95     & -1.45  & -2.89 & -1.12  & -3.45   \\
+    %             igp                 & -3.16  & -1.95     & -4.50  & -2.89 & -4.49  & -3.45   \\
+    %             ihh                 & 2.56   & -1.95     & -0.93  & -2.89 & -2.25  & -3.45   \\
+    %             \midrule
+    %         \end{tabular}
+    %     } 
+    %     {\fonte{Elaboração própria.}}
+    % \end{table}
 
 \newpage
-\bibliography{/home/phelipe/Documentos/mono/bibliografia}
+\bibliography{../bibliografia}
 
 \end{document}
