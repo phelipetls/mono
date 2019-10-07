@@ -7,23 +7,24 @@ output: pdf_document
 
 suppressMessages(library(tidyverse))
 
-series <- read.csv("../dados/series_economicas_log.csv")
-
-series %>% head %>% knitr::kable()
-
 series <-
-  series %>%
+  read.csv("../dados/series_economicas_log.csv") %>%
+  # read.csv("../dados/series_economicas_log_sem_ihh.csv") %>%
+  dplyr::select(-date) %>%
   mutate_at(vars(spread, selic, inad), function(x) x - lag(x)) %>%
   na.omit()
 
-series_sem_ihh <-
-  read.csv("../dados/series_economicas_log_sem_ihh.csv") %>%
-  select(-date)
+# tornando a série do pib_mensal estacionária
+series$pib_mensal <-
+  lm(pib_mensal ~ seq_along(pib_mensal), data = series)$residuals
 
-series_sem_ihh <-
-  series_sem_ihh %>%
-  mutate_at(vars(spread, selic, inad), function(x) x - lag(x)) %>%
-  na.omit()
+```
+
+```{r, echo = F, include = T}
+
+library(lmtest)
+
+lmtest::grangertest(spread ~ inad, data = series, order = 1)
 
 ```
 
@@ -31,20 +32,24 @@ series_sem_ihh <-
 
 suppressMessages(library(vars))
 
-series_sem_ihh %>% head
+VARselect(series, lag.max = 5, type = "const")
 
-VARselect(series_sem_ihh, lag.max = 5, type = "both")
+VAR(y = series %>% dplyr::select(spread, selic, inad, pib_mensal, ihh),
+    # exogen = series %>% dplyr::select(igp, ihh),
+    p = 1, type = "const") -> var_model
 
-VAR(y = series_sem_ihh %>% dplyr::select(spread, selic, inad),
-    exogen = series_sem_ihh %>% dplyr::select(igp, pib_mensal),
-    p = 1, type = "both") -> var_model
-
-var_model %>% summary(equation = "spread")
+var_model %>% summary
+var_model %>% roots
 
 # irf(var_model,
 #     response = "spread",
-#     impulse = "inad",
-#     ortho = F,
-#     n.ahead = 12) %>% plot
+#     # cumulative = T,
+#     n.ahead = 12, ortho = F) %>% plot
+
+```
+
+```{r, echo = F, include = T}
+
+urca::ca.jo(series) %>% summary
 
 ```
