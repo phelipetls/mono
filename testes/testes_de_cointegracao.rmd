@@ -10,14 +10,14 @@ knitr::opts_chunk$set(comment = NA, warning = FALSE, message = FALSE)
 library(tidyverse)
 library(tseries)
 
-series <- read_csv("~/Documentos/mono/dados/series_economicas_log.csv")
+series_raw <- read_csv("~/Documentos/mono/dados/series_economicas_log.csv")
 
 series_estacionarias <-
   read_csv("~/Documentos/mono/testes/resultados_teste_raiz_unitaria.csv") %>%
   filter(diagnostico == "estacionário") %>% pull(variavel) %>% unique
 
-series_nao_estacionarias <-
-  series %>% select(-date, -series_estacionarias)
+series <-
+  series_raw %>% select(-date, -series_estacionarias)
 
 ```
 
@@ -25,150 +25,11 @@ series_nao_estacionarias <-
 
 $$ \text{spread} = \beta_0 + \beta_1\text{selic} + \beta_2\text{inad} + \beta_3\text{pib\_mensal} + \beta_4\text{igp} + \beta_5\text{ihh} $$
 
-# Teste de co-integração Phillips-Ouliaris
-
-Aplicação do teste PO de co-integração do tipo "Pz", que não requer que se especifique qual é a variável dependente.
-
-A hipótese nula é de que as séries não co-integram. Nenhuma combinação delas parece co-integrar.
-
 ```{r, echo = F, include = F}
-# referência: https://www.r-bloggers.com/phillips-ouliaris-test-for-cointegration/
-teste_cointegracao <- function(n) {
-
-  series_combinadas <-
-    series_nao_estacionarias %>%
-    combn(n, simplify = F)
-
-  nomes <-
-    series_combinadas %>%
-    map_chr(~paste(names(.x), collapse = ", "))
-
-  teststat <-
-    series_combinadas %>%
-    map(~urca::ca.po(.x, type = "Pz")) %>%
-    map_dbl(~slot(.x, c("teststat")))
-
-  cval <-
-    series_combinadas %>%
-    map(~urca::ca.po(.x, type = "Pz")) %>%
-    map(~slot(.x, c("cval"))) %>%
-    map_dbl(`[`, 2)
-
-  cbind(nomes, teststat, cval) %>% as_tibble %>% mutate_at(vars(2:3), as.numeric)
-
-}
-
-```
-
-```{r, echo = F, include = T}
-
-teste_cointegracao(2) %>% knitr::kable(digits = 2)
-teste_cointegracao(3) %>% knitr::kable(digits = 2)
-
-```
-
-# Teste de Engle-Granger
-
-```{r, echo = F, include = T}
 
 library(aTSA)
+library(urca)
 
-nlag <- 1
-
-coint.test(with(series, spread),
-           with(series, selic), nlag = nlag, output = F) %>% list
-
-```
-
-&nbsp;
-
-```{r, echo = F, include = T}
-
-coint.test(with(series, spread),
-           with(series, inad), nlag = nlag)
-
-```
-
-&nbsp;
-
-
-```{r, echo = F, include = T}
-
-coint.test(with(series, spread),
-           with(series, ihh), nlag = nlag)
-
-```
-
-&nbsp;
-
-
-```{r, echo = F, include = T}
-
-coint.test(with(series, spread),
-           series[, c("selic", "inad")] %>% as.matrix, nlag = nlag)
-
-```
-
-&nbsp;
-
-
-```{r, echo = F, include = T}
-
-coint.test(with(series, spread),
-           series[, c("selic", "ihh")] %>% as.matrix, nlag = nlag)
-
-```
-
-&nbsp;
-
-
-```{r, echo = F, include = T}
-
-coint.test(with(series, spread),
-           series[, c("inad", "ihh")] %>% as.matrix, nlag = nlag)
-
-```
-
-&nbsp;
-
-# Teste de Johansen
-
-## Sem intercepto
-
-```{r, echo = F, include = T}
-
-# parâmetros para o teste
-tipo   = "trace"
-n_lags = 2
-
-johansen_test <-
-  urca::ca.jo(series %>% select(-date, -series_estacionarias),
-              type = tipo, K = n_lags)
-
-johansen_test %>% summary
-
-```
-
-## Com intercepto
-
-```{r, echo = F, include = T}
-
-johansen_test <-
-  urca::ca.jo(series %>% select(-date, -series_estacionarias),
-              type = tipo, ecdet = "const", K = n_lags)
-
-johansen_test %>% summary
-
-```
-
-## Com tendência
-
-```{r, echo = F, include = T}
-
-johansen_test <-
-  urca::ca.jo(series %>% select(-date, -series_estacionarias),
-              type = tipo, ecdet = "trend", K = n_lags, spec = "transitory")
-
-johansen_test %>% summary
+ca.jo(series, spec = "longrun", ecdet = "none", type = "trace") %>% summary
 
 ```

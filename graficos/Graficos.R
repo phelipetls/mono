@@ -13,6 +13,8 @@ df <- fread("../dados/series_economicas.csv") %>%
 
 intervalo <- c(min(df$date), NA)
 
+theme_set(theme_cowplot())
+
 plt <- ggplot(df) + labs(x = NULL, y = NULL) +
   scale_x_date(date_labels = "%Y", date_breaks = "1 year") +
   theme(
@@ -38,4 +40,4 @@ plt + geom_line(aes(date, inad)) +
   ggsave("Inadimplencia.pdf", device = cairo_pdf, dpi = 300, height = 7, units = "cm")
 
 plt + geom_line(aes(date, pib_mensal)) +
-  ggsave("PIB_Mensal", device = cairo_pdf, dpi = 300, height = 7, units = "cm")
+  ggsave("PIB_Mensal.pdf", device = cairo_pdf, dpi = 300, height = 7, units = "cm")
