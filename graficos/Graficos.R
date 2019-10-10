@@ -26,7 +26,7 @@ plt + geom_line(aes(date, spread / 100)) +
   scale_y_continuous(labels = scales::percent_format()) +
   ggsave("Spread.pdf", device = cairo_pdf, dpi = 300, height = 7, units = "cm")
 
-plt + geom_line(aes(date, ihh)) +
+plt + geom_line(aes(date, igp)) +
   ggsave("IGP.pdf", device = cairo_pdf, dpi = 300, height = 7, units = "cm")
 
 plt + geom_line(aes(date, igp)) +
