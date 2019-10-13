@@ -17,6 +17,7 @@
 \usepackage{amsmath}			% Pacote matemático
 \usepackage[brazil]{babel}
 \usepackage{fancyhdr}
+\usepackage{bm}
 
 \fancyhead{}
 \rhead{\thepage}
@@ -40,16 +41,21 @@
 \instituicao{Universidade Federal Rural do Rio de Janeiro}
 \local{Seropédica, Rio de Janeiro}
 \orientador[Orientadora:]{Débora Pimentel}
-%\preambulo{}
-%\tipotrabalho{}
+\preambulo{}
+\tipotrabalho{}
 
 \graphicspath{{../graficos/}}
 
 \frenchspacing
-% \setlength\afterchapskip{\lineskip}
+
+% espaçamento depois do título do capítulo
+\setlength\afterchapskip{\lineskip}
+% espaçamento entre parágrafos
+% \setlength{\parskip}{0.2cm} % tente também \onelineskip
 
 \numberwithin{equation}{section}
 \begin{document}
+
 % ---
 % Capa e Folha de Rosto
 % ---
@@ -59,7 +65,6 @@
 % ---
 % Insere o sumario automático
 % ---
-
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
 \clearpage
@@ -73,14 +78,14 @@
 
     O spread bancário tem sido de particular interesse para pesquisadores no Brasil, devido à peculiaridade de ser um dos maiores do mundo, o que pode ser visualizado na Figura \ref{spreadal}. Nela, podemos ver os maiores spreads bancários da América Latina, no que se destaca a liderança do Brasil por uma larga margem.
 
-\begin{figure}[h]
-  \centering
-    \caption{Top 10 spreads bancários da América Latina em 2017}
-      \includegraphics[width = 0.9\textwidth, scale=1]{spread_AL.pdf}
-      \legend{Fonte: indicador ``FR.INR.LNDP'' do World Bank. Elaboração própria}
-      \label{spreadal}
-\end{figure}
-    
+    \begin{figure}[h]
+        \centering
+        \caption{Top 10 spreads bancários da América Latina em 2017}
+        \includegraphics[width = 0.9\textwidth, scale=1]{spread_AL.pdf}
+        \legend{Fonte: indicador ``FR.INR.LNDP'' do World Bank. Elaboração própria}
+        \label{spreadal}
+    \end{figure}
+
     Com a bem-sucedida estabilização macroeconômica levada a cabo pelo Plano Real, esperava-se que esse nível finalmente começasse a convergir para os padrões internacionais mas, embora ele tenha de fato caído bastante, ainda continuou em um patamar relativamente bastante elevado.
 
     Desde então, uma das principais razões a que se vem atribuindo a isso é a política monetária, conduzida sob o Regime de Metas de Inflação (RMI) desde 1999, de manter a taxa básica de juros a níveis bastante elevados, com o objetivo de controlar a inflação. O spread, por ser, do ponto de vista ex-ante (ou antes do resultado financeiro das operações do banco), a diferença entre a taxa pela qual o banco empresta e a taxa pela qual ele capta recurso, a taxa básica de juros influencia diretamente o spread por representar um custo de oportunidade para a operação de crédito, visto que a Selic serve como indexador de parte dos títulos da dívida brasileira, uma aplicação muito menos arriscada e mais líquida que o crédito \cite[p.~7]{manhica12}.
@@ -99,34 +104,34 @@
     
     Na Fig. 1, salta à vista o aumento do spread a partir de 2014, após uma queda que se iniciou por volta de 2012 e que corresponde às políticas do primeiro governo de Dilma Rousseff com o intuito de reduzir o spread via aumento do portfólio de crédito dos bancos públicos, forçando uma queda pela competição das taxas de juros de empréstimos \cite[p.~1]{almeida15}. Porém, com a deterioração das condições macroeconômicas a partir de 2014, observamos a escalada do spread, seguido de um declínio iniciado em 2017 que veio com, entre outras coisas, a queda persistente da taxa SELIC a partir de então.
 
-\begin{figure}[h]
-  \centering
-    \caption{Spread médio das operações de crédito com recursos livres - Total}
-      \includegraphics[width = \textwidth, scale=0.75]{Spread.pdf}
-      \legend{Fonte: série 20786 do SGS. Elaboração própria}
-      \label{spread}
-\end{figure}
-    
-Este movimento da taxa SELIC pode ser visto na Fig. 2. A contraposição das duas séries sugere de imediato que elas são positivamente correlacionadas. De fato, é isso o que naturalmente se argumenta, porque uma taxa básica de juros mais elevada implica maior custo de oportunidade para a atividade de crédito, uma vez que aumenta a rentabilidade dos títulos públicos, tornando mais atrativa uma aplicação que já tem a vantagem de ser mais líquida e menos arriscada \cite[p.~372]{oliveira2007}. Por esta razão, é esperado um coeficiente positivo para a taxa básica de juros, pelo efeito custo de oportunidade. Na literatura empírica, não há divergências para essa estimativa, tendo a maior parte dos estudos encontrado a relação esperada \cite[p.~233-234]{leal07}.
+    \begin{figure}[h]
+        \centering
+        \caption{Spread médio das operações de crédito com recursos livres - Total}
+        \includegraphics[width = \textwidth, scale=0.75]{Spread.pdf}
+        \legend{Fonte: série 20786 do SGS. Elaboração própria}
+        \label{spread}
+    \end{figure}
 
-\begin{figure}[h]
-  \centering
-    \caption{Taxa de juros - Selic acumulada no mês anualizada}
-      \includegraphics[width = \textwidth, scale=0.75]{Selic.pdf}
-      \legend{Fonte: série 4189 do SGS. Elaboração própria}
-      \label{selic}
-\end{figure}
-    
+    Este movimento da taxa SELIC pode ser visto na Fig. 2. A contraposição das duas séries sugere de imediato que elas são positivamente correlacionadas. De fato, é isso o que naturalmente se argumenta, porque uma taxa básica de juros mais elevada implica maior custo de oportunidade para a atividade de crédito, uma vez que aumenta a rentabilidade dos títulos públicos, tornando mais atrativa uma aplicação que já tem a vantagem de ser mais líquida e menos arriscada \cite[p.~372]{oliveira2007}. Por esta razão, é esperado um coeficiente positivo para a taxa básica de juros, pelo efeito custo de oportunidade. Na literatura empírica, não há divergências para essa estimativa, tendo a maior parte dos estudos encontrado a relação esperada \cite[p.~233-234]{leal07}.
+
+    \begin{figure}[h]
+        \centering
+        \caption{Taxa de juros - Selic acumulada no mês anualizada}
+        \includegraphics[width = \textwidth, scale=0.75]{Selic.pdf}
+        \legend{Fonte: série 4189 do SGS. Elaboração própria}
+        \label{selic}
+    \end{figure}
+
     Um padrão parecido pode ser observado na série da Inadimplência, na Fig. 3. A inadimplência passou a cair consideravelmente em 2012 para depois aumentar a partir de 2014 e 2015, com o advento da crise econômica. Não é surpreendente que haja uma correlação entre a Selic e a inadimplência, visto que um aumento da taxa básica de juros eleva o custo de captação, que é então repassado para o juros final, prejudicando a capacidade de pagamento \cite[p.~390]{oliveira2007}. A inclusão desta variável, portanto, serve para capturar o efeito do risco de crédito sobre o spread, \textit{ceteris paribus}.
 
-\begin{figure}[t]
-  \centering
-    \caption{Inadimplência da carteira de crédito - Total}
-      \includegraphics[width = \textwidth, scale=0.75]{Inadimplencia.pdf}
-      \legend{Fonte: série 21085 do SGS. Elaboração própria}
-      \label{inad}
-\end{figure}
-    
+    \begin{figure}[t]
+        \centering
+        \caption{Inadimplência da carteira de crédito - Total}
+        \includegraphics[width = \textwidth, scale=0.75]{Inadimplencia.pdf}
+        \legend{Fonte: série 21085 do SGS. Elaboração própria}
+        \label{inad}
+    \end{figure}
+
     A série de inflação escolhida foi o Índice Geral de Preços (IGP-DI), por ter apresentado resultados mais consistentes que o IPCA \cite[p.~66]{rocha09} e por ser mais abrangente \cite[p.~21]{afanasieff02}. A inclusão dessa variável se faz prudente porque sua variação pode influenciar a taxa básica de juros e a política de juros dos bancos, portanto o spread \cite[p.~14]{bignotto06}. O que se espera obter na estimação é um coeficiente positivo, indicando uma relação direta entre a inflação e o spread, devido ao fato de que em um ambiente econômico não sujeito à instabilidade dos preços os bancos não precisariam se proteger dela via spread. Se por um lado o efeito teórico esperado é claro, o que sairá na estimação é incerto, porque na literatura varia desde insignificante, como em \citeonline{oreiro}, a um sinal inesperado e significante, como em \citeonline{bignotto06} e \citeonline{afanasieff02}\footnote{Como possível causa, os autores indicam a apropriação de receita de senhoriagem com o spread \cite[p.~25]{afanasieff02}}.
     
 \begin{figure}[h]
@@ -134,29 +139,31 @@ Este movimento da taxa SELIC pode ser visto na Fig. 2. A contraposição das dua
     \caption{Índice Geral de Preços (IGP-DI)}
       \includegraphics[width = \textwidth, scale=0.75]{IGP.pdf}
       \legend{Fonte: IPEA. Elaboração própria}
-      \label{ipca}
+      \label{igp}
 \end{figure}
     
-A série usada para capturar o efeito da atividade econômica sobre o spread é a Produção da indústria geral, calculada pelo IBGE como a variação percentual em relação ao mesmo período do ano anterior. Segundo \citeonline{oreiro}, o efeito desta variável sobre o spread é incerto, pois duas forças opostas entram em jogo: mais atividade econômica pode resultar em menor spread por reduzir o custo da concessão de crédito via aumento da escala de operação, mas também em maior spread porque mais pessoas demandarão crédito, o que pode elevar as taxas de empréstimo, o que por sua vez depende do poder de mercado dos bancos \citeonline[p.~626]{oreiro}. \citeonline{oreiro} encontram esta última relação na estimação, argumentando ter prevalecido o efeito poder de mercado. Os resultados não tem sido consistentes através dos estudos \cite[p.~236]{leal07}, mas de qualquer forma é considerada adequada sua inclusão como controle, evitando viés de variável omitida.
-    
-\begin{figure}[h]
-  \centering
-  \caption{Produção da indústria geral}
-      \includegraphics[width = \textwidth, scale=0.75]{PIB_Mensal.pdf}
-      \legend{Fonte: IBGE. Elaboração própria}
-      \label{prodind}
-\end{figure}
-    
+    % TODO: Alterar para Pib Mensal
+    A série usada para capturar o efeito da atividade econômica sobre o spread é a Produção da indústria geral, calculada pelo IBGE como a variação percentual em relação ao mesmo período do ano anterior. Segundo \citeonline{oreiro}, o efeito desta variável sobre o spread é incerto, pois duas forças opostas entram em jogo: mais atividade econômica pode resultar em menor spread por reduzir o custo da concessão de crédito via aumento da escala de operação, mas também em maior spread porque mais pessoas demandarão crédito, o que pode elevar as taxas de empréstimo, o que por sua vez depende do poder de mercado dos bancos \citeonline[p.~626]{oreiro}. \citeonline{oreiro} encontram esta última relação na estimação, argumentando ter prevalecido o efeito poder de mercado. Os resultados não tem sido consistentes através dos estudos \cite[p.~236]{leal07}, mas de qualquer forma é considerada adequada sua inclusão como controle, evitando viés de variável omitida.
+
+
+    \begin{figure}[h]
+        \centering
+        \caption{Produção da indústria geral}
+        \includegraphics[width = \textwidth, scale=0.75]{PIB_Mensal.pdf}
+        \legend{Fonte: IBGE. Elaboração própria}
+        \label{prodind}
+    \end{figure}
+
     Para a variável de concentração bancária, foi escolhido o índice de Herfindahl-Hirschmann, calculado pelo Banco Central do Brasil e divulgado no Anexo Estatístico do Relatório de Estabilidade Financeira, de abril de 2018. Os dados são trimestrais, por isso a necessidade de extrapolar os valores para os meses adjacentes. Como se sabe, este é um indicador do nível de concentração econômica em um mercado, obtido ao somar o quadrado das participações de cada instituição financeira no mercado considerado, que no nosso caso é o mercado de crédito. O BCB considera um IHH entre 0 e 1000 indicativo de baixa concentração, acima de 1000 e menor que 1800, de moderada concentração e acima de 1800 de alta concentração.
 
-\begin{figure}[h]
-  \centering
-  \caption{Índice de Herfindahl-Hirschmann - IHH}
-      \includegraphics[width = \textwidth, scale=0.75]{IHH.pdf}
-      \legend{Fonte: BCB. Elaboração própria}
-      \label{ihh}
-\end{figure}
-    
+    \begin{figure}[h]
+        \centering
+        \caption{Índice de Herfindahl-Hirschmann - IHH}
+        \includegraphics[width = \textwidth, scale=0.75]{IHH.pdf}
+        \legend{Fonte: BCB. Elaboração própria}
+        \label{ihh}
+    \end{figure}
+
     Fica nítida a tendência de ascensão da concentração bancária, só refreada no final de 2015, voltando a crescer em seguida para depois permanecer estagnada, em um nível próximo do que é considerado uma concentração alta.
 
     No entanto, é preciso cautela na análise da concentração bancária como determinante do spread, já que a literatura sobre o assunto está longe de ser conclusiva \cite[p.~11]{reb2017}. De fato, como explicita \citeonline{reb2017}, há alta concentração bancária mesmo em países com um sistema financeiro considerado desenvolvido, isso porque esta indústria exige ganhos de escala e altos investimentos, o que está ligado à eficiência da intermediação financeira, que ajuda a reduzir o spread. Portanto, é possível que se encontre até mesmo uma relação inversa entre concentração e spread. 
@@ -285,41 +292,53 @@ A série usada para capturar o efeito da atividade econômica sobre o spread é 
 
     Os resultados destes dois testes influenciam enormemente na decisão de como modelar o relacionamento entre as séries. 
 
+    \subsection{Teste de raiz unitária}
 
-\subsection{Teste de raiz unitária}
-
-    Na análise de séries temporais, é comum nos certificarmos de que elas sigam um processo estocástico cujas variáveis aleatórias tenham média constante, variância constante e finita e função de autocovariância que dependa somente da defasagem no tempo e não do tempo em si \cite[p.~734]{gujarati}, isto é, que seja estacionário no sentido amplo. Mais formalmente, um processo aleatório formado por variáveis aleatórias discretas $Y_t$ será estacionário se:
-
-    \begin{align*}
-        \mathbb{E}[Y_t] &= \mu \\
-        \mathbb{Var}[Y_t] &= \mathbb{E}[(Y_t - \mu)^2] = \sigma^2 \\
-        \gamma_k &= \mathbb{E}[(Y_t - \mu)(Y_{t+k} - \mu)]
-    \end{align*}
+    Na análise de séries temporais, é comum nos assegurarmos de que elas sigam um processo estocástico cujas variáveis aleatórias tenham média constante, variância constante e finita e função de autocovariância que dependa somente da defasagem no tempo e não do tempo em si \cite[p.~734]{gujarati}, isto é, que sejam estacionárias no sentido amplo. Mais formalmente, um processo aleatório formado por variáveis aleatórias discretas $Y_t$ será estacionário se:
 
     Dado um processo estocástico autorregressivo de ordem 1:
-    
-    \begin{equation}\label{processo_estocastico} Y_t = \alpha + \beta t + \rho Y_{t-1} + u_t \end{equation}
-       
-        Onde $ u_t \stackrel{iid}{\sim} \text{N}(0,\text{ }\sigma^2) $. Sabe-se que ele será estacionário se $ \lvert \rho \rvert < 1 $, e não-estacionário se $ \lvert \rho \rvert = 1 $, o que é conhecido como passeio aleatório. Quando $ \delta \neq 0 $ teremos um processo estocástico com drift, e quando $ \beta \neq 0 $, um processo estocástico com tendência determinística \cite[p.~40]{gustavo}.
 
-    O objetivo do teste de raiz unitária é inferir o valor de $ \rho $ com base nas realizações particulares do processo estocástico. Um dos mais famosos, o Augmented Dickey-Fuller, o faz ao modificar \eqref{processo_estocastico} como segue:
+    \begin{equation}\label{processo_estocastico} Y_t = \rho Y_{t-1} + u_t \end{equation}
+
+    Onde $ u_t \stackrel{iid}{\sim} \text{N}(0,\text{ }\sigma^2) $. Sabe-se que ele será estacionário se $ \lvert \rho \rvert < 1 $, e não-estacionário se $ \lvert \rho \rvert = 1 $, o que é conhecido como passeio aleatório\footnote{Ao resolver recursivamente para o caso quando $ \lvert \rho \rvert = 1 $, $ Y_t = Y_{t-1} + u_t = Y_0 + \sum u_t $, pode-se perceber a importante característica da memória infinita, de que ele nunca se esquece do choque, o que também se conhece por tendência estocástica \cite[p.~736]{gujarati}}.
+
+    O objetivo do teste de raiz unitária é inferir o valor de $ \rho $ com base nas realizações particulares do processo estocástico. O teste Augmented Dickey-Fuller o faz ao modificar \eqref{processo_estocastico} como segue:
 
     \begin{align}
         \label{adf}
-        Y_t - Y_{t-1} &= \alpha + \beta t + \rho Y_{t-1} - Y_{t-1} + \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} + u_t \nonumber \\
-        \Delta Y_t &= \alpha + \beta t + \gamma Y_{t-1} + \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} + u_t
+        Y_t - Y_{t-1} &= \rho Y_{t-1} - Y_{t-1} + \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} + u_t \nonumber \\
+        \Delta Y_t &= \gamma Y_{t-1} + \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} + u_t
     \end{align}
 
     Onde $ \gamma = (\rho - 1) $. Para logo depois estimar esta equação por Mínimos Quadrados Ordinários (MQO).
    
-    O valor estimado de $ \gamma $ serve então para testar a hipótese de raiz unitária $ \gamma = 0 $, que equivale a $ \rho = 1 $, contra a hipótese alternativa unilateral $ \gamma < 0 $, que equivale a $ \rho < 1 $. Calcula-se então o valor t estimado, isto é, $ \hat{\gamma} / \text{EP}(\hat{\gamma}) $, com o porém de que sob a hipótese nula $ \gamma = 0 $, essa estatística não segue mais a distribuição t, mas a distribuição $ \tau $, que dependerá dos coeficientes da equação \eqref{processo_estocastico}. Isso se dá em razão do teste t ser enviesado no caso de um passeio aleatório \cite[p.~748-749]{gujarati}. O termo adicional $ \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} $ em \eqref{adf} serve para generalizar o teste para processos autorregressivos de ordem $ p $ \cite[p.~40]{gustavo}, de forma a preservar a condição de ruído branco em $ u_t $, um dos pressupostos do teste \cite[p.~25]{coint1}.
+    O valor estimado de $ \gamma $ serve então para testar a hipótese de raiz unitária $ \gamma = 0 $, que equivale a $ \rho = 1 $, contra a hipótese alternativa unilateral $ \gamma < 0 $, que equivale a $ \rho < 1 $. Calcula-se então o valor t estimado, isto é, $ \hat{\gamma} / \text{EP}(\hat{\gamma}) $, com o porém de que sob a hipótese nula $ \gamma = 0 $, essa estatística não segue mais a distribuição t, mas a distribuição $ \tau $. Isso se dá em razão do teste t ser enviesado no caso de um passeio aleatório \cite[p.~748-749]{gujarati}.
 
-    Uma série é dita integrada de ordem 0 se for diagnosticada como estacionária, $ Y_t \sim I(0) $, e integrada de ordem $ d $ quando é necessário diferenciá-la $ d $ vezes para torná-la estacionária, $ Y_t \sim I(d) $ \cite[p.~740]{gujarati}.
+    Importante pontuar que a estatística $ \tau $ é sensível à forma funcional da equação \eqref{processo_estocastico}, isso quer dizer que os valores críticos do teste mudarão se adicionarmos um termo de deslocamento $ \delta $ em \eqref{processo_estocastico}, que denotaremos por $ \tau_{\mu} $ ou um termo de tendência determinística, $ \beta t $, $ \tau_{\tau} $.
+   
+    O termo adicional $ \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} $ em \eqref{adf} serve para generalizar o teste para processos autorregressivos de ordem $ p $, de forma a preservar a condição de ruído branco em $ u_t $ \cite[p.~40]{gustavo}.
 
-   \subsection{Teste de Co-integração}
+    Uma série é dita integrada de ordem 0 quando for diagnosticada como estacionária, $ Y_t \sim I(0) $, e integrada de ordem $ d $ quando é necessário diferenciá-la $ d $ vezes para torná-la estacionária, $ Y_t \sim I(d) $ \cite[p.~740]{gujarati}.
 
+    \subsection{Teste de Co-integração}
 
+    Quando duas ou mais séries são integradas da mesma ordem, mas uma combinação linear delas for integrada de uma ordem menor, dizemos que elas co-integram. O caso comum é quando as séries são não-estacionárias, mas uma combinação linear delas é estacionária. Intuitivamente, isso quer dizer que, apesar da tendência estocástica torná-las imprevisíveis individualmente, há um mecanismo de equilíbrio de longo prazo que as impede de se afastarem muito uma da outra (um mecanismo de "correção de erros") \cite[p.~46]{gustavo}.
 
+    Formalmente, as séries $ \mathbf{Y_t} $ são co-integradas de ardem $ d, b $ se todas forem integradas de ordem $ d $ e se existe uma combinação linear $ \mathbf{Z_t} = \pmb{\beta}'\mathbf{Y_t} $ tal que $ \mathbf{Z_t} \sim I(d - b), b > 0 $ \cite[p.~245]{lutkepool}, onde $ \pmb{\beta} $ é um vetor cointegrante.
+
+    O teste de Engle-Granger procura testar essa condição em duas etapas. Em um contexto bi-variado, em que $ Y_t $ é explicada por $ X_t $, estima-se a equação por MQO:
+
+    $$  Y_t = \beta_0 + \beta_1 X_t + u_t \label{engle-granger}$$
+
+    Para na segunda etapa, aplicar o teste ADF nos resíduos desta regressão, ou seja, na equação $ \Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \epsilon_{t} $. Se eles forem estacionários, então pode-se concluir que as séries são co-integradas. Vale ressaltar que, como explicado por \citeonline[p.~756]{gujarati}, os valores críticos com os quais se deve comparar a estatística de teste calculada são diferentes dos do teste de raiz unitária, porque os resíduos a serem testados foram obtidos com base no $ \beta $ estimado.
+
+    % TODO: falar mais sobre desvantagens de Engle-Granger e introduzir teste de Johansen
+    Como a relação de co-integração é inerentemente multivariada, este teste não suporta muito bem este caso já que se baseia nos resultados da regressão de uma única equação. Além disso, ele depende de como se especifica esta equação, qual variável é endógena e quais são exógenas. Deste modo, é razoável que se investigue a co-integração no contexto multivariado, em um sistema de equações. Isso é feito pelo procedimento de Johansen, como veremos \cite[p.~3]{coint2}.
+
+    \subsection{Vetores autorregressivos}
+
+    Na análise multivariada de séries temporais, o modelo de vetores autorregressivos é um dos mais utilizados. 
+    
 
     % \begin{table}[ht]
     %     \IBGEtab{\caption{Testes de raiz unitária}\label{raiz_unitaria}}
