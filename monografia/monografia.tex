@@ -6,9 +6,12 @@
 % ---
 % Pacotes fundamentais
 % ---
+\usepackage{fontspec}
 \usepackage{times}			    % Usa a fonte Latin Modern
 \usepackage[T1]{fontenc}		% Seleção de códigos de fonte.
 \usepackage[utf8]{inputenc}		% Codificação do documento (conversão automática dos acentos)
+% \usepackage[backend=biber]{biblatex}
+% \addbibresource{../bibliografia.bib}
 \usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
 \usepackage{color}		        % Controle das cores
 \usepackage{graphicx}			% Inclusão de gráficos/figuras.
@@ -138,7 +141,7 @@
   \centering
     \caption{Índice Geral de Preços (IGP-DI)}
       \includegraphics[width = \textwidth, scale=0.75]{IGP.pdf}
-      \legend{Fonte: IPEA. Elaboração própria}
+      \legend{Fonte: IPEA\@. Elaboração própria}
       \label{igp}
 \end{figure}
     
@@ -332,13 +335,45 @@
 
     Para na segunda etapa, aplicar o teste ADF nos resíduos desta regressão, ou seja, na equação $ \Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \epsilon_{t} $. Se eles forem estacionários, então pode-se concluir que as séries são co-integradas. Vale ressaltar que, como explicado por \citeonline[p.~756]{gujarati}, os valores críticos com os quais se deve comparar a estatística de teste calculada são diferentes dos do teste de raiz unitária, porque os resíduos a serem testados foram obtidos com base no $ \beta $ estimado.
 
-    % TODO: falar mais sobre desvantagens de Engle-Granger e introduzir teste de Johansen
     Como a relação de co-integração é inerentemente multivariada, este teste não suporta muito bem este caso já que se baseia nos resultados da regressão de uma única equação. Além disso, ele depende de como se especifica esta equação, qual variável é endógena e quais são exógenas. Deste modo, é razoável que se investigue a co-integração no contexto multivariado, em um sistema de equações. Isso é feito pelo procedimento de Johansen, como veremos \cite[p.~3]{coint2}.
 
-    \subsection{Vetores autorregressivos}
+    \subsection{Vetores autorregressivos (VAR)}
 
-    Na análise multivariada de séries temporais, o modelo de vetores autorregressivos é um dos mais utilizados. 
+    Segundo Grôppo (2004, p. 51-52), a principal característica de um modelo VAR é o tratamento simétrico das variáveis incluídas no modelo, isto é, não é preciso especificar previamente quais variáveis são exógenas e endógenas, o modelo estrutural que espelha o relacionamento real das variáveis. Por isso, ele está sujeito a poucas restrições teóricas. É somente necessário especificar quais variáveis interagem dentro do sistema e o número de defasagens a serem incluída de forma a melhor capturar esta interação.
     
+    São muito úteis para visualizar como uma variável responde a um choque em outra variável, através das funções de impulso-resposta. 
+
+    Seguindo a notação de \citeonline[p.~13]{lutkepool}, um modelo de vetores autorregressivos de ordem p, VAR(p), com K variáveis possui a seguinte forma:
+
+    \begin{equation}
+        \label{VAR}
+        y_t = v + A_1 y_{t-1} + \dots + A_p y_{t-p} + u_t,\text{\ \ } t = 0, \pm 1, \pm 2, \dots
+    \end{equation}
+
+    Onde $ y_t = (y_{1t}, \cdots, y_{Kt})^{'} $ é um vetor de variáveis aleatórias, $ v  = (v_{1}, \cdots, v_{K})^{'}  $ um vetor para o intercepto, $ u = (u_{1}, \cdots, u_{K})^{'} $ um vetor de ruído branco gaussiano\footnote{Logo, $ \mathbb{E}(u_t) = 0 $ e $ \mathbb{E}(u_t u^{'}_t) = \Sigma_{u} $, onde $ \mathbb{E}(u_tu^{'}_s) = 0 $ para $ t \neq s $.} e $ A_i $ são matrizes $ (K \times K) $ de coeficientes.
+
+    Desta equação pode-se perceber que os valores presentes das variáveis são explicados pelas $ p $ defasagens de todas as outras variáveis no sistema.
+
+    Dado um AR(1) que começa em $ t = 1 $, resolvendo recursivamente o sistema, chegamos a:
+
+    \begin{align}
+        \label{VAR1}
+        y_1 &= v + A_1 y_0 + u_1 \nonumber \\
+        y_2 &= v + A_2 y_1 + u_2 = v + A_1(v + A_1y_0 + u_1) + u_2 \nonumber  \\
+            &= (I_K + A_1)v + A^{2}_1 y_0 + A_1 u_t + u_t \nonumber \\
+        y_t &= (I_K + A_1 + \dots + A^{t-1}_1)v + A^{t}_1 y_0 + \sum^{t-1}_{i=0} A^{i}_1 u_t
+    \end{align}
+
+    Se todos os o módulo dos autovalores da matriz $ A_1 $ são menores que 1, o modelo é dito estável e converge assintoticamente para
+
+    \begin{equation}
+        \label{stability}
+        y_t = (I_K - A_1)^{-1} v + \sum^{\infty}_{i=0} A^{i}_1 u_{t-1}
+    \end{equation}
+
+    Logo, a distribuição de probabilidades de $ y_t $ é unicamente determinada pela distribuição do termo de erro $ u_t $, que se assume ser gaussiano. Esse resultado pode ser generalizado para AR(p), dado que qualquer processo AR(p) pode ser representado como um processo AR(1) \cite[p.~14-18]{lutkepool}, e serve para demonstrar que um AR(p) estável é estacionário no sentido amplo \cite[p.~25-26]{lutkepool}.
+
+    \subsection{Modelo de correção de erros}
 
     % \begin{table}[ht]
     %     \IBGEtab{\caption{Testes de raiz unitária}\label{raiz_unitaria}}
