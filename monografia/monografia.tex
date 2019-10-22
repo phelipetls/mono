@@ -1,77 +1,122 @@
-% ----
-% Criação do documento com a classe abntex2
-% ----
-\documentclass[a4paper, article, 12pt, openany, oneside, english, brazil]{abntex2}
+% criação do documento com a classe abntex2
+\documentclass[a4paper,
+               article,
+               12pt,
+               openany,
+               oneside,
+               english,
+               brazil]{abntex2}
 
-% ---
-% Pacotes fundamentais
-% ---
+% pacotes
 \usepackage{fontspec}
-\usepackage{times}			    % Usa a fonte Latin Modern
-\usepackage[T1]{fontenc}		% Seleção de códigos de fonte.
-\usepackage[utf8]{inputenc}		% Codificação do documento (conversão automática dos acentos)
-% \usepackage[backend=biber]{biblatex}
-% \addbibresource{../bibliografia.bib}
-\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
-\usepackage{color}		        % Controle das cores
-\usepackage{graphicx}			% Inclusão de gráficos/figuras.
-\usepackage{subcaption}			% Inclusão de subfiguras.
+\usepackage{times}			    % usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% seleção de códigos de fonte.
+\usepackage[utf8]{inputenc}		% codificação do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% indenta o primeiro parágrafo de cada seção.
+\usepackage{color}		        % controle das cores
+\usepackage{graphicx}			% inclusão de gráficos/figuras.
+\usepackage{subcaption}			% inclusão de subfiguras.
 \usepackage{microtype} 			% para melhorias de justificação
-\usepackage{amsmath}			% Pacote matemático
-\usepackage[brazil]{babel}
-\usepackage{fancyhdr}
-\usepackage{bm}
+\usepackage{amsmath}			% pacote matemático
+\usepackage[brazil]{babel}      % pacote multilinguagem
+\usepackage{fancyhdr}           % cabeçalhos etc.
+\usepackage[alf]{abntex2cite}   % citações abnt
 
+% cabeçalho
 \fancyhead{}
 \rhead{\thepage}
 \cfoot{}
 
-% ---
-
-% ---
-% Pacotes de citações
-% ---
-% \usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite}	                 % Citações padrão ABNT
-
 \pretextual
-% ---
-% Informações de dados para CAPA e FOLHA DE ROSTO
-% ---
 \autor{Phelipe Teles da Silva}
 \titulo{Determinantes macroeconômicos do spread bancário brasileiro (2011-2017)}
 \data{2019}
 \instituicao{Universidade Federal Rural do Rio de Janeiro}
-\local{Seropédica, Rio de Janeiro}
+\local{Seropédica}
 \orientador[Orientadora:]{Débora Pimentel}
-\preambulo{}
-\tipotrabalho{}
+\preambulo{Monografia apresentada no curso graduação da Universidade Federal Rural do Rio de Janeiro, Instituto de Ciências Sociais Aplicadas, curso de Economia como requisito parcial para obtenção do título de Bacharel em Economia.}
+\tipotrabalho{monografia}
 
+% caminho para os gráficos
 \graphicspath{{../graficos/}}
 
+% espaçamento 
 \frenchspacing
 
 % espaçamento depois do título do capítulo
 \setlength\afterchapskip{\lineskip}
-% espaçamento entre parágrafos
-% \setlength{\parskip}{0.2cm} % tente também \onelineskip
 
+% espaçamento entre parágrafos
+\setlength{\parskip}{0.2cm} % tente também \onelineskip
+
+% numeração das equações
 \numberwithin{equation}{section}
+
+% começo do documento
 \begin{document}
 
-% ---
-% Capa e Folha de Rosto
-% ---
+% capa
+\renewcommand{\imprimircapa}{%
+    \begin{capa}%
+        \center
+        \includegraphics{../logo_ufrrj}
+        
+        \ABNTEXchapterfont
+        \large UNIVERSIDADE FEDERAL RURAL DO RIO DE JANEIRO
+
+        \large INSTITUTO DE CIÊNCIAS ECONÔMICAS
+
+        \large PHELIPE TELES DA SILVA
+        \vfill
+        \begin{center}
+            \ABNTEXchapterfont
+            \bfseries
+            \large \imprimirtitulo
+        \end{center}
+        \vfill
+        \large SEROPÉDICA, 2019.
+        \vspace*{1cm}
+    \end{capa}}
 \imprimircapa
+
+% \makeatletter
+% \renewcommand{\imprimirfolhaderosto}{%
+%     \begin{capa}
+%         \center
+%         \ABNTEXchapterfont \large \MakeUppercase{\imprimirautor}
+%         \vfill
+%         \ABNTEXchapterfont \large \imprimirtitulo
+%         \vfill
+%         \abntex@ifnotempty{\imprimirpreambulo}{%
+%             \hspace{.45\textwidth}
+%             \begin{minipage}{.5\textwidth}
+%                 \SingleSpacing
+%                 \imprimirpreambulo
+%                 \newline
+%                 \newline
+%                 Orientação: \imprimirorientador
+%             \end{minipage}
+%             \vspace*{\fill}}
+%         \vfill
+%         \imprimirlocal
+%         \par
+%         \imprimirdata
+%         \vspace*{1cm}
+%     \end{capa}
+%     }
+% \makeatother
+
 \imprimirfolhaderosto
 
-% ---
-% Insere o sumario automático
-% ---
+% TODO: inserir aqui folha de aprovação
+
+% insere o sumario automático
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
 \clearpage
 
+
+% começo do texto
 \textual
 
 \pagestyle{fancy}
@@ -111,7 +156,7 @@
         \centering
         \caption{Spread médio das operações de crédito com recursos livres - Total}
         \includegraphics[width = \textwidth, scale=0.75]{Spread.pdf}
-        \legend{Fonte: série 20786 do SGS. Elaboração própria}
+        \legend{Fonte: série 20786 do SGS\@. Elaboração própria}
         \label{spread}
     \end{figure}
 
@@ -121,7 +166,7 @@
         \centering
         \caption{Taxa de juros - Selic acumulada no mês anualizada}
         \includegraphics[width = \textwidth, scale=0.75]{Selic.pdf}
-        \legend{Fonte: série 4189 do SGS. Elaboração própria}
+        \legend{Fonte: série 4189 do SGS\@. Elaboração própria}
         \label{selic}
     \end{figure}
 
@@ -131,7 +176,7 @@
         \centering
         \caption{Inadimplência da carteira de crédito - Total}
         \includegraphics[width = \textwidth, scale=0.75]{Inadimplencia.pdf}
-        \legend{Fonte: série 21085 do SGS. Elaboração própria}
+        \legend{Fonte: série 21085 do SGS\@. Elaboração própria}
         \label{inad}
     \end{figure}
 
@@ -153,7 +198,7 @@
         \centering
         \caption{Produção da indústria geral}
         \includegraphics[width = \textwidth, scale=0.75]{PIB_Mensal.pdf}
-        \legend{Fonte: IBGE. Elaboração própria}
+        \legend{Fonte: IBGE\@. Elaboração própria}
         \label{prodind}
     \end{figure}
 
@@ -163,7 +208,7 @@
         \centering
         \caption{Índice de Herfindahl-Hirschmann - IHH}
         \includegraphics[width = \textwidth, scale=0.75]{IHH.pdf}
-        \legend{Fonte: BCB. Elaboração própria}
+        \legend{Fonte: BCB\@. Elaboração própria}
         \label{ihh}
     \end{figure}
 
@@ -179,7 +224,7 @@
 
     \begin{table}[h]
         \IBGEtab{\caption{Tabela de estatísticas descritivas}\label{tab1}}
-        {
+        {%
             \begin{tabular}
                 {@{\extracolsep{5pt}}lccccc}
                 \midrule
@@ -255,7 +300,7 @@
 
     A estabilidade macroeconômica e as políticas governamentais que se seguiram ao Plano Real possibilitaram uma queda significativa do spread bancário, porém somente até um nível considerado ainda bastante alto para os padrões internacionais. Somando-se a isso a reestruturação bancária observada no período, \citeonline{afanasieff02} notam que além da grande variação temporal do spread, há também uma grande variação interbancária. É nesse sentido em que os autores justificam o emprego de técnicas de dados em painel, com o objetivo de capturar essas características do mercado bancário brasileiro para a decomposição dos principais determinantes do spread em variáveis micro e macroeconômicas.
 
-    Para isso, os autores aplicam a metodologia de dois passos de \citeonline{hoesaunders}, usando dados mensais de 142 bancos para o período de fevereiro de 1997 a novembro de 2000, formando um painel com 5578 observações. Para a estimação do spread puro, usam como regressores o intercepto, um vetor temporal e um de características bancárias como controle \footnote{Dentre elas, número de agências, custos operacionais, a taxa de depósitos à vista e a prazo em relação ao ativo total, sendo duas variáveis distintas, a liquidez, pagamento de juros implícitos, alavancagem, uma variável dummy para banco estrangeiro, a receita de serviços sobre a receita operacional total e o patrimônio líquido}. Uma vez estimado o spread puro, dado nesse caso pelos coeficientes do vetor temporal e do intercepto, ele é então regredido contra as variáveis macroeconômicas: a taxa de inflação, o compulsório, a taxa SELIC, o crescimento do PIB, a taxação financeira e uma proxy para prêmio de risco.
+    Para isso, os autores aplicam a metodologia de dois passos de \citeonline{hoesaunders}, usando dados mensais de 142 bancos para o período de fevereiro de 1997 a novembro de 2000, formando um painel com 5578 observações. Para a estimação do spread puro, usam como regressores o intercepto, um vetor temporal e um de características bancárias como controle\footnote{Dentre elas, número de agências, custos operacionais, a taxa de depósitos à vista e a prazo em relação ao ativo total, sendo duas variáveis distintas, a liquidez, pagamento de juros implícitos, alavancagem, uma variável dummy para banco estrangeiro, a receita de serviços sobre a receita operacional total e o patrimônio líquido}. Uma vez estimado o spread puro, dado nesse caso pelos coeficientes do vetor temporal e do intercepto, ele é então regredido contra as variáveis macroeconômicas: a taxa de inflação, o compulsório, a taxa SELIC, o crescimento do PIB, a taxação financeira e uma proxy para prêmio de risco.
 
     No primeiro estágio, foi encontrado que o custo operacional, a taxa de depósitos à vista em relação ao ativo total e a de receita de serviços em relação à receita operacional afetam positivamente o spread, e que os bancos estrangeiros estão em média associados a um spread menor. Os autores, ao contraporem o spread puro estimado com o observado, apontam ainda que os fatores microeconômicos não parecem ser os principais determinantes do spread.
     
@@ -335,7 +380,7 @@
 
     Para na segunda etapa, aplicar o teste ADF nos resíduos desta regressão, ou seja, na equação $ \Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \epsilon_{t} $. Se eles forem estacionários, então pode-se concluir que as séries são co-integradas. Vale ressaltar que, como explicado por \citeonline[p.~756]{gujarati}, os valores críticos com os quais se deve comparar a estatística de teste calculada são diferentes dos do teste de raiz unitária, porque os resíduos a serem testados foram obtidos com base no $ \beta $ estimado.
 
-    Como a relação de co-integração é inerentemente multivariada, este teste não suporta muito bem este caso já que se baseia nos resultados da regressão de uma única equação. Além disso, ele depende de como se especifica esta equação, qual variável é endógena e quais são exógenas. Deste modo, é razoável que se investigue a co-integração no contexto multivariado, em um sistema de equações. Isso é feito pelo procedimento de Johansen, como veremos \cite[p.~3]{coint2}.
+    Como a relação de co-integração é inerentemente multivariada, este teste não suporta muito bem este caso já que se baseia nos resultados da regressão uniequacional. Além disso, ele depende de como se especifica esta equação, qual variável é endógena e quais são exógenas. Por isso, é apropriado que se investigue a co-integração no contexto multivariado, o que é feito pelo procedimento de Johansen, como veremos \cite[p.~3]{coint2}.
 
     \subsection{Vetores autorregressivos (VAR)}
 
@@ -343,14 +388,14 @@
     
     São muito úteis para visualizar como uma variável responde a um choque em outra variável, através das funções de impulso-resposta. 
 
-    Seguindo a notação de \citeonline[p.~13]{lutkepool}, um modelo de vetores autorregressivos de ordem p, VAR(p), com K variáveis possui a seguinte forma:
+    Seguindo a notação de \citeonline[p.~13]{lutkepool}, um modelo de vetores autorregressivos de ordem p, VAR(p), com K variáveis, possui a seguinte forma:
 
     \begin{equation}
         \label{VAR}
         y_t = v + A_1 y_{t-1} + \dots + A_p y_{t-p} + u_t,\text{\ \ } t = 0, \pm 1, \pm 2, \dots
     \end{equation}
 
-    Onde $ y_t = (y_{1t}, \cdots, y_{Kt})^{'} $ é um vetor de variáveis aleatórias, $ v  = (v_{1}, \cdots, v_{K})^{'}  $ um vetor para o intercepto, $ u = (u_{1}, \cdots, u_{K})^{'} $ um vetor de ruído branco gaussiano\footnote{Logo, $ \mathbb{E}(u_t) = 0 $ e $ \mathbb{E}(u_t u^{'}_t) = \Sigma_{u} $, onde $ \mathbb{E}(u_tu^{'}_s) = 0 $ para $ t \neq s $.} e $ A_i $ são matrizes $ (K \times K) $ de coeficientes.
+    Onde $ y_t = (y_{1t}, \cdots, y_{Kt})^{'} $ é um vetor de variáveis aleatórias, $ v  = (v_{1}, \cdots, v_{K})^{'}  $, um vetor para o intercepto, $ u = (u_{1}, \cdots, u_{K})^{'} $, um vetor de ruído branco gaussiano\footnote{Logo, $ \mathbb{E}(u_t) = 0 $ e $ \mathbb{E}(u_t u^{'}_t) = \Sigma_{u} $, onde $ \mathbb{E}(u_tu^{'}_s) = 0 $ para $ t \neq s $ e \mathbb{E}(u_t u^{'}_t) = \Sigma_u, \forall t $.} e $ A_i $ são matrizes $ (K \times K) $ de coeficientes.
 
     Desta equação pode-se perceber que os valores presentes das variáveis são explicados pelas $ p $ defasagens de todas as outras variáveis no sistema.
 
@@ -364,16 +409,180 @@
         y_t &= (I_K + A_1 + \dots + A^{t-1}_1)v + A^{t}_1 y_0 + \sum^{t-1}_{i=0} A^{i}_1 u_t
     \end{align}
 
-    Se todos os o módulo dos autovalores da matriz $ A_1 $ são menores que 1, o modelo é dito estável e converge assintoticamente para
+    Se todos os autovalores em módulo da matriz $ A_1 $ são menores que 1, o que é equivalente a testar se $ det(I_{K} - A_1z) \neq 0 $ para $ \lvert z \rvert \leq 1} $, o VAR é dito estável e converge assintoticamente para
 
     \begin{equation}
-        \label{stability}
-        y_t = (I_K - A_1)^{-1} v + \sum^{\infty}_{i=0} A^{i}_1 u_{t-1}
+        \label{ma}
+        \begin{aligned}
+        y_t &= (I_K - A_1)^{-1} v + \sum^{\infty}_{i=0} A^{i}_1 u_{t-1} \nonumber \\
+        y_t &= \mu + \sum^{\infty}_{i=0} A^{i}_1 u_{t-1}
+        \end{aligned}
     \end{equation}
 
-    Logo, a distribuição de probabilidades de $ y_t $ é unicamente determinada pela distribuição do termo de erro $ u_t $, que se assume ser gaussiano. Esse resultado pode ser generalizado para AR(p), dado que qualquer processo AR(p) pode ser representado como um processo AR(1) \cite[p.~14-18]{lutkepool}, e serve para demonstrar que um AR(p) estável é estacionário no sentido amplo \cite[p.~25-26]{lutkepool}.
+    O que é também conhecido como a representação em média móvel do modelo VAR. Dela podemos ver que a distribuição de probabilidades de $ y_t $ é unicamente determinada pela distribuição do termo de erro $ u_t $, que se assume ser gaussiano. Esse resultado pode ser generalizado para AR(p), dado que qualquer processo AR(p) pode ser representado como um processo AR(1) \cite[p.~15]{lutkepool}. Da equação \eqref{ma} a média e auto-covariâncias de $ y_t $ podem ser derivadas: 
+
+    \begin{align*}
+        \label{momentos}
+        \mathbb{E}(y_t) &= \mu, \forall t \\
+        \Gamma_y (h) &= \mathbb{E}(y_t - \mu)(y_{t-h} - \mu)^{'} = \sum_{i=0}^{\infty}A_1^{h+i}\Sigma_uA_1^{i}^{'}
+    \end{align*}
+
+    Do que se conclui que um modelo AR(p) estável é estacionário no sentido amplo \cite[p.~15-16]{lutkepool}
+
+    \subsection{Função de Impulso-resposta}
+
+    A função de impulso-resposta serve para visualizar o efeito provocado por um choque exógeno em uma variável em um sistema dinâmico de equações.
+
+    Para vermos o que ocorre matematicamente, seguimos a exposição de \citeonline[p.~51-53]{lutkepool} e supomos um AR(1) com $ v = 0 $, ou seja, $ y_t = A_1 y_{t-1} + u_t $:
+
+    \begin{equation*}
+        \label{impulse-response}
+        \begin{bmatrix}
+            y_{1,t} \\
+            y_{2,t} \\
+            y_{3,t}
+        \end{bmatrix} =
+        A_1
+        % \begin{bmatrix}
+        %     a_{1,1} & a_{1,2} & a_{1,3} \\
+        %     a_{2,1} & a_{2,2} & a_{2,3} \\
+        %     a_{3,1} & a_{3,2} & a_{3,3} \\
+        % \end{bmatrix}
+        \begin{bmatrix}
+            y_{1,t-1} \\
+            y_{2,t-1} \\
+            y_{3,t-1}
+        \end{bmatrix} +
+        \begin{bmatrix}
+            u_{1,t} \\
+            u_{2,t} \\
+            u_{3,t}
+        \end{bmatrix}
+    \end{equation*}
+
+    Se assumirmos que no período $ t = 0 $ há um choque exógeno em $ y_1 $, tal que
+
+    \begin{equation*}
+        \label{impulse-response}
+        \begin{bmatrix}
+            y_{1,0} \\
+            y_{2,0} \\
+            y_{3,0}
+        \end{bmatrix} =
+        \begin{bmatrix}
+            u_{1,0} \\
+            u_{2,0} \\
+            u_{3,0}
+        \end{bmatrix} =
+        \begin{bmatrix}
+            1 \\
+            0 \\
+            0
+        \end{bmatrix}
+    \end{equation*}
+
+    Teremos, em $ t $ períodos a frente que
+
+    \begin{equation*}
+        \label{impulse-response}
+        \begin{bmatrix}
+            y_{1,t} \\
+            y_{2,t} \\
+            y_{3,t}
+        \end{bmatrix} =
+        A_1^{t}
+        \begin{bmatrix}
+            1 \\
+            0 \\
+            0
+        \end{bmatrix}
+    \end{equation*}
+
+    Do que se conclui que a resposta do sistema a um impulso na variável $ y_1 $ é simplesmente a primeira coluna da matriz $ A_1^{t} $, ou, mais geralmente, a resposta a um impulso na variável $ y_k $, após $ t $ períodos, é a coluna $ k $ da matriz $ A_k^{t} $, que, deve-se observar, vai se aproximando de zero quando $ i $ tende ao infinito se o VAR(1) é estável, ou seja, a resposta do sistema vai se dissipando com o tempo.
+
+   Quando duas variáveis distintas são correlacionadas no sistema, recomenda-se que se visualize a função de resposta ao impulso ortogonal, porque neste caso um choque não pode ser assumido independente um do outro, sendo provável que afete outra variável no período $ 0 $.
 
     \subsection{Modelo de correção de erros}
+
+    Se há alguma relação de equilíbrio entre as variáveis sob análise, gostaríamos de identificá-la, o que normalmente se faz por um teste. Como observado antes, o teste de co-integração uniequacional não é o mais recomendado para um modelo multivariado.
+    
+    Nesta seção será introduzido o procedimento de Johansen para identificar relações de co-integração em um sistema de equação, mas antes será preciso apresentar o que é o modelo de correção de erros e sua representação em VAR.
+
+    Em um modelo de correção de erros, a variação das variáveis depende dos desvios em relação ao equilíbrio entre as variáveis (ao desequilíbrio) e de suas variações defasadas. Por exemplo, dadas duas variáveis $ I(1) $, $ y_1 $ e $ y_2 $, teremos que:
+
+    \begin{equation}
+        \begin{aligned}
+            \label{ecm}
+            \Delta y_{1t} = \alpha_1 (y_{1,t-1} - \beta_1 y_{2, t-1}) + \gamma_{11,1} \Delta y_{1,t-1} + \gamma_{12,1} \Delta y_{2,t-1} + u_{1t} \\
+            \Delta y_{2t} = \alpha_2 (y_{1,t-1} - \beta_1 y_{2, t-1}) + \gamma_{21,1} \Delta y_{1,t-1} + \gamma_{22,1} \Delta y_{2,t-1} + u_{2t}
+        \end{aligned}
+    \end{equation}
+
+    Por serem $ I(1) $, as primeiras diferenças $ \Delta y_{i,t} $ são estacionárias e o termo de erro $ u_{it} $ é também assumido estacionário. Colocando o termo de equilíbrio em evidência:
+
+    \begin{align*}
+        \alpha_i (y_{1,t-1} - \beta_1 y_{2, t-1}) = \Delta y_{it} - \gamma_{i1,1} \Delta y_{1,t-1} - \gamma_{i2,1} \Delta y_{2,t-1} - u_{it}
+    \end{align*}
+
+    Podemos concluir que se algum $ \alpha_{it} \neq 0 $, $ y_{1t} - \beta y_{2t} $ é estacionária, as duas variáveis co-integram, visto que um processo estacionário não pode ser igual a um processo não-estacionário \cite[p.~244-247]{lutkepool}.
+
+    Em notação matricial, as equações \eqref{ecm} tornam-se:
+
+    \begin{equation}
+        \label{vecm}
+        \begin{aligned}
+            \Delta y_t &= \alpha \beta^{'} y_{t-1} + \Gamma_1(y_{t-1} - y_{t-2}) + u_t \\
+            y_t - y_{t-1} &= \alpha \beta^{'} y_{t-1} + \Gamma_1(y_{t-1} - y_{t-2}) + u_t \\
+        \end{aligned}
+    \end{equation}
+
+    O que pode ser representado por um VAR(2) ao manipular algebricamente \eqref{vecm}:
+
+    \begin{equation}
+        \label{vecm-var}
+        y_t = (I_K + \Gamma_1 + \alpha \beta^{'})y_{t-1} - \Gamma_1 y_{t-2} + u_t
+    \end{equation}
+
+    Mais geralmente, supondo um processo VAR(p) instável:
+    
+    \begin{equation}
+        \label{varp_example}
+        y_t = A_1 y_{t-1} + A_2 y_{t-1} + \dots + A_p y_{t-1} + u_t 
+    \end{equation}
+
+    O que é verdadeiro se $ det(I_K - A_1z - A_2z^2 - \dots - A_pz^p) = 0 $ para $ z = 1 $. Neste caso, conclui-se que a matriz $ \Pi = -(I_K - A_1 - A_2 - \dots - A_p) $ não é inversível e, por isso, $ \text{posto}(\Pi) = r < K $.
+    
+    Assim, é possível decompôr a matriz $ \Pi $ em duas matrizes \alpha $ e $ \beta $, de posto $ r $ e dimensão $ (K \times r) $ de maneira que $ \Pi = \alpha \beta^{'} $.
+
+   Podemos manipular a equação \eqref{varp_example} tirando a primeira diferença (subtraindo $ y_{t-1} $ de ambos os lados) e manipulando algebricamente de modo a obter a matriz $ \Pi = -(I_K - A_1 - \dots - A_p) $ até chegarmos à representação vetorial de correção de erros:
+
+   \begin{equation}
+       \label{vecm_coint}
+       \begin{aligned}
+           \Delta y_t &= \Pi y_{t-1} + \Gamma_1 \Delta y_{t-1} + \dots + \Gamma_{t-1} \Delta y_{t-p+1} + u_t \\
+           \Delta y_t &= \alpha \beta^{'} + \Gamma_1 \Delta y_{t-1} + \dots + \Gamma_{t-1} \Delta y_{t-p+1} + u_t
+       \end{aligned}
+   \end{equation}
+
+   Onde $ \Gamma_i = -(A_{i+1} + \dots + A_p), i = 1, \dots, p-1 $. É possível ainda reescrever \eqref{vecm_coint} em sua forma VAR, o que não será aqui demonstrado, ver \cite[p.~248-249]{lutkepool}.
+
+   Agora, ao colocar a matriz $ \Pi $ em evidência na equação \eqref{vecm_coint}:
+
+   \begin{equation}
+       \label{vecm_coint2}
+       \begin{aligned}
+       \Pi y_{t-1} = \Delta y_t - \Gamma_1 \Delta y_{t-1} - \dots - \Gamma_{p-1} \Delta y_{t-p+1} - u_t \\
+           \alpha \beta^{'} y_{t-1} = \Delta y_t - \Gamma_1 \Delta y_{t-1} - \dots - \Gamma_{p-1} \Delta y_{t-p+1} - u_t
+       \end{aligned}
+   \end{equation}
+
+   Salta à vista que, se todas as variáveis forem estacionárias após a primeira diferença, ou seja, se são $ I(0) $ ou $ I(1) $, todos os termos do lado direito da equação são estacionários, logo a matriz $ \Pi y_{t-1} = \alpha \beta^{'} y_{t-1}$ também o é. Isto não muda se retirarmos o termo $ \alpha $ do lado esquerdo ao pre-multiplicar a equação por $ (\alpha^{'}\alpha)^{-1}\alpha{'} $, portanto $ \beta^{'}y_{t} $ é estacionário, e representa uma relação de co-integração.
+
+   Conclui-se então que, o sistema da equação \eqref{varp_example} terá $ r $ relações de co-integração quando $ posto(\Pi) = r $, sendo a matriz $ \beta $ conhecida como a matriz de co-integração e $ \alpha $ como a \textit{loading matrix} \cite[p.~244-249]{lutkepool}.
+
+   % TODO: escrever sobre johansen
+   O procedimento de Johansen está intimamente ligado a esta conclusão, porque utiliza o teste de razão de verossimilhança, 
+
 
     % \begin{table}[ht]
     %     \IBGEtab{\caption{Testes de raiz unitária}\label{raiz_unitaria}}
@@ -397,5 +606,6 @@
 
 \newpage
 \bibliography{../bibliografia}
+% \printbibliography
 
 \end{document}
