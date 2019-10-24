@@ -576,15 +576,13 @@
        \end{aligned}
    \end{equation}
 
-   Salta à vista que, se todas as variáveis forem estacionárias após a primeira diferença, ou seja, se são $ I(0) $ ou $ I(1) $, todos os termos do lado direito da equação são estacionários, logo a matriz $ \Pi y_{t-1} = \alpha \beta^{'} y_{t-1} $ também o é. Isto não muda se retirarmos o termo $ \alpha $ do lado esquerdo ao pre-multiplicar a equação por $ (\alpha^{'}\alpha)^{-1}\alpha{'} $, o que nos deixa com $ \beta^{'}y_{t} $, que representa uma relação de co-integração entre as variáveis em $ y_t $, onde $ \beta $ é a matriz com os vetores co-integrantes.
+   Salta à vista que, se todas as variáveis forem estacionárias após a primeira diferença, ou seja, se são $ I(0) $ ou $ I(1) $, todos os termos do lado direito da equação são estacionários, logo a matriz $ \Pi y_{t-1} = \alpha \beta^{'} y_{t-1} $ também o é. Isto não muda se retirarmos o termo $ \alpha $ do lado esquerdo ao pre-multiplicar a equação por $ (\alpha^{'}\alpha)^{-1}\alpha{'} $, o que nos deixa com $ \beta^{'}y_{t} $, que representa uma relação de co-integração entre as variáveis em $ y_t $. $ \beta $ é conhecida como a matriz de co-integração e $ \alpha $ como a \textit{loading matrix} \cite[p.~244-249]{lutkepool}.
 
-   A matriz $ \beta $ é conhecida como a matriz de co-integração e $ \alpha $ como a \textit{loading matrix} \cite[p.~244-249]{lutkepool}.
-
-   Conclui-se então que o sistema da equação \eqref{varp_example} terá $ r $ relações de co-integração quando $ posto(\Pi) = r $
+   Quando $ 0 < posto(\Pi) = r < K $, quer dizer que há $ r $ relações de co-integração no sistema. Já quando $ posto(\Pi) = 0 $, ou seja, é uma matriz nula, $ \Delta y_t $ é um VAR(p-1) estável, e se $ posto(\Pi) = K $, quer dizer que todas as variáveis no sistema são estacionárias e que $ \Delta y_t $ pode ser representado por um VAR(p) estável\footnote{Isto se justifica porque, neste caso, $ \Pi = (I_K - A_1 - \dots - A_p) = (I_K - A_1z - \dots - A_pz^p) $ para $ z = 1 $, e, como $ det(I_K - A_1 - \dots - A_p) \neq 0 $, concluímos que o polinômio característico deste VAR não possui raiz unitária, sendo, portanto, estacionário.}.
 
    \subsection{Teste de Johansen}
 
-   O procedimento de Johansen, mais detalhadamente explicado em \citeonline[p.~327-330]{lutkepool}, procura testar hipóteses acerca do posto da matriz $ \Pi $ com base numa estatística de teste calculada pela razão entre estimadores de máxima verossimilhança.
+   O teste de Johansen, mais detalhadamente explicado em \citeonline[p.~327-330]{lutkepool}, procura testar hipóteses acerca do posto da matriz $ \Pi $ com base numa estatística de teste calculada pela razão entre estimadores de máxima verossimilhança.
 
    O teste tem duas formas. A primeira calcula uma estatística de teste conhecida como estatística de traço e testa as hipóteses:
 
@@ -606,7 +604,7 @@
        \end{aligned}
    \end{equation}
 
-   O procedimento de Johansen consiste em testar as hipóteses nulas de $ posto(\Pi) = r_0 = 0, 1, \dots, K-1 $, até que não se consiga rejeitar a hipótese nula, concluindo-se que o sistema tem $ r_0 $ relações de co-integração.
+   Com isso, testam-se as hipóteses nulas de $ posto(\Pi) = r_0 = 0, 1, \dots, K-1 $, até que não se consiga rejeitar a hipótese nula, do que se conclui que o sistema tem $ r_0 $ relações de co-integração.
 
     % \begin{table}[ht]
     %     \IBGEtab{\caption{Testes de raiz unitária}\label{raiz_unitaria}}
