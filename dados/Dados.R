@@ -1,9 +1,9 @@
-library(plyr)
-library(tidyverse)
-library(data.table)
-library(lubridate)
-library(rbcb)
-library(ipeadatar)
+suppressPackageStartupMessages(library(plyr))
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(data.table))
+suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(rbcb))
+suppressPackageStartupMessages(library(ipeadatar))
 
 setwd("~/Documentos/mono/dados")
 
@@ -45,32 +45,21 @@ prod_ind <-
   dplyr::rename(prod_ind = value)
 
 # ----------------------------------------------
-# Juntar tudo num data.frame
+# Juntar tudo em um data.frame
 
 series_df <-
   plyr::join_all(series) %>%
   left_join(inad) %>%
   left_join(igp) %>%
   left_join(prod_ind) %>%
-  left_join(IHH) %>% fill(ihh) %>%
-  filter(date <= max(IHH$date))
-
-# ----------------------------------------------
-# Sem IHH
-
-series_df_sem_ihh <-
-  plyr::join_all(series) %>%
-  left_join(inad) %>%
-  left_join(prod_ind) %>%
-  left_join(igp)
+  left_join(IHH) %>% fill(ihh)
 
 # ----------------------------------------------
 # Salvar em um csv
 
-write.csv(series_df, file = "series.csv", row.names = F)
+series_df %>%
+  write.csv(file = "series.csv", row.names = F)
 
-write.csv(series_df %>% mutate_at(vars(-date, -ihh, -igp, -prod_ind), log),
-          file = "series_log.csv", row.names = F)
-
-write.csv(series_df_sem_ihh %>% mutate_at(vars(-date, -igp, -prod_ind), log),
-          file = "series_log_sem_ihh.csv", row.names = F)
+series_df %>%
+  mutate_if(function(x) all(x > 0) && !is.Date(x), log) %>%
+  write.csv(file = "series_log.csv", row.names = F)

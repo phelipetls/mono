@@ -2,7 +2,7 @@ library(stargazer)
 library(tidyverse)
 
 setwd("~/Documentos/mono/dados/")
-df <- read_csv("series_economicas.csv")
+df <- read_csv("series.csv")
 
 df %>% as.data.frame() %>%
   stargazer(decimal.mark = ",",
