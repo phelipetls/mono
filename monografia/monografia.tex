@@ -395,7 +395,7 @@
         y_t = v + A_1 y_{t-1} + \dots + A_p y_{t-p} + u_t,\text{\ \ } t = 0, \pm 1, \pm 2, \dots
     \end{equation}
 
-    Onde $ y_t = (y_{1t}, \cdots, y_{Kt})^{'} $ é um vetor de variáveis aleatórias, $ v  = (v_{1}, \cdots, v_{K})^{'}  $, um vetor para o intercepto, $ u = (u_{1}, \cdots, u_{K})^{'} $, um vetor de ruído branco gaussiano\footnote{Logo, $ \mathbb{E}(u_t) = 0 $ e $ \mathbb{E}(u_t u^{'}_t) = \Sigma_{u} $, onde $ \mathbb{E}(u_tu^{'}_s) = 0 $ para $ t \neq s $ e \mathbb{E}(u_t u^{'}_t) = \Sigma_u, \forall t $.} e $ A_i $ são matrizes $ (K \times K) $ de coeficientes.
+    Onde $ y_t = (y_{1t}, \cdots, y_{Kt})^{'} $ é um vetor de variáveis aleatórias, $ v  = (v_{1}, \cdots, v_{K})^{'}  $, um vetor para o intercepto, $ u = (u_{1}, \cdots, u_{K})^{'} $, um vetor de ruído branco gaussiano\footnote{Logo, $ \mathbb{E}(u_t) = 0 $ e $ \mathbb{E}(u_t u^{'}_t) = \Sigma_{u} $, onde $ \mathbb{E}(u_tu^{'}_s) = 0 $ para $ t \neq s $ e $ \mathbb{E}(u_t u^{'}_t) = \Sigma_u, \forall t $.} e $ A_i $ são matrizes $ (K \times K) $ de coeficientes.
 
     Desta equação pode-se perceber que os valores presentes das variáveis são explicados pelas $ p $ defasagens de todas as outras variáveis no sistema.
 
@@ -409,7 +409,7 @@
         y_t &= (I_K + A_1 + \dots + A^{t-1}_1)v + A^{t}_1 y_0 + \sum^{t-1}_{i=0} A^{i}_1 u_t
     \end{align}
 
-    Se todos os autovalores em módulo da matriz $ A_1 $ são menores que 1, o que é equivalente a testar se $ det(I_{K} - A_1z) \neq 0 $ para $ \lvert z \rvert \leq 1} $, o VAR é dito estável e converge assintoticamente para
+    Se todos os autovalores em módulo da matriz $ A_1 $ são menores que 1, o que é equivalente a testar se $ det(I_{K} - A_1z) \neq 0 $ para $ \lvert z \rvert \leq 1 $, o VAR é dito estável e converge assintoticamente para
 
     \begin{equation}
         \label{ma}
@@ -628,6 +628,5 @@
 
 \newpage
 \bibliography{../bibliografia}
-% \printbibliography
 
 \end{document}
