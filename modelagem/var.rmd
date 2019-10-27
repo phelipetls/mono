@@ -8,10 +8,9 @@ output: pdf_document
 suppressMessages(library(tidyverse))
 
 series <-
-  read.csv("../dados/series_economicas_log.csv") %>%
-  # read.csv("../dados/series_economicas_log_sem_ihh.csv") %>%
+  read.csv("../dados/series_log.csv") %>%
   dplyr::select(-date) %>%
-  mutate_at(vars(spread, selic, inad), function(x) x - lag(x)) %>%
+  mutate_at(vars(spread, selic, inad, ihh), function(x) x - lag(x)) %>%
   na.omit()
 
 # tornando a série do pib_mensal estacionária
@@ -22,29 +21,20 @@ series$pib_mensal <-
 
 ```{r, echo = F, include = T}
 
-library(lmtest)
-
-lmtest::grangertest(spread ~ inad, data = series, order = 1)
-
-```
-
-```{r, echo = F, include = T}
-
 suppressMessages(library(vars))
 
 VARselect(series, lag.max = 5, type = "const")
 
-VAR(y = series %>% dplyr::select(spread, selic, inad, pib_mensal, ihh),
-    # exogen = series %>% dplyr::select(igp, ihh),
+VAR(y = series %>% dplyr::select(spread, selic, pib_mensal, inad, ihh),
+    exogen = series %>% dplyr::select(igp),
     p = 1, type = "const") -> var_model
 
 var_model %>% summary
 var_model %>% roots
 
-# irf(var_model,
-#     response = "spread",
-#     # cumulative = T,
-#     n.ahead = 12, ortho = F) %>% plot
+irf(var_model,
+    response = "spread",
+    n.ahead = 12, ortho = F) %>% plot
 
 ```
 
