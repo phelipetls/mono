@@ -3,19 +3,26 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from statsmodels.graphics.tsaplots import plot_acf
 from statsmodels.tsa.api import VECM
-from statsmodels.tsa.vector_ar.vecm import select_coint_rank
+from statsmodels.tsa.vector_ar.vecm import select_coint_rank, select_order
+from statsmodels.stats.diagnostic import acorr_ljungbox
 
 series = (
     pd.read_csv("../dados/series_log.csv", parse_dates=[0])
     .set_index("date")
-    # .drop(["icc"], axis="columns")
-    # .dropna()
+    .drop(["icc"], axis="columns")
+    .dropna()
 )
 
 endogenas = series.loc[:, ["spread", "selic", "inad", "pib_mensal"]]
 
 series.loc["2011":"2014", "dummy"] = 1
-exogenas = series.loc[:, ["igp", "dummy"]].fillna(0)
+exogenas = series.loc[:, ["igp"]].fillna(0)
+
+print(
+    select_order(endogenas, exog=exogenas, deterministic="colo", maxlags=12, seasons=12)
+    .summary()
+    .as_latex_tabular()
+)
 
 print(
     select_coint_rank(
@@ -35,9 +42,7 @@ model = VECM(
     first_season=3
 )
 vecm = model.fit()
-
 anos = np.datetime_as_string(endogenas.index.values[::12], unit="Y")
-
 fig, axes = plt.subplots(
     endogenas.shape[1], 3,
     sharex="col",
@@ -56,7 +61,6 @@ fig.autofmt_xdate()
 [axes[i, 1].title.set_text("Resíduos") for i in range(len(axes))]
 [axes[i, 2].set_xticks(range(1, 13))]
 [axes[i, 2].set_xticklabels(range(1, 13), rotation=0)]
-
 vecm.summary()
 
 print("lags, p-value")
@@ -64,4 +68,11 @@ for i in range(vecm.k_ar, 13):
     test = vecm.test_whiteness(i, adjusted=False)
     print(f'{i: 4}, {test.pvalue:.4f}')
 
-vecm.irf().plot(12)
+acorr_ljungbox(vecm.resid[:, 0], lags=range(1, 13))
+acorr_ljungbox(vecm.resid[:, 1], lags=range(1, 13))
+acorr_ljungbox(vecm.resid[:, 2], lags=range(1, 13))
+acorr_ljungbox(vecm.resid[:, 3], lags=range(1, 13))
+
+vecm.irf(periods=36).plot()
+
+print(vecm.test_normality().summary().as_latex_tabular())

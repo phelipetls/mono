@@ -4,7 +4,7 @@ library(countrycode)
 library(tidyverse)
 
 spread <- WDI(indicator = c("spread" = "FR.INR.LNDP"),
-              start = 2017, end = 2017, extra = T) %>% as_tibble() %>%
+              start = 2018, end = 2018, extra = T) %>% as_tibble() %>%
           rename("code" = iso2c) %>%
           select(year, code, country, spread, everything()) %>%
           arrange(spread %>% desc)
@@ -18,9 +18,11 @@ spread %>%
   ggplot(aes(x = country %>% fct_reorder(spread),
              y = spread / 100)) +
   geom_col() + 
+  geom_text(aes(label = paste0(round(spread, 0), "%")), nudge_y = .011) +
   coord_flip() +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) + 
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1),
+                     expand = expand_scale(mult = c(0, 0.05))) + 
   labs(x = NULL, y = NULL) + 
   theme(plot.margin = margin(0.5, 0.5, 0.5, 0.5, "cm")) +
+  theme_cowplot() +
   ggsave("spread_AL.pdf", height = 7, units = "cm")
-

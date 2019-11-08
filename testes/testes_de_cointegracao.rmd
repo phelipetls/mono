@@ -12,12 +12,8 @@ library(tseries)
 
 series_raw <- read_csv("~/Documentos/mono/dados/series_economicas_log.csv")
 
-series_estacionarias <-
-  read_csv("~/Documentos/mono/testes/resultados_teste_raiz_unitaria.csv") %>%
-  filter(diagnostico == "estacionário") %>% pull(variavel) %>% unique
-
 series <-
-  series_raw %>% select(-date, -series_estacionarias)
+  series_raw %>% select(-date, -c(pib_mensal, igp))
 
 ```
 
@@ -30,6 +26,6 @@ $$ \text{spread} = \beta_0 + \beta_1\text{selic} + \beta_2\text{inad} + \beta_3\
 library(aTSA)
 library(urca)
 
-ca.jo(series, spec = "longrun", ecdet = "none", type = "trace") %>% summary
+urca::ca.jo(series, spec = "transitory", ecdet = "none", type = "trace") %>% summary
 
 ```

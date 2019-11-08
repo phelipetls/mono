@@ -1,13 +1,15 @@
-library(tidyverse)
-library(data.table)
-library(lubridate)
-library(cowplot)
-library(scales)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(data.table))
+suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(cowplot))
+suppressPackageStartupMessages(library(scales))
 
 # -----------------------------------------------
-df <- fread("../dados/series_economicas.csv") %>%
+df <- fread("../dados/series.csv") %>%
   as_tibble() %>%
-  mutate(date = ymd(date))
+  mutate(date = ymd(date)) %>%
+  select(date, spread, selic, inad, igp, pib_mensal, ibc) %>%
+  na.omit()
 
 # -----------------------------------------------
 
@@ -16,11 +18,10 @@ intervalo <- c(min(df$date), NA)
 theme_set(theme_cowplot())
 
 plt <- ggplot(df) + labs(x = NULL, y = NULL) +
-  scale_x_date(date_labels = "%Y", date_breaks = "1 year") +
-  theme(
-    plot.caption = element_text(color = "black"),
-    plot.title = element_text(hjust = 1 / 2)
-  )
+  scale_x_date(date_labels = "%Y",
+               date_breaks = "1 year",
+               minor_breaks = "1 month",
+               limits = c(df$date %>% min, NA))
 
 plt + geom_line(aes(date, spread / 100)) +
   scale_y_continuous(labels = scales::percent_format()) +
@@ -41,3 +42,6 @@ plt + geom_line(aes(date, inad)) +
 
 plt + geom_line(aes(date, pib_mensal)) +
   ggsave("PIB_Mensal.pdf", device = cairo_pdf, dpi = 300, height = 7, units = "cm")
+
+plt + geom_line(aes(date, ibc)) +
+  ggsave("IBC.pdf", device = cairo_pdf, dpi = 300, height = 7, units = "cm")

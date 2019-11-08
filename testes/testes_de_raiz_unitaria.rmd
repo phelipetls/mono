@@ -4,7 +4,9 @@ output: pdf_document
 ---
 
 ```{r, include = F, echo = FALSE}
+
 knitr::opts_chunk$set(comment = NA, warning = FALSE, message = FALSE)
+
 ```
 
 ```{r, echo = F}
@@ -12,11 +14,13 @@ knitr::opts_chunk$set(comment = NA, warning = FALSE, message = FALSE)
 suppressPackageStartupMessages(library(tidyverse))
 
 series <-
-  read_csv("~/Documentos/mono/dados/series_economicas_log.csv") %>%
-  select(-date)
+  read_csv("~/Documentos/mono/dados/series.csv") %>%
+  dplyr::select(-date) %>%
+  na.omit()
 
 time_series <-
   series %>% ts(start = c(2011, 1), frequency = 12)
+
 ```
 
 # Gráficos de todas as séries
@@ -25,7 +29,7 @@ Cada série conta com `r dim(series)[1]` observações, de periodicidade mensal.
 
 ```{r, echo = F, include = T, plot_de_todas_as_series}
 
-time_series %>% plot.ts()
+time_series %>% plot()
 
 ```
 
@@ -40,16 +44,15 @@ O número de lags é usado para o tratamento de possível autocorrelação seria
 library(urca)
 library(purrr)
 
-adf_test  <- function(x) ur.df(x, type = tipo, selectlags = "AIC")
-cval      <- function(x) x %>% slot("cval") %>% .[1, ] %>% t %>% as.data.frame %>% select("5pct")
-teststat  <- function(x) x %>% slot("teststat") %>% as.data.frame %>% select(starts_with("tau"))
+adf_test  <- function(x) ur.df(x, type = tipo, lags = 12, selectlags = "AIC")
+cval      <- function(x) x %>% slot("cval") %>% .[1, ] %>% t %>% as.data.frame %>% dplyr::select("5pct")
+teststat  <- function(x) x %>% slot("teststat") %>% as.data.frame %>% dplyr::select(starts_with("tau"))
 lags      <- function(x) x %>% slot("lags") %>% as.data.frame
 
 augmented_dickey_fuller <- function(series, type, info_criteria) {
   series %>% map(ur.df, type = type, selectlags = info_criteria) %>% map_dfr(teststat) -> tstats
   series %>% map(ur.df, type = type, selectlags = info_criteria) %>% map_dfr(cval) -> cval
-  series %>% map(ur.df, type = type, selectlags = info_criteria) %>% map_dfr(lags) -> lags
-  cbind(tstats, cval, lags)
+  cbind(tstats, cval)
 }
 
 cbind(
