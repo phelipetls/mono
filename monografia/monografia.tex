@@ -34,7 +34,7 @@
 
 \pretextual
 \autor{Phelipe Teles da Silva}
-\titulo{Determinantes macroeconômicos do spread bancário brasileiro (2011-2017)}
+\titulo{Determinantes macroeconômicos do spread bancário brasileiro: um modelo de correção de erros (2011-2019)}
 \data{2019}
 \instituicao{Universidade Federal Rural do Rio de Janeiro}
 \local{Seropédica}
@@ -133,7 +133,7 @@
 
     \begin{figure}[h]
         \centering
-        \caption{Top 10 spreads bancários da América Latina em 2017}
+        \caption{Top 10 spreads bancários da América Latina em 2018}
         \includegraphics[width = 0.9\textwidth, scale=1]{spread_AL.pdf}
         \legend{Fonte: indicador ``FR.INR.LNDP'' do World Bank. Elaboração própria}
         \label{spreadal}
@@ -153,24 +153,24 @@
 
     Começaremos com o spread bancário. Trata-se, mais especificamente, da série 20786 do Sistema Gerenciador de Séries Temporais (SGS) do Banco Central do Brasil, intitulada "Spread médio das operações de crédito com recursos livres - Total", sendo a diferença, em pontos percentuais, entre a taxa média de empréstimo e de captação no mês. Por total, entende-se que ela aglutina operações de pessoas físicas e jurídicas, e por recursos livres, que exclui operações envolvendo taxas regulamentadas, lastreadas em recursos governamentais e afins.
 
-    Na literatura, é o que se conhece por spread \textit{ex-ante}, porque é calculado com base não no resultado financeiro efetivo dos bancos, mas nas taxas que eles estabelecem, ou seja, no que eles esperam ganhar. Por isso, essa decisão é consideravelmente influenciada por suas expectativas em relação à economia, sendo portanto mais sensível a mudanças macroeconômicas e ao risco percebido \cite[p.~226]{leal07}. Em contraste, o spread \textit{ex-post} é calculado com base na receita e despesa efetiva advinda da atividade de intermediação financeira \cite[p.~2]{almeida15}. 
-    
-    Na \autoref{spread}. 1, podemos ver o aumento do spread que ocorreu a partir de 2014, após uma queda que se iniciou por volta de 2012 e que corresponde às políticas do primeiro governo de Dilma Rousseff com o intuito de reduzir o spread via aumento do portfólio de crédito dos bancos públicos, forçando uma queda pela competição das taxas de juros de empréstimos \cite[p.~1]{almeida15}. Com a deterioração das condições macroeconômicas a partir de 2014, o spread entra em escalada, seguida por um declínio iniciado em 2017 por conta da, entre outras coisas, queda persistente da taxa SELIC a partir de então.
-
     \begin{figure}[h]
         \centering
         \caption{Spread médio das operações de crédito com recursos livres - Total}
-        \includegraphics[width = \textwidth, scale=0.75]{Spread.pdf}
+        \includegraphics[width=\textwidth, scale=0.75]{spread.pdf}
         \legend{Fonte: série 20786 do SGS\@. Elaboração própria}
         \label{spread}
     \end{figure}
 
-    Este movimento da taxa SELIC pode ser visto na \autoref{selic}. 2. A contraposição das duas séries sugere de imediato que elas são positivamente correlacionadas. De fato, é isso o que naturalmente se argumenta, porque uma taxa básica de juros mais elevada implica maior custo de oportunidade para a atividade de crédito, uma vez que aumenta a rentabilidade dos títulos públicos, tornando mais atrativa uma aplicação que já tem a vantagem de ser mais líquida e menos arriscada \cite[p.~372]{oliveira2007}. Por esta razão, é esperado um coeficiente positivo para a taxa básica de juros, pelo efeito custo de oportunidade. Na literatura empírica, não há divergências para essa estimativa, tendo a maior parte dos estudos encontrado a relação esperada \cite[p.~233-234]{leal07}.
+    Na literatura, é o que se conhece por spread \textit{ex-ante}, porque é calculado com base não no resultado financeiro efetivo dos bancos, mas nas taxas que eles estabelecem, ou seja, no que eles esperam ganhar. Por isso, essa decisão é consideravelmente influenciada por suas expectativas em relação à economia, sendo portanto mais sensível a mudanças macroeconômicas e ao risco percebido \cite[p.~226]{leal07}. Em contraste, o spread \textit{ex-post} é calculado com base na receita e despesa efetiva advinda da atividade de intermediação financeira \cite[p.~2]{almeida15}. 
+    
+    Na \autoref{spread}, podemos ver o aumento do spread que ocorreu a partir de 2014, após uma queda que se iniciou por volta de 2012 e que corresponde às políticas do primeiro governo de Dilma Rousseff com o intuito de reduzir o spread via aumento do portfólio de crédito dos bancos públicos, forçando uma queda pela competição das taxas de juros de empréstimos \cite[p.~1]{almeida15}. Com a deterioração das condições macroeconômicas a partir de 2014, o spread entra em escalada, seguida por um declínio iniciado em 2017 por conta da, entre outras coisas, queda persistente da taxa Selic a partir de então.
+
+    Este movimento da taxa Selic pode ser visto na \autoref{selic}. 2. A contraposição das duas séries sugere de imediato que elas são positivamente correlacionadas. De fato, é isso o que naturalmente se argumenta, porque uma taxa básica de juros mais elevada implica maior custo de oportunidade para a atividade de crédito, uma vez que aumenta a rentabilidade dos títulos públicos, tornando mais atrativa uma aplicação que já tem a vantagem de ser mais líquida e menos arriscada \cite[p.~372]{oliveira2007}. Por esta razão, é esperado um coeficiente positivo para a taxa básica de juros, pelo efeito custo de oportunidade. Na literatura empírica, não há divergências para essa estimativa, tendo a maior parte dos estudos encontrado a relação esperada \cite[p.~233-234]{leal07}.
 
     \begin{figure}[h]
         \centering
         \caption{Taxa de juros - Selic acumulada no mês anualizada}
-        \includegraphics[width = \textwidth, scale=0.75]{Selic.pdf}
+        \includegraphics[width = \textwidth, scale=0.75]{selic.pdf}
         \legend{Fonte: série 4189 do SGS\@. Elaboração própria}
         \label{selic}
     \end{figure}
@@ -180,58 +180,60 @@
     \begin{figure}[t]
         \centering
         \caption{Inadimplência da carteira de crédito - Total}
-        \includegraphics[width = \textwidth, scale=0.75]{Inadimplencia.pdf}
+        \includegraphics[width = \textwidth, scale=0.75]{inad.pdf}
         \legend{Fonte: série 21085 do SGS\@. Elaboração própria}
         \label{inad}
     \end{figure}
 
-    A série de inflação escolhida foi o Índice Geral de Preços (IGP-DI), por ter apresentado resultados mais consistentes que o IPCA \cite[p.~66]{rocha09} e por ser mais abrangente \cite[p.~21]{afanasieff02}. A inclusão dessa variável se faz prudente porque sua variação pode influenciar a taxa básica de juros e a política de juros dos bancos, portanto o spread \cite[p.~14]{bignotto06}. O que se espera obter na estimação é um coeficiente positivo, indicando uma relação direta entre a inflação e o spread, devido ao fato de que em um ambiente econômico não sujeito à instabilidade dos preços os bancos não precisariam se proteger dela via spread. Se por um lado o efeito teórico esperado é claro, o que sairá na estimação é incerto, porque na literatura varia desde insignificante, como em \textcite{oreiro}, a um sinal inesperado e significante, como em \textcite{bignotto06} e \textcite{afanasieff02}\footnote{Como possível causa, os autores indicam a apropriação de receita de senhoriagem com o spread \cite[p.~25]{afanasieff02}}.
+    A série de inflação escolhida foi a taxa anualizada do Índice Geral de Preços (IGP-DI), por ter apresentado resultados mais consistentes que o IPCA \cite[p.~66]{rocha09} e por ser mais abrangente \cite[p.~21]{afanasieff02}, tendo como desvantagem maior volatilidade e por não ser a oficialmente utilizada pelo regime de metas de inflação \cite[23]{chaim}. Ela pode ser visualizada na \autoref{igp}.
     
 \begin{figure}[h]
   \centering
     \caption{Índice Geral de Preços (IGP-DI)}
-      \includegraphics[width = \textwidth, scale=0.75]{IGP.pdf}
-      \legend{Fonte: IPEA\@. Elaboração própria}
+      \includegraphics[width = \textwidth, scale=0.75]{igp.pdf}
+      \legend{Fonte: série "PAN12\_IGPDIG12" do IPEADATA\@. Elaboração própria}
       \label{igp}
 \end{figure}
     
-    É comum em estudos deste tipo incluir alguma variável para capturar a influência da atividade econômica sobre o spread. Neste trabalho serão considerados dois indicadores. O primeiro é o PIB mensal em valor corrente, obtido pela interpolação dos valores trimestrais divulgados ou projetados. A série está em unidade de milhões e pode ser vista na \autoref{pibmensal}.
+    A inclusão dessa variável se faz necessária porque sua variação pode influenciar a taxa básica de juros e a política de juros dos bancos, portanto o spread \cite[p.~14]{bignotto06}. Além disso, pode aumentar o spread por deteriorar as expectativas dos agentes ou por fazê-los proteger sua margem nominal de intermediação financeira. O que se espera obter na estimação é um coeficiente positivo, indicando uma relação direta entre a inflação e o spread, porque em um ambiente econômico não sujeito à instabilidade dos preços os bancos não precisariam se proteger dela via spread. 
+    
+    Se por um lado o efeito teórico esperado é claro, o que sairá na estimação é incerto, porque na literatura varia desde insignificante, como em \textcite{oreiro}, a um sinal inesperado e significante, como em \textcite{bignotto06} e \textcite{afanasieff02}\footnote{Como possível causa, os autores indicam a apropriação de receita de senhoriagem com o spread \cite[p.~25]{afanasieff02}}.
+    
+    É comum em estudos deste tipo incluir alguma variável para capturar a influência da atividade econômica sobre o spread. Neste trabalho serão considerados dois indicadores. O primeiro é o PIB mensal em valor corrente (\autoref{pibmensal}) obtido pela interpolação dos valores trimestrais divulgados ou projetados, e o Índice de Atividade Econômica do Banco Central (IBC-Br), dessazonalizado e com ano-base em 2002 (\autoref{ibc}), usado para ajudar a antecipar o valor mensal do PIB como mensurado pelo IBGE.
 
-    \begin{figure}[h]
+    \begin{figure}[!hbt]
         \centering
-        \caption{PIB Mensal}
-        \includegraphics[width = \textwidth, scale=0.75]{PIB_Mensal.pdf}
+        \caption{PIB Mensal (em milhões)}
+        \includegraphics[width = \textwidth, scale=0.75]{pib_mensal.pdf}
         \legend{Fonte: série 4380 do SGS\@. Elaboração própria}
         \label{pibmensal}
     \end{figure}
 
-    O segundo é o Índice de Atividade Econômica do Banco Central (IBC-Br), dessasonalizado e com ano-base em 2002. É útil para ajudar a antecipar o valor mensal do PIB como mensurado pelo IBGE.
-
-    \begin{figure}[h]
+    \begin{figure}[!hbt]
         \centering
-        \caption{IBC-Br}
-        \includegraphics[width = \textwidth, scale=0.75]{IBC.pdf}
-        \legend{Fonte: série SGS12_IBCBRDESSAZ12 do IPEADATA\@. Elaboração própria}
+        \caption{Índice de Atividade Econômica do Banco Central (IBC-Br) - Dessazonalizado}
+        \includegraphics[width = \textwidth, scale=0.75]{ibc.pdf}
+        \legend{Fonte: série SGS12\_IBCBRDESSAZ12 do IPEADATA\@. Elaboração própria}
         \label{ibc}
     \end{figure}
 
-    Já quanto ao seu efeito sobre o spread, o mais correto é considerá-lo ambíguo. Porque, por um lado, uma maior atividade econômica pode afetar positivamente o spread ao aumentar a taxa de empréstimo via aumento da demanda por crédito, o que dependerá ainda do poder de mercado dos maiores bancos \textcite[626]{oreiro}, e, por outro, pode diminuir o spread ao melhorar as expectativas dos bancos quanto ao risco de crédito \textcite[24]{chaim}. Outro possível efeito é reduzir o spread ao fazer cair a inadimplência, porém isso será controlado com a inclusão da inadimplência no modelo.
+    Já quanto ao seu efeito sobre o spread, o mais correto é considerá-lo ambíguo. Porque, por um lado, uma maior atividade econômica pode afetar positivamente o spread ao aumentar a taxa de empréstimo via aumento da demanda por crédito, o que dependerá ainda do poder de mercado dos maiores bancos \textcite[626]{oreiro}, e, por outro, pode diminuir o spread ao melhorar as expectativas dos bancos quanto ao risco de crédito \textcite[24]{chaim}. Outro possível efeito é por meio da inadimplência, ou seja, pelo efeito de uma menor (maior) atividade econômica aumentar (reduzir) a inadimplência, fazendo com que o spread aumente (diminua).
 
     Foi ainda considerada a inclusão do Índice de Herfindahl-Hirschmann (IHH) para capturar o efeito da concentração estrutural no Sistema Financeiro Nacional sobre o spread. Como se sabe, este é um indicador do nível de concentração econômica em um mercado, obtido ao somar o quadrado das participações de cada instituição financeira no mercado considerado, que no nosso caso é o mercado de crédito. O BCB considera um IHH entre 0 e 1000 indicativo de baixa concentração, acima de 1000 e menor que 1800, de moderada concentração e acima de 1800 de alta concentração.
     
-    No entanto, o índice é divulgado somente trimestralmente e, além disso, termina no ano de 2017 como foi divulgado no Anexo Estatístico do Relatório de Estabilidade Financeira do Banco Central de abril de 2018. Daí se vê que a série apresenta restrições para o tamanho de amostra além de dados faltantes, o que levou à decisão de não incluí-la na estimação, apesar do interesse teórico.
-
-    Espera-se, contudo, que isso não signifique incorrer em problemas de viés de variável omitida. Apesar de não ser possível prever ao certo o sinal do coeficiente estimado para esta variável, acredita-se que o sinal esperado possa ser até mesmo não-significante, com o argumento de que seria a concorrência a variável relevante para explicar o spread, visto que há alta concentração bancária mesmo em países com um sistema financeiro eficiente e bem desenvolvido. Mas também não se descarta a possiblidade do sinal positivo, indicando influência do poder de mercado dos bancos, e até mesmo um sinal negativo, com os investimentos e ganhos de escala associados à concentração aumentando a eficiência da atividade de intermediação, o que puxa o spread para baixo \cite{reb2017}. 
-
-    A série do IHH pode ser conferida na \autoref{ihh}, do que se conclui que houve um aumento na concentração bancária durante o período. Em contraposição a isso, no \textcite[11]{reb2017} é apontando um aumento da concorrência bancária no mesmo período, o que explicita que nem sempre essas variáveis andam juntas.
+    No entanto, o índice é divulgado somente trimestralmente e, além disso, termina no ano de 2017 como foi divulgado no Anexo Estatístico do Relatório de Estabilidade Financeira do Banco Central de abril de 2018, como pode ser visto na \autoref{ihh}. Daí se vê que a série apresenta restrições para o tamanho de amostra além de dados faltantes, o que levou à decisão de não incluí-la na estimação, apesar do interesse teórico.
 
     \begin{figure}[h]
         \centering
         \caption{Índice de Herfindahl-Hirschmann - IHH}
-        \includegraphics[width = \textwidth, scale=0.75]{IHH.pdf}
+        \includegraphics[width = \textwidth, scale=0.75]{ihh.pdf}
         \legend{Fonte: BCB\@. Elaboração própria}
         \label{ihh}
     \end{figure}
+
+    Espera-se, contudo, que isso não signifique incorrer em problemas de viés de variável omitida. Apesar de não ser possível prever ao certo o sinal do coeficiente estimado para esta variável, acredita-se que o sinal esperado possa ser até mesmo não-significante, com o argumento de que seria a concorrência a variável relevante para explicar o spread, visto que há alta concentração bancária mesmo em países com um sistema financeiro eficiente e bem desenvolvido. Mas também não se descarta a possiblidade do sinal positivo, indicando influência do poder de mercado dos bancos, e até mesmo um sinal negativo, com os investimentos e ganhos de escala associados à concentração aumentando a eficiência da atividade de intermediação, o que puxa o spread para baixo \cite{reb2017}. 
+
+    Da \autoref{ihh} pode-se concluir que houve um aumento na concentração bancária durante o período. Em contraposição a isso, no \textcite[11]{reb2017} é apontando um aumento da concorrência bancária no mesmo período, o que explicita que nem sempre essas variáveis andam juntas.
 
     Por fim, a \autoref{tab1} sumariza o que foi aqui discutido, listando cada variável e seus sinais esperados, além de algumas estatísticas descritivas.
 
@@ -248,7 +250,7 @@
                 Inadimplência         & 5,09                      & 0,47                              & 4,31                     & 5,94                     & + \\
                 IGP-DI                & 5,74                      & 7,33                              & $-$13,93                 & 23,26                    & + \\
                 Atividade Econômica   & $-$2,28                   & 4,86                              & $-$13,39                 & 9,70                     & +/- \\
-                % IHH                   & 1.566,30                  & 133,69                            & 1.357                    & 1.751                    & + \\
+                IHH                   & 1.566,30                  & 133,69                            & 1.357                    & 1.751                    & + \\
                 \midrule
             \end{tabular}
         }
@@ -259,15 +261,21 @@
 \section{Revisão de Literatura}
 \subsection{Revisão da literatura teórica}
 
-    Nesta seção serão apresentados dois modelos que se consagraram na literatura sobre a relação entre spread bancário e concentração bancária: o modelo do banco como uma firma maximizadora de lucros de \textcite{klein} e o modelo do banco como intermediador financeiro de \textcite{hoesaunders}. O intuito é explicitar quais variáveis são relevantes para explicar o spread bancário e por quê, de um ponto de vista macro e microeconômico.
+    Nesta seção serão apresentados dois modelos que se consagraram na literatura sobre os determinantes do spread: o modelo do banco como uma firma maximizadora de lucros de \textcite{klein} e o modelo do banco como intermediador financeiro de \textcite{hoesaunders}. O intuito é ajudar a entender quais e como as variáveis são relevantes para explicar o spread bancário.
 
 \subsubsection{O Banco como firma}
 
-    Neste modelo, o banco é visto como uma firma que produz serviços voltados para intermediar a oferta e demanda de crédito, receber depósitos (D) e fazer empréstimos (L), a uma taxa de juros determinada em um mercado monopolístico ou semi-monopolístico, ou seja, em que tem poder de fixar a taxa de juros acima do custo marginal de produção, e é precisamente nesse sentido que o spread bancário é aqui entendido, como o poder de mercado deste banco. \cite{oreiro}
+    Neste modelo, o banco é visto como uma firma que produz serviços voltados para intermediar a oferta e demanda de crédito, receber depósitos (D) e fazer empréstimos (L), a uma taxa de juros determinada em um mercado monopolístico ou semi-monopolístico, ou seja, em que é possível fixar a taxa de juros acima do custo marginal de produção, o que é aqui entendido como o spread por si mesmo, como o poder de mercado deste banco. \cite{oreiro}
 
-    O autor considera que o banco seja neutro ao risco, buscando maximizar tão somente o valor esperado do lucro, sem considerar sua variância, deparando-se com uma curva de demanda por empréstimos decrescente, $L(r_L)$, e uma curva de oferta de depósitos crescente, $D(r_D)$, e uma função custo do tipo $C(D, L)$, em que$ r_L$ denota a taxa de juros cobrada ao emprestar, e $r_D$ a paga ao depositante. A função custo, considerando as funções inversas, é assim considerada: \begin{equation}\pi(D, L) = r_L(L)L + rM - r_D(D)D - C(D, L)\end{equation} em que $r$ representa a taxa de juros do mercado interbancário, e M, o que o banco tem disponível para aplicar neste mercado, a saber, tudo o que recebe de depósito e não empresta nem vai para o compulsório (uma taxa $\alpha$), $M = (1 - \alpha)D - L$.
+    O autor considera o banco como um agente neutro ao risco, por buscar maximizar somente o valor esperado do lucro, sem considerar sua variância, que se depara com uma curva de demanda por empréstimos decrescente, $ L(r_L) $, uma curva de oferta de depósitos crescente, $ D(r_D) $, e uma função custo do tipo $ C(D, L) $, em que $ r_L $ denota a taxa de juros cobrada ao emprestar, e $ r_D $ a taxa paga ao depositante. A função lucro, considerando as funções inversas, pode então ser assim expressa: 
+    
+    \begin{equation} \pi(D, L) = r_L(L)L + rM - r_D(D)D - C(D, L) \end{equation}
+        
+    em que $ r $ representa a taxa de juros do mercado interbancário, e M, o que o banco tem disponível para aplicar neste mercado, a saber, tudo o que recebe de depósito e não empresta nem vai para o compulsório (uma porcentagem $\alpha$ dos depósitos), $M = (1 - \alpha)D - L$. 
 
-    E assim, manipulando a equação, obtemos o que representa o resultado da intermediação financeira subtraído de seus custos: \begin{equation}\pi(L, D) = (r_L(L) - r)L + (r(1 - \alpha) - r_D(D))D - C(D, L)\end{equation}
+    Manipulando a equação, obtemos o que representa o resultado da intermediação financeira subtraído de seus custos: 
+    
+    \begin{equation} \pi(L, D) = (r_L(L) - r)L + (r(1 - \alpha) - r_D(D))D - C(D, L) \end{equation}
 
     O próximo passo é obter a margem ótima de intermediação, isto é, a que maximiza a função lucro. Para isso, tira-se as derivadas parciais desta função em relação a L e D para se chegar às condições de primeira ordem, e, depois de algumas manipulações algébricas, chega-se às equações fundamentais do modelo:
 
@@ -278,11 +286,11 @@
 
     O lado direito da equação é a versão para firma bancária do índice de Lerner\footnote{Definido como a razão $(P - C_{mg}) / P$, em que $P$ é preço e $C_{mg}$ é o custo marginal, é uma medida do poder de mercado de um agente maximizador de lucros, sendo idêntico à recíproca da elasticidade. \cite{maudos}}, sendo, por definição, em cada um dos casos, igual ao inverso da elasticidade-juros da demanda por empréstimos ($\epsilon^{*}_L$) e oferta de depósitos ($\epsilon^{*}_D$). A interpretação desse resultado é que, para maximizar seus lucros, os bancos procuram fixar a taxa de juros num nível acima de seus custos, mas não ao ponto de perderem muitos clientes para a concorrência (o que acontece mais facilmente em mercados com demanda elástica etc.).
 
-    Segue-se imediatamente destas equações que o spread bancário será tão maior quanto menos sensíveis forem as elasticidades da demanda por empréstimo e da oferta de depósito em relação à taxa de juros. Outra implicação interessante, e nada óbvia é de que, se a taxa de juros $r$ do mercado interbancário aumentar, as taxas de intermediação também irão \cite[p.~59]{freixas}.
+    Segue-se imediatamente destas equações que o spread bancário será tão maior quanto menos sensíveis forem as elasticidades da demanda por empréstimo e da oferta de depósito em relação à taxa de juros. Outra implicação interessante é que se a taxa de juros $ r $ do mercado interbancário aumentar, as taxas de intermediação também irão \cite[p.~59]{freixas}.
 
 \subsubsection{O banco como intermediador financeiro}
 
-    Neste modelo, primeiro apresentado em \textcite{hoesaunders}, o banco é considerado como um agente que atua como intermediador entre demandantes e ofertantes de fundos. É um dos mais influentes modelos na literatura, tendo sido estendido por vários outros autores, das quais se falará mais adiante de \textcite{maudos}.
+    Neste modelo, primeiro apresentado em \textcite{hoesaunders}, o banco é considerado como um agente que atua como intermediador entre demandantes e ofertantes de fundos. É um dos mais influentes modelos na literatura, tendo sido estendido por vários outros autores.
 
     Este modelo difere radicalmente do de \textcite{klein} no que tange ao tipo de mercado em que o banco atua, não mais harmônico e equilibrado, mas sujeito a incertezas. Neste cenário, o banco não é mais considerado neutro ao risco, mas avesso a ele. Isso porque se depara com duas incertezas: o risco da inadimplência e o risco da taxa de juros, que tem a ver com a possível descoordenação entre demanda por empréstimos e ofertas de depósitos, caso em que o banco terá que recorrer ao mercado interbancário. No caso de demanda excessiva de empréstimos, o banco terá que pedir emprestado e estará sujeito ao risco da taxa de juros aumentar nesse ínterim. No caso de oferta excessiva de depósitos, terá que aplicar o excesso, no que estará sujeito ao risco da taxa cair. \textcite[p.~2262]{maudos}
 
@@ -301,35 +309,35 @@
 		\item Aversão ao risco: quanto mais avessos, maior o spread.
 		\item Volatilidade da taxa de juros do mercado interbancário: quanto mais instável a taxa de juros, maior o risco, e portanto maior o spread.
 		\item Inadimplência: quanto maior o risco de inadimplência, mais o bancos terão que se proteger via spread.
-		\item Covariância entre risco da taxa de juros e de inadimplência: captura a influência da instabilidade macroeconômica na insolvência das famílias. \cite{oreiro}
+		\item Covariância entre risco da taxa de juros e de inadimplência: captura a influência da instabilidade macroeconômica na insolvência das famílias.
 		\item Tamanho médio das operações de crédito e de depósito: uma operação de tamanho maior que o médio significa maior perda potencial, da qual se protege com um spread maior.
 	\end{enumerate}
 
-    Esse modelo teórico é a base sob a qual se sustenta a abordagem empírica dos mesmos autores: a estimação do spread em dois estágios. Primeiro, estima-se o spread "puro", usando as variáveis não incluídas no modelo teórico como controle, comumente variáveis microeconômicas e características dos bancos, para então regredi-lo contra as variáveis do modelo teórico \textcite{maudos}. Como será visto adiante, uma das vantagens dessa abordagem está em sua flexibilidade, permitindo a inclusão de variáveis sem grandes problemas \textcite[p.~2]{almeida15}.
+    Esse modelo teórico é a base sob a qual se sustenta a abordagem empírica dos mesmos autores: a estimação do spread em dois estágios. Primeiro, estima-se o spread "puro", ao regredir o spread sobre as variáveis não incluídas no modelo teórico como controle, comumente variáveis microeconômicas e características dos bancos, para então regredir os resíduos dessa regressão contra as variáveis do modelo teórico \textcite{maudos}. Uma das vantagens dessa abordagem está em sua flexibilidade, permitindo a inclusão de variáveis sem grandes problemas \textcite[p.~2]{almeida15}.
 
 \subsection{Revisão da literatura empírica}
 
-    Esta seção procura revisar os estudos empíricos sobre os determinantes do spread bancário que, cabe antes esclarecer, é calculado com base nas taxas de juros prefixadas cobradas nas modalidades de crédito com recursos livres e na taxa de captação de CDB de trinta dias.
+    Esta seção procura revisar os estudos empíricos sobre os determinantes do spread bancário calculado com base nas taxas de juros prefixadas cobradas nas modalidades de crédito com recursos livres e na taxa de captação de CDB de trinta dias.
 
-    A estabilidade macroeconômica e as políticas governamentais que se seguiram ao Plano Real possibilitaram uma queda significativa do spread bancário, porém somente até um nível considerado ainda bastante alto para os padrões internacionais. Somando-se a isso a reestruturação bancária observada no período, \textcite{afanasieff02} notam que além da grande variação temporal do spread, há também uma grande variação interbancária. É nesse sentido em que os autores justificam o emprego de técnicas de dados em painel, com o objetivo de capturar essas características do mercado bancário brasileiro para a decomposição dos principais determinantes do spread em variáveis micro e macroeconômicas.
+    A estabilidade macroeconômica e as políticas governamentais que se seguiram ao Plano Real possibilitaram uma queda significativa do spread bancário, porém somente até um nível consideravelmente alto para os padrões internacionais. Somando-se a isso a reestruturação bancária observada no período, \textcite{afanasieff02} notam que além da grande variação temporal do spread, há também uma grande variação interbancária. É nesse sentido que os autores justificam o emprego de técnicas de dados em painel, com o objetivo de capturar essas características do mercado bancário brasileiro para a decomposição dos principais determinantes do spread em variáveis micro e macroeconômicas.
 
-    Para isso, os autores aplicam a metodologia de dois passos de \textcite{hoesaunders}, usando dados mensais de 142 bancos para o período de fevereiro de 1997 a novembro de 2000, formando um painel com 5578 observações. Para a estimação do spread puro, usam como regressores o intercepto, um vetor temporal e um de características bancárias como controle\footnote{Dentre elas, número de agências, custos operacionais, a taxa de depósitos à vista e a prazo em relação ao ativo total, sendo duas variáveis distintas, a liquidez, pagamento de juros implícitos, alavancagem, uma variável dummy para banco estrangeiro, a receita de serviços sobre a receita operacional total e o patrimônio líquido}. Uma vez estimado o spread puro, dado nesse caso pelos coeficientes do vetor temporal e do intercepto, ele é então regredido contra as variáveis macroeconômicas: a taxa de inflação, o compulsório, a taxa SELIC, o crescimento do PIB, a taxação financeira e uma proxy para prêmio de risco.
+    Para isso, os autores aplicam a metodologia de dois passos de \textcite{hoesaunders}, usando dados mensais de 142 bancos para o período de fevereiro de 1997 a novembro de 2000, formando um painel com 5578 observações. Para a estimação do spread puro, usam como regressores o intercepto, um vetor temporal (tendência determinística) e um de características bancárias como controle\footnote{Dentre elas, número de agências, custos operacionais, a taxa de depósitos à vista e a prazo em relação ao ativo total, a liquidez, o pagamento de juros implícitos, a alavancagem, uma variável dummy para banco estrangeiro, a receita de serviços sobre a receita operacional total e o patrimônio líquido}. Uma vez estimado o spread puro, dado nesse caso pelos coeficientes do vetor temporal e do intercepto, ele é então regredido sobre as variáveis macroeconômicas: a taxa de inflação, o compulsório, a taxa Selic, o crescimento do PIB, a taxação financeira e uma proxy para prêmio de risco.
 
     No primeiro estágio, foi encontrado que o custo operacional, a taxa de depósitos à vista em relação ao ativo total e a de receita de serviços em relação à receita operacional afetam positivamente o spread, e que os bancos estrangeiros estão em média associados a um spread menor. Os autores, ao contraporem o spread puro estimado com o observado, apontam ainda que os fatores microeconômicos não parecem ser os principais determinantes do spread.
     
-    Pelos resultados do segundo estágio, há uma relação direta e significativa entre spread e taxa básica de juros, risco, taxação financeira e crescimento do PIB, e contrária no caso da inflação. O efeito estimado do compulsório não foi significativo. Os autores, por fim, concluem que este é um resultado coerente com a o fenômeno de estabilização macroeconômica da época, mas chamam a atenção para a ineficiência e disparidade no mercado bancário, que tornam possível que bancos atuem cobrando taxas muito maiores que seus rivais.
+    Pelos resultados do segundo estágio, há uma relação direta e significativa entre spread e taxa básica de juros, risco, taxação financeira e crescimento do PIB, e contrária no caso da inflação. O efeito estimado do compulsório não foi significativo.
 
     Seguindo linha metodológica parecida, \textcite{bignotto06} também se utilizam do modelo teórico de \textcite{hoesaunders} para analisar a influência dos custos de intermediação e dos fatores de risco de crédito e de juros sobre o spread. Para a estimação, fez-se uso de dados de 87 bancos brasileiros ao longo do 1º trimestre de 2001 até o 1º trimestre de 2004, formando uma base de dados em painel desbalanceado com 1131 observações.
     
-    Foram usados como regressores o custo administrativo, uma proxy para o risco de crédito e de juros, o market-share, o risco de liquidez, a taxa de receitas de serviços sobre o ativo total e a da despesa tributária sobre o ativo total, o compulsório, a SELIC, a inflação e o ativo total de cada banco corrigido pela inflação, além de uma variável não-observável de aversão ao risco como controle. 
+    Foram usados como regressores o custo administrativo, uma proxy para o risco de crédito e de juros, o market-share, o risco de liquidez, a taxa de receitas de serviços sobre o ativo total e a da despesa tributária sobre o ativo total, o compulsório, a Selic, a inflação e o ativo total de cada banco corrigido pela inflação, além de uma variável não-observável de aversão ao risco como controle. 
     
-    O modelo que os autores julgam mais eficiente revela uma relação direta entre o spread e os custos administrativos, o risco de crédito e de juros, o compulsório, a SELIC, e o ativo total, todos com o sinal esperado. Algumas variáveis de controle apresentaram coeficientes inesperados, como no caso da liquidez, da receita de serviços e do market share. Já a variável relativa à carga tributária não se mostrou significativa.
+    O modelo que os autores julgam mais eficiente revela uma relação direta entre o spread e os custos administrativos, o risco de crédito e de juros, o compulsório, a Selic, e o ativo total, todos com o sinal esperado. Algumas variáveis de controle apresentaram coeficientes inesperados, como no caso da liquidez, da receita de serviços e do market share. Já a variável relativa à carga tributária não se mostrou significativa.
 
     Complementando os importantes estudos feitos pelo Banco Central do Brasil à época, que consistiam na decomposição contábil do spread, \textcite{nakane02} buscaram investigar a sensibilidade do spread a variações nas variáveis que o compõem, isto é, investigar o assunto por um abordagem econométrica. Para isso, os autores utilizaram a seguinte equação:
 
     $$\ln spread = \beta_0Tend + \beta_1\ln selic_t + \beta_2\ln adm_t + \beta_3\ln risk_t + \beta_4\ln imp_t + \beta_4\ln comp_t$$
 
-    Em que $selic$ é a taxa básica de juros, $adm$ é a razão das despesas administrativas sobre o volume de crédito, $risk$ é uma proxy de risco global\footnote{"[É] o spread do rendimento do C-Bond sobre o rendimento do título do Tesouro americano com mesma maturidade." \cite[p.~10]{nakane02}} que busca capturar expectativas, algo mais apropriado quando se trata do spread ex-ante, $imp$ é uma medida da incidência de tributos indiretos sobre o spread, $comp$ é a taxa de compulsório sobre depósitos à vista exigida pelo Bacen,  $Tend$ é uma medida de tendência determinista incluída com o intuito de controlar para variáveis que não foram incluídas na equação, como a taxa de inflação, o nível de atividade econômica \etc., e $\ln$ é o logaritmo natural. Para mais detalhes, ver \textcite[p.~10]{nakane02}
+    Em que $ selic $ é a taxa básica de juros, $ adm $ é a razão das despesas administrativas sobre o volume de crédito, $ risk $ é uma proxy de risco global\footnote{"[É] o spread do rendimento do C-Bond sobre o rendimento do título do Tesouro americano com mesma maturidade." \cite[p.~10]{nakane02}} que busca capturar expectativas, $ imp $ é uma medida da incidência de tributos indiretos sobre o spread, $ comp $ é a taxa de compulsório sobre depósitos à vista exigida pelo Bacen, $ Tend $ é uma medida de tendência determinista incluída com o intuito de controlar para variáveis que não foram incluídas na equação, como a taxa de inflação, o nível de atividade econômica \etc., e $\ln$ é o logaritmo natural. Para mais detalhes, ver \textcite[10]{nakane02}
 
     Para a estimação da equação de longo prazo, foram usados dados mensais do período de agosto de 1994 a setembro de 2001 em um modelo de vetores autorregressivos (VAR) que, uma vez tratado estatisticamente, revelou que a taxa Selic, as despesas administrativas, o risco e os impostos indiretos afetam positiva e significativamente o spread. Já o compulsório não se mostrou significativo e foi retirado do modelo.
 
@@ -337,11 +345,17 @@
 
     Um artigo que segue um caminho semelhante em termos de modelagem é o de \textcite{oreiro}, já que para a estimação dos determinantes também se utilizou um modelo VAR\@. Este estudo, porém, se distingue por dar foco aos efeitos das variáveis macroeconômicas sobre o spread, cobrindo o período de janeiro de 1995 a dezembro de 2003. 
     
-    São usados como regressores séries de frequência mensal como o nível da taxa básica de juros (SELIC) e sua volatilidade (como proxy para o risco de juros), o nível de atividade econômica, o recolhimento compulsório sobre depósitos à vista e a inflação.
+    São usados como regressores séries de frequência mensal como o nível da taxa básica de juros (Selic) e sua volatilidade (como proxy para o risco de juros), o nível de atividade econômica, o recolhimento compulsório sobre depósitos à vista e a inflação.
 
     Para interpretar os coeficientes estimados, os autores se utilizaram da função de impulso-resposta, em que se procurou observar o efeito de longo prazo que um choque exógeno de um desvio-padrão em uma variável independente tem sobre a variável dependente. A decomposição da variância também foi utilizada, com objetivo similar. Em ambos os casos, busca-se enxergar o efeito estimado do choque ao longo de 12 meses.
 
     Os resultados mostram que um choque exógeno no nível e volatilidade da taxa de juros tem um efeito positivo e persistente sobre o spread, como esperado. Um choque na proxy para o nível de atividade econômica mostrou ter um impacto positivo, o que os autores interpretaram como um possível efeito do poder de mercado dos bancos prevalecendo sobre o efeito inadimplência. O efeito de um choque na inflação se mostrou insignificante estatisticamente. Eles concluem dizendo que um ambiente macroeconômico estável é uma condição indispensável para reduzir o spread.
+
+    O trabalho mais recente de \textcite{chaim} é talvez o que mais se assemelha ao presente trabalho. Isso porque estuda os determinantes do spread ex-ante no período de janeiro de 2004 a dezebro de 2012, quando termina a série como calculada pela antiga metodologia do Banco Central, sob um ponto de vista econométrico, usando o ferramental teórico dos vetores autorregressivos.
+
+    Nele estão inclusas variáveis como a Selic (nível e volatilidade\footnote{Cuja proxy é o \textit{spread over treasury}, a diferença entre as taxas que remuneram os títulos da dívida pública brasileira e estado-unidense, com maturidade de seis meses}), dois indicadores para a inflação, o IPCA e o IGP, quatro indicadores para a atividade econômica\footcite[20]{chaim} e a taxa de câmbio. Foram estimados oito modelos vetoriais de correção de erros distintos, um para cada combinação das diferentes medidas de variável de inflação e atividade econômica, a fim de testar a robusteza dos resultados, isto é, se os sinais são invariantes às medidas. 
+
+    Nas funções de impulso-resposta, foi consistentemente encontrado que um impulso no nível e na volatilidade da Selic aumenta persistentemente o spread. Já um impulso na taxa de câmbio ocasiona um aumento temporário no spread, talvez porque os bancos tenham que reestruturar seu portfólio de crédito, o autor menciona. Um impulso na inflação é seguido de um choque positivo, um sinal de que os bancos tentar sua margem de intermediação quando a taxa de juros real cai. Por fim, foi encontrado que um choque na atividade econômica impacta negativamente o spread a princípio, possivelmente por indicar menor risco de crédito, mas depois passa a impactar positivamente, talvez pelo aumento na demanda por crédito. Para esta variável, no entanto, os resultados não foram tão consistentes através dos modelos, exceto para as medidas de hiato do produto, cuja resposta ao impulso se mostrou majoritariamente positiva \cite[32-38]{chaim}.
 
 \section{Referencial Metodológico}
 
@@ -355,15 +369,15 @@
 
     \subsection{Teste de raiz unitária}
 
-    Na análise de séries temporais, é comum nos assegurarmos de que elas sigam um processo estocástico cujas variáveis aleatórias tenham média constante, variância constante e finita e função de autocovariância que dependa somente da defasagem no tempo e não do tempo em si \cite[p.~734]{gujarati}, isto é, que sejam estacionárias no sentido amplo. Mais formalmente, um processo aleatório formado por variáveis aleatórias discretas $Y_t$ será estacionário se:
-
-    Dado um processo estocástico autorregressivo de ordem 1:
+    Na análise de séries temporais, é comum nos assegurarmos de que elas sigam um processo estocástico cujas variáveis aleatórias tenham média e variância constante e finita e função de autocovariância que dependa somente da defasagem no tempo e não do tempo em si \cite[p.~734]{gujarati}, isto é, que sejam estacionárias no sentido amplo. Mais formalmente, um processo aleatório formado por variáveis aleatórias discretas $Y_t$ será estacionário se, dado um processo estocástico autorregressivo de ordem 1 do tipo:
 
     \begin{equation}\label{processo_estocastico} Y_t = \rho Y_{t-1} + u_t \end{equation}
 
-    Onde $ u_t \stackrel{iid}{\sim} \text{N}(0,\text{ }\sigma^2) $. Sabe-se que ele será estacionário se $ \lvert \rho \rvert < 1 $, e não-estacionário se $ \lvert \rho \rvert = 1 $, o que é conhecido como passeio aleatório\footnote{Ao resolver recursivamente para o caso quando $ \lvert \rho \rvert = 1 $, $ Y_t = Y_{t-1} + u_t = Y_0 + \sum u_t $, pode-se perceber a importante característica da memória infinita, de que ele nunca se esquece do choque, o que também se conhece por tendência estocástica \cite[p.~736]{gujarati}}.
+    Onde $ u_t \stackrel{iid}{\sim} \text{N}(0,\text{ }\sigma^2) $. Sabe-se que ele será estacionário se $ \lvert \rho \rvert < 1 $, e não-estacionário se $ \lvert \rho \rvert = 1 $, o que é conhecido como passeio aleatório\footnote{Ao resolver recursivamente para o caso quando $ \lvert \rho \rvert = 1 $, $ Y_t = Y_{t-1} + u_t = Y_0 + \sum u_t $, percebe-se a importante característica de memória infinita do processo, de que ele nunca se "esquece" do choque. \cite[p.~736]{gujarati}}.
 
-    O objetivo do teste de raiz unitária é inferir o valor de $ \rho $ com base nas realizações particulares do processo estocástico. O teste Augmented Dickey-Fuller o faz ao modificar \eqref{processo_estocastico} como segue:
+    O objetivo do teste de raiz unitária é inferir o valor de $ \rho $ com base nas realizações particulares do processo estocástico. Isto é útil porque assim podemos saber se teremos que trabalhar com as variáveis em primeira diferença (para evitar regressões espúrias) ou testar se elas co-integram.
+    
+    Para isto, o teste \textit{Augmented Dickey-Fuller} modifica a \autoref{processo_estocastico} como segue:
 
     \begin{align}
         \label{adf}
@@ -375,31 +389,53 @@
    
     O valor estimado de $ \gamma $ serve então para testar a hipótese de raiz unitária $ \gamma = 0 $, que equivale a $ \rho = 1 $, contra a hipótese alternativa unilateral $ \gamma < 0 $, que equivale a $ \rho < 1 $. Calcula-se então o valor t estimado, isto é, $ \hat{\gamma} / \text{EP}(\hat{\gamma}) $, com o porém de que sob a hipótese nula $ \gamma = 0 $, essa estatística não segue mais a distribuição t, mas a distribuição $ \tau $. Isso se dá em razão do teste t ser enviesado no caso de um passeio aleatório \cite[p.~748-749]{gujarati}.
 
-    Importante pontuar que a estatística $ \tau $ é sensível à forma funcional da equação \eqref{processo_estocastico}, isso quer dizer que os valores críticos do teste mudarão se adicionarmos um termo de deslocamento $ \delta $ em \eqref{processo_estocastico}, que denotaremos por $ \tau_{\mu} $ ou um termo de tendência determinística, $ \beta t $, $ \tau_{\tau} $.
+    Importante pontuar que a estatística $ \tau $ é sensível à forma funcional da equação \eqref{processo_estocastico}, isso quer dizer que os valores críticos do teste mudarão se adicionarmos um termo de deslocamento $ \delta $ em \eqref{processo_estocastico}, denotada como $ \tau_{\mu} $ ou um termo de tendência determinística, $ \beta t $, $ \tau_{\tau} $.
    
-    O termo adicional $ \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} $ em \eqref{adf} serve para generalizar o teste para processos autorregressivos de ordem $ p $, de forma a preservar a condição de ruído branco em $ u_t $ ao controlar a autocorrelação serial \cite[p.~40]{gustavo}.
+    O termo adicional $ \sum_{i = 1}^{p-1}\delta \Delta Y_{t-i} $ em \eqref{adf} serve para generalizar o teste para processos autorregressivos de ordem $ p $, de forma a preservar a condição de ruído branco em $ u_t $ ao controlar pela possível autocorrelação serial \cite[p.~40]{gustavo}.
 
-    Uma série é dita integrada de ordem 0 quando for diagnosticada como estacionária, $ Y_t \sim I(0) $, e integrada de ordem $ d $ quando é necessário diferenciá-la $ d $ vezes para torná-la estacionária, $ Y_t \sim I(d) $ \cite[p.~740]{gujarati}.
+    Serão ainda utilizados os testes de Phillips-Perron e de Kwiatkowski-Phillips-Schmidt-Shin, apesar de não serem expostas aqui em detalhes. Para isso, ver \textcite{pp} e \textcite{kpss}.
+
+    Uma série é dita integrada de ordem 0 quando for diagnosticada como estacionária, $ Y_t \sim I(0) $, e integrada de ordem 1, $ Y_t \sim I(1) $, quando não é possível rejeitar a hipótese nula de raiz unitária, implicando que sua primeira diferença é estacionária.
 
     \subsection{Teste de Co-integração}
 
-    Quando duas ou mais séries são integradas da mesma ordem, mas uma combinação linear delas for integrada de uma ordem menor, dizemos que elas co-integram. O caso comum é quando as séries são não-estacionárias, mas uma combinação linear delas é estacionária. Intuitivamente, isso quer dizer que, apesar da tendência estocástica torná-las imprevisíveis individualmente, há um mecanismo de equilíbrio de longo prazo que as impede de se afastarem muito uma da outra (um mecanismo de "correção de erros") \cite[p.~46]{gustavo}.
-
+    Quando duas ou mais séries são integradas da mesma ordem, mas uma combinação linear delas for integrada de uma ordem menor, dizemos que elas co-integram. O caso comum é quando as séries são não-estacionárias, mas uma combinação linear delas é estacionária.
+    
     Formalmente, as séries $ \mathbf{Y_t} $ são co-integradas de ardem $ d, b $ se todas forem integradas de ordem $ d $ e se existe uma combinação linear $ \mathbf{Z_t} = \pmb{\beta}'\mathbf{Y_t} $ tal que $ \mathbf{Z_t} \sim I(d - b), b > 0 $ \cite[p.~245]{lutkepool}, onde $ \pmb{\beta} $ é o vetor cointegrante.
 
     O teste de Engle-Granger procura testar essa condição em duas etapas. Por exemplo, em um contexto bi-variado, em que $ Y_t $ é explicada por $ X_t $, primeiro estima-se a seguinte equação por MQO:
 
-    $$  Y_t = \beta_0 + \beta_1 X_t + u_t \label{engle-granger}$$
+    \begin{equation}
+        Y_t = \beta_0 + \beta_1 X_t + u_t \label{engle-granger}
+    \end{equation}
 
-    Para na segunda etapa, aplicar o teste ADF nos resíduos desta regressão, ou seja, na equação $ \Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \epsilon_{t} $. Se eles forem estacionários, então pode-se concluir que as séries são co-integradas. Vale ressaltar que, como explicado por \textcite[p.~756]{gujarati}, os valores críticos com os quais se deve comparar a estatística de teste calculada são diferentes dos do teste de raiz unitária, porque os resíduos a serem testados foram obtidos com base no $ \beta $ estimado.
+    Para na segunda etapa, aplicar o teste ADF nos resíduos desta regressão, ou seja, na equação $ \Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \epsilon_{t} $. Se eles forem estacionários, então pode-se concluir que as séries são co-integradas.
 
-    Como a relação de co-integração é inerentemente multivariada, este teste não suporta muito bem este caso já que se baseia nos resultados da regressão uniequacional. Além disso, ele depende de como se especifica esta equação, qual variável é endógena e quais são exógenas. Por isso, é apropriado que se investigue a co-integração no contexto multivariado, o que é feito pelo procedimento de Johansen, como veremos \cite[p.~3]{coint2}.
+    Vale ressaltar que, como explicado por \textcite[p.~756]{gujarati}, os valores críticos com os quais se deve comparar a estatística de teste calculada são diferentes dos do teste de raiz unitária, porque os resíduos a serem testados foram obtidos com base no $ \beta $ estimado.
+
+    Uma vez que é possível haver mais de uma relação de co-integração, este teste não é muito apropriado para achá-las visto que se baseia nos resultados de uma única regressão. Além disso, ele depende da especificação da equação, de qual variável é endógena e quais são exógenas. Por isso, é apropriado que se investigue a co-integração no contexto multivariado, o que será feito pelo teste de Johansen, como veremos.
+
+    \subsection{Modelo uni-equacional de correção de erros}
+
+    Quando duas ou mais variáveis co-integram, a interpretação econômica é de que, apesar da tendência estocástica torná-las imprevisíveis individualmente, há um mecanismo de equilíbrio de longo prazo que as impede de se afastarem uma da outra, um mecanismo de correção de erros. No curto prazo, pode haver desequilíbrio, mas ele não sai do controle (não tem uma variância explosiva), retornando sempre à uma média constante, ao contrário de um passeio aleatório \textcite[757-758]{gujarati}.
+
+    Uma vez identificada uma relação de co-integração, é interessante que se estime a sua representação como um mecanismo de correção de erro. Nesta representação, podemos observar o quanto a variação da variável dependente é sensível ao desvio em relação ao equilíbrio e às variações de suas variáveis explicativas. Matematicamente, 
+
+    \begin{equation}
+        \Delta Y_t = \alpha_1 (Y_t - \beta_0 - \beta_1 X_t) + \alpha_2 \Delta X_t + u_t \label{ecm}
+    \end{equation}
+
+    Onde $ u_t $ é um termo de ruído branco. 
+    
+    Como explicado em \textcite{coint1}, o coeficiente $ \lvert \alpha \rvert $ indica o quão rapidamente a variável dependente retorna ao equilíbrio, sendo ele normalmente negativo: quando o desvio é positivo, tudo o mais constante, $ Y_t $ será corrigido para baixo, quando positivo, para cima. Ou seja, este modelo é útil para capturar a sensibilidade aos desvios da relação de longo prazo, enquanto os coeficientes das variáveis defasadas, os efeitos das mudanças de curto prazo.
+    
+    Neste trabalho, serão estimados tanto um modelo univariado quanto um multivariado, cuja metodologia será explorada a seguir.
 
     \subsection{Vetores autorregressivos (VAR)}
 
-    Segundo Grôppo (2004, p. 51-52), a principal característica de um modelo VAR é o tratamento simétrico das variáveis incluídas no modelo, isto é, não é preciso especificar previamente quais variáveis são exógenas e endógenas, o modelo estrutural que espelha o relacionamento real das variáveis. Por isso, ele está sujeito a poucas restrições teóricas. É somente necessário especificar quais variáveis interagem dentro do sistema e o número de defasagens a serem incluída de forma a melhor capturar esta interação.
+    Segundo \textcite[51-52]{gustavo}, a principal característica de um modelo VAR é o tratamento simétrico das variáveis incluídas no modelo, isto é, não é preciso especificar previamente quais variáveis são exógenas e endógenas, o modelo estrutural que espelha o relacionamento real das variáveis. Por isso, ele está sujeito a poucas restrições teóricas. É somente necessário especificar quais variáveis interagem dentro do sistema e o número de defasagens que melhor capturam esta interação.
     
-    São muito úteis para visualizar como uma variável responde a um choque em outra variável, através das funções de impulso-resposta. 
+    São muito úteis para visualizar como uma variável responde a um choque em outra variável, por causa das funções de impulso-resposta. 
 
     Seguindo a notação de \textcite[p.~13]{lutkepool}, um modelo de vetores autorregressivos de ordem p, VAR(p), com K variáveis, possui a seguinte forma:
 
@@ -408,7 +444,7 @@
         y_t = v + A_1 y_{t-1} + \cdots + A_p y_{t-p} + u_t,\text{\ \ } t = 0, \pm 1, \pm 2, \ldots
     \end{equation}
 
-    Onde $ y_t = (y_{1t}, \ldots, y_{Kt})^{'} $ é um vetor de variáveis aleatórias, $ v  = (v_{1}, \ldots, v_{K})^{'}  $, um vetor para o intercepto, $ u = (u_{1}, \ldots, u_{K})^{'} $, um vetor de ruído branco gaussiano\footnote{Logo, $ \mathbb{E}(u_t) = 0 $ e $ \mathbb{E}(u_t u^{'}_t) = \Sigma_{u} $, onde $ \mathbb{E}(u_tu^{'}_s) = 0 $ para $ t \neq s $ e $ \mathbb{E}(u_t u^{'}_t) = \Sigma_u, \forall t $.} e $ A_i $ são matrizes $ (K \times K) $ de coeficientes.
+    Onde $ y_t = (y_{1t}, \ldots, y_{Kt})^{'} $ é um vetor de variáveis aleatórias, $ v  = (v_{1}, \ldots, v_{K})^{'}  $, um vetor para o intercepto, $ u = (u_{1}, \ldots, u_{K})^{'} $, um vetor de ruído branco gaussiano\footnote{Logo, $ \mathbf{E}(u_t) = 0 $ e $ \mathbf{E}(u_t u^{'}_t) = \Sigma_{u} $, onde $ \mathbf{E}(u_tu^{'}_s) = 0 $ para $ t \neq s $ e $ \mathbf{E}(u_t u^{'}_t) = \Sigma_u, \forall t $.} e $ A_i $ são matrizes $ (K \times K) $ de coeficientes.
 
     Desta equação pode-se perceber que os valores presentes das variáveis são explicados pelas $ p $ defasagens de todas as outras variáveis no sistema.
 
@@ -416,10 +452,12 @@
 
     \begin{align}
         \label{VAR1}
-        y_1 &= v + A_1 y_0 + u_1 \nonumber \\
-        y_2 &= v + A_2 y_1 + u_2 = v + A_1(v + A_1y_0 + u_1) + u_2 \nonumber  \\
-            &= (I_K + A_1)v + A^{2}_1 y_0 + A_1 u_t + u_t \nonumber \\
+        \begin{aligned}
+        y_1 &= v + A_1 y_0 + u_1 \\
+        y_2 &= v + A_1 y_1 + u_2 = v + A_1(v + A_1y_0 + u_1) + u_2 \\
+            &= (I_K + A_1)v + A^{2}_1 y_0 + A_1 u_t + u_t \\
         y_t &= (I_K + A_1 + \dots + A^{t-1}_1)v + A^{t}_1 y_0 + \sum^{t-1}_{i=0} A^{i}_1 u_t
+        \end{aligned}
     \end{align}
 
     Se todos os autovalores em módulo da matriz $ A_1 $ são menores que 1, o que é equivalente a testar se $ det(I_{K} - A_1z) \neq 0 $ para $ \lvert z \rvert \leq 1 $, o VAR é dito estável e converge assintoticamente para
@@ -427,40 +465,34 @@
     \begin{equation}
         \label{ma}
         \begin{aligned}
-        y_t &= (I_K - A_1)^{-1} v + \sum^{\infty}_{i=0} A^{i}_1 u_{t-1} \nonumber \\
+        y_t &= (I_K - A_1)^{-1} v + \sum^{\infty}_{i=0} A^{i}_1 u_{t-1} \\
         y_t &= \mu + \sum^{\infty}_{i=0} A^{i}_1 u_{t-1}
         \end{aligned}
     \end{equation}
 
-    O que é também conhecido como a representação em média móvel do modelo VAR\@. Dela podemos ver que a distribuição de probabilidades de $ y_t $ é unicamente determinada pela distribuição do termo de erro $ u_t $, que se assume ser gaussiano. Esse resultado pode ser generalizado para AR(p), dado que qualquer processo AR(p) pode ser representado como um processo AR(1) \cite[p.~15]{lutkepool}. Da equação \eqref{ma} a média e auto-covariâncias de $ y_t $ podem ser derivadas: 
+    O que é também conhecido como a representação em média móvel do modelo VAR\@ \cite[18]{lutkepool}. Dela podemos ver que a distribuição de probabilidades de $ y_t $ é unicamente determinada pela distribuição do termo de erro $ u_t $, que se assume ser gaussiano. Esse resultado pode ser generalizado para AR(p), dado que qualquer processo AR(p) pode ser representado como um processo AR(1) \cite[p.~15]{lutkepool}. Da equação \eqref{ma} a média e auto-covariâncias de $ y_t $ podem ser derivadas: 
 
     \begin{align*}
         \label{momentos}
-        \mathbb{E}(y_t) &= \mu, \forall t \\
-        \Gamma_y (h) &= \mathbb{E}(y_t - \mu)(y_{t-h} - \mu)^{'} = \sum_{i=0}^{\infty}A_1^{h+i}\Sigma_uA_1^{i}^{'}
+        \mathbf{E}(y_t) &= \mu, \forall t \\
+        \Gamma_y (h) &= \mathbf{E}(y_t - \mu)(y_{t-h} - \mu)^{'} = \sum_{i=0}^{\infty} A_1^{h+i} \Sigma_u A_1^{i}^{'} \\
     \end{align*}
 
     Do que se conclui que um modelo AR(p) estável é estacionário no sentido amplo \cite[p.~15-16]{lutkepool}
 
     \subsection{Função de Impulso-resposta}
 
-    A função de impulso-resposta serve para visualizar o efeito provocado por um choque exógeno em uma variável em um sistema dinâmico de equações.
+    A função de impulso-resposta serve para visualizar o efeito provocado em um sistema dinâmico por um choque exógeno em uma variável.
 
     Para vermos o que ocorre matematicamente, seguimos a exposição de \textcite[p.~51-53]{lutkepool} e supomos um AR(1) com $ v = 0 $, ou seja, $ y_t = A_1 y_{t-1} + u_t $:
 
     \begin{equation*}
-        \label{impulse-response}
         \begin{bmatrix}
             y_{1,t} \\
             y_{2,t} \\
             y_{3,t}
         \end{bmatrix} =
         A_1
-        % \begin{bmatrix}
-        %     a_{1,1} & a_{1,2} & a_{1,3} \\
-        %     a_{2,1} & a_{2,2} & a_{2,3} \\
-        %     a_{3,1} & a_{3,2} & a_{3,3} \\
-        % \end{bmatrix}
         \begin{bmatrix}
             y_{1,t-1} \\
             y_{2,t-1} \\
@@ -476,7 +508,6 @@
     Se assumirmos que no período $ t = 0 $ há um choque exógeno em $ y_1 $, tal que
 
     \begin{equation*}
-        \label{impulse-response}
         \begin{bmatrix}
             y_{1,0} \\
             y_{2,0} \\
@@ -497,7 +528,6 @@
     Teremos, em $ t $ períodos a frente, que
 
     \begin{equation*}
-        \label{impulse-response}
         \begin{bmatrix}
             y_{1,t} \\
             y_{2,t} \\
@@ -511,21 +541,21 @@
         \end{bmatrix}
     \end{equation*}
 
-    Do que se conclui que a resposta do sistema a um impulso na variável $ y_1 $ é simplesmente a primeira coluna da matriz $ A_1^{t} $, ou, mais geralmente, a resposta a um impulso na variável $ y_k $, após $ t $ períodos, é a coluna $ k $ da matriz $ A_k^{t} $, que, deve-se observar, vai se aproximando de zero quando $ i $ tende ao infinito se o VAR(1) é estável, ou seja, a resposta do sistema vai se dissipando com o tempo.
+    Do que se conclui que a resposta do sistema a um impulso na variável $ y_1 $ é simplesmente a primeira coluna da matriz $ A_1^{t} $, ou, mais geralmente, a resposta a um impulso na variável $ y_k $, após $ t $ períodos, é a coluna $ k $ da matriz $ A_1^{t} $, que, deve-se observar, vai se aproximando de zero quando $ i $ tende ao infinito se o VAR(1) é estável, ou seja, a resposta do sistema vai se dissipando com o tempo. Quando ele não é estável, isso não é necessariamente verdade, como no caso do modelo vetorial de correção de erros.
 
-   Quando duas variáveis distintas são correlacionadas no sistema, recomenda-se que se visualize a função de resposta ao impulso ortogonal, porque neste caso um choque não pode ser assumido independente um do outro, sendo provável que afete outra variável no período $ 0 $.
+   Um problema dessa interpretação é a possibilidade de duas variáveis distintas serem significativamente correlacionadas, caso em que se recomenda a visualização da função de resposta ao impulso ortogonal, pois, neste caso, um choque não pode ser assumido independente um do outro, sendo provável que seja acompanhado de um choque na variável com que está correlacionado no período $ 0 $. Para resolver isso, faz-se uso da decomposição de Cholesky, que decompõe a matriz de co-variância dos resíduos $ \Sigma_u $ em uma matriz triangular inferior $ P $, tal que $ \Sigma_u = PP^{'} $, de forma a obter resíduos não correlacionados entre si (ortogonais).
 
-    \subsection{Modelo vetorial de correção de erros}
+   Um dos problemas da função de impulso resposta é sua sensibilidade à ordenação das variáveis.
 
-    Se há alguma relação de equilíbrio entre as variáveis sob análise, gostaríamos de identificá-la, o que normalmente se faz por um teste. Como observado antes, o teste de co-integração uniequacional não é o mais recomendado para um modelo multivariado.
-    
-    Nesta seção será introduzido o procedimento de Johansen para identificar relações de co-integração em um sistema de equação, mas antes será preciso apresentar o que é o modelo de correção de erros e sua representação em VAR.
+    \subsection{Modelo vetorial de correção de erros (VECM)}
 
-    Em um modelo de correção de erros, a variação das variáveis depende dos desvios em relação ao equilíbrio entre as variáveis (ao desequilíbrio) e de suas variações defasadas. Por exemplo, dadas duas variáveis $ I(1) $, $ y_1 $ e $ y_2 $, teremos que:
+    Como há a possiblidade de múltiplas relações de equilíbrios entre as variáveis sob análise, gostaríamos de identificá-las, o que será feito com o teste de Johansen, para depois modelar suas evoluções temporais como um mecanismo de correção de erros multivariado.
+
+    A diferença em relação ao caso univariado é que agora temos mais de uma equação. Por exemplo, dadas duas variáveis $ I(1) $, $ y_1 $ e $ y_2 $, teremos que:
 
     \begin{equation}
         \begin{aligned}
-            \label{ecm}
+            \label{ecm_vec}
             \Delta y_{1t} = \alpha_1 (y_{1,t-1} - \beta_1 y_{2, t-1}) + \gamma_{11,1} \Delta y_{1,t-1} + \gamma_{12,1} \Delta y_{2,t-1} + u_{1t} \\
             \Delta y_{2t} = \alpha_2 (y_{1,t-1} - \beta_1 y_{2, t-1}) + \gamma_{21,1} \Delta y_{1,t-1} + \gamma_{22,1} \Delta y_{2,t-1} + u_{2t}
         \end{aligned}
@@ -537,9 +567,9 @@
         \alpha_i (y_{1,t-1} - \beta_1 y_{2, t-1}) = \Delta y_{it} - \gamma_{i1,1} \Delta y_{1,t-1} - \gamma_{i2,1} \Delta y_{2,t-1} - u_{it}
     \end{align*}
 
-    Podemos concluir que se algum $ \alpha_{it} \neq 0 $, $ y_{1t} - \beta y_{2t} $ é estacionária, as duas variáveis co-integram, visto que um processo estacionário não pode ser igual a um processo não-estacionário \cite[p.~244-247]{lutkepool}.
+    Podemos concluir que se qualquer $ \alpha_{i} \neq 0 $, o termo $ y_{1t} - \beta y_{2t} $ será estacionário, implicando que as duas variáveis co-integram, visto que um processo estacionário não pode ser igual a um processo não-estacionário \cite[p.~244-247]{lutkepool}.
 
-    Em notação matricial, as equações \eqref{ecm} tornam-se:
+    Em notação matricial, as equações \eqref{ecm_vec} tornam-se:
 
     \begin{equation}
         \label{vecm}
@@ -589,7 +619,7 @@
        \end{aligned}
    \end{equation}
 
-   Salta à vista que, se todas as variáveis forem estacionárias após a primeira diferença, ou seja, se são $ I(0) $ ou $ I(1) $, todos os termos do lado direito da equação são estacionários, logo a matriz $ \Pi y_{t-1} = \alpha \beta^{'} y_{t-1} $ também o é. Isto não muda se retirarmos o termo $ \alpha $ do lado esquerdo ao pre-multiplicar a equação por $ (\alpha^{'}\alpha)^{-1}\alpha{'} $, o que nos deixa com $ \beta^{'}y_{t} $, que representa uma relação de co-integração entre as variáveis em $ y_t $. $ \beta $ é conhecida como a matriz de co-integração e $ \alpha $ como a \textit{loading matrix} \cite[p.~244-249]{lutkepool}.
+   Salta à vista que, se todas as variáveis forem estacionárias após a primeira diferença, ou seja, se são $ I(0) $ ou $ I(1) $, todos os termos do lado direito da equação são estacionários, logo a matriz $ \Pi y_{t-1} = \alpha \beta^{'} y_{t-1} $ também o é. Isto não muda se retirarmos o termo $ \alpha $ do lado esquerdo ao pré-multiplicar a equação por $ (\alpha^{'}\alpha)^{-1}\alpha{'} $, o que nos deixa com $ \beta^{'}y_{t} $, que representa uma relação de co-integração entre as variáveis em $ y_t $. $ \beta $ é conhecida como a matriz de co-integração e $ \alpha $ como a \textit{loading matrix} \cite[p.~244-249]{lutkepool}.
 
    Quando $ 0 < posto(\Pi) = r < K $, quer dizer que há $ r $ relações de co-integração no sistema. Já quando $ posto(\Pi) = 0 $, ou seja, é uma matriz nula, $ \Delta y_t $ é um VAR(p-1) estável, e se $ posto(\Pi) = K $, quer dizer que todas as variáveis no sistema são estacionárias e que $ \Delta y_t $ pode ser representado por um VAR(p) estável\footnote{Isto se justifica porque, neste caso, $ \Pi = (I_K - A_1 - \dots - A_p) = (I_K - A_1z - \dots - A_pz^p) $ para $ z = 1 $, e, como $ det(I_K - A_1 - \dots - A_p) \neq 0 $, concluímos que o polinômio característico deste VAR não possui raiz unitária, sendo, portanto, estacionário.}.
 
@@ -610,7 +640,7 @@
    A segunda é conhecida como estatística do máximo autovalor e testa as hipóteses:
 
    \begin{equation}
-       \label{trace}
+       \label{maxeig}
        \begin{aligned}
            H_0&: posto(\Pi) = r_0 \\
            H_1&: posto(\Pi) = r_0 + 1
@@ -621,132 +651,260 @@
 
    \section{Apresentação dos resultados}
 
-   Neste capítulo serão apresentados a etapa de tratamento das séries temporais, os procedimentos estatísticos considerados para a especificação do modelo, os resultados da estimação e, por fim, sua interpretação.
-
-   Para explicar o spread bancário, serão incluídas no modelo variáveis para a taxa básica de juros (selic), inadimplência (inad), atividade econômica (pib\_mensal) e inflação (igp), o que pode ser melhor visto na seguinte equação:
-
-   \begin{equation}
-       \label{eq_modelo}
-       \text{spread}_t = \beta_0 + \beta_1 \text{selic}_t + \beta_2 \text{inad}_t + \beta_3 \text{pib\_mensal}_t + \beta_4 \text{igp}_t + u_t
-   \end{equation}
-
-   Tratam-se de séries temporais mensais que cobrem o período de março de 2011 a agosto de 2019, somando 102 observações, que podem ser vistas a seguir na \autoref{graficos}.
+   Neste capítulo serão apresentados os resultados do tratamento das séries temporais e, em seguida, os resultados da estimação dos modelos.
 
     \begin{figure}[h]
         \centering
         \caption{Séries incluídas no modelo (em log)}
         \includegraphics[width = 0.9\textwidth, scale=1]{series_modelo.pdf}
-        %\legend{}
         \label{graficos}
     \end{figure}
 
-    Durante todo o capítulo, faz-se uso extensivo do pacote statsmodels do Python, dos autores \textcite{statsmodels}.
+   Como determinantes do spread bancário, foram consideradas as variáveis taxa básica de juros (selic), inadimplência (inad), atividade econômica (pib\_mensal e ibc) e a inflação (igp). Isto pode ser expresso pela seguinte equação:
+
+   \begin{equation}
+       \label{equacao_modelo}
+       \text{spread}_t = \beta_0 + \beta_1 \text{selic}_t + \beta_2 \text{inad}_t + \beta_3 \text{pib\_mensal}_t + \beta_4 \text{igp}_t + u_t
+   \end{equation}
+
+   Tratam-se de séries temporais mensais que cobrem o período de março de 2011 a agosto de 2019, somando 102 observações, que podem ser vistas na \autoref{graficos}.
+
+   Durante todo o capítulo, faz-se uso extensivo do pacote statsmodels do Python, dos autores \textcite{statsmodels}.
 
    \subsection{Testes de raiz unitária}
    
-   Na \autoref{raiz_unitaria} estão compilados os resultados do teste de Augmented Dickey-Fuller para a existência de raiz unitária, tendo o número de defasagens sido escolhido com base na minimização do \textit{Bayesian Information Criterion (BIC)}.
+   Na \autoref{raiz_unitaria} estão compilados os resultados do teste de \textit{Augmented Dickey-Fuller} com o número de defasagens sendo escolhido com base no \textit{Bayesian Information Criterion} (BIC).
 
     \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
     \begin{table}[ht]
         \IBGEtab{\caption{Teste Augmented Dickey-Fuller de raiz unitária}\label{raiz_unitaria}}
         {%
-            \begin{tabular}{lcccccccc}
+            \begin{tabular}{lcccc}
                 \midrule
-                \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{2}{C{3cm}}{Sem drift e sem tendência} & \multicolumn{2}{C{3cm}}{Com drift} & \multicolumn{2}{C{3cm}}{Com tendência} \\
-                Variável & Lags & \tau & 5\%       & \tau_{\mu} & 5\%   & \tau_{\tau} & 5\%     \\
+                & \multicolumn{1}{c}{} & \multicolumn{1}{C{3cm}}{Sem drift e sem tendência} & \multicolumn{1}{C{3cm}}{Com drift} & \multicolumn{1}{C{3cm}}{Com tendência} \\
                 \midrule
-                spread     &         12 &        -0.05 &        -1.94 &        -2.47 &        -2.89 &        -4.76* &        -3.46 \\
-                selic      &          4 &        -1.15 &        -1.94 &        -1.34 &        -2.89 &        -1.60 &        -3.46 \\
-                pib\_mensal &         12 &         2.89 &        -1.94 &        -6.09* &        -2.89 &        -3.21 &        -3.46 \\
-                igp        &          0 &        -4.42* &        -1.94 &        -5.92* &        -2.89 &        -5.89* &        -3.45 \\
+                Variável & Defasagem & \multicolumn{3}{c}{P-valor} \\
+                \midrule
+                spread*      &         12 &     0.67 &     0.12 &     0.00 \\
+                selic        &          4 &     0.23 &     0.61 &     0.79 \\
+                pib\_mensal* &         12 &     1.00 &     0.00 &     0.08 \\
+                ibc          &          0 &     0.59 &     0.68 &     0.75 \\
+                inad         &          4 &     0.37 &     0.17 &     0.39 \\
+                igp*         &          0 &     0.00 &     0.00 &     0.00 \\
                 \midrule
             \end{tabular}
-        } 
-        {\fonte{Elaboração própria, com base na função adfuller do pacote statsmodels do Python.}\nota{$ \text{H}_0 $: raiz unitária. $ \text{H}_a $: estacionária.\newline O caractere * indica evidência de estacionariedade a 5\% de significância.}}
+            } 
+            {\fonte{Elaboração própria, com base na função adfuller do pacote statsmodels do Python.}\nota{$ \text{H}_0 $: raiz unitária. $ \text{H}_a $: estacionária. \newline * Estacionariedade.}}
     \end{table}
 
-    Nela podemos ver que há forte evidência de estacionariedade da série da inflação em qualquer um dos cenários e sem autocorrelação, ou seja, de que se trata de um processo do tipo ruído branco. A variável da atividade econômica foi diagnosticada como estacionária quando modelada como um processo AR(12) com deslocamento. Há, ainda, evidência de estacionariedade para a série do spread quando considerada como um processo AR(12) com tendência.
+    Nela podemos ver que há forte evidência de estacionariedade para a série igp em qualquer dos cenários. A variável pib\_mensal de atividade econômica foi diagnosticada como estacionária com deslocamento e como tendência-estacionária, já a do ibc como não-estacionária. Há, ainda, evidência de tendência-estacionariedade para o spread. A selic e a inadimplência não foram consideradas estacionárias em qualquer dos cenários.
 
-    A \autoref{pp} apresenta ainda os resultados para o teste de Phillips-Perron, onde pode-se ver que há evidência de estacionariedade para as variáveis igp e pib\_mensal somente. A função usada lida com a autocorrelação nos resíduos com o estimador de Newey-West. O número de defasagens escolhido é baseado na fórmula $ 12 * (n / 100)^{(1/4)} $.
+    A \autoref{pp} apresenta os resultados para o teste de Phillips-Perron, em que se pode ver que também há evidência de estacionariedade para o igp em todos os cenários, e de tendência-estacionariedade para o pib\_mensal. Não há evidência de estacionariedade para as variáveis spread, selic, igp e inad. 
 
     \begin{table}[ht]
         \IBGEtab{\caption{Teste Phillips-Perron de raiz unitária}\label{pp}}
         {%
-            \begin{tabular}{lcccccccc}
+            \begin{tabular}{lcccc}
                 \midrule
-                \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{2}{C{3cm}}{Sem drift e sem tendência} & \multicolumn{2}{C{3cm}}{Com drift} & \multicolumn{2}{C{3cm}}{Com tendência} \\
-                Variável & Lags & \tau & 5\%       & \tau_{\mu} & 5\%   & \tau_{\tau} & 5\%     \\
+                &           & \multicolumn{1}{C{3cm}}{Sem drift e sem tendência} & \multicolumn{1}{C{3cm}}{Com drift} & \multicolumn{1}{C{3cm}}{Com tendência} \\
                 \midrule
-                spread     &         13 &         0.25 &        -1.94 &        -1.33 &        -2.89 &        -1.61 &        -3.45 \\
-                selic      &         13 &        -0.95 &        -1.94 &        -0.97 &        -2.89 &        -1.23 &        -3.45 \\
-                pib\_mensal &         13 &         3.19 &        -1.94 &        -2.18 &        -2.89 &        -5.93* &        -3.45 \\
-                igp        &         13 &        -4.98* &        -1.94 &        -5.66* &        -2.89 &        -5.62* &        -3.45 \\
+                Variável & Defasagem & \multicolumn{3}{c}{P-valor} \\
+                \midrule
+                spread     &         13 &     0.76 &     0.61 &     0.79 \\
+                selic      &         13 &     0.31 &     0.76 &     0.90 \\
+                pib\_mensal* &         13 &     1.00 &     0.21 &     0.00 \\
+                ibc        &         13 &     0.60 &     0.61 &     0.65 \\
+                inad       &         13 &     0.54 &     0.57 &     0.72 \\
+                igp*        &         13 &     0.00 &     0.00 &     0.00 \\
                 \midrule
             \end{tabular}
-        } 
-        {\fonte{Elaboração própria, com base na função PhillipsPerron do pacote arch do Python.}\nota{$ \text{H}_0 $: raiz unitária. $ \text{H}_a $: estacionária.\newline O caractere * indica evidência de estacionariedade a 5\% de significância.}}
+            } 
+            {\fonte{Elaboração própria, com base na função PhillipsPerron do pacote arch do Python.}\nota{$ \text{H}_0 $: raiz unitária. $ \text{H}_a $: estacionária. \newline * Estacionariedade.}}
     \end{table}
 
+    Por fim, na \autoref{kpss} constam os resultados do teste \textit{Kwiatkowski-Phillips-Schmidt-Shin} (KPSS) de estacionariedade, que se distingue por ter como hipótese nula a estacionariedade ao invés da raiz unitária.
 
+    \begin{table}[ht]
+        \IBGEtab{\caption{Teste KPSS de estacionariedade}\label{kpss}}
+        {%
+            \begin{tabular}{lcccc}
+                \midrule
+                & \multicolumn{2}{C{5cm}}{$ \text{H}_0 $: constante-estacionária} & \multicolumn{2}{C{5cm}}{$ \text{H}_0 $: tendência-estacionária} \\
+                \midrule
+                Variável & Defasagem & P-valor & Defasagem & P-valor \\
+                \midrule
+                spread     &          6 &     0.01 &          5 &     0.01 \\
+                selic*      &          6 &     0.09 &          6 &     0.01 \\
+                pib\_mensal &          5 &     0.01 &          5 &     0.01 \\
+                ibc        &          5 &     0.01 &          5 &     0.01 \\
+                inad*       &          5 &     0.10 &          5 &     0.02 \\
+                igp*        &          4 &     0.10 &          4 &     0.10 \\
+                \midrule
+            \end{tabular}
+            } 
+            {\fonte{Elaboração própria, com base na função kpss do pacote statsmodels do Python.}\nota{$ H_0 $: estacionariedade. $ H_a $: raiz unitária. \newline * Estacionariedade.}}
+    \end{table}
 
-    Faz-se interessante agora investigar se há co-integração entre alguma combinação linear das variáveis diagnosticadas como não-estacionárias em algum dos cenários.
+    Ele reforça a evidência de que a variável do igp seja estacionária, mas não a de que a do pib\_mensal seja tendência-estacionária. Além disso, contrariando os outros testes, encontra evidência de estacionariedade para a variável do inad e selic. Já o ibc continuou como não-estacionário.
 
-    \subsection{Teste de co-integração uniequacional}
+    Portanto, a selic e inad foram diagnosticadas como estacionárias somente pelo KPSS\@, sendo provavelmente não-estacionárias. O pib\_mensal foi somente dito estacionário quando em torno de uma tendência ou deslocamento, exceto pelo KPSS\@. O ibc foi consistentemente diagnosticado como não-estacionário, o mesmo valendo para a estacionariedade do igp.
 
-    O teste de Engle-Granger foi aplicado sobre a seguinte equação:
+    Dado estes resultados, é razoável concluir que as variáveis selic, spread, inad e pib\_mensal têm raiz unitária. 
+    
+    O próximo passo agora é investigar se há co-integração entre alguma combinação linear das variáveis spread, selic, inad e pib\_mensal, ou seja, se há um equilíbrio de longo prazo entre elas.
+    
+    Esta é uma hipótese razoável de se fazer, visto possuir um sentido econômico: há uma relação muito próxima entre o spread e a taxa Selic (pelo efeito custo de oportunidade etc.), a inadimplência (efeito custo de crédito) e a atividade econômica (pelo efeito inadimplência, poder de mercado, melhora na percepção de risco etc.).
 
-    \begin{equation*}
-        \label{engle-granger-eq}
-        \text{spread}_t = \beta_0 + \beta_1 t + \beta_2 \text{selic}_t + \beta_3 \text{inad}_t + \beta_4 \text{pib\_mensal}_t + \beta_5 \text{igp}_t + u_t
-    \end{equation*}
+    \subsection{Teste de co-integração uni-equacional}
 
-    O que se justifica já que é razoável esperar que haja alguma tendência nos resíduos se omitirmos o termo de tendência determinística. Quando aplicado o teste ADF sobre os resíduos dessa regressão, novamente selecionando o número de defasagens, dentre as 12, que minimiza o BIC, não é possível rejeitar a hipótese nula de não co-integração:
-
+    Para isso utilizaremos o teste de Engle-Granger, que será aplicado sobre quatro equações, que se distinguem pela variável usada para representar a atividade econômica e pela inclusão de um termo de tendência.
 
     \begin{table}[ht]
         \IBGEtab{\caption{Teste de co-integração}\label{coint}}
         {%
-            \begin{tabular}{ccccc}
+            \begin{tabular}{lccccccc}
                 \midrule
-                Engle-Granger & P-valor & 1\% & 5\% & 10\% \\
+                Atv. Econômica & Tendência & Engle-Granger & P-valor & 1\% & 5\% & 10\% \\
                 \midrule
-                -3.61 & 0.28 & -5.19 & -4.57 & -4.26 \\
+                pib\_mensal & Sim & -3.61 & 0.28 & -5.19 & -4.57 & -4.26 \\
+                ibc* & Sim & -5.16 & 0.01 & -5.2 & -4.57 & -4.26 \\
+                pib\_mensal & Não & -1.69 & 0.93 & -4.83 & -4.21 & -3.89 \\
+                ibc* & Não & -4.84 & 0.01 & -4.83 & -4.21 & -3.89 \\
                 \midrule
             \end{tabular}
-        } 
-        {\fonte{Elaboração própria, com base na função coint do pacote statsmodels do Python.}}
+            } 
+            {\fonte{Elaboração própria, com base na função coint do pacote statsmodels do Python.}\nota{* Co-integração.}}
     \end{table}
+
+    Desses resultados se conclui que há evidência de co-integração apenas para a variável do igp (ao nível de significância de 5\%).
+    
+    \subsection{Modelo uni-equacional de correção de erros}
+
+    Por isso, ela foi usada para fazer a estimação da relação de equilíbrio de longo prazo. Os resultados foram como segue:
+
+    \begin{table}[!hbt]
+        \IBGEtab{\caption{Relação de co-integração}\label{coint_reg}}{%
+            \centering
+            \label{}
+            \begin{tabular}{@{\extracolsep{20pt}}lcc}
+                \midrule
+                \midrule
+                                  & \multicolumn{1}{c}{Variável dependente:} \\
+                \cline{2-2}
+                                  & spread \\
+                \midrule
+                Intercept         & 30.2636***       \\
+                                  & (1.0014)         \\
+                selic             & 0.1619***        \\
+                                  & (0.0238)         \\
+                inad              & -0.0839          \\
+                                  & (0.0596)         \\
+                ibc               & -5.4874***       \\
+                                  & (0.1967)         \\
+                \midrule
+                Observações       & 102.0000         \\
+                $ R^2 $           & 0.9056           \\
+                $ R^2 $ Ajustado  & 0.9027           \\
+                Estatística F     & 313.346 (0.000)  \\
+                Jarque-Bera       & 1.806 (0.405)    \\
+                Dickey-Fuller     & -4.156 (0.001)   \\
+                Durbin-Watson     & 0.706            \\
+                \midrule
+                \midrule
+            \end{tabular}
+            }{\nota{* $ p<0.1 $; ** $ p<0.05 $; *** $ p<0.01 $. \newline Entre parênteses: nos coeficientes, o desvio-padrão, nas estatísticas, o p-valor.}}
+    \end{table}
+
+    Os sinais dos coeficientes são os esperados, embora o da variável inad ter sido insignificante. 
+    
+    Chama atenção também o especialmente alto valor do coeficiente da variável ibc, significando que, no longo prazo, um aumento de 1\% na atividade econômica diminui, em média, o nível do spread em 5.48\%. Analogamente, um aumento de 1\% na selic aumenta em 0.16\% o spread.
+
+    Além disso, como esperado de um termo de equilíbrio, os resíduos dessa regressão apresentam evidência de ser um processo estacionário autorregressivo de ordem 1, como esperado pela teoria \footcite[12]{coint1}, o que é verificado pela estatística de Durbin-Watson entre 0 e 1 e pelo baixo p-valor da estatística de Dickey-Fuller.
+
+    Agora, para observar os efeitos de curto prazo sobre o spread, estimamos o modelo de correção de erros:
+
+    \begin{equation*}
+        \Delta \textit{spread} = \alpha (\textit{spread} - \hat{\beta_0} - \hat{\beta_1} \textit{selic} -\hat{\beta_2} \textit{inad} + \hat{\beta_3} \textit{igp)}\ +\ \alpha_1 \Delta \textit{selic}\ +\ \alpha_2 \Delta \textit{inad}\ +\ \alpha_3 \Delta \textit{igp} + u_t
+    \end{equation*}
+
+    A estimação dos coeficientes desta equação são relatados na \autoref{modelo_ecm} abaixo.
+
+
+    \begin{table}[h]
+        \IBGEtab{\caption{Modelo de correção de erros}\label{modelo_ecm}}{%
+            \centering
+            \label{}
+            \begin{tabular}{@{\extracolsep{20pt}}lcc}
+                \midrule
+                \midrule
+                                  & \multicolumn{1}{c}{Variável dependente:} \\
+                \cline{2-2}
+                                  & spread \\
+                \midrule
+                equilibrio        & -0.1009*        \\
+                                  & (0.0547)        \\
+                selic             & 0.2186**        \\
+                                  & (0.0936)        \\
+                inad              & 0.5216***       \\
+                                  & (0.1317)        \\
+                ibc               & -0.4502         \\
+                                  & (0.4184)        \\
+                \midrule
+                Observações       & 101.0000        \\
+                $ R^2 $           & 0.2862          \\
+                $ R^2 $ Ajustado  & 0.2567          \\
+                Estatística F     & 9.722 (0.000)   \\
+                Jarque-Bera       & 3.023 (0.221)   \\
+                Dickey-Fuller     & -8.347 (0.000)  \\
+                Durbin-Watson     & 1.781           \\
+                \midrule
+                \midrule
+            \end{tabular}
+            }{\nota{* $ p<0.1 $; ** $ p<0.05 $; *** $ p<0.01 $. \newline Entre parênteses: nos coeficientes, o desvio-padrão, nas estatísticas, o p-valor.}}
+    \end{table}
+
+    Eles permitem interpretar que, dentro de um mês, 10\% do spread é corrigido quando em desequilíbrio. Além disso, os efeitos de curto prazo foram tais que 1\% de aumento na selic aumenta o spread em 0.21\% e 1\% de aumento na inadimplência aumenta o spread em 0.52\%, ao passo que o efeito de curto prazo da atividade econômica sobre o spread não foi significante.
+
+    Isto sugere que o efeito-inadimplência sobre o spread é melhor explicado pela variável da inadimplência no curto prazo, mas melhor explicado pela atividade econômica no longo prazo.
+    
+    Este efeito ter sido dominado por ambas, em duas equações, de tal forma a tornar a outra insignificante estatisticamente, indica que elas estão explicando o mesmo efeito. Como podemos ver na literatura, esse não é sempre o caso, relevando tão somente que o efeito inadimplência da atividade econômica preponderou sobre qualquer outro efeito que poderia ter a atividade econômica sobre o spread, como o efeito de diminuí-lo por uma melhora nas expectativas.
 
     \subsection{Modelo vetorial de correção de erros}
 
-    \subsubsection{Seleção da ordem}
+    Este capítulo pretende analisar os resultados do modelo de correção de erros multivariado. Primeiro, a etapa pré-estimação, como foram escolhidos o número do defasagem e o posto de co-integração. Em seguida, é feita a análise das funções de impulso-resposta. Por fim, é investigada a adequabilidade do modelo pela análise dos resíduos.
 
-    Para ajudar nessa decisão, é comum levar em consideração qual ordem minimiza os diversos critérios de seleção disponíveis, como o BIC, o Akaike Information Criterion (AIC), o Hannan-Quinn Information Criterion e o Final Prediction Error (FPE).
+    O modelo estimado tem a forma:
 
-    \begin{table}[ht]
-        \IBGEtab{\caption{Seleção da ordem do VECM}\label{order}}
-        {%
-            \begin{tabular}{lcccc}
-                & \textbf{AIC} & \textbf{BIC} & \textbf{FPE} & \textbf{HQIC}  \\
+    \begin{equation}
+        \Delta y_t = \alpha \beta^{'} y_{t-1}+ \Gamma_1 \Delta y_{t-1} + \cdots + \Gamma_{p} \Delta y_{t-1} + CD_t + u_t \label{vecm_spread}
+    \end{equation}
+
+    Onde o vetor $ y_t $ contém as variáveis do spread, selic, inad e uma variável para atividade econômica, pib\_mensal ou ibc.
+    
+    A matriz $ D_t $, cujos coeficientes estão contidos em $ C $, contém termos determinísticos, tais como intercepto, tendência e onze variáveis dummy para controlar pela sazonalidade nas séries, além da variável da inflação como exógena. Não foram incluídos termos determinísticos dentro da relação de co-integração.
+
+    Antes da estimação, porém, é necessário determinar qual o posto da matriz de co-integração e o número de defasagem $ p $ do modelo. É o que faremos nas duas próximas seções.
+
+    \subsubsection{Seleção da ordem de defasagem}
+
+    O número de defasagens foi parcimoniosamente escolhido com base na análise dos resíduos, isto é, nos testes de Portmanteau e pelas funções de autocorrelação.
+
+    \subsubsection{Causalidade de Granger}
+
+    \begin{table}
+        \IBGEtab{}{%
+            \begin{tabular}{lcccccccc}
                 \midrule
-                \textbf{0}  &      -29.65  &      -28.86  &   1.335e-13  &       -29.33   \\
-                \textbf{1}  &      -30.14  &     -28.91*  &   8.166e-14  &       -29.65   \\
-                \textbf{2}  &      -30.54  &      -28.86  &   5.550e-14  &       -29.86   \\
-                \textbf{3}  &      -30.81  &      -28.69  &   4.267e-14  &       -29.96   \\
-                \textbf{4}  &      -31.12  &      -28.55  &   3.210e-14  &       -30.08   \\
-                \textbf{5}  &      -31.30  &      -28.28  &   2.764e-14  &      -30.08*   \\
-                \textbf{6}  &      -31.39  &      -27.92  &  2.634e-14*  &       -29.99   \\
-                \textbf{7}  &      -31.17  &      -27.25  &   3.487e-14  &       -29.59   \\
-                \textbf{8}  &      -31.08  &      -26.72  &   4.101e-14  &       -29.32   \\
-                \textbf{9}  &      -31.57  &      -26.76  &   2.759e-14  &       -29.63   \\
-                \textbf{10} &      -31.46  &      -26.20  &   3.501e-14  &       -29.34   \\
-                \textbf{11} &      -31.84  &      -26.13  &   2.802e-14  &       -29.54   \\
-                \textbf{12} &     -32.05*  &      -25.90  &   2.761e-14  &       -29.57   \\
+                 & \multicolumn{8}{c}{Variável dependente} \\
+                \cline{2-9}
+                 & \multicolumn{2}{c}{Spread} & \multicolumn{2}{c}{Selic} & \multicolumn{2}{c}{ibc} & \multicolumn{2}{c}{Inad} \\
+                 & F & Prob & F & Prob & F & Prob & F & Prob \\
+                \midrule
+                % corpo
                 \midrule
             \end{tabular}
-        } 
-        {\fonte{Elaboração própria, com base na função select\_order do pacote statsmodels do Python.}\nota{* destaca o mínimo.}}
+            }{}
     \end{table}
 
     \subsubsection{Posto de co-integração}
@@ -759,7 +917,6 @@
     
 
 \newpage
-% \bibliography{../bibliografia}
 \printbibliography
 
 \end{document}
