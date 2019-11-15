@@ -199,15 +199,7 @@
     
     Se por um lado o efeito teórico esperado é claro, o que sairá na estimação é incerto, porque na literatura varia desde insignificante, como em \textcite{oreiro}, a um sinal inesperado e significante, como em \textcite{bignotto06} e \textcite{afanasieff02}\footnote{Como possível causa, os autores indicam a apropriação de receita de senhoriagem com o spread \cite[p.~25]{afanasieff02}}.
     
-    É comum em estudos deste tipo incluir alguma variável para capturar a influência da atividade econômica sobre o spread. Neste trabalho serão considerados dois indicadores. O primeiro é o PIB mensal em valor corrente (\autoref{pibmensal}) obtido pela interpolação dos valores trimestrais divulgados ou projetados, e o Índice de Atividade Econômica do Banco Central (IBC-Br), dessazonalizado e com ano-base em 2002 (\autoref{ibc}), usado para ajudar a antecipar o valor mensal do PIB como mensurado pelo IBGE.
-
-    \begin{figure}[!hbt]
-        \centering
-        \caption{PIB Mensal (em milhões)}
-        \includegraphics[width = \textwidth, scale=0.75]{pib_mensal.pdf}
-        \legend{Fonte: série 4380 do SGS\@. Elaboração própria}
-        \label{pibmensal}
-    \end{figure}
+    É comum na literatura incluir alguma variável para capturar a influência da atividade econômica sobre o spread. Aqui será utilizado o Índice de Atividade Econômica do Banco Central (IBC-Br), dessazonalizado e com ano-base em 2002 (\autoref{ibc}), usado para ajudar a antecipar o valor mensal do PIB como mensurado pelo IBGE.
 
     \begin{figure}[!hbt]
         \centering
@@ -217,7 +209,7 @@
         \label{ibc}
     \end{figure}
 
-    Já quanto ao seu efeito sobre o spread, o mais correto é considerá-lo ambíguo. Porque, por um lado, uma maior atividade econômica pode afetar positivamente o spread ao aumentar a taxa de empréstimo via aumento da demanda por crédito, o que dependerá ainda do poder de mercado dos maiores bancos \textcite[626]{oreiro}, e, por outro, pode diminuir o spread ao melhorar as expectativas dos bancos quanto ao risco de crédito \textcite[24]{chaim}. Outro possível efeito é por meio da inadimplência, ou seja, pelo efeito de uma menor (maior) atividade econômica aumentar (reduzir) a inadimplência, fazendo com que o spread aumente (diminua).
+    Em relação ao seu efeito sobre o spread, o mais correto é considerá-lo ambíguo. Porque, por um lado, uma maior atividade econômica pode afetar positivamente o spread ao aumentar a taxa de empréstimo via aumento da demanda por crédito, o que dependerá ainda do poder de mercado dos maiores bancos \textcite[626]{oreiro}, e, por outro, pode diminuir o spread ao melhorar as expectativas dos bancos quanto ao risco de crédito \textcite[24]{chaim}. Outro possível efeito é por meio da inadimplência, ou seja, pelo efeito de uma menor (maior) atividade econômica aumentar (reduzir) a inadimplência, fazendo com que o spread aumente (diminua).
 
     Foi ainda considerada a inclusão do Índice de Herfindahl-Hirschmann (IHH) para capturar o efeito da concentração estrutural no Sistema Financeiro Nacional sobre o spread. Como se sabe, este é um indicador do nível de concentração econômica em um mercado, obtido ao somar o quadrado das participações de cada instituição financeira no mercado considerado, que no nosso caso é o mercado de crédito. O BCB considera um IHH entre 0 e 1000 indicativo de baixa concentração, acima de 1000 e menor que 1800, de moderada concentração e acima de 1800 de alta concentração.
     
@@ -337,7 +329,7 @@
 
     $$\ln spread = \beta_0Tend + \beta_1\ln selic_t + \beta_2\ln adm_t + \beta_3\ln risk_t + \beta_4\ln imp_t + \beta_4\ln comp_t$$
 
-    Em que $ selic $ é a taxa básica de juros, $ adm $ é a razão das despesas administrativas sobre o volume de crédito, $ risk $ é uma proxy de risco global\footnote{"[É] o spread do rendimento do C-Bond sobre o rendimento do título do Tesouro americano com mesma maturidade." \cite[p.~10]{nakane02}} que busca capturar expectativas, $ imp $ é uma medida da incidência de tributos indiretos sobre o spread, $ comp $ é a taxa de compulsório sobre depósitos à vista exigida pelo Bacen, $ Tend $ é uma medida de tendência determinista incluída com o intuito de controlar para variáveis que não foram incluídas na equação, como a taxa de inflação, o nível de atividade econômica \etc., e $\ln$ é o logaritmo natural. Para mais detalhes, ver \textcite[10]{nakane02}
+    Em que $ selic $ é a taxa básica de juros, $ adm $ é a razão das despesas administrativas sobre o volume de crédito, $ risk $ é uma proxy de risco global\footnote{"[É] o spread do rendimento do C-Bond sobre o rendimento do título do Tesouro americano com mesma maturidade." \cite[p.~10]{nakane02}} que busca capturar expectativas, $ imp $ é uma medida da incidência de tributos indiretos sobre o spread, $ comp $ é a taxa de compulsório sobre depósitos à vista exigida pelo Bacen, $ Tend $ é uma medida de tendência determinista incluída com o intuito de controlar para variáveis que não foram incluídas na equação, como a taxa de inflação, o nível de atividade econômica etc., e $ \ln $ é o logaritmo natural. Para mais detalhes, ver \textcite[10]{nakane02}.
 
     Para a estimação da equação de longo prazo, foram usados dados mensais do período de agosto de 1994 a setembro de 2001 em um modelo de vetores autorregressivos (VAR) que, uma vez tratado estatisticamente, revelou que a taxa Selic, as despesas administrativas, o risco e os impostos indiretos afetam positiva e significativamente o spread. Já o compulsório não se mostrou significativo e foi retirado do modelo.
 
@@ -660,11 +652,11 @@
         \label{graficos}
     \end{figure}
 
-   Como determinantes do spread bancário, foram consideradas as variáveis taxa básica de juros (selic), inadimplência (inad), atividade econômica (pib\_mensal e ibc) e a inflação (igp). Isto pode ser expresso pela seguinte equação:
+   Como determinantes do spread bancário, foram consideradas as variáveis taxa básica de juros (selic), inadimplência (inad), atividade econômica (ibc) e inflação (igp), como expresso pela equação abaixo:
 
    \begin{equation}
        \label{equacao_modelo}
-       \text{spread}_t = \beta_0 + \beta_1 \text{selic}_t + \beta_2 \text{inad}_t + \beta_3 \text{pib\_mensal}_t + \beta_4 \text{igp}_t + u_t
+       \text{spread}_t = \beta_0 + \beta_1 \text{selic}_t + \beta_2 \text{inad}_t + \beta_3 \text{ibc}_t + \beta_4 \text{igp}_t + u_t
    \end{equation}
 
    Tratam-se de séries temporais mensais que cobrem o período de março de 2011 a agosto de 2019, somando 102 observações, que podem ser vistas na \autoref{graficos}.
@@ -688,7 +680,6 @@
                 \midrule
                 spread*      &         12 &     0.67 &     0.12 &     0.00 \\
                 selic        &          4 &     0.23 &     0.61 &     0.79 \\
-                pib\_mensal* &         12 &     1.00 &     0.00 &     0.08 \\
                 ibc          &          0 &     0.59 &     0.68 &     0.75 \\
                 inad         &          4 &     0.37 &     0.17 &     0.39 \\
                 igp*         &          0 &     0.00 &     0.00 &     0.00 \\
@@ -698,9 +689,9 @@
             {\fonte{Elaboração própria, com base na função adfuller do pacote statsmodels do Python.}\nota{$ \text{H}_0 $: raiz unitária. $ \text{H}_a $: estacionária. \newline * Estacionariedade.}}
     \end{table}
 
-    Nela podemos ver que há forte evidência de estacionariedade para a série igp em qualquer dos cenários. A variável pib\_mensal de atividade econômica foi diagnosticada como estacionária com deslocamento e como tendência-estacionária, já a do ibc como não-estacionária. Há, ainda, evidência de tendência-estacionariedade para o spread. A selic e a inadimplência não foram consideradas estacionárias em qualquer dos cenários.
+    Nela podemos ver que há forte evidência de estacionariedade para a série igp e de não-estacionariedade para o ibc, em qualquer dos cenários. Há, ainda, evidência de tendência-estacionariedade para o spread. A selic e a inadimplência não foram consideradas estacionárias em qualquer dos cenários.
 
-    A \autoref{pp} apresenta os resultados para o teste de Phillips-Perron, em que se pode ver que também há evidência de estacionariedade para o igp em todos os cenários, e de tendência-estacionariedade para o pib\_mensal. Não há evidência de estacionariedade para as variáveis spread, selic, igp e inad. 
+    A \autoref{pp} apresenta os resultados para o teste de Phillips-Perron, em que somente a variável igp foi diagnosticada como estacionária.
 
     \begin{table}[ht]
         \IBGEtab{\caption{Teste Phillips-Perron de raiz unitária}\label{pp}}
@@ -713,7 +704,6 @@
                 \midrule
                 spread     &         13 &     0.76 &     0.61 &     0.79 \\
                 selic      &         13 &     0.31 &     0.76 &     0.90 \\
-                pib\_mensal* &         13 &     1.00 &     0.21 &     0.00 \\
                 ibc        &         13 &     0.60 &     0.61 &     0.65 \\
                 inad       &         13 &     0.54 &     0.57 &     0.72 \\
                 igp*        &         13 &     0.00 &     0.00 &     0.00 \\
@@ -736,7 +726,6 @@
                 \midrule
                 spread     &          6 &     0.01 &          5 &     0.01 \\
                 selic*      &          6 &     0.09 &          6 &     0.01 \\
-                pib\_mensal &          5 &     0.01 &          5 &     0.01 \\
                 ibc        &          5 &     0.01 &          5 &     0.01 \\
                 inad*       &          5 &     0.10 &          5 &     0.02 \\
                 igp*        &          4 &     0.10 &          4 &     0.10 \\
@@ -746,30 +735,28 @@
             {\fonte{Elaboração própria, com base na função kpss do pacote statsmodels do Python.}\nota{$ H_0 $: estacionariedade. $ H_a $: raiz unitária. \newline * Estacionariedade.}}
     \end{table}
 
-    Ele reforça a evidência de que a variável do igp seja estacionária, mas não a de que a do pib\_mensal seja tendência-estacionária. Além disso, contrariando os outros testes, encontra evidência de estacionariedade para a variável do inad e selic. Já o ibc continuou como não-estacionário.
+    Ele reforça a evidência de que a variável do igp seja estacionária. Além disso, contrariando os outros testes, encontra evidência de estacionariedade para a variável do inad e selic. Já o ibc continuou como não-estacionário.
 
-    Portanto, a selic e inad foram diagnosticadas como estacionárias somente pelo KPSS\@, sendo provavelmente não-estacionárias. O pib\_mensal foi somente dito estacionário quando em torno de uma tendência ou deslocamento, exceto pelo KPSS\@. O ibc foi consistentemente diagnosticado como não-estacionário, o mesmo valendo para a estacionariedade do igp.
+    Portanto, a selic e inad foram diagnosticadas como estacionárias somente pelo KPSS\@, sendo provavelmente não-estacionárias. O ibc foi consistentemente diagnosticado como não-estacionário, o mesmo valendo para a estacionariedade do igp.
 
-    Dado estes resultados, é razoável concluir que as variáveis selic, spread, inad e pib\_mensal têm raiz unitária. 
+    Dado estes resultados, é razoável concluir que as variáveis selic, spread, inad e ibc têm raiz unitária. 
     
-    O próximo passo agora é investigar se há co-integração entre alguma combinação linear das variáveis spread, selic, inad e pib\_mensal, ou seja, se há um equilíbrio de longo prazo entre elas.
+    O próximo passo agora é investigar se há co-integração entre alguma combinação linear das variáveis spread, selic, inad e ibc, ou seja, se há um equilíbrio de longo prazo entre elas.
     
     Esta é uma hipótese razoável de se fazer, visto possuir um sentido econômico: há uma relação muito próxima entre o spread e a taxa Selic (pelo efeito custo de oportunidade etc.), a inadimplência (efeito custo de crédito) e a atividade econômica (pelo efeito inadimplência, poder de mercado, melhora na percepção de risco etc.).
 
     \subsection{Teste de co-integração uni-equacional}
 
-    Para isso utilizaremos o teste de Engle-Granger, que será aplicado sobre quatro equações, que se distinguem pela variável usada para representar a atividade econômica e pela inclusão de um termo de tendência.
+    Para isso utilizaremos o teste de Engle-Granger, cujos resultados podem ser vistos na \autoref{coint_resultados}.
 
     \begin{table}[ht]
-        \IBGEtab{\caption{Teste de co-integração}\label{coint}}
+        \IBGEtab{\caption{Teste de co-integração}\label{coint_resultados}}
         {%
             \begin{tabular}{lccccccc}
                 \midrule
                 Atv. Econômica & Tendência & Engle-Granger & P-valor & 1\% & 5\% & 10\% \\
                 \midrule
-                pib\_mensal & Sim & -3.61 & 0.28 & -5.19 & -4.57 & -4.26 \\
                 ibc* & Sim & -5.16 & 0.01 & -5.2 & -4.57 & -4.26 \\
-                pib\_mensal & Não & -1.69 & 0.93 & -4.83 & -4.21 & -3.89 \\
                 ibc* & Não & -4.84 & 0.01 & -4.83 & -4.21 & -3.89 \\
                 \midrule
             \end{tabular}
@@ -777,11 +764,11 @@
             {\fonte{Elaboração própria, com base na função coint do pacote statsmodels do Python.}\nota{* Co-integração.}}
     \end{table}
 
-    Desses resultados se conclui que há evidência de co-integração apenas para a variável do igp (ao nível de significância de 5\%).
+    Desses resultados se conclui que há evidência de co-integração ao nível de significância de 5\%, independente do termo de tendência.
     
     \subsection{Modelo uni-equacional de correção de erros}
 
-    Por isso, ela foi usada para fazer a estimação da relação de equilíbrio de longo prazo. Os resultados foram como segue:
+    Por essa razão, foi utilizada a equação sem tendência para fazer a estimação da relação de equilíbrio de longo prazo. Os resultados estão na \autoref{coint_reg}.
 
     \begin{table}[!hbt]
         \IBGEtab{\caption{Relação de co-integração}\label{coint_reg}}{%
@@ -816,22 +803,17 @@
             }{\nota{* $ p<0.1 $; ** $ p<0.05 $; *** $ p<0.01 $. \newline Entre parênteses: nos coeficientes, o desvio-padrão, nas estatísticas, o p-valor.}}
     \end{table}
 
-    Os sinais dos coeficientes são os esperados, embora o da variável inad ter sido insignificante. 
+    Os sinais dos coeficientes são os esperados, apesar de insignificante para a inadimplência. 
     
     Chama atenção também o especialmente alto valor do coeficiente da variável ibc, significando que, no longo prazo, um aumento de 1\% na atividade econômica diminui, em média, o nível do spread em 5.48\%. Analogamente, um aumento de 1\% na selic aumenta em 0.16\% o spread.
 
     Além disso, como esperado de um termo de equilíbrio, os resíduos dessa regressão apresentam evidência de ser um processo estacionário autorregressivo de ordem 1, como esperado pela teoria \footcite[12]{coint1}, o que é verificado pela estatística de Durbin-Watson entre 0 e 1 e pelo baixo p-valor da estatística de Dickey-Fuller.
 
-    Agora, para observar os efeitos de curto prazo sobre o spread, estimamos o modelo de correção de erros:
-
-    \begin{equation*}
-        \Delta \textit{spread} = \alpha (\textit{spread} - \hat{\beta_0} - \hat{\beta_1} \textit{selic} -\hat{\beta_2} \textit{inad} + \hat{\beta_3} \textit{igp)}\ +\ \alpha_1 \Delta \textit{selic}\ +\ \alpha_2 \Delta \textit{inad}\ +\ \alpha_3 \Delta \textit{igp} + u_t
-    \end{equation*}
+    Agora, para observar os efeitos de curto prazo sobre o spread, estimamos o modelo de correção de erros: $ \Delta \textit{spread} = \alpha (\textit{spread} - \hat{\beta_0} - \hat{\beta_1} \textit{selic} -\hat{\beta_2} \textit{inad} + \hat{\beta_3} \textit{igp)}\ +\ \alpha_1 \Delta \textit{selic}\ +\ \alpha_2 \Delta \textit{inad}\ +\ \alpha_3 \Delta \textit{igp} + u_t $.
 
     A estimação dos coeficientes desta equação são relatados na \autoref{modelo_ecm} abaixo.
 
-
-    \begin{table}[h]
+    \begin{table}[!hbt]
         \IBGEtab{\caption{Modelo de correção de erros}\label{modelo_ecm}}{%
             \centering
             \label{}
@@ -872,49 +854,163 @@
 
     \subsection{Modelo vetorial de correção de erros}
 
-    Este capítulo pretende analisar os resultados do modelo de correção de erros multivariado. Primeiro, a etapa pré-estimação, como foram escolhidos o número do defasagem e o posto de co-integração. Em seguida, é feita a análise das funções de impulso-resposta. Por fim, é investigada a adequabilidade do modelo pela análise dos resíduos.
+    Neste capítulo serão analisados os resultados do modelo de correção de erros multivariado. Primeiro, a etapa pré-estimação, como foram escolhidos o número do defasagem e o posto de co-integração. Por fim, é feita a análise das funções de impulso-resposta e de decomposição da variância.
 
-    O modelo estimado tem a forma:
+    O modelo estimado tem a seguinte forma:
 
     \begin{equation}
         \Delta y_t = \alpha \beta^{'} y_{t-1}+ \Gamma_1 \Delta y_{t-1} + \cdots + \Gamma_{p} \Delta y_{t-1} + CD_t + u_t \label{vecm_spread}
     \end{equation}
 
-    Onde o vetor $ y_t $ contém as variáveis do spread, selic, inad e uma variável para atividade econômica, pib\_mensal ou ibc.
+    Onde o vetor $ y_t $ contém as variáveis do spread, selic, inad e ibc.
     
-    A matriz $ D_t $, cujos coeficientes estão contidos em $ C $, contém termos determinísticos, tais como intercepto, tendência e onze variáveis dummy para controlar pela sazonalidade nas séries, além da variável da inflação como exógena. Não foram incluídos termos determinísticos dentro da relação de co-integração.
+    A matriz $ D_t $, cujos coeficientes estão contidos em $ C $, contém termos determinísticos, tais como intercepto e onze variáveis dummy para controlar pela sazonalidade nas séries, além da variável da inflação como exógena. Não foram incluídos termos determinísticos dentro da relação de co-integração.
 
-    Antes da estimação, porém, é necessário determinar qual o posto da matriz de co-integração e o número de defasagem $ p $ do modelo. É o que faremos nas duas próximas seções.
+    Antes da estimação, porém, é necessário determinar qual o posto da matriz de co-integração e o número de defasagem $ p $ do modelo. É o que será feito nas duas próximas seções.
 
     \subsubsection{Seleção da ordem de defasagem}
 
-    O número de defasagens foi parcimoniosamente escolhido com base na análise dos resíduos, isto é, nos testes de Portmanteau e pelas funções de autocorrelação.
+    O número de defasagens foi parcimoniosamente escolhido com base no teste de Portmanteau, ou seja, foi escolhido o menor número de defasagem que evidenciasse ausência de autocorrelação. Com este método, chegou-se ao número de 2 defasagens.
 
-    \subsubsection{Causalidade de Granger}
+    O resultado do teste pode ser visto na \autoref{portmanteau}, onde pode-se ver que não há evidência de autocorrelação até o lag 12.
 
-    \begin{table}
-        \IBGEtab{}{%
-            \begin{tabular}{lcccccccc}
+    \begin{table}[!hbt]
+        \IBGEtab{\caption{Teste de Portmanteau}\label{portmanteau}}{%
+        \begin{tabular}{cccc}
+            \toprule
+            Estatística de teste & Valor crítico & P-valor & Graus de liberdade  \\
+            \midrule
+            170.4          &          186.1          &      0.203       &     156      \\
+            \bottomrule
+        \end{tabular}
+        }{\nota{$ \text{H}_0 $: autocorrelação serial até defasagem 12 é zero.}}
+    \end{table}
+
+    \subsubsection{Ordenação das variáveis}
+
+    Como se sabe, a ordenação das variáveis do modelo é crucial para a análise das funções de resposta ao impulso ortogonal e da decomposição da variância, tanto que vale um capítulo para esclarecer que cuidados foram tomados em relação a isso.
+
+    Na literatura empírica, é comum ordenar as variáveis pelo critério de exogeneidade, isto é, da mais exógena para a mais endógena, devido à decomposição de Cholesky resultar em uma matriz triangular inferior. Por exemplo, em \textcite{oreiro} isto é feito com a ajuda de testes de causalidade de Granger.
+
+    No entanto, \textcite[61]{lutkepool} não advoga qualquer ferramenta estatística para essa decisão, tendo de ser tomada analiticamente. Ainda segundo ele, a ordem teria de ser tal que a primeira variável seja a única com o potencial de afetar contemporaneamente todas as outras, com a segunda podendo afetar todas exceto a primeira, a terceira, todas exceto a primeira e segunda etc.
+
+    Com isso em mente, a ordem foi decidida teoricamente: assumindo que a taxa Selic afeta contemporaneamente todas as outras variáveis no sistema, sem ser por elas afetada contemporaneamente, é uma razoável candidata como primeiro variável. Seguida da inadimplência, que influenciaria instantaneamente a atividade econômica e o spread, mas não a taxa Selic. Depois, a atividade econômica, que afetaria a Selic e a inadimplência com no mínimo uma defasagem e, por fim, o spread, que não influenciaria nenhuma das outras contemporaneamente, mas sendo somente por todas elas influenciado.
+
+    \subsubsection{Teste de Johansen}
+
+    Os testes de Johansen aplicados ao modelo VECM de ordem 2 suportam a evidência de uma relação de co-integração no sistema, como pode ser visto nas tabelas \autoref{johansen_max_eig} e \autoref{johansen_trace}.
+
+ \begin{table}[hbt]
+     \begin{subtable}{.5\linewidth}
+         \IBGEtab{\caption{Teste de Johansen de máximo autovalor}\label{johansen_max_eig}}{%
+             \begin{tabular}{cccc}
+                 \midrule
+                 r\_0 & r\_1 & Estatística de teste & Valor Crítico \\
+                 \midrule
+                 0 &             1 &                   48.51 &                   27.59  \\
+                 1 &             2 &                   14.62 &                   21.13  \\
+                 \midrule
+             \end{tabular}
+             }{\nota{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r = r_0 + 1 $}}
+     \end{subtable}%
+     \begin{subtable}{.5\linewidth}
+         \IBGEtab{\caption{Teste de Johansen de traço}\label{johansen_trace}}{%
+             \begin{tabular}{cccc}
+                 \midrule
+                 r\_0 & r\_1 & Estatística de teste & Valor Crítico \\
+                 \midrule
+                 0 &             4 &                   69.12 &                   47.85  \\
+                 1 &             4 &                   20.61 &                   29.80  \\
+                 \midrule
+             \end{tabular}
+             }{\nota{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r_0 < r < 4 $}}
+     \end{subtable}%
+ \end{table}
+
+    Nas duas, rejeita-se a hipótese nula de que não há qualquer relação de co-integração, para, em seguida, ser feito o teste sob a hipótese nula de que há uma relação de co-integração, e, não sendo possível rejeitá-la, concluímos que há uma relação de co-integração.
+
+    Os coeficientes estimados do vetor co-integrante e da \textit{loading matrix} podem ser vistos na \autoref{resultados_coint}. 
+    
+    \begin{table}[!hbt]
+        \IBGEtab{\caption{Coeficientes estimados da relação de longo prazo}\label{resultados_coint}}{%
+            \begin{tabular}{llcccccc}
+                \centering
+                &                     & Coeficiente          & Desvio Padrão    & Z          & P$> |$z$|$           & [0.025          & 0.975]  \\
                 \midrule
-                 & \multicolumn{8}{c}{Variável dependente} \\
-                \cline{2-9}
-                 & \multicolumn{2}{c}{Spread} & \multicolumn{2}{c}{Selic} & \multicolumn{2}{c}{ibc} & \multicolumn{2}{c}{Inad} \\
-                 & F & Prob & F & Prob & F & Prob & F & Prob \\
+                spread    & $ \hat{\alpha_1}  $        &      -0.0764         &        0.031     &    -2.463  &         0.014        &       -0.137    &       -0.016     \\
+                selic     & $ \hat{\alpha_2}  $        &      -0.0302         &        0.035     &    -0.863  &         0.388        &       -0.099    &        0.038     \\
+                ibc       & $ \hat{\alpha_3}  $        &      -0.0362         &        0.014     &    -2.518  &         0.012        &       -0.064    &       -0.008     \\
+                inad      & $ \hat{\alpha_4}  $        &      -0.1603         &        0.026     &    -6.182  &         0.000        &       -0.211    &       -0.109     \\
                 \midrule
-                % corpo
+                spread   & $ \hat{\beta_1}  $         &       1.0000         &            0     &         0  &         0.000        &        1.000    &        1.000     \\
+                selic    & $ \hat{\beta_2}  $         &      -0.4674         &        0.040     &   -11.783  &         0.000        &       -0.545    &       -0.390     \\
+                ibc      & $ \hat{\beta_3}  $         &       5.2031         &        0.228     &    22.773  &         0.000        &        4.755    &        5.651     \\
+                inad     & $ \hat{\beta_4}  $         &       0.5153         &        0.083     &     6.185  &         0.000        &        0.352    &        0.679     \\
                 \midrule
             \end{tabular}
             }{}
     \end{table}
 
-    \subsubsection{Posto de co-integração}
+    As estimativas são muito similares às que vimos na \autoref{coint_reg}, exceto pelo agora significativo coeficiente da inadimplência, implicando que um aumento de 1\% na inadimplência diminuiria o spread em 0.51\%, em média, o que é inesperado e provavelmente denuncia um viés de variável omitida. De modo similar, um aumento de 1\% na selic aumentaria o spread em 0.46\% e um aumento de 1\% no ibc faria diminuir o spread em 5.2\%.
 
-    \subsubsection{Estimação}
-
-    \subsubsection{Análise dos resíduos}
+    Ainda de acordo com esses resultados, as equações que mais se auto-corrigem aos desvios em relação ao equilíbrio são, em ordem, a da inadimplência, spread, ibc e selic, apesar do coeficiente da última não ser significativamente diferente de 0.
 
     \subsubsection{Funções de Impulso-Resposta}
+
+    Neste capítulo serão interpretados os resultados da estimação com base nas funções de resposta da variável spread a um impulso nas diferentes variáveis do sistema. Os gráficos para as funções como um todo podem ser encontrados no anexo.
+
+    Na \autoref{irf_spread} estão os gráficos da função de impulso-resposta com período que se estendem até 24 meses.
     
+    \begin{figure}[h!bt]
+        \caption{Função de impulso-resposta (spread)}
+        \begin{subfigure}[t]{.5\linewidth}
+            \includegraphics[width = \textwidth, scale=1]{irf/spread_spread.pdf}
+            \caption{Impulso: spread}
+        \end{subfigure}
+        \begin{subfigure}[t]{.5\linewidth}
+            \includegraphics[width = \textwidth, scale=1]{irf/spread_selic.pdf}
+            \caption{Impulso: selic}
+        \end{subfigure}
+        \begin{subfigure}[t]{.5\linewidth}
+            \includegraphics[width = \textwidth, scale=1]{irf/spread_inad.pdf}
+            \caption{Impulso: inad}
+        \end{subfigure}
+        \begin{subfigure}[t]{.5\linewidth}
+            \includegraphics[width = \textwidth, scale=1]{irf/spread_ibc.pdf}
+            \caption{Impulso: ibc}
+        \end{subfigure}
+        \label{irf_spread}
+        \legend{Fonte: Elaboração própria, com base no pacote statsmodels.}
+    \end{figure}
+
+    Nela podemos constatar que, pela estimação, um impulso na taxa básica de juros causa um aumento persistente no spread, que só vem se estabilizar em mais ou menos 2 anos. E ainda que um impulso na atividade econômica diminuiria o spread com alguns meses de defasagem, sendo o sinal insignificante para período mais longos. Já um impulso na inadimplência teria o efeito de diminuir o spread, o que é inesperado e provavelmente se deve a um viés de variável omitida ou pelos resíduos não serem ortogonais.
+
+    A seguir, serão mostradas as funções de resposta ao impulso ortogonal, com base na ordenação já mencionada: selic, inad, ibc e spread.
+
+    \begin{figure}[h!bt]
+        \label{irf_spread_ortogonal}
+        \caption{Função de impulso-resposta ortogonal (spread)}
+        \begin{subfigure}[t]{.5\linewidth}
+            \includegraphics[width = \textwidth, scale=1]{irf/orth_spread_spread.pdf}
+            \caption{Impulso: spread}
+        \end{subfigure}
+        \begin{subfigure}[t]{.5\linewidth}
+            \includegraphics[width = \textwidth, scale=1]{irf/orth_spread_selic.pdf}
+            \caption{Impulso: selic}
+        \end{subfigure}
+        \begin{subfigure}[t]{.5\linewidth}
+            \includegraphics[width = \textwidth, scale=1]{irf/orth_spread_inad.pdf}
+            \caption{Impulso: inad}
+        \end{subfigure}
+        \begin{subfigure}[t]{.5\linewidth}
+            \includegraphics[width = \textwidth, scale=1]{irf/orth_spread_ibc.pdf}
+            \caption{Impulso: ibc}
+        \end{subfigure}
+    \end{figure}
+
+
+
+
 
 \newpage
 \printbibliography
