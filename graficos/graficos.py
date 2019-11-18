@@ -1,43 +1,42 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from matplotlib.ticker import FuncFormatter
 
+# subplots de todas as séries como usadas no modelo
 series = (
     pd.read_csv("../dados/series_log.csv", parse_dates=[0])
     .set_index("date")
-    .loc[:, ["spread", "selic", "inad", "pib_mensal", "ibc", "igp"]]
+    .loc[:, ["spread", "selic", "inad", "ibc", "igp"]]
     .dropna()
 )
 
-fig, axes = plt.subplots(3, 2)
-for ax, serie in zip(axes.flat, series):
-    ax.plot(series[serie], color="black", label=serie)
-    ax.set_xlabel("")
+axes = series.plot(subplots=True, layout=(3, 2), figsize=(9, 7), color="black", linewidth=1)
+for ax in axes.flat:
     ax.legend(loc="upper left", fontsize="small")
-    ax.xaxis.set_minor_locator(mdates.MonthLocator())
-    ax.set_xlim(min(series.index), max(series.index))
-fig.autofmt_xdate()
-fig.tight_layout()
-plt.savefig("series_modelo.pdf", figsize=(8, 8))
+    ax.set_xlabel("")
+plt.gcf().tight_layout()
+plt.gcf().savefig("../graficos/series_modelo.pdf", dpi=300)
 
+# graficos diferente para cada serie em nível
 series_nivel = (
     pd.read_csv("../dados/series.csv", parse_dates=[0])
     .set_index("date")
-    .loc[:, ["spread", "selic", "inad", "pib_mensal", "ibc", "igp"]]
+    .loc[:, ["spread", "selic", "inad", "pib_mensal", "ibc", "igp", "ihh"]]
     .dropna()
 )
 
 for serie in series_nivel:
-    fig, ax = plt.subplots()
-    ax.plot(series[serie], label=serie, color="black")
+    fig, ax = plt.subplots(figsize=(7, 3))
+    ax.plot(series_nivel[serie], label=serie, color="black", linewidth=1)
     ax.xaxis.set_minor_locator(mdates.MonthLocator())
-    ax.set_xlim(min(series.index), max(series.index))
-    if serie == "spread":
-        ax.set_yticklabels(["{:.1%}".format(value / 10) for value in ax.get_yticks()])
-    elif serie == "selic":
-        ax.set_yticklabels(["{:.0%}".format(value) for value in ax.get_yticks()])
+    ax.set_xlim(min(series_nivel.index), max(series_nivel.index))
+    if serie in ["spread", "selic"]:
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda y, _: '{:.0%}'.format(y / 100)))
+    if serie in ["inad"]:
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda y, _: '{:.1%}'.format(y / 100)))
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
     fig.autofmt_xdate()
     fig.tight_layout()
-    plt.savefig(serie + ".pdf", figsize=(8, 3))
-
-
+    fig.savefig(serie + ".pdf", clear=True, dpi=300)
