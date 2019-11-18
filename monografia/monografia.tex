@@ -21,10 +21,13 @@
 \usepackage[brazil]{babel}      % pacote multilinguagem
 \usepackage{fancyhdr}           % cabeçalhos etc.
 \usepackage{array}
+\usepackage{longtable}
 \usepackage{url}
 \urlstyle{same}
+\usepackage{gensymb}
+\usepackage{multirow}
 % \usepackage[alf]{abntex2cite}   % citações abnt
-\usepackage[backend=biber, style=abnt, justify]{biblatex}
+\usepackage[backend=biber, style=abnt, justify, giveninits, uniquename=false]{biblatex}
 \addbibresource{../bibliografia.bib}
 
 % cabeçalho
@@ -34,7 +37,7 @@
 
 \pretextual
 \autor{Phelipe Teles da Silva}
-\titulo{Determinantes macroeconômicos do spread bancário brasileiro: um modelo de correção de erros (2011-2019)}
+\titulo{Determinantes macroeconômicos do spread bancário brasileiro: uma abordagem econométrica (2011-2019)}
 \data{2019}
 \instituicao{Universidade Federal Rural do Rio de Janeiro}
 \local{Seropédica}
@@ -113,8 +116,6 @@
 
 \imprimirfolhaderosto
 
-% TODO: inserir aqui folha de aprovação
-
 % insere o sumario automático
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
@@ -129,7 +130,7 @@
 
 \section{Introdução}
 
-    O spread bancário tem sido de particular interesse para pesquisadores no Brasil, devido à peculiaridade de ser um dos maiores do mundo, o que pode ser visualizado na \autoref{spreadal}. Nela, podemos ver os maiores spreads bancários da América Latina, no que se destaca a liderança do Brasil por uma larga margem.
+    O spread bancário tem sido de particular interesse para pesquisadores no Brasil, devido à peculiaridade de ser um dos maiores do mundo, como ilustrado pela \autoref{spreadal}, em que se pode ver a liderança do Brasil quando o assunto é spread bancário na América Latina.
 
     \begin{figure}[h]
         \centering
@@ -143,111 +144,9 @@
 
     Desde então, uma das principais razões que se atribui a isso é a política monetária, conduzida sob o Regime de Metas de Inflação (RMI) desde 1999, de manter a níveis altos a taxa básica de juros com o objetivo de controlar a inflação, porque ela indexa parte dos títulos da dívida pública brasileira, o que torna a compra de títulos públicos mais atraente que o crédito, uma aplicação naturalmente mais arriscada e menos líquida \cite[p.~7]{manhica12}.
     
-    Mais recentemente, o debate foi reanimado devido à persistente queda da taxa Selic, trazendo consigo a expectativa de queda também do spread. Embora essa queda tenha mesmo se efetivado, seu ritmo foi tido como insatisfatório pelas autoridades \cite{valor1}. Há um elenco de fatores que podem ajudar a explicar isso, de variáveis micro, como a concorrência, assimetrias de informação sobre os tomadores de crédito e capacidade de recuperação de garantias\footnote{Ver \cite[p.~13]{reb2018}.}, a macroeconômicas, como a inadimplência e concentração bancária\footnote{Ver \cite{valor2}}.
+    Mais recentemente, o debate foi reanimado devido à persistente queda da taxa Selic, trazendo consigo de novo a expectativa de queda do spread. Embora essa queda tenha mesmo se efetivado, seu ritmo foi tido como insatisfatório pelas autoridades \cite{valor1}. Há um elenco de fatores que podem ajudar a explicar isso, de variáveis micro, como a concorrência, assimetrias de informação sobre os tomadores de crédito e capacidade de recuperação de garantias\footnote{Ver \cite[p.~13]{reb2018}.}, a macroeconômicas, como a inadimplência e  a atividade econômica \footnote{Ver \cite{valor2}}.
     
-    Em um cenário de incerteza macroeconômica, é interessante que se investigue os determinantes macroeconômicos do spread bancário, a fim de, com um melhor entendimento do caso brasileiro, contribuir para a efetividade das políticas de redução do spread, o que se apresenta ainda mais importante na atual situação de estagnação econômica, já que um spread mais baixo poderia ajudar na retomada, ao facilitar o acesso ao crédito dos agentes econômicos e, portanto, a realização de investimentos \cite[p.~8]{manhica12} além de, de modo geral, significar um sistema financeiro mais desenvolvido, mais eficiente em seu papel da intermediação financeira.
-
-\section{Visualização e análise descritiva das variáveis}
-
-    Neste capítulo serão apresentadas as relações teóricas entre a variável dependente e as variáveis independentes incluídas no modelo, assim como a evolução histórica das séries, que cobrem o período de março de 2011 até outubro de 2019.
-
-    Começaremos com o spread bancário. Trata-se, mais especificamente, da série 20786 do Sistema Gerenciador de Séries Temporais (SGS) do Banco Central do Brasil, intitulada "Spread médio das operações de crédito com recursos livres - Total", sendo a diferença, em pontos percentuais, entre a taxa média de empréstimo e de captação no mês. Por total, entende-se que ela aglutina operações de pessoas físicas e jurídicas, e por recursos livres, que exclui operações envolvendo taxas regulamentadas, lastreadas em recursos governamentais e afins.
-
-    \begin{figure}[h]
-        \centering
-        \caption{Spread médio das operações de crédito com recursos livres - Total}
-        \includegraphics[width=\textwidth, scale=0.75]{spread.pdf}
-        \legend{Fonte: série 20786 do SGS\@. Elaboração própria}
-        \label{spread}
-    \end{figure}
-
-    Na literatura, é o que se conhece por spread \textit{ex-ante}, porque é calculado com base não no resultado financeiro efetivo dos bancos, mas nas taxas que eles estabelecem, ou seja, no que eles esperam ganhar. Por isso, essa decisão é consideravelmente influenciada por suas expectativas em relação à economia, sendo portanto mais sensível a mudanças macroeconômicas e ao risco percebido \cite[p.~226]{leal07}. Em contraste, o spread \textit{ex-post} é calculado com base na receita e despesa efetiva advinda da atividade de intermediação financeira \cite[p.~2]{almeida15}. 
-    
-    Na \autoref{spread}, podemos ver o aumento do spread que ocorreu a partir de 2014, após uma queda que se iniciou por volta de 2012 e que corresponde às políticas do primeiro governo de Dilma Rousseff com o intuito de reduzir o spread via aumento do portfólio de crédito dos bancos públicos, forçando uma queda pela competição das taxas de juros de empréstimos \cite[p.~1]{almeida15}. Com a deterioração das condições macroeconômicas a partir de 2014, o spread entra em escalada, seguida por um declínio iniciado em 2017 por conta da, entre outras coisas, queda persistente da taxa Selic a partir de então.
-
-    Este movimento da taxa Selic pode ser visto na \autoref{selic}. 2. A contraposição das duas séries sugere de imediato que elas são positivamente correlacionadas. De fato, é isso o que naturalmente se argumenta, porque uma taxa básica de juros mais elevada implica maior custo de oportunidade para a atividade de crédito, uma vez que aumenta a rentabilidade dos títulos públicos, tornando mais atrativa uma aplicação que já tem a vantagem de ser mais líquida e menos arriscada \cite[p.~372]{oliveira2007}. Por esta razão, é esperado um coeficiente positivo para a taxa básica de juros, pelo efeito custo de oportunidade. Na literatura empírica, não há divergências para essa estimativa, tendo a maior parte dos estudos encontrado a relação esperada \cite[p.~233-234]{leal07}.
-
-    \begin{figure}[h]
-        \centering
-        \caption{Taxa de juros - Selic acumulada no mês anualizada}
-        \includegraphics[width = \textwidth, scale=0.75]{selic.pdf}
-        \legend{Fonte: série 4189 do SGS\@. Elaboração própria}
-        \label{selic}
-    \end{figure}
-
-    Um padrão parecido pode ser observado na série da Inadimplência, na \autoref{inad}, que passou a cair consideravelmente em 2012 para depois aumentar a partir de 2014 e 2015, com o advento da crise econômica. Não é surpreendente que haja aqui uma correlação com a Selic, visto que um aumento da taxa básica de juros eleva o custo de captação, que é então repassado para o juros final, prejudicando a capacidade de pagamento \cite[p.~390]{oliveira2007}. A inclusão desta variável, portanto, serve para capturar o efeito do risco de crédito sobre o spread, \textit{ceteris paribus}.
-
-    \begin{figure}[t]
-        \centering
-        \caption{Inadimplência da carteira de crédito - Total}
-        \includegraphics[width = \textwidth, scale=0.75]{inad.pdf}
-        \legend{Fonte: série 21085 do SGS\@. Elaboração própria}
-        \label{inad}
-    \end{figure}
-
-    A série de inflação escolhida foi a taxa anualizada do Índice Geral de Preços (IGP-DI), por ter apresentado resultados mais consistentes que o IPCA \cite[p.~66]{rocha09} e por ser mais abrangente \cite[p.~21]{afanasieff02}, tendo como desvantagem maior volatilidade e por não ser a oficialmente utilizada pelo regime de metas de inflação \cite[23]{chaim}. Ela pode ser visualizada na \autoref{igp}.
-    
-\begin{figure}[h]
-  \centering
-    \caption{Índice Geral de Preços (IGP-DI)}
-      \includegraphics[width = \textwidth, scale=0.75]{igp.pdf}
-      \legend{Fonte: série "PAN12\_IGPDIG12" do IPEADATA\@. Elaboração própria}
-      \label{igp}
-\end{figure}
-    
-    A inclusão dessa variável se faz necessária porque sua variação pode influenciar a taxa básica de juros e a política de juros dos bancos, portanto o spread \cite[p.~14]{bignotto06}. Além disso, pode aumentar o spread por deteriorar as expectativas dos agentes ou por fazê-los proteger sua margem nominal de intermediação financeira. O que se espera obter na estimação é um coeficiente positivo, indicando uma relação direta entre a inflação e o spread, porque em um ambiente econômico não sujeito à instabilidade dos preços os bancos não precisariam se proteger dela via spread. 
-    
-    Se por um lado o efeito teórico esperado é claro, o que sairá na estimação é incerto, porque na literatura varia desde insignificante, como em \textcite{oreiro}, a um sinal inesperado e significante, como em \textcite{bignotto06} e \textcite{afanasieff02}\footnote{Como possível causa, os autores indicam a apropriação de receita de senhoriagem com o spread \cite[p.~25]{afanasieff02}}.
-    
-    É comum na literatura incluir alguma variável para capturar a influência da atividade econômica sobre o spread. Aqui será utilizado o Índice de Atividade Econômica do Banco Central (IBC-Br), dessazonalizado e com ano-base em 2002 (\autoref{ibc}), usado para ajudar a antecipar o valor mensal do PIB como mensurado pelo IBGE.
-
-    \begin{figure}[!hbt]
-        \centering
-        \caption{Índice de Atividade Econômica do Banco Central (IBC-Br) - Dessazonalizado}
-        \includegraphics[width = \textwidth, scale=0.75]{ibc.pdf}
-        \legend{Fonte: série SGS12\_IBCBRDESSAZ12 do IPEADATA\@. Elaboração própria}
-        \label{ibc}
-    \end{figure}
-
-    Em relação ao seu efeito sobre o spread, o mais correto é considerá-lo ambíguo. Porque, por um lado, uma maior atividade econômica pode afetar positivamente o spread ao aumentar a taxa de empréstimo via aumento da demanda por crédito, o que dependerá ainda do poder de mercado dos maiores bancos \textcite[626]{oreiro}, e, por outro, pode diminuir o spread ao melhorar as expectativas dos bancos quanto ao risco de crédito \textcite[24]{chaim}. Outro possível efeito é por meio da inadimplência, ou seja, pelo efeito de uma menor (maior) atividade econômica aumentar (reduzir) a inadimplência, fazendo com que o spread aumente (diminua).
-
-    Foi ainda considerada a inclusão do Índice de Herfindahl-Hirschmann (IHH) para capturar o efeito da concentração estrutural no Sistema Financeiro Nacional sobre o spread. Como se sabe, este é um indicador do nível de concentração econômica em um mercado, obtido ao somar o quadrado das participações de cada instituição financeira no mercado considerado, que no nosso caso é o mercado de crédito. O BCB considera um IHH entre 0 e 1000 indicativo de baixa concentração, acima de 1000 e menor que 1800, de moderada concentração e acima de 1800 de alta concentração.
-    
-    No entanto, o índice é divulgado somente trimestralmente e, além disso, termina no ano de 2017 como foi divulgado no Anexo Estatístico do Relatório de Estabilidade Financeira do Banco Central de abril de 2018, como pode ser visto na \autoref{ihh}. Daí se vê que a série apresenta restrições para o tamanho de amostra além de dados faltantes, o que levou à decisão de não incluí-la na estimação, apesar do interesse teórico.
-
-    \begin{figure}[h]
-        \centering
-        \caption{Índice de Herfindahl-Hirschmann - IHH}
-        \includegraphics[width = \textwidth, scale=0.75]{ihh.pdf}
-        \legend{Fonte: BCB\@. Elaboração própria}
-        \label{ihh}
-    \end{figure}
-
-    Espera-se, contudo, que isso não signifique incorrer em problemas de viés de variável omitida. Apesar de não ser possível prever ao certo o sinal do coeficiente estimado para esta variável, acredita-se que o sinal esperado possa ser até mesmo não-significante, com o argumento de que seria a concorrência a variável relevante para explicar o spread, visto que há alta concentração bancária mesmo em países com um sistema financeiro eficiente e bem desenvolvido. Mas também não se descarta a possiblidade do sinal positivo, indicando influência do poder de mercado dos bancos, e até mesmo um sinal negativo, com os investimentos e ganhos de escala associados à concentração aumentando a eficiência da atividade de intermediação, o que puxa o spread para baixo \cite{reb2017}. 
-
-    Da \autoref{ihh} pode-se concluir que houve um aumento na concentração bancária durante o período. Em contraposição a isso, no \textcite[11]{reb2017} é apontando um aumento da concorrência bancária no mesmo período, o que explicita que nem sempre essas variáveis andam juntas.
-
-    Por fim, a \autoref{tab1} sumariza o que foi aqui discutido, listando cada variável e seus sinais esperados, além de algumas estatísticas descritivas.
-
-    \begin{table}[h]
-        \IBGEtab{\caption{Tabela de estatísticas descritivas}\label{tab1}}
-        {%
-            \begin{tabular}
-                {@{\extracolsep{5pt}}lccccc}
-                \midrule
-                Variável              & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Desvio Padrão} & \multicolumn{1}{c}{Mín.} & \multicolumn{1}{c}{Máx.} & \multicolumn{1}{c}{Sinal esperado} \\
-                \midrule
-                Spread                & 29,33                     & 6,51                              & 20,89                    & 42,34                    &  \\
-                Selic                 & 10,96                     & 2,37                              & 7,00                     & 14,15                    & + \\
-                Inadimplência         & 5,09                      & 0,47                              & 4,31                     & 5,94                     & + \\
-                IGP-DI                & 5,74                      & 7,33                              & $-$13,93                 & 23,26                    & + \\
-                Atividade Econômica   & $-$2,28                   & 4,86                              & $-$13,39                 & 9,70                     & +/- \\
-                IHH                   & 1.566,30                  & 133,69                            & 1.357                    & 1.751                    & + \\
-                \midrule
-            \end{tabular}
-        }
-        {\fonte{Elaboração própria.}\nota{Em sinal esperado, ``+'' indica um coeficiente positivo, ``-'', um negativo.}}
-    \end{table}
+    Esse trabalho se propõe a investigar o impacto de indicadores macroeconômicos sobre o spread, tendo como objetivo contribuir ao debate brasileiro e para ajudar a pensar políticas econômicas que ajudem a reduzi-lo, o que se impõe como ainda mais importante no atual cenário de estagnação econômica, já que sua redução facilitaria o acesso ao crédito dos agentes econômicos e, por fim, a realização de investimento, além de significar em geral um sistema financeiro mais desenvolvido e eficiente \cite[p.~8]{manhica12}.
 
 
 \section{Revisão de Literatura}
@@ -309,7 +208,7 @@
 
 \subsection{Revisão da literatura empírica}
 
-    Esta seção procura revisar os estudos empíricos sobre os determinantes do spread bancário calculado com base nas taxas de juros prefixadas cobradas nas modalidades de crédito com recursos livres e na taxa de captação de CDB de trinta dias.
+    Esta seção procura discutir os estudos empíricos sobre os determinantes do spread bancário \textit{ex-ante} brasileiro.
 
     A estabilidade macroeconômica e as políticas governamentais que se seguiram ao Plano Real possibilitaram uma queda significativa do spread bancário, porém somente até um nível consideravelmente alto para os padrões internacionais. Somando-se a isso a reestruturação bancária observada no período, \textcite{afanasieff02} notam que além da grande variação temporal do spread, há também uma grande variação interbancária. É nesse sentido que os autores justificam o emprego de técnicas de dados em painel, com o objetivo de capturar essas características do mercado bancário brasileiro para a decomposição dos principais determinantes do spread em variáveis micro e macroeconômicas.
 
@@ -348,6 +247,136 @@
     Nele estão inclusas variáveis como a Selic (nível e volatilidade\footnote{Cuja proxy é o \textit{spread over treasury}, a diferença entre as taxas que remuneram os títulos da dívida pública brasileira e estado-unidense, com maturidade de seis meses}), dois indicadores para a inflação, o IPCA e o IGP, quatro indicadores para a atividade econômica\footcite[20]{chaim} e a taxa de câmbio. Foram estimados oito modelos vetoriais de correção de erros distintos, um para cada combinação das diferentes medidas de variável de inflação e atividade econômica, a fim de testar a robusteza dos resultados, isto é, se os sinais são invariantes às medidas. 
 
     Nas funções de impulso-resposta, foi consistentemente encontrado que um impulso no nível e na volatilidade da Selic aumenta persistentemente o spread. Já um impulso na taxa de câmbio ocasiona um aumento temporário no spread, talvez porque os bancos tenham que reestruturar seu portfólio de crédito, o autor menciona. Um impulso na inflação é seguido de um choque positivo, um sinal de que os bancos tentar sua margem de intermediação quando a taxa de juros real cai. Por fim, foi encontrado que um choque na atividade econômica impacta negativamente o spread a princípio, possivelmente por indicar menor risco de crédito, mas depois passa a impactar positivamente, talvez pelo aumento na demanda por crédito. Para esta variável, no entanto, os resultados não foram tão consistentes através dos modelos, exceto para as medidas de hiato do produto, cuja resposta ao impulso se mostrou majoritariamente positiva \cite[32-38]{chaim}.
+
+    Na \autoref{resumo} foi feito um resumo da discussão acima.
+
+    \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+    \newcolumntype{L}{>{\centering\arraybackslash}m{5cm}}
+
+    \begin{table}[ht]
+        \IBGEtab{\caption{Resumo da revisão da literatura empírica}\label{resumo}}
+        {%
+            \begin{tabular}{llm{7cm}}
+                \midrule
+                Estudo & Período & Resultados \\
+                \midrule
+                \textcite{afanasieff02} & fev/1997 -- nov/2000 & C. operacional (+), Captação sem custo de juros (+), Receita de serviços (+), Captação com custo de juros (0), Liquidez (0), N\degree\ de agências (0), Alavancagem (0), Patrimônio líquido (0), Banco estrangeiro (-), IGP (-), Crescimento do produto industrial (-), Selic (+), Volatilidade Selic (-) \\
+                & & \\
+                \textcite{nakane02} & ago/1994 -- set/2001 & Selic(+), \textit{Spread over treasury} (+), Impostos indiretos (+), Reservas compulsórias (0), C. administrativo (+) \\
+                & & \\
+                \textcite{bignotto06} & mar/2001 -- mar/2004 & IPCA (-), Selic (+), Despesas tributárias (0), C. Administrativos (+), Risco de juros (+), Risco de crédito (+), Parcela de mercado (-), Liquidez (+), Receita serviços (+), Compulsório (+), Ativo total (+)  \\
+                & & \\
+                \textcite{oreiro} & jan/1995 -- dez/2003 & IPCA(0), Produto Industrial (+), Selic (+), Volatilidade Selic (+) \\
+                & & \\
+                \textcite{chaim} & jan/2004 -- dez/2012 & Selic (+), \textit{Spread over treasury} (+), Taxa de câmbio (+), Inflação (+), Produção Industrial (+) \\
+                & & \\
+                \midrule
+            \end{tabular}
+            }{\fonte{Adaptado de \textcite{leal07}.}\nota{Coeficiente positivo (+), negativo (-) e insignificante (0).}}
+    \end{table}
+
+\section{Visualização e análise descritiva das variáveis}
+
+    Neste capítulo serão discutidas as relações teóricas entre o spread bancário e os determinantes que foram considerados durante a pesquisa, assim como a evolução histórica das séries, que cobrem o período de março de 2011 até outubro de 2019.
+
+    Começaremos com o spread bancário. Trata-se, mais especificamente, da série 20786 do Sistema Gerenciador de Séries Temporais (SGS) do Banco Central do Brasil, intitulada "Spread médio das operações de crédito com recursos livres - Total", sendo a diferença, em pontos percentuais, entre a taxa média de empréstimo e de captação no mês. Por total, entende-se que ela aglutina operações de pessoas físicas e jurídicas, e, por recursos livres, que exclui operações envolvendo taxas regulamentadas, lastreadas em recursos governamentais etc.
+
+    \begin{figure}[h]
+        \centering
+        \caption{Spread médio das operações de crédito com recursos livres - Total}
+        \includegraphics[width=\textwidth, scale=0.75]{spread.pdf}
+        \legend{Fonte: série 20786 do SGS\@. Elaboração própria}
+        \label{spread}
+    \end{figure}
+
+    Na literatura, é o que se conhece por spread \textit{ex-ante}, por ser calculado com base nas taxas estabelecidas pelos bancos, no que eles esperam ganhar, e não em seu resultado financeiro efetivo. Por isso, essa medida é consideravelmente influenciada pelas expectativas dos intermediários financeiros em relação à economia, sendo portanto mais sensível a mudanças macroeconômicas e ao risco percebido \cite[p.~226]{leal07}. Em contraste, o spread \textit{ex-post} é calculado com base na receita e despesa efetiva advinda da atividade de intermediação financeira, normalmente denominado margem financeira líquida (\textit{net interest margin}) \cite[p.~2]{almeida15}. 
+    
+    Na \autoref{spread}, o spread passou a aumentar a partir de 2014, após uma queda que se iniciou por volta de 2012 e que corresponde às políticas do primeiro governo de Dilma Rousseff com o intuito de reduzir o spread via aumento do portfólio de crédito dos bancos públicos, forçando uma queda pela competição das taxas de juros de empréstimos \cite[p.~1]{almeida15}. Com a deterioração das condições macroeconômicas a partir de 2014, o spread entra em escalada, seguida por um declínio substantivo iniciado em 2017 por conta da, entre outras coisas, queda persistente da taxa Selic a partir de então.
+
+    Este movimento da taxa Selic pode ser visto na \autoref{selic}. 2. A contraposição das duas séries sugere de imediato que elas são positivamente correlacionadas. De fato, é isso o que naturalmente se argumenta, porque uma taxa básica de juros mais elevada implica maior custo de oportunidade para a atividade de crédito, uma vez que aumenta a rentabilidade dos títulos públicos, tornando mais atrativa uma aplicação que já tem a vantagem de ser mais líquida e menos arriscada \cite[p.~372]{oliveira2007}. Por esta razão, é esperado um coeficiente positivo para a taxa básica de juros, pelo chamado efeito custo de oportunidade. Na literatura empírica, não há divergências para essa estimativa, tendo a maior parte dos estudos encontrado a relação esperada \cite[p.~233-234]{leal07}.
+
+    \begin{figure}[h]
+        \centering
+        \caption{Taxa de juros - Selic acumulada no mês anualizada}
+        \includegraphics[width = \textwidth, scale=0.75]{selic.pdf}
+        \legend{Fonte: série 4189 do SGS\@. Elaboração própria}
+        \label{selic}
+    \end{figure}
+
+    Um padrão parecido pode ser observado na série da Inadimplência, na \autoref{inad}, que passou a cair consideravelmente em 2012 para depois aumentar a partir de 2014 e 2015, com o advento da crise econômica. Não é surpreendente que haja aqui uma correlação com a Selic, visto que um aumento da taxa básica de juros eleva o custo de captação, que é então repassado para o juros final, prejudicando a capacidade de pagamento \cite[p.~390]{oliveira2007}. A inclusão desta variável, portanto, serve para capturar o efeito do risco de crédito sobre o spread, \textit{ceteris paribus}.
+
+    \begin{figure}[htb]
+        \centering
+        \caption{Inadimplência da carteira de crédito - Total}
+        \includegraphics[width = \textwidth, scale=0.75]{inad.pdf}
+        \legend{Fonte: série 21085 do SGS\@. Elaboração própria}
+        \label{inad}
+    \end{figure}
+
+    A série de inflação (\autoref{igp}) escolhida foi a taxa anualizada do Índice Geral de Preços (IGP-DI), por ter apresentado resultados mais consistentes que o IPCA \cite[p.~66]{rocha09} e por ser mais abrangente \cite[p.~21]{afanasieff02}, tendo como desvantagem maior volatilidade e por não ser a oficialmente utilizada pelo regime de metas de inflação \cite[23]{chaim}.
+
+\begin{figure}[h]
+  \centering
+    \caption{Índice Geral de Preços (IGP-DI)}
+      \includegraphics[width = \textwidth, scale=0.75]{igp.pdf}
+      \legend{Fonte: série "PAN12\_IGPDIG12" do IPEADATA\@. Elaboração própria}
+      \label{igp}
+\end{figure}
+    
+    A inclusão dessa variável se faz necessária porque sua variação pode influenciar a taxa básica de juros e a política de juros dos bancos, portanto o spread \cite[p.~14]{bignotto06}. Além disso, pode aumentar o spread por deteriorar as expectativas dos agentes ou por fazê-los proteger sua margem nominal de intermediação financeira. O que se espera obter na estimação é um coeficiente positivo, indicando uma relação direta entre a inflação e o spread, porque em um ambiente econômico não sujeito à instabilidade dos preços os bancos não precisariam se proteger dela via spread. 
+    
+    Se por um lado o efeito teórico esperado é claro, o que sairá na estimação é incerto, porque na literatura varia desde insignificante, como em \textcite{oreiro}, a um sinal inesperado e significante, como em \textcite{bignotto06} e \textcite{afanasieff02}\footnote{Como possível causa, os autores indicam a apropriação de receita de senhoriagem com o spread \cite[p.~25]{afanasieff02}}.
+    
+    É comum na literatura incluir alguma variável para capturar a influência da atividade econômica sobre o spread. Aqui será utilizado o Índice de Atividade Econômica do Banco Central (IBC-Br), dessazonalizado e com ano-base em 2002 (\autoref{ibc}), usado para ajudar a antecipar o valor mensal do PIB como mensurado pelo IBGE.
+
+    \begin{figure}[!hbt]
+        \centering
+        \caption{Índice de Atividade Econômica do Banco Central (IBC-Br) - Dessazonalizado}
+        \includegraphics[width = \textwidth, scale=0.75]{ibc.pdf}
+        \legend{Fonte: série SGS12\_IBCBRDESSAZ12 do IPEADATA\@. Elaboração própria}
+        \label{ibc}
+    \end{figure}
+
+    Em relação ao seu efeito sobre o spread, o mais correto é considerá-lo ambíguo. Porque, por um lado, uma maior atividade econômica pode afetar positivamente o spread ao aumentar a taxa de empréstimo via aumento da demanda por crédito, o que dependerá ainda do poder de mercado dos maiores bancos \textcite[626]{oreiro}, e, por outro, pode diminuir o spread ao melhorar as expectativas dos bancos quanto ao risco de crédito \textcite[24]{chaim}. Outro possível efeito é por meio da inadimplência, ou seja, pelo efeito de uma menor (maior) atividade econômica aumentar (reduzir) a inadimplência, fazendo com que o spread aumente (diminua).
+
+    Foi ainda considerada a inclusão do Índice de Herfindahl-Hirschmann (IHH) para capturar o efeito da concentração estrutural no Sistema Financeiro Nacional sobre o spread. Como se sabe, este é um indicador do nível de concentração econômica em um mercado, obtido ao somar o quadrado das participações de cada instituição financeira no mercado considerado, que no nosso caso é o mercado de crédito. O BCB considera um IHH entre 0 e 1000 indicativo de baixa concentração, acima de 1000 e menor que 1800, de moderada concentração e acima de 1800 de alta concentração.
+    
+    No entanto, o índice é divulgado somente trimestralmente e, além disso, termina no ano de 2017 como foi divulgado no Anexo Estatístico do Relatório de Estabilidade Financeira do Banco Central de abril de 2018, como pode ser visto na \autoref{ihh}. Daí se vê que a série apresenta restrições para o tamanho de amostra além de dados faltantes, o que levou à decisão de não incluí-la na estimação, apesar do interesse teórico.
+
+    \begin{figure}[h]
+        \centering
+        \caption{Índice de Herfindahl-Hirschmann - IHH}
+        \includegraphics[width = \textwidth, scale=0.75]{ihh.pdf}
+        \legend{Fonte: BCB\@. Elaboração própria}
+        \label{ihh}
+    \end{figure}
+
+    Espera-se, contudo, que isso não signifique incorrer em problemas de viés de variável omitida. Apesar de não ser possível prever ao certo o sinal do coeficiente estimado para esta variável, acredita-se que o sinal esperado possa ser até mesmo não-significante, com o argumento de que seria a concorrência a variável relevante para explicar o spread, visto que há alta concentração bancária mesmo em países com um sistema financeiro eficiente e bem desenvolvido. Mas também não se descarta a possiblidade do sinal positivo, indicando influência do poder de mercado dos bancos, e até mesmo um sinal negativo, com os investimentos e ganhos de escala associados à concentração aumentando a eficiência da atividade de intermediação, o que puxa o spread para baixo \cite{reb2017}. 
+
+    Da \autoref{ihh} pode-se concluir que houve um aumento na concentração bancária durante o período. Em contraposição a isso, no \textcite[11]{reb2017} é apontando que houve um aumento da concorrência bancária no mesmo período, deixando claro que nem sempre essas variáveis andam na mesma direção.
+
+    Por fim, a \autoref{tab1} sumariza o que foi aqui discutido, listando cada variável e seus sinais esperados, além de algumas estatísticas descritivas.
+
+    \begin{table}[h]
+        \IBGEtab{\caption{Tabela de estatísticas descritivas}\label{tab1}}
+        {%
+            \begin{tabular}
+                {@{\extracolsep{5pt}}lccccc}
+                \midrule
+                Variável              & \multicolumn{1}{c}{Média} & \multicolumn{1}{c}{Desvio Padrão} & \multicolumn{1}{c}{Mín.} & \multicolumn{1}{c}{Máx.} & \multicolumn{1}{c}{Sinal esperado} \\
+                \midrule
+                Spread                & 29,33                     & 6,51                              & 20,89                    & 42,34                    &  \\
+                Selic                 & 10,96                     & 2,37                              & 7,00                     & 14,15                    & + \\
+                Inadimplência         & 5,09                      & 0,47                              & 4,31                     & 5,94                     & + \\
+                IGP-DI                & 5,74                      & 7,33                              & $-$13,93                 & 23,26                    & + \\
+                Atividade Econômica   & $-$2,28                   & 4,86                              & $-$13,39                 & 9,70                     & +/- \\
+                IHH                   & 1.566,30                  & 133,69                            & 1.357                    & 1.751                    & + \\
+                \midrule
+            \end{tabular}
+        }
+        {\fonte{Elaboração própria.}\nota{Em sinal esperado, ``+'' indica um coeficiente positivo, ``-'', um negativo.}}
+    \end{table}
+
 
 \section{Referencial Metodológico}
 
@@ -533,9 +562,9 @@
         \end{bmatrix}
     \end{equation*}
 
-    Do que se conclui que a resposta do sistema a um impulso na variável $ y_1 $ é simplesmente a primeira coluna da matriz $ A_1^{t} $, ou, mais geralmente, a resposta a um impulso na variável $ y_k $, após $ t $ períodos, é a coluna $ k $ da matriz $ A_1^{t} $, que, deve-se observar, vai se aproximando de zero quando $ i $ tende ao infinito se o VAR(1) é estável, ou seja, a resposta do sistema vai se dissipando com o tempo. Quando ele não é estável, isso não é necessariamente verdade, como no caso do modelo vetorial de correção de erros.
+    Do que se conclui que a resposta do sistema a um impulso na variável $ y_1 $ é simplesmente a primeira coluna da matriz $ A_1^{t} $, ou, mais geralmente, a resposta a um impulso na variável $ y_k $, após $ t $ períodos, é a coluna $ k $ da matriz $ A_1^{t} $, que, deve-se observar, vai se aproximando de zero quando $ i $ tende ao infinito se o VAR(1) é estável, ou seja, a resposta do sistema vai se dissipando com o tempo. Quando não estável, isso não é necessariamente verdade, como no caso do modelo vetorial de correção de erros.
 
-   Um problema dessa interpretação é a possibilidade de duas variáveis distintas serem significativamente correlacionadas, caso em que se recomenda a visualização da função de resposta ao impulso ortogonal, pois, neste caso, um choque não pode ser assumido independente um do outro, sendo provável que seja acompanhado de um choque na variável com que está correlacionado no período $ 0 $. Para resolver isso, faz-se uso da decomposição de Cholesky, que decompõe a matriz de co-variância dos resíduos $ \Sigma_u $ em uma matriz triangular inferior $ P $, tal que $ \Sigma_u = PP^{'} $, de forma a obter resíduos não correlacionados entre si (ortogonais).
+   Um problema dessa interpretação é a possibilidade de duas variáveis distintas serem significativamente correlacionadas, pois, assim, um choque não pode ser assumido independente um do outro, provavelmente sendo acompanhado de um choque na variável com que guarda correlação. Para resolver isso, recorre-se às funções de resposta ao impulso ortogonal, que faz os resíduos não-correlacionados (ortogonais) a partir da decomposição de Cholesky \cite[56-62]{lutkepool}.
 
    Um dos problemas da função de impulso resposta é sua sensibilidade à ordenação das variáveis.
 
@@ -643,31 +672,21 @@
 
    \section{Apresentação dos resultados}
 
-   Neste capítulo serão apresentados os resultados do tratamento das séries temporais e, em seguida, os resultados da estimação dos modelos.
+   Neste capítulo serão apresentados os resultados do tratamento das séries temporais e, em seguida, os da estimação dos modelos. Como determinantes do spread, foram incluídas no modelo final as variáveis taxa básica de juros (selic), inadimplência (inad), atividade econômica (ibc) e inflação (igp)\footnote{A variável de concentração bancária foi excluída do modelo por ter dificultado a eliminação da autocorrelação residual no modelo.}, que se expandem de março de 2011 a setembro de 2019 (\autoref{graficos}).
 
     \begin{figure}[h]
         \centering
         \caption{Séries incluídas no modelo (em log)}
         \includegraphics[width = 0.9\textwidth, scale=1]{series_modelo.pdf}
         \label{graficos}
+        \legend{Fonte: Elaboração própria.}
     \end{figure}
-
-   Como determinantes do spread bancário, foram consideradas as variáveis taxa básica de juros (selic), inadimplência (inad), atividade econômica (ibc) e inflação (igp), como expresso pela equação abaixo:
-
-   \begin{equation}
-       \label{equacao_modelo}
-       \text{spread}_t = \beta_0 + \beta_1 \text{selic}_t + \beta_2 \text{inad}_t + \beta_3 \text{ibc}_t + \beta_4 \text{igp}_t + u_t
-   \end{equation}
-
-   Tratam-se de séries temporais mensais que cobrem o período de março de 2011 a agosto de 2019, somando 102 observações, que podem ser vistas na \autoref{graficos}.
 
    Durante todo o capítulo, faz-se uso extensivo do pacote statsmodels do Python, dos autores \textcite{statsmodels}.
 
    \subsection{Testes de raiz unitária}
    
    Na \autoref{raiz_unitaria} estão compilados os resultados do teste de \textit{Augmented Dickey-Fuller} com o número de defasagens sendo escolhido com base no \textit{Bayesian Information Criterion} (BIC).
-
-    \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
     \begin{table}[ht]
         \IBGEtab{\caption{Teste Augmented Dickey-Fuller de raiz unitária}\label{raiz_unitaria}}
@@ -691,9 +710,7 @@
 
     Nela podemos ver que há forte evidência de estacionariedade para a série igp e de não-estacionariedade para o ibc, em qualquer dos cenários. Há, ainda, evidência de tendência-estacionariedade para o spread. A selic e a inadimplência não foram consideradas estacionárias em qualquer dos cenários.
 
-    A \autoref{pp} apresenta os resultados para o teste de Phillips-Perron, em que somente a variável igp foi diagnosticada como estacionária.
-
-    \begin{table}[ht]
+    \begin{table}[!hbt]
         \IBGEtab{\caption{Teste Phillips-Perron de raiz unitária}\label{pp}}
         {%
             \begin{tabular}{lcccc}
@@ -712,6 +729,8 @@
             } 
             {\fonte{Elaboração própria, com base na função PhillipsPerron do pacote arch do Python.}\nota{$ \text{H}_0 $: raiz unitária. $ \text{H}_a $: estacionária. \newline * Estacionariedade.}}
     \end{table}
+
+    A \autoref{pp} apresenta os resultados para o teste de Phillips-Perron, que diagnosticou somente a variável igp como estacionária.
 
     Por fim, na \autoref{kpss} constam os resultados do teste \textit{Kwiatkowski-Phillips-Schmidt-Shin} (KPSS) de estacionariedade, que se distingue por ter como hipótese nula a estacionariedade ao invés da raiz unitária.
 
@@ -739,17 +758,17 @@
 
     Portanto, a selic e inad foram diagnosticadas como estacionárias somente pelo KPSS\@, sendo provavelmente não-estacionárias. O ibc foi consistentemente diagnosticado como não-estacionário, o mesmo valendo para a estacionariedade do igp.
 
-    Dado estes resultados, é razoável concluir que as variáveis selic, spread, inad e ibc têm raiz unitária. 
+    Dados estes resultados, é razoável concluir que as variáveis selic, spread, inad e ibc têm raiz unitária. 
     
     O próximo passo agora é investigar se há co-integração entre alguma combinação linear das variáveis spread, selic, inad e ibc, ou seja, se há um equilíbrio de longo prazo entre elas.
     
-    Esta é uma hipótese razoável de se fazer, visto possuir um sentido econômico: há uma relação muito próxima entre o spread e a taxa Selic (pelo efeito custo de oportunidade etc.), a inadimplência (efeito custo de crédito) e a atividade econômica (pelo efeito inadimplência, poder de mercado, melhora na percepção de risco etc.).
+    Esta é uma hipótese razoável de se fazer, visto possuir um sentido econômico: há uma relação muito próxima entre o spread e a taxa Selic (pelo efeito custo de oportunidade etc.), a inadimplência (efeito custo de crédito) e a atividade econômica (pelo efeitos inadimplência, poder de mercado, melhora na percepção de risco etc.).
 
     \subsection{Teste de co-integração uni-equacional}
 
     Para isso utilizaremos o teste de Engle-Granger, cujos resultados podem ser vistos na \autoref{coint_resultados}.
 
-    \begin{table}[ht]
+    \begin{table}[hbt]
         \IBGEtab{\caption{Teste de co-integração}\label{coint_resultados}}
         {%
             \begin{tabular}{lccccccc}
@@ -811,9 +830,9 @@
 
     Agora, para observar os efeitos de curto prazo sobre o spread, estimamos o modelo de correção de erros: $ \Delta \textit{spread} = \alpha (\textit{spread} - \hat{\beta_0} - \hat{\beta_1} \textit{selic} -\hat{\beta_2} \textit{inad} + \hat{\beta_3} \textit{igp)}\ +\ \alpha_1 \Delta \textit{selic}\ +\ \alpha_2 \Delta \textit{inad}\ +\ \alpha_3 \Delta \textit{igp} + u_t $.
 
-    A estimação dos coeficientes desta equação são relatados na \autoref{modelo_ecm} abaixo.
+    A estimação dos coeficientes desta equação são relatados na \autoref{modelo_ecm}.
 
-    \begin{table}[!hbt]
+    \begin{table}[hbt]
         \IBGEtab{\caption{Modelo de correção de erros}\label{modelo_ecm}}{%
             \centering
             \label{}
@@ -846,6 +865,7 @@
             }{\nota{* $ p<0.1 $; ** $ p<0.05 $; *** $ p<0.01 $. \newline Entre parênteses: nos coeficientes, o desvio-padrão, nas estatísticas, o p-valor.}}
     \end{table}
 
+
     Eles permitem interpretar que, dentro de um mês, 10\% do spread é corrigido quando em desequilíbrio. Além disso, os efeitos de curto prazo foram tais que 1\% de aumento na selic aumenta o spread em 0.21\% e 1\% de aumento na inadimplência aumenta o spread em 0.52\%, ao passo que o efeito de curto prazo da atividade econômica sobre o spread não foi significante.
 
     Isto sugere que o efeito-inadimplência sobre o spread é melhor explicado pela variável da inadimplência no curto prazo, mas melhor explicado pela atividade econômica no longo prazo.
@@ -854,7 +874,7 @@
 
     \subsection{Modelo vetorial de correção de erros}
 
-    Neste capítulo serão analisados os resultados do modelo de correção de erros multivariado. Primeiro, a etapa pré-estimação, como foram escolhidos o número do defasagem e o posto de co-integração. Por fim, é feita a análise das funções de impulso-resposta e de decomposição da variância.
+    Neste capítulo serão analisados os resultados do modelo de correção de erros multivariado. Primeiro, a etapa pré-estimação, como foram escolhidos o número do defasagem e o posto de co-integração. Por fim, é feita a análise das funções de impulso-resposta.
 
     O modelo estimado tem a seguinte forma:
 
@@ -868,11 +888,11 @@
 
     Antes da estimação, porém, é necessário determinar qual o posto da matriz de co-integração e o número de defasagem $ p $ do modelo. É o que será feito nas duas próximas seções.
 
-    \subsubsection{Seleção da ordem de defasagem}
+    \subsubsection{Seleção do número de defasagem}
 
-    O número de defasagens foi parcimoniosamente escolhido com base no teste de Portmanteau, ou seja, foi escolhido o menor número de defasagem que evidenciasse ausência de autocorrelação. Com este método, chegou-se ao número de 2 defasagens.
+    O número de defasagens foi parcimoniosamente escolhido com base no teste de Portmanteau, ou seja, foi escolhido o modelo de menor ordem que evidenciasse ausência de autocorrelação. Com este método, chegou-se ao número de 2 defasagens.
 
-    O resultado do teste pode ser visto na \autoref{portmanteau}, onde pode-se ver que não há evidência de autocorrelação até o lag 12.
+    O resultado do teste pode ser visto na \autoref{portmanteau}, que mostra não haver autocorrelação até o lag 12.
 
     \begin{table}[!hbt]
         \IBGEtab{\caption{Teste de Portmanteau}\label{portmanteau}}{%
@@ -886,46 +906,60 @@
         }{\nota{$ \text{H}_0 $: autocorrelação serial até defasagem 12 é zero.}}
     \end{table}
 
+    Por outro lado, há forte evidência de que os resíduos não sejam normalmente distribuídos\footnote{O que também acontece em \textcite{chaim} e \textcite{oreiro}}, como pode ser visto na \autoref{jarquebera}.
+
+    \begin{table}[!hbt]
+        \IBGEtab{\caption{Teste de Jarque-Bera}\label{jarquebera}}{%
+        \begin{tabular}{cccc}
+            \toprule
+            Estatística de teste & Valor crítico & P-valor & Graus de liberdade  \\
+            \midrule
+             117.2          &          15.51          &      0.000       &      8       \\
+             \midrule
+        \end{tabular}
+        }{\nota{$ \text{H}_0 $: Dados gerados por um processo estocástico normalmente distribuído.}}
+    \end{table}
+
     \subsubsection{Ordenação das variáveis}
 
-    Como se sabe, a ordenação das variáveis do modelo é crucial para a análise das funções de resposta ao impulso ortogonal e da decomposição da variância, tanto que vale um capítulo para esclarecer que cuidados foram tomados em relação a isso.
+    Como se sabe, a ordenação das variáveis do modelo é crucial para a análise das funções de resposta ao impulso ortogonal e da decomposição da variância. Um capítulo se faz necessário para esclarecer os cuidados tomados em relação a isso.
 
-    Na literatura empírica, é comum ordenar as variáveis pelo critério de exogeneidade, isto é, da mais exógena para a mais endógena, devido à decomposição de Cholesky resultar em uma matriz triangular inferior. Por exemplo, em \textcite{oreiro} isto é feito com a ajuda de testes de causalidade de Granger.
+    Na literatura empírica, é comum ordenar as variáveis pelo critério de endogeneidade, isto é, da mais exógena para a mais endógena, devido à decomposição de Cholesky resultar em uma matriz triangular inferior. Por exemplo, isto é feito em \textcite{oreiro} e \textcite{chaim}.
 
-    No entanto, \textcite[61]{lutkepool} não advoga qualquer ferramenta estatística para essa decisão, tendo de ser tomada analiticamente. Ainda segundo ele, a ordem teria de ser tal que a primeira variável seja a única com o potencial de afetar contemporaneamente todas as outras, com a segunda podendo afetar todas exceto a primeira, a terceira, todas exceto a primeira e segunda etc.
+    Segundo \textcite[61]{lutkepool}, a ordenação deve ser feita tal que a primeira variável seja a única com o potencial de afetar contemporaneamente todas as outras (sem também ser por elas instantaneamente afetadas), a segunda com o potencial de afetar imediatamente todas as outras exceto a primeira, etc.
 
-    Com isso em mente, a ordem foi decidida teoricamente: assumindo que a taxa Selic afeta contemporaneamente todas as outras variáveis no sistema, sem ser por elas afetada contemporaneamente, é uma razoável candidata como primeiro variável. Seguida da inadimplência, que influenciaria instantaneamente a atividade econômica e o spread, mas não a taxa Selic. Depois, a atividade econômica, que afetaria a Selic e a inadimplência com no mínimo uma defasagem e, por fim, o spread, que não influenciaria nenhuma das outras contemporaneamente, mas sendo somente por todas elas influenciado.
+    Com isso em mente, não foram utilizadas ferramentas estatísticas, somente interpretação econômica, chegando-se a ordem: Selic, Inad, Ibc e Spread. A Selic como primeira porque, teoricamente, afeta todas as outras e só seria afetada por elas com uma defasagem ou mais. Em seguida, Inad e Ibc, assumindo que a atividade econômica não tem um efeito imediato sobre a inadimplência, mas que a inadimplência poderia afetar imediatamente a atividade e o spread. Por fim, o spread, assumindo que possa ser, teoricamente, imediatamente influenciado por todas elas.
 
     \subsubsection{Teste de Johansen}
 
-    Os testes de Johansen aplicados ao modelo VECM de ordem 2 suportam a evidência de uma relação de co-integração no sistema, como pode ser visto nas tabelas \autoref{johansen_max_eig} e \autoref{johansen_trace}.
+    Os testes de Johansen aplicados ao modelo VECM de ordem 2\footnote{Com a ordenação: spread, selic, ibc e inad, de modo a se obter um vetor co-integrante com significado após normalizado.} suportam a evidência de uma relação de co-integração no sistema, como pode ser visto nas tabelas \autoref{johansen_max_eig} e \autoref{johansen_trace}.
 
- \begin{table}[hbt]
-     \begin{subtable}{.5\linewidth}
-         \IBGEtab{\caption{Teste de Johansen de máximo autovalor}\label{johansen_max_eig}}{%
-             \begin{tabular}{cccc}
-                 \midrule
-                 r\_0 & r\_1 & Estatística de teste & Valor Crítico \\
-                 \midrule
-                 0 &             1 &                   48.51 &                   27.59  \\
-                 1 &             2 &                   14.62 &                   21.13  \\
-                 \midrule
-             \end{tabular}
-             }{\nota{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r = r_0 + 1 $}}
-     \end{subtable}%
-     \begin{subtable}{.5\linewidth}
-         \IBGEtab{\caption{Teste de Johansen de traço}\label{johansen_trace}}{%
-             \begin{tabular}{cccc}
-                 \midrule
-                 r\_0 & r\_1 & Estatística de teste & Valor Crítico \\
-                 \midrule
-                 0 &             4 &                   69.12 &                   47.85  \\
-                 1 &             4 &                   20.61 &                   29.80  \\
-                 \midrule
-             \end{tabular}
-             }{\nota{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r_0 < r < 4 $}}
-     \end{subtable}%
- \end{table}
+    \begin{table}[hbt]
+        \begin{subtable}{.5\linewidth}
+            \IBGEtab{\caption{Teste de Johansen de máximo autovalor}\label{johansen_max_eig}}{%
+                \begin{tabular}{cccc}
+                    \midrule
+                    $ r_0 $ & $ r_1 $ & Estatística de teste & Valor Crítico \\
+                    \midrule
+                    0 &             1 &                   33.52 &                   30.82  \\
+                    1 &             2 &                   16.57 &                   24.25  \\
+                    \midrule
+                \end{tabular}
+                }{\nota{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r = r_0 + 1 $}}
+        \end{subtable}%
+        \begin{subtable}{.5\linewidth}
+            \IBGEtab{\caption{Teste de Johansen de traço}\label{johansen_trace}}{%
+                \begin{tabular}{cccc}
+                    \midrule
+                    $ r_0 $ & $ r_1 $ & Estatística de teste & Valor Crítico \\
+                    \midrule
+                    0 &             4 &                   60.57 &                   55.25  \\
+                    1 &             4 &                   27.05 &                   35.01  \\
+                    \midrule
+                \end{tabular}
+                }{\nota{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r_0 < r < 4 $}}
+        \end{subtable}%
+    \end{table}
 
     Nas duas, rejeita-se a hipótese nula de que não há qualquer relação de co-integração, para, em seguida, ser feito o teste sob a hipótese nula de que há uma relação de co-integração, e, não sendo possível rejeitá-la, concluímos que há uma relação de co-integração.
 
@@ -935,7 +969,7 @@
         \IBGEtab{\caption{Coeficientes estimados da relação de longo prazo}\label{resultados_coint}}{%
             \begin{tabular}{llcccccc}
                 \centering
-                &                     & Coeficiente          & Desvio Padrão    & Z          & P$> |$z$|$           & [0.025          & 0.975]  \\
+                &                     & Coeficiente          & Desvio Padrão    & Z          & P$>|$z$|$           & [0.025          & 0.975]  \\
                 \midrule
                 spread    & $ \hat{\alpha_1}  $        &      -0.0764         &        0.031     &    -2.463  &         0.014        &       -0.137    &       -0.016     \\
                 selic     & $ \hat{\alpha_2}  $        &      -0.0302         &        0.035     &    -0.863  &         0.388        &       -0.099    &        0.038     \\
@@ -951,18 +985,17 @@
             }{}
     \end{table}
 
-    As estimativas são muito similares às que vimos na \autoref{coint_reg}, exceto pelo agora significativo coeficiente da inadimplência, implicando que um aumento de 1\% na inadimplência diminuiria o spread em 0.51\%, em média, o que é inesperado e provavelmente denuncia um viés de variável omitida. De modo similar, um aumento de 1\% na selic aumentaria o spread em 0.46\% e um aumento de 1\% no ibc faria diminuir o spread em 5.2\%.
+    As estimativas são muito similares às que vimos na \autoref{coint_reg}, exceto pelo agora significativo e inesperado sinal do coeficiente da inadimplência, implicando que um aumento de 1\% na inadimplência diminuiria o spread em 0.51\%, em média. De modo similar, um aumento de 1\% na selic aumentaria o spread em 0.46\% e um aumento de 1\% no ibc faria diminuir o spread em 5.2\%.
 
     Ainda de acordo com esses resultados, as equações que mais se auto-corrigem aos desvios em relação ao equilíbrio são, em ordem, a da inadimplência, spread, ibc e selic, apesar do coeficiente da última não ser significativamente diferente de 0.
 
     \subsubsection{Funções de Impulso-Resposta}
 
-    Neste capítulo serão interpretados os resultados da estimação com base nas funções de resposta da variável spread a um impulso nas diferentes variáveis do sistema. Os gráficos para as funções como um todo podem ser encontrados no anexo.
+    Neste capítulo serão interpretados os resultados da estimação com base nas funções de resposta do spread a um impulso nas variáveis do sistema. Na \autoref{irf} estão os gráficos da função de impulso-resposta, que se estendem até 24 meses, quando a reação ao impulso tende a se estabilizar.
 
-    Na \autoref{irf_spread} estão os gráficos da função de impulso-resposta com período que se estendem até 24 meses.
-    
-    \begin{figure}[h!bt]
+    \begin{figure}[!hbt]
         \caption{Função de impulso-resposta (spread)}
+        \label{irf}
         \begin{subfigure}[t]{.5\linewidth}
             \includegraphics[width = \textwidth, scale=1]{irf/spread_spread.pdf}
             \caption{Impulso: spread}
@@ -979,17 +1012,16 @@
             \includegraphics[width = \textwidth, scale=1]{irf/spread_ibc.pdf}
             \caption{Impulso: ibc}
         \end{subfigure}
-        \label{irf_spread}
-        \legend{Fonte: Elaboração própria, com base no pacote statsmodels.}
+        \legend{Fonte: Elaboração própria.}
     \end{figure}
+    
+    Por meio deles podemos constatar que, pela estimação, um impulso na taxa básica de juros causa um aumento persistente no spread, que só se estabilizada em mais ou menos 2 anos. E ainda que um impulso na atividade econômica diminuiria o spread com alguns meses de defasagem, sendo o sinal insignificante para período mais longos. Já um impulso na inadimplência teria o inesperado e persistente efeito de diminuir o spread, sendo por pouco significativo. 
 
-    Nela podemos constatar que, pela estimação, um impulso na taxa básica de juros causa um aumento persistente no spread, que só vem se estabilizar em mais ou menos 2 anos. E ainda que um impulso na atividade econômica diminuiria o spread com alguns meses de defasagem, sendo o sinal insignificante para período mais longos. Já um impulso na inadimplência teria o efeito de diminuir o spread, o que é inesperado e provavelmente se deve a um viés de variável omitida ou pelos resíduos não serem ortogonais.
+    Na \autoref{irf_orto}, podem ser visualizadas as funções de resposta ao impulso ortogonal, com base na ordenação já mencionada: selic, inad, ibc e spread. Pouca coisa muda, exceto que agora a resposta a um impulso na inadimplência torna-se não-significativo.
 
-    A seguir, serão mostradas as funções de resposta ao impulso ortogonal, com base na ordenação já mencionada: selic, inad, ibc e spread.
-
-    \begin{figure}[h!bt]
-        \label{irf_spread_ortogonal}
+    \begin{figure}[!hbt]
         \caption{Função de impulso-resposta ortogonal (spread)}
+        \label{irf_orto}
         \begin{subfigure}[t]{.5\linewidth}
             \includegraphics[width = \textwidth, scale=1]{irf/orth_spread_spread.pdf}
             \caption{Impulso: spread}
@@ -1006,13 +1038,171 @@
             \includegraphics[width = \textwidth, scale=1]{irf/orth_spread_ibc.pdf}
             \caption{Impulso: ibc}
         \end{subfigure}
+        \legend{Fonte: Elaboração própria.}
     \end{figure}
 
+    A resposta ao impulso na taxa Selic foram de encontro ao que normalmente se chega na literatura empírica, por exemplo, em \textcite{oreiro} e \textcite{chaim}, isto é, um efeito positivo, como esperado. No entanto, aqui a resposta foi muito mais persistente do que a encontrada por esses autores.
+
+    A resposta a um impulso na atividade econômica teve um efeito negativo temporário depois de alguns meses, tornando-se insignificante depois de um ano, mais ou menos. Isto provavelmente indica um efeito através da melhora na percepção de risco de crédito por parte dos bancos ou por ter dominado o efeito-inadimplência mais do que a variável inadimplência em si. Isto é diferente do encontrado em \textcite{oreiro} e \textcite{chaim}, que encontram uma resposta positiva, isto é, que uma maior demanda por crédito tende a aumentar o spread.
+
+    O ponto mais problemático da estimação foi o spread tender a diminuir persistentemente dado um impulso na inadimplência, o que é bastante incabível teoricamente. No entanto tal reação não é significativamente diferente de zero na função de impulso-resposta ortogonal, no entanto há um efeito positivo imediato (isto é, sem defasagem).
+
+    Os coeficientes estimados para a inflação como variável exógena (variável exog1 no apêndice A) foram economicamente desprezíveis, isto é, a elasticidade estimada foi muito baixa, o que é um resultado já encontrado na literatura, como em \textcite{oreiro}, mas em desacordo com o trabalho mais recente de \textcite{chaim}, onde se encontra um coeficiente positivo para inflação. Dado se tratar de períodos distintos e que a inflação vem estável há anos, este resultado não chega a ser surpreendente.
+
+    \section{Conclusão}
+
+    O presente estudo teve o objetivo de procurar entender os determinantes macroeconômicos do spread bancário \textit{ex-ante} no período recente da economia brasileira, que se distingue pela mínima histórica da taxa básica de juros. 
+    
+    Nesse sentido, a pergunta que se coloca é: o que poderia estar freando a queda do spread para níveis ainda menores se um de seus principais determinantes, a Selic, nunca esteve tão baixa antes?
+
+    Para responder esta pergunta, o estudo considerou, com base na revisão da literatura empírica, a inadimplência e a atividade econômica como possíveis determinantes do spread. Estas variáveis foram então modeladas de tal forma a capturar a dinâmica de longo e curto prazo entre as variáveis e como elas interagem em um sistema de equações dinâmico.
+
+    O resultado mais consistente obtido foi, como esperado, que a Selic é o principal determinante do spread, o que é normalmente o que se encontra na literatura. Nas funções de impulso-resposta podemos ver que dado um impulso na taxa de juros o spread aumenta persistentemente por mais ou menos um ano.
+
+    Foi também encontrado que a atividade econômica faz diminuir o spread, provavelmente por seu efeito indireto na inadimplência (o que explica, por exemplo, por que o coeficiente da inadimplência normalmente tornava-se insignificante estatisticamente) ou pelo efeito de diminuir a percepção de risco de crédito dos bancos.
+
+    Já o efeito da inadimplência sobre o spread foi em geral não significativo, exceto quando os resíduos não foram ortogonalizados e na relação de longo prazo do VECM, o que é problemático já que é improvável que tal efeito de fato possa ocorrer na prática.
+
+    Isto nos leva a acreditar que, apesar da taxa Selic ter chegado ao seu mínimo histórico, o que provavelmente tem feito o spread deixar de cair ainda mais é o efeito da baixa atividade econômica. Como se sabe, neste efeito podem estar contidos múltiplos fatores, dentre os quais o da inadimplência, mas também seja possível que o spread esteja resistindo à queda devido à baixa expectativa quanto à economia.
 
 
-
-
-\newpage
+\clearpage
 \printbibliography
+
+\clearpage
+\apendices
+\chapter{Resultados da estimação do VECM}
+\begin{longtable}{lcccccc}
+    \toprule
+    & coef & std err & z & P$> |$z$|$ & [0.025 & 0.975]  \\
+    \midrule
+    const     &       0.6411  &        0.966     &     0.664  &         0.507        &       -1.253    &        2.535     \\
+    season1   &      -0.0032  &        0.010     &    -0.331  &         0.741        &       -0.022    &        0.016     \\
+    season2   &      -0.0051  &        0.012     &    -0.415  &         0.678        &       -0.029    &        0.019     \\
+    season3   &       0.0075  &        0.011     &     0.675  &         0.500        &       -0.014    &        0.029     \\
+    season4   &      -0.0153  &        0.011     &    -1.423  &         0.155        &       -0.036    &        0.006     \\
+    season5   &      -0.0096  &        0.010     &    -0.963  &         0.336        &       -0.029    &        0.010     \\
+    season6   &       0.0075  &        0.009     &     0.826  &         0.409        &       -0.010    &        0.025     \\
+    season7   &       0.0083  &        0.010     &     0.840  &         0.401        &       -0.011    &        0.028     \\
+    season8   &      -0.0060  &        0.010     &    -0.569  &         0.569        &       -0.027    &        0.015     \\
+    season9   &      -0.0068  &        0.009     &    -0.756  &         0.450        &       -0.024    &        0.011     \\
+    season10  &      -0.0156  &        0.010     &    -1.600  &         0.110        &       -0.035    &        0.004     \\
+    season11  &      -0.0002  &        0.009     &    -0.017  &         0.986        &       -0.018    &        0.018     \\
+    exog1     &       0.0004  &        0.000     &     1.707  &         0.088        &    -5.93e-05    &        0.001     \\
+    L1.selic  &       0.3918  &        0.098     &     4.014  &         0.000        &        0.201    &        0.583     \\
+    L1.inad   &      -0.4201  &        0.124     &    -3.378  &         0.001        &       -0.664    &       -0.176     \\
+    L1.ibc    &       0.0438  &        0.254     &     0.173  &         0.863        &       -0.454    &        0.541     \\
+    L1.spread &       0.0662  &        0.111     &     0.596  &         0.551        &       -0.151    &        0.284     \\
+    L2.selic  &       0.3988  &        0.100     &     3.971  &         0.000        &        0.202    &        0.596     \\
+    L2.inad   &      -0.0240  &        0.136     &    -0.177  &         0.860        &       -0.290    &        0.242     \\
+    L2.ibc    &       0.0284  &        0.243     &     0.117  &         0.907        &       -0.448    &        0.505     \\
+    \toprule
+    & coef & std err & z & P$> |$z$|$ & [0.025 & 0.975]  \\
+    \midrule
+    const     &       4.3914  &        0.722     &     6.083  &         0.000        &        2.976    &        5.806     \\
+    season1   &      -0.0145  &        0.007     &    -2.035  &         0.042        &       -0.029    &       -0.001     \\
+    season2   &       0.0277  &        0.009     &     3.024  &         0.002        &        0.010    &        0.046     \\
+    season3   &       0.0151  &        0.008     &     1.812  &         0.070        &       -0.001    &        0.031     \\
+    season4   &      -0.0023  &        0.008     &    -0.285  &         0.776        &       -0.018    &        0.013     \\
+    season5   &       0.0178  &        0.007     &     2.382  &         0.017        &        0.003    &        0.032     \\
+    season6   &       0.0341  &        0.007     &     5.038  &         0.000        &        0.021    &        0.047     \\
+    season7   &      -0.0189  &        0.007     &    -2.543  &         0.011        &       -0.033    &       -0.004     \\
+    season8   &       0.0238  &        0.008     &     3.040  &         0.002        &        0.008    &        0.039     \\
+    season9   &       0.0157  &        0.007     &     2.337  &         0.019        &        0.003    &        0.029     \\
+    season10  &       0.0013  &        0.007     &     0.185  &         0.853        &       -0.013    &        0.016     \\
+    season11  &       0.0137  &        0.007     &     1.991  &         0.046        &        0.000    &        0.027     \\
+    exog1     &      -0.0002  &        0.000     &    -1.424  &         0.154        &       -0.001    &     9.38e-05     \\
+    L1.selic  &      -0.0823  &        0.073     &    -1.128  &         0.259        &       -0.225    &        0.061     \\
+    L1.inad   &      -0.0168  &        0.093     &    -0.181  &         0.857        &       -0.199    &        0.165     \\
+    L1.ibc    &       0.5454  &        0.190     &     2.876  &         0.004        &        0.174    &        0.917     \\
+    L1.spread &       0.0716  &        0.083     &     0.863  &         0.388        &       -0.091    &        0.234     \\
+    L2.selic  &      -0.1975  &        0.075     &    -2.633  &         0.008        &       -0.345    &       -0.050     \\
+    L2.inad   &       0.1046  &        0.101     &     1.032  &         0.302        &       -0.094    &        0.303     \\
+    L2.ibc    &       0.6209  &        0.182     &     3.416  &         0.001        &        0.265    &        0.977     \\
+    L2.spread &       0.1670  &        0.082     &     2.046  &         0.041        &        0.007    &        0.327     \\
+    \toprule
+    & coef & std err & z & P$> |$z$|$ & [0.025 & 0.975]  \\
+    \midrule
+    const     &       0.8566  &        0.400     &     2.143  &         0.032        &        0.073    &        1.640     \\
+    season1   &      -0.0038  &        0.004     &    -0.963  &         0.336        &       -0.012    &        0.004     \\
+    season2   &      -0.0137  &        0.005     &    -2.705  &         0.007        &       -0.024    &       -0.004     \\
+    season3   &       0.0045  &        0.005     &     0.971  &         0.332        &       -0.005    &        0.014     \\
+    season4   &       0.0025  &        0.004     &     0.574  &         0.566        &       -0.006    &        0.011     \\
+    season5   &      -0.0030  &        0.004     &    -0.717  &         0.474        &       -0.011    &        0.005     \\
+    season6   &      -0.0048  &        0.004     &    -1.272  &         0.203        &       -0.012    &        0.003     \\
+    season7   &       0.0019  &        0.004     &     0.473  &         0.636        &       -0.006    &        0.010     \\
+    season8   &      -0.0027  &        0.004     &    -0.623  &         0.534        &       -0.011    &        0.006     \\
+    season9   &       0.0008  &        0.004     &     0.211  &         0.833        &       -0.007    &        0.008     \\
+    season10  &      -0.0004  &        0.004     &    -0.111  &         0.911        &       -0.008    &        0.007     \\
+    season11  &      -0.0023  &        0.004     &    -0.599  &         0.549        &       -0.010    &        0.005     \\
+    exog1     &      -0.0001  &      9.7e-05     &    -1.391  &         0.164        &       -0.000    &     5.52e-05     \\
+    L1.selic  &      -0.0516  &        0.040     &    -1.277  &         0.202        &       -0.131    &        0.028     \\
+    L1.inad   &      -0.0980  &        0.051     &    -1.905  &         0.057        &       -0.199    &        0.003     \\
+    L1.ibc    &      -0.1882  &        0.105     &    -1.792  &         0.073        &       -0.394    &        0.018     \\
+    L1.spread &      -0.0899  &        0.046     &    -1.955  &         0.051        &       -0.180    &        0.000     \\
+    L2.selic  &      -0.0171  &        0.042     &    -0.411  &         0.681        &       -0.098    &        0.064     \\
+    L2.inad   &      -0.0814  &        0.056     &    -1.451  &         0.147        &       -0.191    &        0.029     \\
+    L2.ibc    &       0.0292  &        0.101     &     0.291  &         0.771        &       -0.168    &        0.226     \\
+    L2.spread &       0.0034  &        0.045     &     0.074  &         0.941        &       -0.085    &        0.092     \\
+    \toprule
+    & coef & std err & z & P$> |$z$|$ & [0.025 & 0.975]  \\
+    \midrule
+    const     &       2.2812  &        0.848     &     2.689  &         0.007        &        0.619    &        3.944     \\
+    season1   &      -0.0477  &        0.008     &    -5.690  &         0.000        &       -0.064    &       -0.031     \\
+    season2   &       0.0733  &        0.011     &     6.802  &         0.000        &        0.052    &        0.094     \\
+    season3   &       0.0283  &        0.010     &     2.890  &         0.004        &        0.009    &        0.048     \\
+    season4   &      -0.0039  &        0.009     &    -0.417  &         0.676        &       -0.022    &        0.015     \\
+    season5   &       0.0096  &        0.009     &     1.093  &         0.275        &       -0.008    &        0.027     \\
+    season6   &      -0.0041  &        0.008     &    -0.515  &         0.606        &       -0.020    &        0.011     \\
+    season7   &       0.0039  &        0.009     &     0.444  &         0.657        &       -0.013    &        0.021     \\
+    season8   &       0.0088  &        0.009     &     0.953  &         0.341        &       -0.009    &        0.027     \\
+    season9   &       0.0050  &        0.008     &     0.639  &         0.523        &       -0.010    &        0.021     \\
+    season10  &       0.0065  &        0.009     &     0.761  &         0.447        &       -0.010    &        0.023     \\
+    season11  &       0.0293  &        0.008     &     3.622  &         0.000        &        0.013    &        0.045     \\
+    exog1     &      -0.0002  &        0.000     &    -0.958  &         0.338        &       -0.001    &        0.000     \\
+    L1.selic  &       0.2381  &        0.086     &     2.779  &         0.005        &        0.070    &        0.406     \\
+    L1.inad   &      -0.2779  &        0.109     &    -2.545  &         0.011        &       -0.492    &       -0.064     \\
+    L1.ibc    &       0.1239  &        0.223     &     0.556  &         0.578        &       -0.313    &        0.561     \\
+    L1.spread &       0.3054  &        0.097     &     3.132  &         0.002        &        0.114    &        0.496     \\
+    L2.selic  &      -0.0544  &        0.088     &    -0.617  &         0.537        &       -0.227    &        0.118     \\
+    L2.inad   &       0.1551  &        0.119     &     1.303  &         0.192        &       -0.078    &        0.388     \\
+    L2.ibc    &      -0.3679  &        0.214     &    -1.723  &         0.085        &       -0.786    &        0.051     \\
+    L2.spread &      -0.0587  &        0.096     &    -0.612  &         0.540        &       -0.247    &        0.129     \\
+    \toprule
+    & coef & std err & z & P$> |$z$|$ & [0.025 & 0.975]  \\
+    \midrule
+    ec1 &       0.0109  &        0.016     &     0.669  &         0.503        &       -0.021    &        0.043     \\
+    & coef & std err & z & P$> |$z$|$ & [0.025 & 0.975]  \\
+    \midrule
+    ec1 &       0.0738  &        0.012     &     6.085  &         0.000        &        0.050    &        0.098     \\
+    & coef & std err & z & P$> |$z$|$ & [0.025 & 0.975]  \\
+    \midrule
+    ec1 &       0.0144  &        0.007     &     2.142  &         0.032        &        0.001    &        0.028     \\
+    & coef & std err & z & P$> |$z$|$ & [0.025 & 0.975]  \\
+    \midrule
+    ec1 &       0.0382  &        0.014     &     2.685  &         0.007        &        0.010    &        0.066     \\
+    & coef & std err & z & P$> |$z$|$ & [0.025 & 0.975]  \\
+    \midrule
+    beta.1 &       1.0000  &            0     &         0  &         0.000        &        1.000    &        1.000     \\
+    beta.2 &      -1.2256  &        0.141     &    -8.706  &         0.000        &       -1.501    &       -0.950     \\
+    beta.3 &     -10.7159  &        1.385     &    -7.737  &         0.000        &      -13.430    &       -8.001     \\
+    beta.4 &      -2.0505  &        0.231     &    -8.861  &         0.000        &       -2.504    &       -1.597     \\
+\end{longtable}
+
+\clearpage
+
+\chapter{Funções impulso-resposta}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.9\textwidth, scale=1]{irf/irf_completo.pdf}
+\end{figure}
+
+\clearpage
+
+\chapter{Funções impulso-resposta (ortogonal)}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.9\textwidth, scale=1]{irf/irf_orth_completo.pdf}
+\end{figure}
 
 \end{document}
