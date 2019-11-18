@@ -1,11 +1,12 @@
 import pandas as pd
-from statsmodels.tsa.stattools import adfuller
+from statsmodels.tsa.stattools import adfuller, kpss
 from arch.unitroot import PhillipsPerron
 
 series = (
     pd.read_csv("../dados/series_log.csv", parse_dates=[0])
     .set_index("date")
-    .loc[:, ["spread", "selic", "pib_mensal", "igp"]]
+    .loc[:, ["spread", "selic", "pib_mensal", "inad", "igp", "ibc"]]
+    .dropna()
 )
 
 
@@ -14,7 +15,7 @@ def adf(serie, tipo, lag=False):
     if lag:
         return results[2]
     else:
-        return results[0], results[4]["5%"]
+        return results[1]
 
 
 resultados = pd.concat(
@@ -26,7 +27,7 @@ resultados = pd.concat(
     ],
     axis="columns",
 )
-resultados.columns = ["Defasagem"] + ["Estatística", "Vl. Crítico"] * 3
+resultados.columns = ["Defasagem"] + ["P-valor"] * 3
 
 print(resultados.to_latex(float_format="{:0.2f}".format))
 
@@ -36,7 +37,7 @@ def pp(serie, tipo="nc", lag=False):
     if lag:
         return results.lags
     else:
-        return results.stat, results.critical_values["5%"]
+        return results.pvalue
 
 
 resultados = pd.concat(
@@ -48,7 +49,28 @@ resultados = pd.concat(
     ],
     axis="columns",
 )
-resultados.columns = ["Defasagem"] + ["Estatística", "Vl. Crítico"] * 3
+resultados.columns = ["Defasagem"] + ["P-valor"] * 3
 
+print(resultados.to_latex(float_format="{:0.2f}".format))
+
+
+def KPSS(serie, tipo, lag=False):
+    results = kpss(serie, regression=tipo, lags="auto")
+    if lag:
+        return results[2]
+    else:
+        return results[1]
+
+
+resultados = pd.concat(
+    [
+        series.apply(lambda x: KPSS(x, tipo="c", lag=True), result_type="expand").T,
+        series.apply(lambda x: KPSS(x, tipo="c"), result_type="expand").T,
+        series.apply(lambda x: KPSS(x, tipo="ct", lag=True), result_type="expand").T,
+        series.apply(lambda x: KPSS(x, tipo="ct"), result_type="expand").T,
+    ],
+    axis="columns",
+)
+resultados.columns = ["Defasagem", "P-valor"] * 2
 
 print(resultados.to_latex(float_format="{:0.2f}".format))
