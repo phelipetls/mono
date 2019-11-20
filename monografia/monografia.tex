@@ -68,12 +68,9 @@
     \begin{capa}%
         \center
         \includegraphics{../logo_ufrrj}
-        
         \ABNTEXchapterfont
         \large UNIVERSIDADE FEDERAL RURAL DO RIO DE JANEIRO
-
         \large INSTITUTO DE CIÊNCIAS ECONÔMICAS
-
         \large PHELIPE TELES DA SILVA
         \vfill
         \begin{center}
@@ -116,6 +113,19 @@
 
 \imprimirfolhaderosto
 
+% TODO: resumos
+% \begin{resumo}
+%     Resumo em português
+%     \vspace{\onelineskip}
+%     \noindent
+%     \textbf{Palavras-chave}: latex. abntex. editoração de texto.
+% \end{resumo}
+
+% \listoffigures
+% \clearpage
+% \listoftables
+% \clearpage
+
 % insere o sumario automático
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
@@ -142,11 +152,15 @@
 
     Com a bem-sucedida estabilização macroeconômica feita pelo Plano Real, esperava-se que esse nível finalmente começasse a convergir para os padrões internacionais mas, embora ele tenha de fato se reduzido consideravelmente, ainda continuou em um patamar relativamente elevado.
 
-    Desde então, uma das principais razões que se atribui a isso é a política monetária, conduzida sob o Regime de Metas de Inflação (RMI) desde 1999, de manter a níveis altos a taxa básica de juros com o objetivo de controlar a inflação, porque ela indexa parte dos títulos da dívida pública brasileira, o que torna a compra de títulos públicos mais atraente que o crédito, uma aplicação naturalmente mais arriscada e menos líquida \cite[p.~7]{manhica12}.
+    Desde então, uma das principais razões que se atribui a isso é a política monetária, conduzida sob o Regime de Metas de Inflação (RMI) desde 1999, de manter a níveis altos a taxa básica de juros com o objetivo de controlar a inflação. A razão é simples: como a Selic serve de indexador de parte dos títulos da dívida pública brasileira, seu aumento torna ainda mais atraente a compra de títulos públicos em relação ao crédito, uma aplicação que já é naturalmente mais arriscada e menos líquida \cite[p.~7]{manhica12}.
     
-    Mais recentemente, o debate foi reanimado devido à persistente queda da taxa Selic, trazendo consigo de novo a expectativa de queda do spread. Embora essa queda tenha mesmo se efetivado, seu ritmo foi tido como insatisfatório pelas autoridades \cite{valor1}. Há um elenco de fatores que podem ajudar a explicar isso, de variáveis micro, como a concorrência, assimetrias de informação sobre os tomadores de crédito e capacidade de recuperação de garantias\footnote{Ver \cite[p.~13]{reb2018}.}, a macroeconômicas, como a inadimplência e  a atividade econômica \footnote{Ver \cite{valor2}}.
+    Por isso, mais recentemente, o debate foi reanimado devido à persistente queda da taxa Selic e a consequente expectativa da queda do spread. Embora essa queda tenha mesmo se efetivado, seu ritmo foi tido como insatisfatório pelas autoridades \cite{valor1}. Há um elenco de fatores que podem ajudar a explicar isso, de variáveis micro, como a concorrência, assimetrias de informação sobre os tomadores de crédito e capacidade de recuperação de garantias\footnote{Ver \cite[p.~13]{reb2018}.}, a macroeconômicas, como a inadimplência e a atividade econômica \footnote{Ver \cite{valor2}}.
     
-    Esse trabalho se propõe a investigar o impacto de indicadores macroeconômicos sobre o spread, tendo como objetivo contribuir ao debate brasileiro e para ajudar a pensar políticas econômicas que ajudem a reduzi-lo, o que se impõe como ainda mais importante no atual cenário de estagnação econômica, já que sua redução facilitaria o acesso ao crédito dos agentes econômicos e, por fim, a realização de investimento, além de significar em geral um sistema financeiro mais desenvolvido e eficiente \cite[p.~8]{manhica12}.
+    Esse trabalho se propõe a investigar o impacto de variáveis macroeconômicas sobre o spread, tendo como objetivo contribuir ao debate brasileiro e para ajudar a pensar políticas econômicas que ajudem a reduzi-lo, o que se impõe como ainda mais importante no atual cenário de estagnação econômica, já que sua redução facilitaria o acesso ao crédito dos agentes econômicos e, por fim, a realização de investimento, além de significar em geral um sistema financeiro mais desenvolvido e eficiente \cite[p.~8]{manhica12}.
+
+    Isto é feito por uma abordagem econométrica dedicada a investigar as relações de curto e longo prazo entre as variáveis em nível, ao modelar sua dinâmica no tempo como um modelo autorregressivo de correção de erros.
+
+    O trabalho é dividido em seis capítulos além deste. No primeiro, é feita uma breve revisão da literatura teórica e empírica. O segundo é dedicado à visualização e descrição das variáveis consideradas durante a pesquisa. Em seguida, é apresentado o referencial metodológico utilizado e, por fim, são apresentados os resultados, levando à conclusão do trabalho.
 
 
 \section{Revisão de Literatura}
@@ -218,7 +232,7 @@
     
     Pelos resultados do segundo estágio, há uma relação direta e significativa entre spread e taxa básica de juros, risco, taxação financeira e crescimento do PIB, e contrária no caso da inflação. O efeito estimado do compulsório não foi significativo.
 
-    Seguindo linha metodológica parecida, \textcite{bignotto06} também se utilizam do modelo teórico de \textcite{hoesaunders} para analisar a influência dos custos de intermediação e dos fatores de risco de crédito e de juros sobre o spread. Para a estimação, fez-se uso de dados de 87 bancos brasileiros ao longo do 1º trimestre de 2001 até o 1º trimestre de 2004, formando uma base de dados em painel desbalanceado com 1131 observações.
+    Seguindo linha metodológica parecida, \textcite{bignotto06} também se utilizam do modelo teórico de \textcite{hoesaunders} para analisar a influência dos custos de intermediação e dos fatores de risco de crédito e de juros sobre o spread. Para a estimação, fez-se uso de dados de 87 bancos brasileiros ao longo do 1\degrees\ trimestre de 2001 até o 1\degrees\ trimestre de 2004, formando uma base de dados em painel desbalanceado com 1131 observações.
     
     Foram usados como regressores o custo administrativo, uma proxy para o risco de crédito e de juros, o market-share, o risco de liquidez, a taxa de receitas de serviços sobre o ativo total e a da despesa tributária sobre o ativo total, o compulsório, a Selic, a inflação e o ativo total de cada banco corrigido pela inflação, além de uma variável não-observável de aversão ao risco como controle. 
     
@@ -242,9 +256,9 @@
 
     Os resultados mostram que um choque exógeno no nível e volatilidade da taxa de juros tem um efeito positivo e persistente sobre o spread, como esperado. Um choque na proxy para o nível de atividade econômica mostrou ter um impacto positivo, o que os autores interpretaram como um possível efeito do poder de mercado dos bancos prevalecendo sobre o efeito inadimplência. O efeito de um choque na inflação se mostrou insignificante estatisticamente. Eles concluem dizendo que um ambiente macroeconômico estável é uma condição indispensável para reduzir o spread.
 
-    O trabalho mais recente de \textcite{chaim} é talvez o que mais se assemelha ao presente trabalho. Isso porque estuda os determinantes do spread ex-ante no período de janeiro de 2004 a dezebro de 2012, quando termina a série como calculada pela antiga metodologia do Banco Central, sob um ponto de vista econométrico, usando o ferramental teórico dos vetores autorregressivos.
+    O mais recente trabalho de \textcite{chaim} estima os determinantes do spread ex-ante com um modelo vetorial de correção de erros do período de janeiro de 2004 a dezembro de 2012, quando termina a série do spread como calculada pela antiga metodologia do Banco Central.
 
-    Nele estão inclusas variáveis como a Selic (nível e volatilidade\footnote{Cuja proxy é o \textit{spread over treasury}, a diferença entre as taxas que remuneram os títulos da dívida pública brasileira e estado-unidense, com maturidade de seis meses}), dois indicadores para a inflação, o IPCA e o IGP, quatro indicadores para a atividade econômica\footcite[20]{chaim} e a taxa de câmbio. Foram estimados oito modelos vetoriais de correção de erros distintos, um para cada combinação das diferentes medidas de variável de inflação e atividade econômica, a fim de testar a robusteza dos resultados, isto é, se os sinais são invariantes às medidas. 
+    Nele estão incluídas variáveis como a Selic (nível e volatilidade\footnote{Cuja proxy é o \textit{spread over treasury}, a diferença entre as taxas que remuneram os títulos da dívida pública brasileira e estado-unidense, com maturidade de seis meses.}), dois indicadores para a inflação, o IPCA e o IGP, quatro indicadores para a atividade econômica\footcite[20]{chaim} e a taxa de câmbio. Foram estimados oito modelos vetoriais de correção de erros distintos, um para cada combinação das diferentes medidas de variável de inflação e atividade econômica, a fim de testar a robusteza dos resultados, isto é, se os sinais são invariantes às medidas. 
 
     Nas funções de impulso-resposta, foi consistentemente encontrado que um impulso no nível e na volatilidade da Selic aumenta persistentemente o spread. Já um impulso na taxa de câmbio ocasiona um aumento temporário no spread, talvez porque os bancos tenham que reestruturar seu portfólio de crédito, o autor menciona. Um impulso na inflação é seguido de um choque positivo, um sinal de que os bancos tentar sua margem de intermediação quando a taxa de juros real cai. Por fim, foi encontrado que um choque na atividade econômica impacta negativamente o spread a princípio, possivelmente por indicar menor risco de crédito, mas depois passa a impactar positivamente, talvez pelo aumento na demanda por crédito. Para esta variável, no entanto, os resultados não foram tão consistentes através dos modelos, exceto para as medidas de hiato do produto, cuja resposta ao impulso se mostrou majoritariamente positiva \cite[32-38]{chaim}.
 
@@ -281,7 +295,11 @@
 
     Começaremos com o spread bancário. Trata-se, mais especificamente, da série 20786 do Sistema Gerenciador de Séries Temporais (SGS) do Banco Central do Brasil, intitulada "Spread médio das operações de crédito com recursos livres - Total", sendo a diferença, em pontos percentuais, entre a taxa média de empréstimo e de captação no mês. Por total, entende-se que ela aglutina operações de pessoas físicas e jurídicas, e, por recursos livres, que exclui operações envolvendo taxas regulamentadas, lastreadas em recursos governamentais etc.
 
-    \begin{figure}[h]
+    Na literatura, é o que se conhece por spread \textit{ex-ante}, por ser calculado com base nas taxas estabelecidas pelos bancos, no que eles esperam ganhar, e não em seu resultado financeiro efetivo. Por isso, essa medida é consideravelmente influenciada pelas expectativas dos intermediários financeiros em relação à economia, sendo portanto mais sensível a mudanças macroeconômicas e ao risco percebido \cite[p.~226]{leal07}. Em contraste, o spread \textit{ex-post} é calculado com base na receita e despesa efetiva advinda da atividade de intermediação financeira, normalmente denominado margem financeira líquida (\textit{net interest margin}) \cite[p.~2]{almeida15}. 
+    
+    Na \autoref{spread}, podemos ver que o spread passou a aumentar a partir de 2014, depois uma queda que se iniciou por volta de 2012 e que corresponde às políticas do primeiro governo de Dilma Rousseff com o intuito de reduzir o spread via aumento do portfólio de crédito dos bancos públicos, forçando uma queda pela competição das taxas de juros de empréstimos \cite[p.~1]{almeida15}. Com a deterioração das condições macroeconômicas a partir de 2014, o spread entra em escalada, seguida por um declínio substantivo iniciado em 2017 por conta da, entre outras coisas, queda persistente da taxa Selic a partir de então.
+
+    \begin{figure}[hbt]
         \centering
         \caption{Spread médio das operações de crédito com recursos livres - Total}
         \includegraphics[width=\textwidth, scale=0.75]{spread.pdf}
@@ -289,19 +307,18 @@
         \label{spread}
     \end{figure}
 
-    Na literatura, é o que se conhece por spread \textit{ex-ante}, por ser calculado com base nas taxas estabelecidas pelos bancos, no que eles esperam ganhar, e não em seu resultado financeiro efetivo. Por isso, essa medida é consideravelmente influenciada pelas expectativas dos intermediários financeiros em relação à economia, sendo portanto mais sensível a mudanças macroeconômicas e ao risco percebido \cite[p.~226]{leal07}. Em contraste, o spread \textit{ex-post} é calculado com base na receita e despesa efetiva advinda da atividade de intermediação financeira, normalmente denominado margem financeira líquida (\textit{net interest margin}) \cite[p.~2]{almeida15}. 
+
+    Este movimento da taxa Selic pode ser visto na \autoref{selic}. 
     
-    Na \autoref{spread}, o spread passou a aumentar a partir de 2014, após uma queda que se iniciou por volta de 2012 e que corresponde às políticas do primeiro governo de Dilma Rousseff com o intuito de reduzir o spread via aumento do portfólio de crédito dos bancos públicos, forçando uma queda pela competição das taxas de juros de empréstimos \cite[p.~1]{almeida15}. Com a deterioração das condições macroeconômicas a partir de 2014, o spread entra em escalada, seguida por um declínio substantivo iniciado em 2017 por conta da, entre outras coisas, queda persistente da taxa Selic a partir de então.
-
-    Este movimento da taxa Selic pode ser visto na \autoref{selic}. 2. A contraposição das duas séries sugere de imediato que elas são positivamente correlacionadas. De fato, é isso o que naturalmente se argumenta, porque uma taxa básica de juros mais elevada implica maior custo de oportunidade para a atividade de crédito, uma vez que aumenta a rentabilidade dos títulos públicos, tornando mais atrativa uma aplicação que já tem a vantagem de ser mais líquida e menos arriscada \cite[p.~372]{oliveira2007}. Por esta razão, é esperado um coeficiente positivo para a taxa básica de juros, pelo chamado efeito custo de oportunidade. Na literatura empírica, não há divergências para essa estimativa, tendo a maior parte dos estudos encontrado a relação esperada \cite[p.~233-234]{leal07}.
-
-    \begin{figure}[h]
+    \begin{figure}[hbt]
         \centering
         \caption{Taxa de juros - Selic acumulada no mês anualizada}
         \includegraphics[width = \textwidth, scale=0.75]{selic.pdf}
         \legend{Fonte: série 4189 do SGS\@. Elaboração própria}
         \label{selic}
     \end{figure}
+
+    A contraposição das duas séries sugere de imediato que elas são positivamente correlacionadas. De fato, é isso o que naturalmente se argumenta, porque uma taxa básica de juros mais elevada implica maior custo de oportunidade para a atividade de crédito, uma vez que aumenta a rentabilidade dos títulos públicos, tornando mais atrativa uma aplicação que já tem a vantagem de ser mais líquida e menos arriscada \cite[p.~372]{oliveira2007}. Por esta razão, é esperado um coeficiente positivo para a taxa básica de juros, pelo chamado efeito custo de oportunidade. Na literatura empírica, não há divergências para essa estimativa, tendo a maior parte dos estudos encontrado a relação esperada \cite[p.~233-234]{leal07}.
 
     Um padrão parecido pode ser observado na série da Inadimplência, na \autoref{inad}, que passou a cair consideravelmente em 2012 para depois aumentar a partir de 2014 e 2015, com o advento da crise econômica. Não é surpreendente que haja aqui uma correlação com a Selic, visto que um aumento da taxa básica de juros eleva o custo de captação, que é então repassado para o juros final, prejudicando a capacidade de pagamento \cite[p.~390]{oliveira2007}. A inclusão desta variável, portanto, serve para capturar o efeito do risco de crédito sobre o spread, \textit{ceteris paribus}.
 
@@ -313,7 +330,7 @@
         \label{inad}
     \end{figure}
 
-    A série de inflação (\autoref{igp}) escolhida foi a taxa anualizada do Índice Geral de Preços (IGP-DI), por ter apresentado resultados mais consistentes que o IPCA \cite[p.~66]{rocha09} e por ser mais abrangente \cite[p.~21]{afanasieff02}, tendo como desvantagem maior volatilidade e por não ser a oficialmente utilizada pelo regime de metas de inflação \cite[23]{chaim}.
+    A série de inflação (\autoref{igp}) escolhida foi a taxa anualizada do Índice Geral de Preços (IGP-DI), por ter apresentado resultados mais empiricamente consistentes que o IPCA \cite[p.~66]{rocha09} e por ser mais abrangente \cite[p.~21]{afanasieff02}, tendo como desvantagem maior volatilidade e por não ser a oficialmente utilizada pelo regime de metas de inflação \cite[23]{chaim}.
 
 \begin{figure}[h]
   \centering
@@ -329,7 +346,7 @@
     
     É comum na literatura incluir alguma variável para capturar a influência da atividade econômica sobre o spread. Aqui será utilizado o Índice de Atividade Econômica do Banco Central (IBC-Br), dessazonalizado e com ano-base em 2002 (\autoref{ibc}), usado para ajudar a antecipar o valor mensal do PIB como mensurado pelo IBGE.
 
-    \begin{figure}[!hbt]
+    \begin{figure}[hbt]
         \centering
         \caption{Índice de Atividade Econômica do Banco Central (IBC-Br) - Dessazonalizado}
         \includegraphics[width = \textwidth, scale=0.75]{ibc.pdf}
@@ -418,7 +435,7 @@
 
     Uma série é dita integrada de ordem 0 quando for diagnosticada como estacionária, $ Y_t \sim I(0) $, e integrada de ordem 1, $ Y_t \sim I(1) $, quando não é possível rejeitar a hipótese nula de raiz unitária, implicando que sua primeira diferença é estacionária.
 
-    \subsection{Teste de Co-integração}
+    \subsection{Teste de Co-integração uni-equacional de Engle e Granger}
 
     Quando duas ou mais séries são integradas da mesma ordem, mas uma combinação linear delas for integrada de uma ordem menor, dizemos que elas co-integram. O caso comum é quando as séries são não-estacionárias, mas uma combinação linear delas é estacionária.
     
@@ -564,9 +581,9 @@
 
     Do que se conclui que a resposta do sistema a um impulso na variável $ y_1 $ é simplesmente a primeira coluna da matriz $ A_1^{t} $, ou, mais geralmente, a resposta a um impulso na variável $ y_k $, após $ t $ períodos, é a coluna $ k $ da matriz $ A_1^{t} $, que, deve-se observar, vai se aproximando de zero quando $ i $ tende ao infinito se o VAR(1) é estável, ou seja, a resposta do sistema vai se dissipando com o tempo. Quando não estável, isso não é necessariamente verdade, como no caso do modelo vetorial de correção de erros.
 
-   Um problema dessa interpretação é a possibilidade de duas variáveis distintas serem significativamente correlacionadas, pois, assim, um choque não pode ser assumido independente um do outro, provavelmente sendo acompanhado de um choque na variável com que guarda correlação. Para resolver isso, recorre-se às funções de resposta ao impulso ortogonal, que faz os resíduos não-correlacionados (ortogonais) a partir da decomposição de Cholesky \cite[56-62]{lutkepool}.
+   Um problema dessa interpretação é a possibilidade de duas variáveis distintas serem significativamente correlacionadas, pois, assim, um choque não pode ser assumido independente um do outro, provavelmente sendo acompanhado de um choque na variável com que guarda correlação. Para resolver isso, recorre-se às funções de resposta ao impulso ortogonal, que resolve o problema ao fazer os resíduos serem não-correlacionados (ortogonais) a partir da decomposição de Cholesky \cite[56-62]{lutkepool}.
 
-   Um dos problemas da função de impulso resposta é sua sensibilidade à ordenação das variáveis.
+   Um dos problemas da função de impulso resposta é sua sensibilidade à ordenação das variáveis, que surge exatamente da decomposição mencionada. Neste trabalho, a ordenação será pensada com base na teoria econômica, como será esclarecido na apresentação dos resultados.
 
     \subsection{Modelo vetorial de correção de erros (VECM)}
 
@@ -672,11 +689,11 @@
 
    \section{Apresentação dos resultados}
 
-   Neste capítulo serão apresentados os resultados do tratamento das séries temporais e, em seguida, os da estimação dos modelos. Como determinantes do spread, foram incluídas no modelo final as variáveis taxa básica de juros (selic), inadimplência (inad), atividade econômica (ibc) e inflação (igp)\footnote{A variável de concentração bancária foi excluída do modelo por ter dificultado a eliminação da autocorrelação residual no modelo.}, que se expandem de março de 2011 a setembro de 2019 (\autoref{graficos}).
+   Neste capítulo serão apresentados os resultados do tratamento das séries temporais e, em seguida, os da estimação dos modelos. No modelo, foram incluídas como determinantes do spread as variáveis taxa básica de juros (selic), inadimplência (inad), atividade econômica (ibc) e inflação (igp)\footnote{A concentração bancária foi excluída do modelo por ter dificultado a eliminação da autocorrelação residual no modelo.}, cobrindo o período de março de 2011 a setembro de 2019. As séries, em log quando possível, podem ser vistas na \autoref{graficos}.
 
     \begin{figure}[h]
         \centering
-        \caption{Séries incluídas no modelo (em log)}
+        \caption{Variáveis do modelo}
         \includegraphics[width = 0.9\textwidth, scale=1]{series_modelo.pdf}
         \label{graficos}
         \legend{Fonte: Elaboração própria.}
@@ -766,24 +783,24 @@
 
     \subsection{Teste de co-integração uni-equacional}
 
-    Para isso utilizaremos o teste de Engle-Granger, cujos resultados podem ser vistos na \autoref{coint_resultados}.
+    Para verificar isto, utilizaremos o teste de Engle-Granger sobre a equação $ \text{spread} = \beta_0 + \beta_1 \text{selic} + \beta_2 \text{inad} + \beta_3 \text{inad} +\beta_4 \text{igp} $, para o caso com e sem um termo de tendência temporal ($ \beta t $). Os resultados do teste podem ser vistos na \autoref{coint_resultados}.
 
     \begin{table}[hbt]
         \IBGEtab{\caption{Teste de co-integração}\label{coint_resultados}}
         {%
-            \begin{tabular}{lccccccc}
+            \begin{tabular}{ccccccc}
                 \midrule
-                Atv. Econômica & Tendência & Engle-Granger & P-valor & 1\% & 5\% & 10\% \\
+                Tendência & Engle-Granger & P-valor & 1\% & 5\% & 10\% \\
                 \midrule
-                ibc* & Sim & -5.16 & 0.01 & -5.2 & -4.57 & -4.26 \\
-                ibc* & Não & -4.84 & 0.01 & -4.83 & -4.21 & -3.89 \\
+                Sim & -5.16 & 0.01 & -5.2 & -4.57 & -4.26 \\
+                Não & -4.84 & 0.01 & -4.83 & -4.21 & -3.89 \\
                 \midrule
             \end{tabular}
             } 
             {\fonte{Elaboração própria, com base na função coint do pacote statsmodels do Python.}\nota{* Co-integração.}}
     \end{table}
 
-    Desses resultados se conclui que há evidência de co-integração ao nível de significância de 5\%, independente do termo de tendência.
+    Deles se conclui que há evidência de co-integração ao nível de significância de 5\%, independente do termo de tendência.
     
     \subsection{Modelo uni-equacional de correção de erros}
 
@@ -866,11 +883,9 @@
     \end{table}
 
 
-    Eles permitem interpretar que, dentro de um mês, 10\% do spread é corrigido quando em desequilíbrio. Além disso, os efeitos de curto prazo foram tais que 1\% de aumento na selic aumenta o spread em 0.21\% e 1\% de aumento na inadimplência aumenta o spread em 0.52\%, ao passo que o efeito de curto prazo da atividade econômica sobre o spread não foi significante.
+    Eles permitem interpretar que, dentro de um mês, 10\% do spread é corrigido quando em desequilíbrio. Além disso, os efeitos de curto prazo foram tais que 1\% de aumento na selic aumenta o spread em 0.21\% e 1\% de aumento na inadimplência aumenta o spread em 0.52\%. O efeito de curto prazo da atividade econômica sobre o spread não foi significante.
 
-    Isto sugere que o efeito-inadimplência sobre o spread é melhor explicado pela variável da inadimplência no curto prazo, mas melhor explicado pela atividade econômica no longo prazo.
-    
-    Este efeito ter sido dominado por ambas, em duas equações, de tal forma a tornar a outra insignificante estatisticamente, indica que elas estão explicando o mesmo efeito. Como podemos ver na literatura, esse não é sempre o caso, relevando tão somente que o efeito inadimplência da atividade econômica preponderou sobre qualquer outro efeito que poderia ter a atividade econômica sobre o spread, como o efeito de diminuí-lo por uma melhora nas expectativas.
+    Estes resultados sugerem que a atividade econômica e a inadimplência estejam explicando a mesma coisa, a saber, o efeito da inadimplência sobre o spread, visto que a significância de uma anula o poder explicativo da outra. Como podemos ver na literatura, esse não é sempre o caso, relevando tão somente que o possível efeito-inadimplência da atividade econômica preponderou sobre qualquer outro efeito que ela poderia ter sobre o spread, como o efeito de diminuí-lo por uma melhora nas expectativas.
 
     \subsection{Modelo vetorial de correção de erros}
 
@@ -935,8 +950,9 @@
     Os testes de Johansen aplicados ao modelo VECM de ordem 2\footnote{Com a ordenação: spread, selic, ibc e inad, de modo a se obter um vetor co-integrante com significado após normalizado.} suportam a evidência de uma relação de co-integração no sistema, como pode ser visto nas tabelas \autoref{johansen_max_eig} e \autoref{johansen_trace}.
 
     \begin{table}[hbt]
+        \caption{Testes de Johansen}
         \begin{subtable}{.5\linewidth}
-            \IBGEtab{\caption{Teste de Johansen de máximo autovalor}\label{johansen_max_eig}}{%
+            \IBGEtab{\caption{Máximo autovalor}\label{johansen_max_eig}}{%
                 \begin{tabular}{cccc}
                     \midrule
                     $ r_0 $ & $ r_1 $ & Estatística de teste & Valor Crítico \\
@@ -945,10 +961,10 @@
                     1 &             2 &                   16.57 &                   24.25  \\
                     \midrule
                 \end{tabular}
-                }{\nota{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r = r_0 + 1 $}}
+                }{}
         \end{subtable}%
         \begin{subtable}{.5\linewidth}
-            \IBGEtab{\caption{Teste de Johansen de traço}\label{johansen_trace}}{%
+            \IBGEtab{\caption{Traço}\label{johansen_trace}}{%
                 \begin{tabular}{cccc}
                     \midrule
                     $ r_0 $ & $ r_1 $ & Estatística de teste & Valor Crítico \\
@@ -957,8 +973,9 @@
                     1 &             4 &                   27.05 &                   35.01  \\
                     \midrule
                 \end{tabular}
-                }{\nota{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r_0 < r < 4 $}}
+                }{}
         \end{subtable}%
+        \nota{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r_0 < r < 4 $}
     \end{table}
 
     Nas duas, rejeita-se a hipótese nula de que não há qualquer relação de co-integração, para, em seguida, ser feito o teste sob a hipótese nula de que há uma relação de co-integração, e, não sendo possível rejeitá-la, concluímos que há uma relação de co-integração.
@@ -1015,7 +1032,7 @@
         \legend{Fonte: Elaboração própria.}
     \end{figure}
     
-    Por meio deles podemos constatar que, pela estimação, um impulso na taxa básica de juros causa um aumento persistente no spread, que só se estabilizada em mais ou menos 2 anos. E ainda que um impulso na atividade econômica diminuiria o spread com alguns meses de defasagem, sendo o sinal insignificante para período mais longos. Já um impulso na inadimplência teria o inesperado e persistente efeito de diminuir o spread, sendo por pouco significativo. 
+    Por meio deles podemos constatar que, pela estimação, um impulso na taxa básica de juros causa um aumento persistente no spread que só vem a se estabilizar em mais ou menos 2 anos. E ainda que um impulso na atividade econômica diminuiria o spread com alguns meses de defasagem, sendo o sinal insignificante para período mais longos. Já um impulso na inadimplência teria o inesperado e persistente efeito de diminuir o spread, sendo significativo por pouco. 
 
     Na \autoref{irf_orto}, podem ser visualizadas as funções de resposta ao impulso ortogonal, com base na ordenação já mencionada: selic, inad, ibc e spread. Pouca coisa muda, exceto que agora a resposta a um impulso na inadimplência torna-se não-significativo.
 
@@ -1047,7 +1064,7 @@
 
     O ponto mais problemático da estimação foi o spread tender a diminuir persistentemente dado um impulso na inadimplência, o que é bastante incabível teoricamente. No entanto tal reação não é significativamente diferente de zero na função de impulso-resposta ortogonal, no entanto há um efeito positivo imediato (isto é, sem defasagem).
 
-    Os coeficientes estimados para a inflação como variável exógena (variável exog1 no apêndice A) foram economicamente desprezíveis, isto é, a elasticidade estimada foi muito baixa, o que é um resultado já encontrado na literatura, como em \textcite{oreiro}, mas em desacordo com o trabalho mais recente de \textcite{chaim}, onde se encontra um coeficiente positivo para inflação. Dado se tratar de períodos distintos e que a inflação vem estável há anos, este resultado não chega a ser surpreendente.
+    Os coeficientes estimados para a inflação como variável exógena (cujos resultados estão sob a alcunha de exog1 no apêndice A) foram economicamente desprezíveis, isto é, a elasticidade estimada foi muito baixa, o que é um resultado já encontrado na literatura, como em \textcite{oreiro}, mas em desacordo com o trabalho mais recente de \textcite{chaim}, onde se encontra um coeficiente positivo para inflação. Dado se tratar de períodos distintos e a  estabilidade recente da inflação, este resultado não chega a ser surpreendente.
 
     \section{Conclusão}
 
