@@ -1,0 +1,218 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/39e840e6/
+ALnames	graficos/graficosintroducao.R	/^ALnames <- c("Brasil", "Paraguai", "Guiana", "Jamaica", "Honduras", "Argentina", "Nicarágua", "/;"	g
+Apresentação dos resultados	monografia/monografia.tex	/^   \\section{Apresentação dos resultados}$/;"	s
+Co-integration	to-read.md	/^# Co-integration$/;"	c
+Conclusão	monografia/monografia.tex	/^    \\section{Conclusão}$/;"	s
+Cronograma	projeto/texto.tex	/^\\section{Cronograma}$/;"	s	chapter:Funções impulso-resposta (ortogonal)
+Descrição das variáveis	cap1/cap1.tex	/^\\section{Descrição das variáveis}$/;"	s	chapter:Funções impulso-resposta (ortogonal)
+Função de Impulso-resposta	monografia/monografia.tex	/^    \\subsection{Função de Impulso-resposta}$/;"	u	section:Referencial Metodológico
+Funções de Impulso-Resposta	monografia/monografia.tex	/^    \\subsubsection{Funções de Impulso-Resposta}$/;"	b	subsection:Apresentação dos resultados""Modelo vetorial de correção de erros
+Funções impulso-resposta	monografia/monografia.tex	/^\\chapter{Funções impulso-resposta}$/;"	c
+Funções impulso-resposta (ortogonal)	monografia/monografia.tex	/^\\chapter{Funções impulso-resposta (ortogonal)}$/;"	c
+Hipótese	projeto/texto.tex	/^\\section{Hipótese}$/;"	s	chapter:Funções impulso-resposta (ortogonal)
+IHH	dados/extrair_dados.R	/^IHH <- read_csv2("ihh.csv") %>%$/;"	g
+Introdução	monografia/monografia.tex	/^\\section{Introdução}$/;"	s
+Introdução	projeto/texto.tex	/^\\section{Introdução}$/;"	s	chapter:Funções impulso-resposta (ortogonal)
+Justificativa	projeto/texto.tex	/^\\section{Justificativa}$/;"	s	chapter:Funções impulso-resposta (ortogonal)
+KPSS	modelagem/unitroot.py	/^def KPSS(serie, tipo, lag=False):$/;"	f
+Metodologia	projeto/texto.tex	/^\\section{Metodologia}$/;"	s	chapter:Funções impulso-resposta (ortogonal)
+Modelo uni-equacional de correção de erros	monografia/monografia.tex	/^    \\subsection{Modelo uni-equacional de correção de erros}$/;"	u	section:Apresentação dos resultados
+Modelo uni-equacional de correção de erros	monografia/monografia.tex	/^    \\subsection{Modelo uni-equacional de correção de erros}$/;"	u	section:Referencial Metodológico
+Modelo vetorial de correção de erros	monografia/monografia.tex	/^    \\subsection{Modelo vetorial de correção de erros}$/;"	u	section:Apresentação dos resultados
+Modelo vetorial de correção de erros (VECM)	monografia/monografia.tex	/^    \\subsection{Modelo vetorial de correção de erros (VECM)}$/;"	u	section:Referencial Metodológico
+Modelos sem autocorrelação serial	modelagem/anotacoes.md	/^# Modelos sem autocorrelação serial$/;"	c
+Moments of stochatstic process	to-read.md	/^# Moments of stochatstic process$/;"	c
+O Banco como firma	monografia/monografia.tex	/^\\subsubsection{O Banco como firma}$/;"	b	subsection:Revisão de Literatura""Revisão da literatura teórica
+O Banco como firma	projeto/texto.tex	/^\\subsubsection{O Banco como firma}$/;"	b	subsection:Funções impulso-resposta (ortogonal)""Revisão de Literatura""Revisão da literatura teórica
+O banco como intermediador financeiro	monografia/monografia.tex	/^\\subsubsection{O banco como intermediador financeiro}$/;"	b	subsection:Revisão de Literatura""Revisão da literatura teórica
+O banco como intermediador financeiro	projeto/texto.tex	/^\\subsubsection{O banco como intermediador financeiro}$/;"	b	subsection:Funções impulso-resposta (ortogonal)""Revisão de Literatura""Revisão da literatura teórica
+Objetivo Geral	projeto/texto.tex	/^\\subsection{Objetivo Geral}$/;"	u	section:Funções impulso-resposta (ortogonal)""Objetivos
+Objetivos	projeto/texto.tex	/^\\section{Objetivos}$/;"	s	chapter:Funções impulso-resposta (ortogonal)
+Objetivos Específicos	projeto/texto.tex	/^\\subsection{Objetivos Específicos}$/;"	u	section:Funções impulso-resposta (ortogonal)""Objetivos
+Ordenação das variáveis	monografia/monografia.tex	/^    \\subsubsection{Ordenação das variáveis}$/;"	b	subsection:Apresentação dos resultados""Modelo vetorial de correção de erros
+Problema	projeto/texto.tex	/^\\section{Problema}$/;"	s	chapter:Funções impulso-resposta (ortogonal)
+Referencial Metodológico	monografia/monografia.tex	/^\\section{Referencial Metodológico}$/;"	s
+Resultados da estimação do VECM	monografia/monografia.tex	/^\\chapter{Resultados da estimação do VECM}$/;"	c
+Revisão da literatura empírica	monografia/monografia.tex	/^\\subsection{Revisão da literatura empírica}$/;"	u	section:Revisão de Literatura
+Revisão da literatura empírica	projeto/texto.tex	/^\\subsection{Revisão da literatura empírica}$/;"	u	section:Funções impulso-resposta (ortogonal)""Revisão de Literatura
+Revisão da literatura teórica	monografia/monografia.tex	/^\\subsection{Revisão da literatura teórica}$/;"	u	section:Revisão de Literatura
+Revisão da literatura teórica	projeto/texto.tex	/^\\subsection{Revisão da literatura teórica}$/;"	u	section:Funções impulso-resposta (ortogonal)""Revisão de Literatura
+Revisão de Literatura	monografia/monografia.tex	/^\\section{Revisão de Literatura}$/;"	s
+Revisão de Literatura	projeto/texto.tex	/^\\section{Revisão de Literatura}$/;"	s	chapter:Funções impulso-resposta (ortogonal)
+Seleção do número de defasagem	monografia/monografia.tex	/^    \\subsubsection{Seleção do número de defasagem}$/;"	b	subsection:Apresentação dos resultados""Modelo vetorial de correção de erros
+Teste de Co-integração	monografia/monografia.tex	/^    \\subsection{Teste de Co-integração}$/;"	u	section:Referencial Metodológico
+Teste de Johansen	monografia/monografia.tex	/^    \\subsubsection{Teste de Johansen}$/;"	b	subsection:Apresentação dos resultados""Modelo vetorial de correção de erros
+Teste de Johansen	monografia/monografia.tex	/^   \\subsection{Teste de Johansen}$/;"	u	section:Referencial Metodológico
+Teste de co-integração uni-equacional	monografia/monografia.tex	/^    \\subsection{Teste de co-integração uni-equacional}$/;"	u	section:Apresentação dos resultados
+Teste de raiz unitária	monografia/monografia.tex	/^    \\subsection{Teste de raiz unitária}$/;"	u	section:Referencial Metodológico
+Testes de raiz unitária	monografia/monografia.tex	/^   \\subsection{Testes de raiz unitária}$/;"	u	section:Apresentação dos resultados
+Useful references	to-read.md	/^# Useful references$/;"	c
+VAR	monografia/monografia.tex	/^        \\label{VAR}$/;"	l
+VAR	to-read.md	/^# VAR$/;"	c
+VAR1	monografia/monografia.tex	/^        \\label{VAR1}$/;"	l
+VECM	testes/johansen_test.py	/^import statsmodels.tsa.vector_ar.vecm as VECM$/;"	I
+Vetores autorregressivos (VAR)	monografia/monografia.tex	/^    \\subsection{Vetores autorregressivos (VAR)}$/;"	u	section:Referencial Metodológico
+Visualização e análise descritiva das variáveis	monografia/monografia.tex	/^\\section{Visualização e análise descritiva das variáveis}$/;"	s
+WDI	graficos/graficosintroducao.R	/^suppressPackageStartupMessages(library(WDI))$/;"	l
+X	modelagem/coint.py	/^X = pd.concat([reg_resid, d_series.selic, d_series.inad, d_series.ibc], axis="columns")$/;"	v
+adf	modelagem/unitroot.py	/^def adf(serie, tipo, lag=False):$/;"	f
+adf	monografia/monografia.tex	/^        \\label{adf}$/;"	l
+afanasieff02	bibliografia.bib	/^@article{afanasieff02,$/;"	a
+almeida15	bibliografia.bib	/^@article{almeida15,$/;"	a
+ax	graficos/graficos.py	/^    fig, ax = plt.subplots(figsize=(7, 3))$/;"	v
+axes	graficos/graficos.py	/^axes = series.plot(subplots=True, layout=(3, 2), figsize=(9, 7), color="black", linewidth=1)$/;"	v
+bignotto06	bibliografia.bib	/^@article{bignotto06,$/;"	a
+coint1	bibliografia.bib	/^@article{coint1,$/;"	a
+coint2	bibliografia.bib	/^@article{coint2,$/;"	a
+coint_reg	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Relação de co-integração}\\label{coint_reg}}{%$/;"	l
+coint_resultados	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Teste de co-integração}\\label{coint_resultados}}$/;"	l
+comp	cap1/cap1.tex	/^      \\label{comp}$/;"	l
+countrycode	graficos/graficosintroducao.R	/^suppressPackageStartupMessages(library(countrycode))$/;"	l
+cowplot	graficos/graficos.R	/^suppressPackageStartupMessages(library(cowplot))$/;"	l
+cowplot	graficos/graficosintroducao.R	/^suppressPackageStartupMessages(library(cowplot))$/;"	l
+d_series	modelagem/coint.py	/^d_series = series.diff().dropna()$/;"	v
+data.table	dados/extrair_dados.R	/^suppressPackageStartupMessages(library(data.table))$/;"	l
+data.table	graficos/graficos.R	/^suppressPackageStartupMessages(library(data.table))$/;"	l
+data_inicial	dados/extrair_dados.R	/^data_inicial <- "2011-01-01"$/;"	g
+df	dados/tabela.R	/^df <- read_csv("series.csv")$/;"	g
+df	graficos/graficos.R	/^df <- fread("..\/dados\/series.csv") %>%$/;"	g
+dickey94	bibliografia.bib	/^@incollection{dickey94,$/;"	I
+ecm	modelagem/coint.py	/^ecm = sm.OLS($/;"	v
+ecm	monografia/monografia.tex	/^        \\Delta Y_t = \\alpha_1 (Y_t - \\beta_0 - \\beta_1 X_t) + \\alpha_2 \\Delta X_t + u_t \\/;"	l
+ecm_vec	monografia/monografia.tex	/^            \\label{ecm_vec}$/;"	l
+endogenas	modelagem/vecm_model.py	/^endogenas = series.loc[:, ["selic", "inad", "ibc", "spread"]]$/;"	v
+engle-granger	bibliografia.bib	/^@article{engle-granger,$/;"	a
+engle-granger	monografia/monografia.tex	/^        Y_t = \\beta_0 + \\beta_1 X_t + u_t \\label{engle-granger}$/;"	l
+equacao_modelo	monografia/monografia.tex	/^       \\label{equacao_modelo}$/;"	l
+exogenas	modelagem/vecm_model.py	/^exogenas = series.loc[:, ["igp"]].fillna(0)$/;"	v
+fig	graficos/graficos.py	/^    fig, ax = plt.subplots(figsize=(7, 3))$/;"	v
+freixas	bibliografia.bib	/^@book{freixas,$/;"	b
+fuller	bibliografia.bib	/^@book{fuller,$/;"	b
+graficos	monografia/monografia.tex	/^        \\label{graficos}$/;"	l
+gujarati	bibliografia.bib	/^@book{gujarati,$/;"	b
+gustavo	bibliografia.bib	/^@mastersthesis{gustavo,$/;"	M
+hoesaunders	bibliografia.bib	/^@article{hoesaunders,$/;"	a
+ibc	dados/extrair_dados.R	/^  ipeadata("SGS12_IBCBRDESSAZ12") %>%$/;"	v
+ibc	monografia/monografia.tex	/^        \\label{ibc}$/;"	l
+igp	dados/extrair_dados.R	/^  ipeadata("PAN12_IGPDIG12") %>%$/;"	v
+igp	monografia/monografia.tex	/^      \\label{igp}$/;"	l
+ihh	cap1/cap1.tex	/^      \\label{ihh}$/;"	l
+ihh	monografia/monografia.tex	/^        \\label{ihh}$/;"	l
+impulso_resposta	modelagem/vecm_model.py	/^def impulso_resposta(ortogonal=True):$/;"	f
+inad	cap1/cap1.tex	/^      \\label{inad}$/;"	l
+inad	dados/extrair_dados.R	/^  ipeadata("BM12_CRLIN12") %>%$/;"	v
+inad	monografia/monografia.tex	/^        \\label{inad}$/;"	l
+intervalo	graficos/graficos.R	/^intervalo <- c(min(df$date), NA)$/;"	g
+ipca	cap1/cap1.tex	/^      \\label{ipca}$/;"	l
+ipeadatar	dados/extrair_dados.R	/^suppressPackageStartupMessages(library(ipeadatar))$/;"	l
+irf	monografia/monografia.tex	/^        \\label{irf}$/;"	l
+irf_orto	monografia/monografia.tex	/^        \\label{irf_orto}$/;"	l
+jarquebera	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Teste de Jarque-Bera}\\label{jarquebera}}{%$/;"	l
+johansen_max_eig	monografia/monografia.tex	/^            \\IBGEtab{\\caption{Teste de Johansen de máximo autovalor}\\label{johansen_max_eig}/;"	l
+johansen_trace	monografia/monografia.tex	/^            \\IBGEtab{\\caption{Teste de Johansen de traço}\\label{johansen_trace}}{%$/;"	l
+join_numbers	modelagem/coint.py	/^def join_numbers(L):$/;"	f
+klein	bibliografia.bib	/^@article{klein,$/;"	a
+kpss	bibliografia.bib	/^@article{kpss,$/;"	a
+kpss	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Teste KPSS de estacionariedade}\\label{kpss}}$/;"	l
+leal07	bibliografia.bib	/^@incollection{leal07,$/;"	I
+lubridate	dados/extrair_dados.R	/^suppressPackageStartupMessages(library(lubridate))$/;"	l
+lubridate	graficos/graficos.R	/^suppressPackageStartupMessages(library(lubridate))$/;"	l
+lutkepool	bibliografia.bib	/^@book{lutkepool,$/;"	b
+ma	monografia/monografia.tex	/^        \\label{ma}$/;"	l
+manhica12	bibliografia.bib	/^@article{manhica12,$/;"	a
+maudos	bibliografia.bib	/^@article{maudos,$/;"	a
+maxeig	monografia/monografia.tex	/^       \\label{maxeig}$/;"	l
+mdates	graficos/graficos.py	/^import matplotlib.dates as mdates$/;"	I
+model	modelagem/vecm_model.py	/^model = VECM($/;"	v
+modelo_ecm	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Modelo de correção de erros}\\label{modelo_ecm}}{%$/;"	l
+momentos	monografia/monografia.tex	/^        \\label{momentos}$/;"	l
+nakane02	bibliografia.bib	/^@article{nakane02,$/;"	a
+np	testes/johansen_test.py	/^import numpy as np$/;"	I
+oliveira2007	bibliografia.bib	/^@article{oliveira2007,$/;"	a
+oreiro	bibliografia.bib	/^@article{oreiro,$/;"	a
+pd	graficos/graficos.py	/^import pandas as pd$/;"	I
+pd	modelagem/coint.py	/^import pandas as pd$/;"	I
+pd	modelagem/granger-causality.py	/^import pandas as pd$/;"	I
+pd	modelagem/instantaneous-causality.py	/^import pandas as pd$/;"	I
+pd	modelagem/unitroot.py	/^import pandas as pd$/;"	I
+pd	modelagem/vecm_model.py	/^import pandas as pd$/;"	I
+pd	testes/johansen_test.py	/^import pandas as pd$/;"	I
+plt	graficos/graficos.R	/^plt <- ggplot(df) + labs(x = NULL, y = NULL) +$/;"	g
+plt	graficos/graficos.py	/^import matplotlib.pyplot as plt$/;"	I
+plt	modelagem/vecm_model.py	/^import matplotlib.pyplot as plt$/;"	I
+plyr	dados/extrair_dados.R	/^suppressPackageStartupMessages(library(plyr))$/;"	l
+portmanteau	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Teste de Portmanteau}\\label{portmanteau}}{%$/;"	l
+pp	bibliografia.bib	/^@article{pp,$/;"	a
+pp	modelagem/coint.py	/^from arch.unitroot import PhillipsPerron as pp$/;"	x
+pp	modelagem/unitroot.py	/^def pp(serie, tipo="nc", lag=False):$/;"	f
+pp	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Teste Phillips-Perron de raiz unitária}\\label{pp}}$/;"	l
+processo_estocastico	monografia/monografia.tex	/^    \\begin{equation}\\label{processo_estocastico} Y_t = \\rho Y_{t-1} + u_t \\end{equation}$/;"	l
+prodind	cap1/cap1.tex	/^      \\label{prodind}$/;"	l
+raiz_unitaria	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Teste Augmented Dickey-Fuller de raiz unitária}\\label{raiz_unitari/;"	l
+rbcb	dados/extrair_dados.R	/^suppressPackageStartupMessages(library(rbcb))$/;"	l
+reb2017	bibliografia.bib	/^@article{reb2017,$/;"	a
+reb2018	bibliografia.bib	/^@article{reb2018,$/;"	a
+reg	modelagem/coint.py	/^reg = smf.ols("spread ~ selic + inad + ibc", data=series).fit()$/;"	v
+reg_info	modelagem/coint.py	/^reg_info = {$/;"	v
+reg_resid	modelagem/coint.py	/^reg_resid = reg.resid.shift(1).dropna()$/;"	v
+requests	monografia/monografia.run.xml	/^<!DOCTYPE requests [$/;"	r
+resultados	modelagem/granger-causality.py	/^    resultados = []$/;"	v
+resultados	modelagem/unitroot.py	/^resultados = pd.concat($/;"	v
+resultados_coint	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Coeficientes estimados da relação de longo prazo}\\label{resultado/;"	l
+resultados_total	modelagem/granger-causality.py	/^    resultados_total = var_model.test_causality($/;"	v
+results	modelagem/coint.py	/^results = coint($/;"	v
+resumo	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Resumo da revisão da literatura empírica}\\label{resumo}}$/;"	l
+rocha09	bibliografia.bib	/^@misc{rocha09,$/;"	n
+scales	graficos/graficos.R	/^suppressPackageStartupMessages(library(scales))$/;"	l
+selic	cap1/cap1.tex	/^      \\label{selic}$/;"	l
+selic	monografia/monografia.tex	/^        \\label{selic}$/;"	l
+series	dados/extrair_dados.R	/^series <- get_series(c($/;"	g
+series	graficos/graficos.py	/^series = ($/;"	v
+series	modelagem/coint.py	/^series = ($/;"	v
+series	modelagem/granger-causality.py	/^series = ($/;"	v
+series	modelagem/instantaneous-causality.py	/^series = ($/;"	v
+series	modelagem/unitroot.py	/^series = ($/;"	v
+series	modelagem/vecm_model.py	/^series = ($/;"	v
+series	testes/johansen_test.py	/^series = pd.read_csv("..\/dados\/series_economicas_log.csv").drop('date', axis = 'columns')$/;"	v
+series_df	dados/extrair_dados.R	/^  plyr::join_all(series) %>%$/;"	v
+series_nivel	graficos/graficos.py	/^series_nivel = ($/;"	v
+sm	modelagem/coint.py	/^import statsmodels.api as sm$/;"	I
+smf	modelagem/coint.py	/^import statsmodels.formula.api as smf$/;"	I
+spread	cap1/cap1.tex	/^      \\label{spread}$/;"	l
+spread	graficos/graficosintroducao.R	/^spread <- WDI(indicator = c("spread" = "FR.INR.LNDP"),$/;"	g
+spread	monografia/monografia.tex	/^        \\label{spread}$/;"	l
+spreadal	monografia/monografia.tex	/^        \\label{spreadal}$/;"	l
+spreadal	projeto/texto.tex	/^      \\label{spreadal}$/;"	l
+stargazer	dados/tabela.R	/^library(stargazer)$/;"	l
+statsmodels	bibliografia.bib	/^@inproceedings{statsmodels,$/;"	j
+tab1	cap1/cap1.tex	/^        \\IBGEtab{\\caption{Tabela de estatísticas descritivas}\\label{tab1}}$/;"	l
+tab1	monografia/monografia.tex	/^        \\IBGEtab{\\caption{Tabela de estatísticas descritivas}\\label{tab1}}$/;"	l
+test	modelagem/granger-causality.py	/^        test = var_model.test_causality(caused=linha, causing=coluna, kind="wald")$/;"	v
+tidyverse	dados/extrair_dados.R	/^suppressPackageStartupMessages(library(tidyverse))$/;"	l
+tidyverse	dados/tabela.R	/^library(tidyverse)$/;"	l
+tidyverse	graficos/graficos.R	/^suppressPackageStartupMessages(library(tidyverse))$/;"	l
+tidyverse	graficos/graficosintroducao.R	/^suppressPackageStartupMessages(library(tidyverse))$/;"	l
+total	modelagem/granger-causality.py	/^total = []$/;"	v
+trace	monografia/monografia.tex	/^       \\label{trace}$/;"	l
+valor1	bibliografia.bib	/^@article{valor1,$/;"	a
+valor2	bibliografia.bib	/^@article{valor2,$/;"	a
+var	modelagem/granger-causality.py	/^var = VAR(endog=series)$/;"	v
+var	testes/johansen_test.py	/^var = VECM.VAR(series)$/;"	v
+var_model	modelagem/granger-causality.py	/^var_model = var.fit(maxlags=4, verbose=True)$/;"	v
+var_model	modelagem/instantaneous-causality.py	/^var_model = VAR(endog=series).fit(maxlags=3, ic=None)$/;"	v
+varp_example	monografia/monografia.tex	/^        \\label{varp_example}$/;"	l
+vecm	modelagem/vecm_model.py	/^vecm = model.fit()$/;"	v
+vecm	monografia/monografia.tex	/^        \\label{vecm}$/;"	l
+vecm-var	monografia/monografia.tex	/^        \\label{vecm-var}$/;"	l
+vecm_coint	monografia/monografia.tex	/^       \\label{vecm_coint}$/;"	l
+vecm_coint2	monografia/monografia.tex	/^       \\label{vecm_coint2}$/;"	l
+vecm_spread	monografia/monografia.tex	/^        \\Delta y_t = \\alpha \\beta^{'} y_{t-1}+ \\Gamma_1 \\Delta y_{t-1} + \\cdots + \\Gamma_/;"	l
+y	modelagem/coint.py	/^y = d_series.spread,$/;"	v
+} \\begin{tabular}{@{\\extracolsep{20pt}}lcc} \\midrule \\midrule & \\multicolumn{1}{c}{Variável dependente:} \\\\ \\cline{2-2} & spread \\\\ \\midrule Intercept & 30.2636*** \\\\ & (1.0014) \\\\ selic & 0.1619*** \\\\ & (0.0238) \\\\ inad & -0.0839 \\\\ & (0.0596) \\\\ ibc & -5.4874*** \\\\ & (0.1967) \\\\ \\midrule Observações & 102.0000 \\\\ $ R^2 $ & 0.9056 \\\\ $ R^2 $ Ajustado & 0.9027 \\\\ Estatística F & 313.346 (0.000) \\\\ Jarque-Bera & 1.806 (0.405) \\\\ Dickey-Fuller & -4.156 (0.001) \\\\ Durbin-Watson & 0.706 \\\\ \\midrule \\midrule \\end{tabular}	monografia/monografia.tex	/^            \\label{}$/;"	l
+} \\begin{tabular}{@{\\extracolsep{20pt}}lcc} \\midrule \\midrule & \\multicolumn{1}{c}{Variável dependente:} \\\\ \\cline{2-2} & spread \\\\ \\midrule equilibrio & -0.1009* \\\\ & (0.0547) \\\\ selic & 0.2186** \\\\ & (0.0936) \\\\ inad & 0.5216*** \\\\ & (0.1317) \\\\ ibc & -0.4502 \\\\ & (0.4184) \\\\ \\midrule Observações & 101.0000 \\\\ $ R^2 $ & 0.2862 \\\\ $ R^2 $ Ajustado & 0.2567 \\\\ Estatística F & 9.722 (0.000) \\\\ Jarque-Bera & 3.023 (0.221) \\\\ Dickey-Fuller & -8.347 (0.000) \\\\ Durbin-Watson & 1.781 \\\\ \\midrule \\midrule \\end{tabular}	monografia/monografia.tex	/^            \\label{}$/;"	l

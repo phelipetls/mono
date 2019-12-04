@@ -1,0 +1,37 @@
+---
+title: "Estimação VECM"
+output: pdf_document
+---
+
+
+```{r, echo = F, include = T}
+
+suppressMessages(library(tidyverse))
+
+series <-
+  read.csv("../../dados/series_log.csv") %>%
+  dplyr::select(spread, selic, inad)
+
+```
+
+# VECM
+
+```{r, echo = F, include = T}
+
+suppressMessages(library(urca))
+suppressMessages(library(vars))
+
+vec <- ca.jo(series, spec = "transitory", type = "eigen", season = 12, K = 2)
+
+var_form <- vec2var(vec, r = 1)
+
+var_form %>% summary()
+
+par(mfrow = c(3, 1))
+purrr::map(var_form %>% resid %>% as.data.frame, plot, type = "l")
+
+var_form %>% serial.test()
+
+vecm %>% irf(response = "spread", n.ahead = 12, ortho = F) %>% plot
+
+```

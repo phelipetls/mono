@@ -37,7 +37,7 @@
 
 \pretextual
 \autor{Phelipe Teles da Silva}
-\titulo{Determinantes macroeconômicos do spread bancário brasileiro: uma abordagem econométrica (2011-2019)}
+\titulo{Determinantes macroeconômicos do spread bancário ex-ante brasileiro: uma abordagem econométrica (2011-2019)}
 \data{2019}
 \instituicao{Universidade Federal Rural do Rio de Janeiro}
 \local{Seropédica}
@@ -67,11 +67,20 @@
 \renewcommand{\imprimircapa}{%
     \begin{capa}%
         \center
-        \includegraphics{../logo_ufrrj}
+        % \includegraphics{../logo_ufrrj}
+
         \ABNTEXchapterfont
         \large UNIVERSIDADE FEDERAL RURAL DO RIO DE JANEIRO
-        \large INSTITUTO DE CIÊNCIAS ECONÔMICAS
-        \large PHELIPE TELES DA SILVA
+
+        \large INSTITUTO DE CIÊNCIAS SOCIAIS APLICADAS
+
+        \large DEPARTAMENTO DE ECONOMIA
+        \vfill
+
+        \begin{center}
+            \large PHELIPE TELES DA SILVA
+        \end{center}
+
         \vfill
         \begin{center}
             \ABNTEXchapterfont
@@ -79,7 +88,9 @@
             \large \imprimirtitulo
         \end{center}
         \vfill
-        \large SEROPÉDICA, 2019.
+        \large SEROPÉDICA
+
+        \large 2019
         \vspace*{1cm}
     \end{capa}}
 \imprimircapa
@@ -113,18 +124,32 @@
 
 \imprimirfolhaderosto
 
-% TODO: resumos
-% \begin{resumo}
-%     Resumo em português
-%     \vspace{\onelineskip}
-%     \noindent
-%     \textbf{Palavras-chave}: latex. abntex. editoração de texto.
-% \end{resumo}
+\begin{resumo}
+    Este trabalho procura atualizar os estudos empíricos dos determinantes macroeconômicos do spread bancário \textit{ex-ante} brasileiro para o período de março de 2011 a outubro de 2019. São incluídos como regressores endógenos a taxa básica de juros, inadimplência, atividade econômica além da inflação como regressor exógeno. Para a estimação, as variáveis foram modeladas como um processo autorregressivo de correção de erros uni e multivariado. No univariado foi encontrado um efeito direto da Selic, negativo da atividade econômica (no longo prazo) e positivo da inadimplência (no curto prazo). No multivariado, foi encontrado um efeito direto e persistente da Selic, negativo da atividade econômica e não-significativo da inadimplência (com resíduos ortogonais).
+    \vspace{\onelineskip}
+    \noindent
 
-% \listoffigures
-% \clearpage
-% \listoftables
-% \clearpage
+    \textbf{Palavras-chave}: Spread. Setor Bancário. Econometria. VAR\@. VECM\@.
+\end{resumo}
+
+\clearpage
+
+\begin{resumo}[Abstract]
+    \begin{otherlanguage*}{english}
+    This study aims to update the empirical research on the macroeconomic determinants of Brazilian banking spread by using the most recent available data from March 2011 to October 2019. As endogenous variables were included variables for interest rate, economic activity and default rate, with the inflation rate being included as exogenous. Using a co-integration and error correction approach, it was found a direct and persistent impact for interest rate, a negative one for economic activity and a non-significant effect for default rate in the long-run but a positive one in the short-run.
+    \vspace{\onelineskip}
+    \noindent
+
+    \textbf{Keywords}: Spread. Banking sector. VAR. VECM.
+\end{resumo}
+
+\clearpage
+
+
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
 
 % insere o sumario automático
 \pdfbookmark[0]{\contentsname}{toc}
@@ -140,11 +165,11 @@
 
 \section{Introdução}
 
-    O spread bancário tem sido de particular interesse para pesquisadores no Brasil, devido à peculiaridade de ser um dos maiores do mundo, como ilustrado pela \autoref{spreadal}, em que se pode ver a liderança do Brasil quando o assunto é spread bancário na América Latina.
+    O spread bancário tem sido de particular interesse para pesquisadores no Brasil, devido à peculiaridade de ser um dos maiores do mundo, como ilustrado pela \autoref{spreadal}, em que se pode ver a liderança do Brasil quando se trata de spread bancário na América Latina.
 
     \begin{figure}[h]
         \centering
-        \caption{Top 10 spreads bancários da América Latina em 2018}
+        \caption{Dez maiores spreads bancários da América Latina em 2018}
         \includegraphics[width = 0.9\textwidth, scale=1]{spread_AL.pdf}
         \legend{Fonte: indicador ``FR.INR.LNDP'' do World Bank. Elaboração própria}
         \label{spreadal}
@@ -154,29 +179,33 @@
 
     Desde então, uma das principais razões que se atribui a isso é a política monetária, conduzida sob o Regime de Metas de Inflação (RMI) desde 1999, de manter a níveis altos a taxa básica de juros com o objetivo de controlar a inflação. A razão é simples: como a Selic serve de indexador de parte dos títulos da dívida pública brasileira, seu aumento torna ainda mais atraente a compra de títulos públicos em relação ao crédito, uma aplicação que já é naturalmente mais arriscada e menos líquida \cite[p.~7]{manhica12}.
     
-    Por isso, mais recentemente, o debate foi reanimado devido à persistente queda da taxa Selic e a consequente expectativa da queda do spread. Embora essa queda tenha mesmo se efetivado, seu ritmo foi tido como insatisfatório pelas autoridades \cite{valor1}. Há um elenco de fatores que podem ajudar a explicar isso, de variáveis micro, como a concorrência, assimetrias de informação sobre os tomadores de crédito e capacidade de recuperação de garantias\footnote{Ver \cite[p.~13]{reb2018}.}, a macroeconômicas, como a inadimplência e a atividade econômica \footnote{Ver \cite{valor2}}.
+    Por isso, mais recentemente, o debate foi reanimado devido à recente queda da taxa Selic (de 14\% no final de 2017 para 5.5\% nos dias de hoje) e a consequente expectativa da queda do spread. Embora essa queda tenha mesmo se efetivado, seu ritmo foi tido como insatisfatório por muitos \footcite{valor1}. 
     
-    Esse trabalho se propõe a investigar o impacto de variáveis macroeconômicas sobre o spread, tendo como objetivo contribuir ao debate brasileiro e para ajudar a pensar políticas econômicas que ajudem a reduzi-lo, o que se impõe como ainda mais importante no atual cenário de estagnação econômica, já que sua redução facilitaria o acesso ao crédito dos agentes econômicos e, por fim, a realização de investimento, além de significar em geral um sistema financeiro mais desenvolvido e eficiente \cite[p.~8]{manhica12}.
+    Há uma série de fatores que podem ajudar a explicar isso, de variáveis micro, como a concorrência, assimetrias de informação sobre os tomadores de crédito e capacidade de recuperação de garantias\footcite[13]{reb2018}, a macroeconômicas, como a inadimplência e a atividade econômica \footcite{valor2}.
+    
+    Esse trabalho se propõe a estimar os efeitos das variáveis macroeconômicas sobre o spread, tendo como objetivo contribuir ao debate brasileiro ao atualizar os resultados com dados recentes e ajudar a pensar políticas econômicas que ajudem a reduzi-lo.
+    
+    Tal redução se mostra ainda mais importante no atual cenário de estagnação econômica, já que facilitaria o acesso ao crédito dos agentes econômicos e, por fim, a realização de investimento, além de significar em geral um sistema financeiro mais desenvolvido e eficiente \cite[p.~8]{manhica12}.
 
-    Isto é feito por uma abordagem econométrica dedicada a investigar as relações de curto e longo prazo entre as variáveis em nível, ao modelar sua dinâmica no tempo como um modelo autorregressivo de correção de erros.
+    Para isto, é adotada uma abordagem econométrica dedicada a investigar as relações de curto e longo prazo entre as variáveis em nível, ao modelar suas inter-relações no tempo como um processo autorregressivo de correção de erros (univariado e multivariado).
 
-    O trabalho é dividido em seis capítulos além deste. No primeiro, é feita uma breve revisão da literatura teórica e empírica. O segundo é dedicado à visualização e descrição das variáveis consideradas durante a pesquisa. Em seguida, é apresentado o referencial metodológico utilizado e, por fim, são apresentados os resultados, levando à conclusão do trabalho.
+    O trabalho é dividido em seis capítulos além deste. No primeiro, é feita uma breve revisão da literatura teórica e empírica. O segundo é dedicado à visualização e descrição das variáveis consideradas durante a pesquisa. No terceiro é apresentado o referencial metodológico utilizado. Em seguida, os resultados são apresentados, o que então leva à conclusão do trabalho.
 
 
 \section{Revisão de Literatura}
 \subsection{Revisão da literatura teórica}
 
-    Nesta seção serão apresentados dois modelos que se consagraram na literatura sobre os determinantes do spread: o modelo do banco como uma firma maximizadora de lucros de \textcite{klein} e o modelo do banco como intermediador financeiro de \textcite{hoesaunders}. O intuito é ajudar a entender quais e como as variáveis são relevantes para explicar o spread bancário.
+    Neste capítulo serão apresentados dois modelos que se consagraram na literatura sobre os determinantes do spread: o modelo do banco como uma firma maximizadora de lucros de \textcite{klein} e o modelo do banco como intermediador financeiro de \textcite{hoesaunders}. O intuito é ajudar a entender quais e como as variáveis são relevantes para explicar o spread bancário.
 
 \subsubsection{O Banco como firma}
 
-    Neste modelo, o banco é visto como uma firma que produz serviços voltados para intermediar a oferta e demanda de crédito, receber depósitos (D) e fazer empréstimos (L), a uma taxa de juros determinada em um mercado monopolístico ou semi-monopolístico, ou seja, em que é possível fixar a taxa de juros acima do custo marginal de produção, o que é aqui entendido como o spread por si mesmo, como o poder de mercado deste banco. \cite{oreiro}
+    Neste modelo, o banco é visto como uma firma que produz serviços voltados para intermediar a oferta e demanda de crédito, receber depósitos (D) e fazer empréstimos (L), a uma taxa de juros determinada em um mercado monopolístico ou semi-monopolístico, ou seja, em que é possível fixar a taxa de juros acima do custo marginal de produção. Esta diferença é o que se entende como o spread, o poder de mercado deste banco. \cite{oreiro}
 
-    O autor considera o banco como um agente neutro ao risco, por buscar maximizar somente o valor esperado do lucro, sem considerar sua variância, que se depara com uma curva de demanda por empréstimos decrescente, $ L(r_L) $, uma curva de oferta de depósitos crescente, $ D(r_D) $, e uma função custo do tipo $ C(D, L) $, em que $ r_L $ denota a taxa de juros cobrada ao emprestar, e $ r_D $ a taxa paga ao depositante. A função lucro, considerando as funções inversas, pode então ser assim expressa: 
+    O autor considera o banco como um agente neutro ao risco (por buscar maximizar somente o valor esperado do lucro, sem considerar sua variância) que se depara com uma curva de demanda por empréstimos decrescente, $ L(r_L) $, uma curva de oferta de depósitos crescente, $ D(r_D) $, e uma função custo do tipo $ C(D, L) $, em que $ r_L $ denota a taxa de juros cobrada ao emprestar, e $ r_D $ a taxa paga ao depositante. A função lucro, considerando as funções inversas, pode então ser assim expressa: 
     
     \begin{equation} \pi(D, L) = r_L(L)L + rM - r_D(D)D - C(D, L) \end{equation}
         
-    em que $ r $ representa a taxa de juros do mercado interbancário, e M, o que o banco tem disponível para aplicar neste mercado, a saber, tudo o que recebe de depósito e não empresta nem vai para o compulsório (uma porcentagem $\alpha$ dos depósitos), $M = (1 - \alpha)D - L$. 
+    Onde $ r $ representa a taxa de juros do mercado interbancário, e M, o que o banco tem disponível para aplicar neste mercado, a saber, tudo o que recebe de depósito e não empresta nem vai para o compulsório (uma porcentagem $\alpha$ dos depósitos), $M = (1 - \alpha)D - L$. 
 
     Manipulando a equação, obtemos o que representa o resultado da intermediação financeira subtraído de seus custos: 
     
@@ -222,7 +251,7 @@
 
 \subsection{Revisão da literatura empírica}
 
-    Esta seção procura discutir os estudos empíricos sobre os determinantes do spread bancário \textit{ex-ante} brasileiro.
+    Este capítulo procura discutir os estudos empíricos sobre os determinantes do spread bancário \textit{ex-ante} brasileiro.
 
     A estabilidade macroeconômica e as políticas governamentais que se seguiram ao Plano Real possibilitaram uma queda significativa do spread bancário, porém somente até um nível consideravelmente alto para os padrões internacionais. Somando-se a isso a reestruturação bancária observada no período, \textcite{afanasieff02} notam que além da grande variação temporal do spread, há também uma grande variação interbancária. É nesse sentido que os autores justificam o emprego de técnicas de dados em painel, com o objetivo de capturar essas características do mercado bancário brasileiro para a decomposição dos principais determinantes do spread em variáveis micro e macroeconômicas.
 
@@ -320,15 +349,15 @@
 
     A contraposição das duas séries sugere de imediato que elas são positivamente correlacionadas. De fato, é isso o que naturalmente se argumenta, porque uma taxa básica de juros mais elevada implica maior custo de oportunidade para a atividade de crédito, uma vez que aumenta a rentabilidade dos títulos públicos, tornando mais atrativa uma aplicação que já tem a vantagem de ser mais líquida e menos arriscada \cite[p.~372]{oliveira2007}. Por esta razão, é esperado um coeficiente positivo para a taxa básica de juros, pelo chamado efeito custo de oportunidade. Na literatura empírica, não há divergências para essa estimativa, tendo a maior parte dos estudos encontrado a relação esperada \cite[p.~233-234]{leal07}.
 
-    Um padrão parecido pode ser observado na série da Inadimplência, na \autoref{inad}, que passou a cair consideravelmente em 2012 para depois aumentar a partir de 2014 e 2015, com o advento da crise econômica. Não é surpreendente que haja aqui uma correlação com a Selic, visto que um aumento da taxa básica de juros eleva o custo de captação, que é então repassado para o juros final, prejudicando a capacidade de pagamento \cite[p.~390]{oliveira2007}. A inclusão desta variável, portanto, serve para capturar o efeito do risco de crédito sobre o spread, \textit{ceteris paribus}.
-
-    \begin{figure}[htb]
+    \begin{figure}[b]
         \centering
         \caption{Inadimplência da carteira de crédito - Total}
         \includegraphics[width = \textwidth, scale=0.75]{inad.pdf}
         \legend{Fonte: série 21085 do SGS\@. Elaboração própria}
         \label{inad}
     \end{figure}
+
+    Um padrão parecido pode ser observado na série da Inadimplência, na \autoref{inad}, que passou a cair consideravelmente em 2012 para depois aumentar a partir de 2014 e 2015, com o advento da crise econômica. Não é surpreendente que haja aqui uma correlação com a Selic, visto que um aumento da taxa básica de juros eleva o custo de captação, que é então repassado para o juros final, prejudicando a capacidade de pagamento \cite[p.~390]{oliveira2007}. A inclusão desta variável, portanto, serve para capturar o efeito do risco de crédito sobre o spread, \textit{ceteris paribus}.
 
     A série de inflação (\autoref{igp}) escolhida foi a taxa anualizada do Índice Geral de Preços (IGP-DI), por ter apresentado resultados mais empiricamente consistentes que o IPCA \cite[p.~66]{rocha09} e por ser mais abrangente \cite[p.~21]{afanasieff02}, tendo como desvantagem maior volatilidade e por não ser a oficialmente utilizada pelo regime de metas de inflação \cite[23]{chaim}.
 
@@ -356,17 +385,19 @@
 
     Em relação ao seu efeito sobre o spread, o mais correto é considerá-lo ambíguo. Porque, por um lado, uma maior atividade econômica pode afetar positivamente o spread ao aumentar a taxa de empréstimo via aumento da demanda por crédito, o que dependerá ainda do poder de mercado dos maiores bancos \textcite[626]{oreiro}, e, por outro, pode diminuir o spread ao melhorar as expectativas dos bancos quanto ao risco de crédito \textcite[24]{chaim}. Outro possível efeito é por meio da inadimplência, ou seja, pelo efeito de uma menor (maior) atividade econômica aumentar (reduzir) a inadimplência, fazendo com que o spread aumente (diminua).
 
-    Foi ainda considerada a inclusão do Índice de Herfindahl-Hirschmann (IHH) para capturar o efeito da concentração estrutural no Sistema Financeiro Nacional sobre o spread. Como se sabe, este é um indicador do nível de concentração econômica em um mercado, obtido ao somar o quadrado das participações de cada instituição financeira no mercado considerado, que no nosso caso é o mercado de crédito. O BCB considera um IHH entre 0 e 1000 indicativo de baixa concentração, acima de 1000 e menor que 1800, de moderada concentração e acima de 1800 de alta concentração.
-    
-    No entanto, o índice é divulgado somente trimestralmente e, além disso, termina no ano de 2017 como foi divulgado no Anexo Estatístico do Relatório de Estabilidade Financeira do Banco Central de abril de 2018, como pode ser visto na \autoref{ihh}. Daí se vê que a série apresenta restrições para o tamanho de amostra além de dados faltantes, o que levou à decisão de não incluí-la na estimação, apesar do interesse teórico.
-
-    \begin{figure}[h]
+    \begin{figure}[b]
         \centering
         \caption{Índice de Herfindahl-Hirschmann - IHH}
         \includegraphics[width = \textwidth, scale=0.75]{ihh.pdf}
         \legend{Fonte: BCB\@. Elaboração própria}
         \label{ihh}
     \end{figure}
+
+    Foi ainda considerada a inclusão do Índice de Herfindahl-Hirschmann (IHH) (\autoref{ihh}) para capturar o efeito da concentração estrutural no Sistema Financeiro Nacional sobre o spread. 
+    
+    Como se sabe, este é um indicador do nível de concentração econômica em um mercado, obtido ao somar o quadrado das participações de cada instituição financeira no mercado considerado, que no nosso caso é o mercado de crédito. O BCB considera um IHH entre 0 e 1000 indicativo de baixa concentração, acima de 1000 e menor que 1800, de moderada concentração e acima de 1800 de alta concentração.
+    
+    No entanto, o índice é divulgado somente trimestralmente e, além disso, termina no ano de 2017 como foi divulgado no Anexo Estatístico do Relatório de Estabilidade Financeira do Banco Central de abril de 2018. Daí se vê que a série apresenta restrições para o tamanho de amostra além de dados faltantes, o que levou à decisão de não incluí-la na estimação, apesar do interesse teórico.
 
     Espera-se, contudo, que isso não signifique incorrer em problemas de viés de variável omitida. Apesar de não ser possível prever ao certo o sinal do coeficiente estimado para esta variável, acredita-se que o sinal esperado possa ser até mesmo não-significante, com o argumento de que seria a concorrência a variável relevante para explicar o spread, visto que há alta concentração bancária mesmo em países com um sistema financeiro eficiente e bem desenvolvido. Mas também não se descarta a possiblidade do sinal positivo, indicando influência do poder de mercado dos bancos, e até mesmo um sinal negativo, com os investimentos e ganhos de escala associados à concentração aumentando a eficiência da atividade de intermediação, o que puxa o spread para baixo \cite{reb2017}. 
 
@@ -439,7 +470,7 @@
 
     Quando duas ou mais séries são integradas da mesma ordem, mas uma combinação linear delas for integrada de uma ordem menor, dizemos que elas co-integram. O caso comum é quando as séries são não-estacionárias, mas uma combinação linear delas é estacionária.
     
-    Formalmente, as séries $ \mathbf{Y_t} $ são co-integradas de ardem $ d, b $ se todas forem integradas de ordem $ d $ e se existe uma combinação linear $ \mathbf{Z_t} = \pmb{\beta}'\mathbf{Y_t} $ tal que $ \mathbf{Z_t} \sim I(d - b), b > 0 $ \cite[p.~245]{lutkepool}, onde $ \pmb{\beta} $ é o vetor cointegrante.
+    Formalmente, as séries $ \mathbf{Y_t} $ são co-integradas de ordem $ d, b $ se todas forem integradas de ordem $ d $ e se existe uma combinação linear $ \mathbf{Z_t} = \pmb{\beta}'\mathbf{Y_t} $ tal que $ \mathbf{Z_t} \sim I(d - b), b > 0 $ \cite[p.~245]{lutkepool}, onde $ \pmb{\beta} $ é o vetor cointegrante.
 
     O teste de Engle-Granger procura testar essa condição em duas etapas. Por exemplo, em um contexto bi-variado, em que $ Y_t $ é explicada por $ X_t $, primeiro estima-se a seguinte equação por MQO:
 
@@ -583,11 +614,11 @@
 
    Um problema dessa interpretação é a possibilidade de duas variáveis distintas serem significativamente correlacionadas, pois, assim, um choque não pode ser assumido independente um do outro, provavelmente sendo acompanhado de um choque na variável com que guarda correlação. Para resolver isso, recorre-se às funções de resposta ao impulso ortogonal, que resolve o problema ao fazer os resíduos serem não-correlacionados (ortogonais) a partir da decomposição de Cholesky \cite[56-62]{lutkepool}.
 
-   Um dos problemas da função de impulso resposta é sua sensibilidade à ordenação das variáveis, que surge exatamente da decomposição mencionada. Neste trabalho, a ordenação será pensada com base na teoria econômica, como será esclarecido na apresentação dos resultados.
+   Outro problema da função impulso-resposta é sua sensibilidade à ordenação das variáveis, que surge exatamente da decomposição mencionada. Neste trabalho, a ordenação será feita com base na teoria econômica, o que será explicado na apresentação dos resultados.
 
     \subsection{Modelo vetorial de correção de erros (VECM)}
 
-    Como há a possiblidade de múltiplas relações de equilíbrios entre as variáveis sob análise, gostaríamos de identificá-las, o que será feito com o teste de Johansen, para depois modelar suas evoluções temporais como um mecanismo de correção de erros multivariado.
+    Como há a possibilidade de existir mais de uma relação de co-integração entre as variáveis, usaremos o teste de Johansen para descobrir quantas delas existem. A interação dinâmica entre as séries pode ser então modelada como um mecanismo de correção de erros multivariado.
 
     A diferença em relação ao caso univariado é que agora temos mais de uma equação. Por exemplo, dadas duas variáveis $ I(1) $, $ y_1 $ e $ y_2 $, teremos que:
 
@@ -628,38 +659,38 @@
     
     \begin{equation}
         \label{varp_example}
-        y_t = A_1 y_{t-1} + A_2 y_{t-1} + \dots + A_p y_{t-1} + u_t 
+        y_t = A_1 y_{t-1} + A_2 y_{t-1} + \ldots + A_p y_{t-1} + u_t 
     \end{equation}
 
-    O que é verdadeiro se $ det(I_K - A_1z - A_2z^2 - \dots - A_pz^p) = 0 $ para $ z = 1 $. Neste caso, conclui-se que a matriz $ \Pi = -(I_K - A_1 - A_2 - \dots - A_p) $ não é inversível e, por isso, $ \text{posto}(\Pi) = r < K $.
+    O que é verdadeiro se $ det(I_K - A_1z - A_2z^2 - \ldots - A_pz^p) = 0 $ para $ z = 1 $. Neste caso, conclui-se que a matriz $ \Pi = -(I_K - A_1 - A_2 - \ldots - A_p) $ não é inversível e, por isso, $ \text{posto}(\Pi) = r < K $.
     
     Assim, é possível decompôr a matriz $ \Pi $ em duas matrizes $ \alpha $ e $ \beta $, de posto $ r $ e dimensão $ (K \times r) $ de maneira que $ \Pi = \alpha \beta^{'} $.
 
-   Podemos manipular a equação \eqref{varp_example} tirando a primeira diferença (subtraindo $ y_{t-1} $ de ambos os lados) e manipulando algebricamente de modo a obter a matriz $ \Pi = -(I_K - A_1 - \dots - A_p) $ até chegarmos à representação vetorial de correção de erros:
+   Podemos manipular a equação \eqref{varp_example} tirando a primeira diferença (subtraindo $ y_{t-1} $ de ambos os lados) e manipulando algebricamente de modo a obter a matriz $ \Pi = -(I_K - A_1 - \ldots - A_p) $ até chegarmos à representação vetorial de correção de erros:
 
    \begin{equation}
        \label{vecm_coint}
        \begin{aligned}
-           \Delta y_t &= \Pi y_{t-1} + \Gamma_1 \Delta y_{t-1} + \dots + \Gamma_{t-1} \Delta y_{t-p+1} + u_t \\
-           \Delta y_t &= \alpha \beta^{'} + \Gamma_1 \Delta y_{t-1} + \dots + \Gamma_{t-1} \Delta y_{t-p+1} + u_t
+           \Delta y_t &= \Pi y_{t-1} + \Gamma_1 \Delta y_{t-1} + \ldots + \Gamma_{t-1} \Delta y_{t-p+1} + u_t \\
+           \Delta y_t &= \alpha \beta^{'} + \Gamma_1 \Delta y_{t-1} + \ldots + \Gamma_{t-1} \Delta y_{t-p+1} + u_t
        \end{aligned}
    \end{equation}
 
-   Onde $ \Gamma_i = -(A_{i+1} + \dots + A_p), i = 1, \dots, p-1 $. É possível ainda reescrever \eqref{vecm_coint} em sua forma VAR, o que não será aqui demonstrado, ver \cite[p.~248-249]{lutkepool}.
+   Onde $ \Gamma_i = -(A_{i+1} + \ldots + A_p), i = 1, \ldots, p-1 $. É possível ainda reescrever \eqref{vecm_coint} em sua forma VAR, o que não será aqui demonstrado, ver \cite[p.~248-249]{lutkepool}.
 
    Agora, ao colocar a matriz $ \Pi $ em evidência na equação \eqref{vecm_coint}:
 
    \begin{equation}
        \label{vecm_coint2}
        \begin{aligned}
-       \Pi y_{t-1} = \Delta y_t - \Gamma_1 \Delta y_{t-1} - \dots - \Gamma_{p-1} \Delta y_{t-p+1} - u_t \\
-           \alpha \beta^{'} y_{t-1} = \Delta y_t - \Gamma_1 \Delta y_{t-1} - \dots - \Gamma_{p-1} \Delta y_{t-p+1} - u_t
+       \Pi y_{t-1} = \Delta y_t - \Gamma_1 \Delta y_{t-1} - \ldots - \Gamma_{p-1} \Delta y_{t-p+1} - u_t \\
+           \alpha \beta^{'} y_{t-1} = \Delta y_t - \Gamma_1 \Delta y_{t-1} - \ldots - \Gamma_{p-1} \Delta y_{t-p+1} - u_t
        \end{aligned}
    \end{equation}
 
    Salta à vista que, se todas as variáveis forem estacionárias após a primeira diferença, ou seja, se são $ I(0) $ ou $ I(1) $, todos os termos do lado direito da equação são estacionários, logo a matriz $ \Pi y_{t-1} = \alpha \beta^{'} y_{t-1} $ também o é. Isto não muda se retirarmos o termo $ \alpha $ do lado esquerdo ao pré-multiplicar a equação por $ (\alpha^{'}\alpha)^{-1}\alpha{'} $, o que nos deixa com $ \beta^{'}y_{t} $, que representa uma relação de co-integração entre as variáveis em $ y_t $. $ \beta $ é conhecida como a matriz de co-integração e $ \alpha $ como a \textit{loading matrix} \cite[p.~244-249]{lutkepool}.
 
-   Quando $ 0 < posto(\Pi) = r < K $, quer dizer que há $ r $ relações de co-integração no sistema. Já quando $ posto(\Pi) = 0 $, ou seja, é uma matriz nula, $ \Delta y_t $ é um VAR(p-1) estável, e se $ posto(\Pi) = K $, quer dizer que todas as variáveis no sistema são estacionárias e que $ \Delta y_t $ pode ser representado por um VAR(p) estável\footnote{Isto se justifica porque, neste caso, $ \Pi = (I_K - A_1 - \dots - A_p) = (I_K - A_1z - \dots - A_pz^p) $ para $ z = 1 $, e, como $ det(I_K - A_1 - \dots - A_p) \neq 0 $, concluímos que o polinômio característico deste VAR não possui raiz unitária, sendo, portanto, estacionário.}.
+   Quando $ 0 < posto(\Pi) = r < K $, quer dizer que há $ r $ relações de co-integração no sistema. Já quando $ posto(\Pi) = 0 $, ou seja, é uma matriz nula, $ \Delta y_t $ é um VAR(p-1) estável, e se $ posto(\Pi) = K $, quer dizer que todas as variáveis no sistema são estacionárias e que $ \Delta y_t $ pode ser representado por um VAR(p) estável\footnote{Isto se justifica porque, neste caso, $ \Pi = (I_K - A_1 - \ldots - A_p) = (I_K - A_1z - \ldots - A_pz^p) $ para $ z = 1 $, e, como $ det(I_K - A_1 - \ldots - A_p) \neq 0 $, concluímos que o polinômio característico deste VAR não possui raiz unitária, sendo, portanto, estacionário.}.
 
    \subsection{Teste de Johansen}
 
@@ -689,15 +720,21 @@
 
    \section{Apresentação dos resultados}
 
-   Neste capítulo serão apresentados os resultados do tratamento das séries temporais e, em seguida, os da estimação dos modelos. No modelo, foram incluídas como determinantes do spread as variáveis taxa básica de juros (selic), inadimplência (inad), atividade econômica (ibc) e inflação (igp)\footnote{A concentração bancária foi excluída do modelo por ter dificultado a eliminação da autocorrelação residual no modelo.}, cobrindo o período de março de 2011 a setembro de 2019. As séries, em log quando possível, podem ser vistas na \autoref{graficos}.
+   Neste capítulo serão apresentados os resultados do tratamento das séries temporais e, em seguida, os da estimação dos modelos. 
+   
+    % \begin{figure}[!hb]
+    %     \centering
+    %     \caption{Variáveis do modelo}
+    %     \includegraphics[width = 0.9\textwidth, scale=1]{series_modelo.pdf}
+    %     \label{graficos}
+    %     \legend{Fonte: Elaboração própria.}
+    % \end{figure}
 
-    \begin{figure}[h]
-        \centering
-        \caption{Variáveis do modelo}
-        \includegraphics[width = 0.9\textwidth, scale=1]{series_modelo.pdf}
-        \label{graficos}
-        \legend{Fonte: Elaboração própria.}
-    \end{figure}
+   No modelo final, foram incluídas como determinantes do spread as variáveis taxa básica de juros (selic), inadimplência (inad), atividade econômica (ibc) e inflação (igp), cobrindo o período de março de 2011 a setembro de 2019. 
+   
+   % As séries, em log quando possível, podem ser vistas na \autoref{graficos}. 
+   
+   A concentração bancária foi excluída do modelo por ter dificultado a eliminação da autocorrelação residual no modelo. 
 
    Durante todo o capítulo, faz-se uso extensivo do pacote statsmodels do Python, dos autores \textcite{statsmodels}.
 
@@ -725,7 +762,7 @@
             {\fonte{Elaboração própria, com base na função adfuller do pacote statsmodels do Python.}\nota{$ \text{H}_0 $: raiz unitária. $ \text{H}_a $: estacionária. \newline * Estacionariedade.}}
     \end{table}
 
-    Nela podemos ver que há forte evidência de estacionariedade para a série igp e de não-estacionariedade para o ibc, em qualquer dos cenários. Há, ainda, evidência de tendência-estacionariedade para o spread. A selic e a inadimplência não foram consideradas estacionárias em qualquer dos cenários.
+    Nela podemos ver que há forte evidência de estacionariedade para a série igp e de não-estacionariedade para o ibc, em qualquer dos cenários. Há, ainda, evidência do spread ser estacionário em torno de uma tendência. A selic e a inadimplência não foram consideradas estacionárias em qualquer dos cenários.
 
     \begin{table}[!hbt]
         \IBGEtab{\caption{Teste Phillips-Perron de raiz unitária}\label{pp}}
@@ -961,7 +998,7 @@
                     1 &             2 &                   16.57 &                   24.25  \\
                     \midrule
                 \end{tabular}
-                }{}
+                }{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r_0 = r_0 + 1 $}
         \end{subtable}%
         \begin{subtable}{.5\linewidth}
             \IBGEtab{\caption{Traço}\label{johansen_trace}}{%
@@ -973,9 +1010,8 @@
                     1 &             4 &                   27.05 &                   35.01  \\
                     \midrule
                 \end{tabular}
-                }{}
+                }{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r_0 < r < 4 $}
         \end{subtable}%
-        \nota{$ \text{H}_0 $: $ r =  r_0 $. $ \text{H}_a $: $ r_0 < r < 4 $}
     \end{table}
 
     Nas duas, rejeita-se a hipótese nula de que não há qualquer relação de co-integração, para, em seguida, ser feito o teste sob a hipótese nula de que há uma relação de co-integração, e, não sendo possível rejeitá-la, concluímos que há uma relação de co-integração.
